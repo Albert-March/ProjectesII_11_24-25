@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
     private float currentSpawnTime = 0.0f;
 
     public EnemyManager enemyManager;
-
+    public TargetManager targetManager;
 
     //SELECTING THE SPAWN POINT
     public Transform SP;
@@ -62,14 +62,10 @@ public class Spawner : MonoBehaviour
         EnemyStats enemyToSpawn = pendingEnemies.Dequeue();
         Transform spawnPoint = GetLeastCooldownChild().transformChild;
         Enemy e = Instantiate(enemyToSpawn.prefab, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
+        e.SetEnemyData(enemyToSpawn);
+        e.path = targetManager.GetRandomPath();
 
         enemyManager.AddSpawnedEnemy(e);
-    }
-
-    public SpawnPoint GetRandomChild()
-    {
-        int randomIndex = Random.Range(0, childs.Count);
-        return childs[randomIndex];
     }
 
     public SpawnPoint GetLeastCooldownChild()

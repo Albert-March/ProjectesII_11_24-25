@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyPathfinding pf;
+
     public string enemyName;
     public float movSpeed;
     public float health;
     public float dmg;
     public int economyGiven;
     SpriteRenderer sprite;
+    public List<Target> path;
+    private int currentTarget;
+
     public void SetEnemyData(EnemyStats enemy)
     {
         this.enemyName = enemy.enemyName;
@@ -23,6 +28,32 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        sprite.color = Color.red;
+    }
+
+    public void Update()
+    {
+        if(currentTarget < path.Count)
+        {
+            pf.MoveTowardsTarget(this, path[currentTarget]);
+        }
+        else
+        {
+            pf.MoveTowardsTarget(this, path[0]);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(currentTarget < path.Count){
+            if(col.transform == path[currentTarget].obj.transform)
+            {
+                Debug.Log(currentTarget);
+                currentTarget++;
+            }
+        }
+        else
+        {
+            //El Target sera el parasit
+        }
     }
 }
