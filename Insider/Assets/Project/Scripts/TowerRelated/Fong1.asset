@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
+  m_Name: Fong1
+  m_EditorClassIdentifier: 
+  HP: 300
+  Dany: 0
+  RatiDeTrets: 0
+  DisparsXsegon: 0
+  VidaDeProjectils: 0
+  Habilitat: 0
+  Rang: 0
+  "Detecci\xF3": 0
+  Target: 0
+  colorTower: {r: 0.0797109, g: 0.990566, b: 0.07943219, a: 1}
+  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
