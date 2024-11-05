@@ -17,5 +17,5 @@ MonoBehaviour:
   health: 500
   dmg: 10
   economyGiven: 60
-  color: {r: 1, g: 0.674681, b: 0, a: 0}
+  color: {r: 1, g: 0.674681, b: 0, a: 1}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public int economyGiven;
     SpriteRenderer sprite;
     public List<Target> path;
-    private int currentTarget;
+    private int currentTarget = 0;
 
     public void SetEnemyData(EnemyStats enemy)
     {

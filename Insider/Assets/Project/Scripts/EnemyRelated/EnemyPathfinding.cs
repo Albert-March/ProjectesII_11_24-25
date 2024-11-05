@@ -3,25 +3,38 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
-public class EnemyPathfinding : MonoBehaviour 
+public class EnemyPathfinding : MonoBehaviour
 {
-
-    private float distance;
-    public float distanceBetween;
+    public float detectionRange = 100f;
+    public float avoidForce = 100f;
+    public float seekForce = 300f;
 
     public void MoveTowardsTarget(Enemy enemy, Target t)
     {
-        distance = Vector2.Distance(enemy.transform.position, t.obj.transform.position);
-        Vector2 direction = t.obj.transform.position - enemy.transform.position;
-        direction.Normalize();
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 desiredVelocity = ((Vector2)(t.obj.transform.position - enemy.transform.position)).normalized * seekForce;
+        Vector2 steering = desiredVelocity;
 
-        if (distance > distanceBetween)
+        // Check for obstacles using raycasts
+        RaycastHit2D hit = Physics2D.Raycast(enemy.transform.position, (Vector2)enemy.transform.up, detectionRange);
+
+        if (hit.collider.tag == "Wall")
         {
-            enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, t.obj.transform.position, enemy.GetComponent<Enemy>().movSpeed * Time.deltaTime);
-            enemy.transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            // If an obstacle is detected, calculate an avoidance force
+            Vector2 avoidanceForce = Vector2.Perpendicular(hit.normal).normalized * avoidForce;
+            steering += avoidanceForce;  // Add the avoidance force to the seek force
+        }
+
+        // Apply the steering force to move the enemy
+        Vector2 newVelocity = steering.normalized * enemy.movSpeed;
+        enemy.transform.position += (Vector3)(newVelocity * Time.deltaTime);
+
+        // Optional: Rotate to face the movement direction
+        if (newVelocity != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(newVelocity.y, newVelocity.x) * Mathf.Rad2Deg;
+            enemy.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
     }
-
 }
