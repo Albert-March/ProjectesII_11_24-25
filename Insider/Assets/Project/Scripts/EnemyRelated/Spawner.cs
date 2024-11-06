@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     public void Start()
     {
         //LOAD FROM FILE
-        char[] values = "1234511111111222222222221111144444444444333333333333355555555555".ToCharArray();
+        char[] values = "1".ToCharArray();
         foreach (char c in values)
         {
             pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
