@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Detection
 {
-    public EnemyPathfinding pf;
-
     public string enemyName;
     public float movSpeed;
     public float health;
@@ -13,7 +11,8 @@ public class Enemy : MonoBehaviour
     public int economyGiven;
     SpriteRenderer sprite;
     public List<Target> path;
-    private int currentTarget = 0;
+
+    public int currentTarget = 0;
 
     public void SetEnemyData(EnemyStats enemy)
     {
@@ -32,14 +31,10 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        if(currentTarget < path.Count)
-        {
-            pf.MoveTowardsTarget(this, path[currentTarget]);
-        }
-        else
-        {
-            pf.MoveTowardsTarget(this, path[0]);
-        }
+        ClearContextMaps();
+        UpdateInterestMap(path[currentTarget]);
+        UpdateDangerMap();
+        MoveInBestDirection(this);
     }
 
     void OnTriggerEnter2D(Collider2D col)

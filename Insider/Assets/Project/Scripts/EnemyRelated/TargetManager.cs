@@ -23,7 +23,6 @@ public class TargetManager : MonoBehaviour
             Target targetHolder = new Target();
             targetHolder.obj = father.transform.GetChild(i).gameObject;
             allTargets.Add(targetHolder);
-            Debug.Log(allTargets[i].obj.name);
         }
     }
 

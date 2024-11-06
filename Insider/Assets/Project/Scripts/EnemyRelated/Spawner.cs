@@ -65,6 +65,7 @@ public class Spawner : MonoBehaviour
         e.SetEnemyData(enemyToSpawn);
         e.path = targetManager.GetRandomPath();
 
+
         enemyManager.AddSpawnedEnemy(e);
     }
 
