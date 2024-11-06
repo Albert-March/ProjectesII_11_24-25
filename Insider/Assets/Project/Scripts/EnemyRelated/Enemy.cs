@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Detection
+public class Enemy : MonoBehaviour
 {
+    public Detection d;
+
     public string enemyName;
     public float movSpeed;
     public float health;
@@ -31,10 +33,7 @@ public class Enemy : Detection
 
     public void Update()
     {
-        ClearContextMaps();
-        UpdateInterestMap(path[currentTarget]);
-        UpdateDangerMap();
-        MoveInBestDirection(this);
+        d.Move(this, path[currentTarget]);
     }
 
     void OnTriggerEnter2D(Collider2D col)

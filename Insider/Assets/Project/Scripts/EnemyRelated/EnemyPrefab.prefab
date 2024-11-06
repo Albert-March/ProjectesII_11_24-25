@@ -101,10 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea169328c35fa224ba250f1628ea8b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  obstacleDetectionRadius: 5
-  moveSpeed: 0
-  contextMapResolution: 36
+  d: {fileID: 5314477283653470172}
   enemyName: 
   movSpeed: 0
   health: 0
@@ -123,10 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e53211a9b79e94e843c8ad61320733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  obstacleDetectionRadius: 5
-  moveSpeed: 0
-  contextMapResolution: 36
+  Obstacles: []
 --- !u!50 &2176080803243427887
 Rigidbody2D:
   serializedVersion: 4

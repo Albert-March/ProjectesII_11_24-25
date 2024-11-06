@@ -1,144 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Detection : MonoBehaviour
 {
-    public Transform target; // The target the AI should follow
-    public float obstacleDetectionRadius = 5.0f; // Radius for obstacle avoidance
-    public int contextMapResolution = 36; // Number of slots in the context map
+    public List<Transform> Obstacles;
+    public Target t;
 
-    private float[] interestMap;
-    private float[] dangerMap;
-    private Vector2[] directions;
-
-    void Start()
+    public void Move(Enemy e, Target t)
     {
-
-        obstacleDetectionRadius = GetComponent<CircleCollider2D>().radius;
-
-        interestMap = new float[contextMapResolution];
-        dangerMap = new float[contextMapResolution];
-        directions = new Vector2[contextMapResolution];
-
-        // Precompute directions for each slot in the context map
-        float angleStep = 360.0f / contextMapResolution;
-        for (int i = 0; i < contextMapResolution; i++)
+        if (Obstacles.Count == 0)
         {
-            float angle = i * angleStep * Mathf.Deg2Rad;
-            directions[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            Streight(e, t);
+        }
+        else 
+        {
+            Vector3 ePoint = e.transform.position;
+            Vector3 tPoint = t.obj.transform.position;
+            Vector3 diff = tPoint - ePoint;
+            RaycastHit2D hit = Physics2D.Raycast(ePoint, diff, diff.magnitude);
+            Debug.DrawRay(ePoint, diff, Color.green);
+
+            if (hit.transform.tag == "Wall") 
+            {
+                e.transform.position = Vector3.MoveTowards(e.transform.position, CalculateDistanceOfCenterPoint(), e.movSpeed * Time.deltaTime);
+            }
+
         }
     }
 
-    public void ClearContextMaps()
+    void Streight(Enemy e, Target t) 
     {
-        // Reset maps each frame
-        for (int i = 0; i < contextMapResolution; i++)
+        e.transform.position = Vector3.MoveTowards(e.transform.position, t.obj.transform.position, e.movSpeed * Time.deltaTime);
+    }
+
+
+
+    public void OnTriggerEnter2D(Collider2D col) 
+    {
+        if (col.transform.tag == "Wall") 
         {
-            interestMap[i] = 0f;
-            dangerMap[i] = 0f;
+            Obstacles.Add(col.transform);
         }
     }
 
-    protected void UpdateInterestMap(Target t)
+    public void OnTriggerExit2D(Collider2D col)
     {
-        // Compute direction toward the target and add it to interest map
-        Vector2 toTarget = t.obj.transform.position - transform.position;
-        int targetSlot = GetClosestDirectionSlot(toTarget.normalized);
-        interestMap[targetSlot] = 1.0f / toTarget.magnitude; // Higher interest for closer targets
-    }
-
-    protected void UpdateDangerMap()
-    {
-        // Detect obstacles within the specified radius and filter for objects tagged as "wall"
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, obstacleDetectionRadius, Vector2.zero);
-        foreach (var hit in hits)
+        if (col.transform.tag == "Wall")
         {
-            // Ensure the detected object is not the AI itself and is tagged as "wall"
-            if (hit.collider != null && hit.collider.CompareTag("Wall"))
-            {
-                Vector2 toObstacle = hit.point - (Vector2)transform.position;
-                int obstacleSlot = GetClosestDirectionSlot(toObstacle.normalized);
-                dangerMap[obstacleSlot] = Mathf.Max(dangerMap[obstacleSlot], 1.0f / toObstacle.magnitude); // Higher danger for closer obstacles
-            }
+            Obstacles.Remove(col.transform);
         }
     }
 
-    protected int GetClosestDirectionSlot(Vector2 direction)
+    Vector2 CalculateDistanceOfCenterPoint() 
     {
-        int bestSlot = 0;
-        float maxDot = Vector2.Dot(directions[0], direction);
-        for (int i = 1; i < directions.Length; i++)
-        {
-            float dot = Vector2.Dot(directions[i], direction);
-            if (dot > maxDot)
-            {
-                maxDot = dot;
-                bestSlot = i;
-            }
-        }
-        return bestSlot;
+        Vector2 heading = calculateCentroid(Obstacles) - new Vector2(transform.position.x, transform.position.y);
+        float distance = heading.magnitude;
+        Vector2 centricPointDistance = heading / distance;
+
+        return centricPointDistance;
     }
 
-    protected void MoveInBestDirection(Enemy e)
+    Vector2 calculateCentroid(List<Transform> centerPoints)
     {
-        float[] combinedMap = new float[contextMapResolution];
-        bool avoidMode = false;
-
-        // Check if danger level in any direction is above threshold
-        for (int i = 0; i < contextMapResolution; i++)
+        Vector2 centroid = new Vector2(0, 0);
+        var numPoints = centerPoints.Count;
+        foreach (Transform point in centerPoints)
         {
-            if (dangerMap[i] > 0.7f) // Threshold to trigger avoidance mode
-            {
-                avoidMode = true;
-                break;
-            }
+            centroid += new Vector2(point.position.x, point.position.y);
         }
 
-        if (avoidMode)
-        {
-            // Avoidance mode: ignore interest and choose the safest direction
-            int safestDirectionIndex = 0;
-            float lowestDanger = dangerMap[0];
+        centroid /= numPoints;
 
-            for (int i = 1; i < dangerMap.Length; i++)
-            {
-                if (dangerMap[i] < lowestDanger)
-                {
-                    lowestDanger = dangerMap[i];
-                    safestDirectionIndex = i;
-                }
-            }
-
-            // Move in the safest direction
-            Vector2 safestDirection = directions[safestDirectionIndex];
-            transform.position += (Vector3)(safestDirection * e.movSpeed * Time.deltaTime * 0.5f); // Move slowly while avoiding
-        }
-        else
-        {
-            // Normal mode: combine interest and danger maps
-            for (int i = 0; i < contextMapResolution; i++)
-            {
-                combinedMap[i] = interestMap[i] - (dangerMap[i] * 2.0f); // Amplify danger influence
-            }
-
-            int bestDirectionIndex = 0;
-            float bestValue = combinedMap[0];
-
-            for (int i = 1; i < combinedMap.Length; i++)
-            {
-                if (combinedMap[i] > bestValue)
-                {
-                    bestValue = combinedMap[i];
-                    bestDirectionIndex = i;
-                }
-            }
-
-            // Move in the best combined direction
-            Vector2 bestDirection = directions[bestDirectionIndex];
-            transform.position += (Vector3)(bestDirection * e.movSpeed * Time.deltaTime);
-        }
+        return centroid;
     }
 }
+
