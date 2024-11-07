@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class SetTowerBaseInput : MonoBehaviour
 {
+	public GameObject mainButton;
 	public GameObject botonOpcion1;
 	public GameObject botonOpcion2;
 	public TowerSetter towerSetter;
 	public int id;
+	bool active = false;
 
 	void Start()
 	{
@@ -18,8 +20,18 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void MostrarOpciones()
 	{
-		botonOpcion1.SetActive(true);
-		botonOpcion2.SetActive(true);
+		if(active == false)
+		{
+			botonOpcion1.SetActive(true);
+			botonOpcion2.SetActive(true);
+			active = true;
+		}
+		else
+		{
+			botonOpcion1.SetActive(false);
+			botonOpcion2.SetActive(false);
+			active = false;
+		}	
 	}
 
 	public void LlamarSpawnTowerOpcion1()
@@ -38,6 +50,7 @@ public class SetTowerBaseInput : MonoBehaviour
 		}
 		botonOpcion1.SetActive(false);
 		botonOpcion2.SetActive(false);
+		mainButton.SetActive(false);
 	}
 
 	public void LlamarSpawnTowerOpcion2()
@@ -56,5 +69,6 @@ public class SetTowerBaseInput : MonoBehaviour
 		}
 		botonOpcion1.SetActive(false);
 		botonOpcion2.SetActive(false);
+		mainButton.SetActive(false);
 	}
 }

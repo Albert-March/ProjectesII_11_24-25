@@ -5,15 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TowerStats", menuName = "ScriptableObjects/TowerStats", order = 1)]
 public class TowerStats : ScriptableObject
 {
-	public float HP;
-	public float Dany;
-	public float RatiDeTrets;
-	public float DisparsXsegon;
-	public float VidaDeProjectils;
-	public float Habilitat;
-	public float Rang;
-	public float Detecció;
-	public float Target;
+	public float damage;
+	public float fireRate;
+	public float DPS;
+	public float projectileHp;
+	public float projectileSpeed;
+	public float hability; //No es un float (falta definir)
+	public float range;
 	public Color colorTower;
 	public GameObject prefab;
 }

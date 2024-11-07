@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
   m_Name: Bacteri1
   m_EditorClassIdentifier: 
-  HP: 200
-  Dany: 0
-  RatiDeTrets: 0
-  DisparsXsegon: 0
-  VidaDeProjectils: 0
-  Habilitat: 0
-  Rang: 0
-  "Detecci\xF3": 0
-  Target: 0
+  damage: 3
+  fireRate: 2
+  DPS: 2
+  projectileHp: 0
+  projectileSpeed: 2
+  hability: 0
+  range: 0
   colorTower: {r: 0.8018868, g: 0.43303308, b: 0.13238695, a: 1}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}

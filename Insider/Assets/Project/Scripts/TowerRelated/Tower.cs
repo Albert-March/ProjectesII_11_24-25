@@ -5,28 +5,24 @@ using UnityEngine.U2D;
 
 public class Tower : MonoBehaviour
 {
-	public float HP;
-	public float Dany;
-	public float RatiDeTrets;
-	public float DisparsXsegon;
-	public float VidaDeProjectils;
-	public float Habilitat;
-	public float Rang;
-	public float Detecció;
-	public float Target;
+	public float damage;
+	public float fireRate;
+	public float DPS;
+	public float projectileHp;
+	public float projectileSpeed;
+	public float hability; //No es un float (falta definir)
+	public float range;
 	private SpriteRenderer sprite;
 
 	public void SetTowerData(TowerStats stats)
 	{
-		this.HP = stats.HP;
-		this.Dany = stats.Dany;
-		this.RatiDeTrets = stats.RatiDeTrets;
-		this.DisparsXsegon = stats.DisparsXsegon;
-		this.VidaDeProjectils = stats.VidaDeProjectils;
-		this.Habilitat = stats.Habilitat;
-		this.Rang = stats.Rang;
-		this.Detecció = stats.Detecció;
-		this.Target = stats.Target;
+		this.damage = stats.damage;
+		this.fireRate = stats.fireRate;
+		this.DPS = stats.DPS;
+		this.projectileHp = stats.projectileHp;
+		this.projectileSpeed = stats.projectileSpeed;
+		this.hability = stats.hability;
+		this.range = stats.range;
 		this.sprite.color = stats.colorTower;
 	}
 

@@ -21,23 +21,6 @@ public class TowerSetter : MonoBehaviour
 
 		Tower tower = towerObject.GetComponent<Tower>();
 
-		if (tower != null)
-		{
-			tower.HP = stats.HP;
-			tower.Dany = stats.Dany;
-			tower.RatiDeTrets = stats.RatiDeTrets;
-			tower.DisparsXsegon = stats.DisparsXsegon;
-			tower.VidaDeProjectils = stats.VidaDeProjectils;
-			tower.Habilitat = stats.Habilitat;
-			tower.Rang = stats.Rang;
-			tower.Detecció = stats.Detecció;
-			tower.Target = stats.Target;
-
-			SpriteRenderer spriteRenderer = towerObject.GetComponent<SpriteRenderer>();
-			if (spriteRenderer != null)
-			{
-				spriteRenderer.color = stats.colorTower;
-			}
-		}
+		tower.SetTowerData(stats);
 	}
 }
