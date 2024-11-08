@@ -5,6 +5,8 @@ using UnityEngine.U2D;
 
 public class Tower : MonoBehaviour
 {
+    public int id;
+
 	public float damage;
 	public float fireRate;
 	public float DPS;
@@ -14,7 +16,11 @@ public class Tower : MonoBehaviour
 	public float range;
 	private SpriteRenderer sprite;
 
-	public void SetTowerData(TowerStats stats)
+    public List<Enemy> enemiesInRange = new List<Enemy>();
+
+    public AttackManager attackManager;
+
+    public void SetTowerData(TowerStats stats)
 	{
 		this.damage = stats.damage;
 		this.fireRate = stats.fireRate;
@@ -24,11 +30,42 @@ public class Tower : MonoBehaviour
 		this.hability = stats.hability;
 		this.range = stats.range;
 		this.sprite.color = stats.colorTower;
-	}
+        attackManager.Set(id);
+    }
 
 	private void Awake()
 	{
 		sprite = GetComponent<SpriteRenderer>();
 		sprite.color = Color.red;
 	}
+    private void Update()
+    {
+        attackManager.Attack(enemiesInRange[0]);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "Enemy")
+        {
+
+            if (!enemiesInRange.Contains(other.GetComponent<Enemy>()))
+            {
+                enemiesInRange.Add(other.GetComponent<Enemy>());
+            }
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+
+            if (enemiesInRange.Contains(other.GetComponent<Enemy>()))
+            {
+                enemiesInRange.Remove(other.GetComponent<Enemy>());
+            }
+
+        }
+    }
 }

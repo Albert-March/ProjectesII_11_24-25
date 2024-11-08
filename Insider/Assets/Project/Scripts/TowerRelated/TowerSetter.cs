@@ -22,5 +22,6 @@ public class TowerSetter : MonoBehaviour
 		Tower tower = towerObject.GetComponent<Tower>();
 
 		tower.SetTowerData(stats);
+		tower.id = option;
 	}
 }
