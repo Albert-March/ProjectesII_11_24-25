@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     private GameObject target;
 	public Tower towerScript;
 
-
 	void Update()
 	{
 		if (target == null)
@@ -30,22 +29,11 @@ public class Bullet : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject == target)
+		if (collision.gameObject == target && !collision.isTrigger)
 		{
-			Debug.Log("El enemigo ha sido golpeado y ha recibido daño.");
-			Enemy enemyScript = collision.GetComponent<Enemy>();
-			if (enemyScript != null)
-			{
-				enemyScript.health -= towerScript.damage;
-				Debug.Log("Salud restante del enemigo: " + enemyScript.health);
-
-				if (enemyScript.health <= 0)
-				{
-					Debug.Log("El enemigo ha sido destruido.");
-					Destroy(collision.gameObject);
-				}
-			}
-			Destroy(gameObject);
+			IDamage _enemyReference = collision.GetComponent<IDamage>();
+			_enemyReference.Damage(towerScript.damage);
+            Destroy(gameObject);
 		}
 	}
 }

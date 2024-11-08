@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour, IDamage
     SpriteRenderer sprite;
     public List<Target> path;
 
+    public EnemyManager enemyManager;
+
     public int currentTarget = 0;
 
     private List<EnemyBehaviour> behaviours = new List<EnemyBehaviour>();
@@ -83,6 +85,12 @@ public class Enemy : MonoBehaviour, IDamage
     public void Damage(float amount)
     {
         health -= amount;
+
+        if (health <= 0) 
+        {
+            enemyManager.RemoveEnemy(this);
+            Destroy(gameObject);
+        }
     }
 
 }

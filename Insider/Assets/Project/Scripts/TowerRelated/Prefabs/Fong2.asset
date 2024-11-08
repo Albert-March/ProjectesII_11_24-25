@@ -16,7 +16,7 @@ MonoBehaviour:
   fireRate: 2
   DPS: 2
   projectileHp: 0
-  projectileSpeed: 2
+  projectileSpeed: 10
   hability: 0
   range: 0
   colorTower: {r: 0.033819854, g: 0.3773585, b: 0.15135324, a: 1}

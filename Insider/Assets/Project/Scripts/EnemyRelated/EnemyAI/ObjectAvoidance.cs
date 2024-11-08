@@ -68,13 +68,11 @@ public class ObjectAvoidance : EnemyBehaviour
         else if (right.collider != null && (front1.collider != null || front2.collider != null))
         {
             rotationSpeed = (((frontAngle1.magnitude * 2.5f) + (frontAngle2.magnitude * 2.5f)) - (front1.distance + front2.distance)) * 3;
-            Debug.Log("Gira a la izquierda");
             nextAngle = Quaternion.Euler(0, 0, rotationSpeed) * transform.up;
         }
         else if (left.collider != null && (front1.collider != null || front2.collider != null))
         {
             rotationSpeed = (((frontAngle1.magnitude * 2.5f) + (frontAngle2.magnitude * 2.5f)) - (front1.distance + front2.distance)) * 3;
-            Debug.Log("Gira a la derecha");
             nextAngle = Quaternion.Euler(0, 0, -rotationSpeed) * transform.up;
         }
         else

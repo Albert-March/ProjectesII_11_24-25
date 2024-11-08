@@ -63,6 +63,7 @@ public class Spawner : MonoBehaviour
         Transform spawnPoint = GetLeastCooldownChild().transformChild;
         Enemy e = Instantiate(enemyToSpawn.prefab, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
         e.SetEnemyData(enemyToSpawn);
+        e.enemyManager = enemyManager;
         e.path = targetManager.GetRandomPath();
 
 
@@ -94,14 +95,12 @@ public class Spawner : MonoBehaviour
             {
                 childs[giveChildNum].isSpawnable = true;
                 childs[randomNum + 1].isSpawnable = false;
-                Debug.Log("Spawning At: " + (randomNum + 1));
                 return childs[randomNum + 1];
             }
             else 
             {
                 childs[giveChildNum].isSpawnable = true;
                 childs[randomNum].isSpawnable = false;
-                Debug.Log("Spawning At: " + (randomNum));
                 return childs[randomNum];
             }
             

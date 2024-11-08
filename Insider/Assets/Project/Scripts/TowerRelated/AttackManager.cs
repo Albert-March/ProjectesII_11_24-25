@@ -28,7 +28,6 @@ public class AttackManager : MonoBehaviour
 			targetEnemy = enemiesInRange[0];
 			if (detectionCollider.IsTouching(targetEnemy.GetComponent<Collider2D>()) && Time.time >= lastShootTime + towerScript.fireRate)
 			{
-				Debug.Log("Disparando al enemigo en el rango de ataque");
 				ShootAtTarget(targetEnemy);
 				lastShootTime = Time.time;
 			}
@@ -41,7 +40,6 @@ public class AttackManager : MonoBehaviour
 		{
 			if (detectionCollider.IsTouching(other))
 			{
-				Debug.Log("Enemy en el rango de detección");
 				if (!enemiesInRange.Contains(other.gameObject))
 				{
 					enemiesInRange.Add(other.gameObject);
@@ -57,7 +55,6 @@ public class AttackManager : MonoBehaviour
 		{
 			if (!detectionCollider.IsTouching(other))
 			{
-				Debug.Log("Enemy salió del rango de detección");
 				if (enemiesInRange.Contains(other.gameObject))
 				{
 					enemiesInRange.Remove(other.gameObject);
