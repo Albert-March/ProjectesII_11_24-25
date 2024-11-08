@@ -10,8 +10,9 @@ public class TowerStats : ScriptableObject
 	public float DPS;
 	public float projectileHp;
 	public float projectileSpeed;
-	public float hability; //No es un float (falta definir)
 	public float range;
-	public Color colorTower;
-	public GameObject prefab;
+    public float bulletSize;
+    public AbilityManager ability;
+    public Color colorTower;
+    public GameObject prefab;
 }

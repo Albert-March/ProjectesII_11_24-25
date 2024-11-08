@@ -66,8 +66,9 @@ public class AttackManager : MonoBehaviour
 	void ShootAtTarget(GameObject target)
 	{
 		GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-		// Asignar objetiu
-		Bullet bulletScript = bullet.GetComponent<Bullet>();
+		//bullet.transform.localScale = bullet.transform.localScale * towerScript.bulletSize;
+        // Asignar objetiu
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
 		bulletScript.towerScript = towerScript;
 		if (bulletScript != null)
 		{

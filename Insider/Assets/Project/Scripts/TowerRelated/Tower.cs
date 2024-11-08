@@ -10,9 +10,10 @@ public class Tower : MonoBehaviour
 	public float DPS;
 	public float projectileHp;
 	public float projectileSpeed;
-	public float hability; //No es un float (falta definir)
 	public float range;
-	private SpriteRenderer sprite;
+	public float bulletSize;
+    public AbilityManager ability;
+    private SpriteRenderer sprite;
 
 	public void SetTowerData(TowerStats stats)
 	{
@@ -21,9 +22,10 @@ public class Tower : MonoBehaviour
 		this.DPS = stats.DPS;
 		this.projectileHp = stats.projectileHp;
 		this.projectileSpeed = stats.projectileSpeed;
-		this.hability = stats.hability;
 		this.range = stats.range;
-		this.sprite.color = stats.colorTower;
+		this.bulletSize = stats.bulletSize;
+        this.ability = stats.ability;
+        this.sprite.color = stats.colorTower;
 	}
 
 	private void Awake()

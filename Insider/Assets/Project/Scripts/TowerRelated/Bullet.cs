@@ -19,8 +19,7 @@ public class Bullet : MonoBehaviour
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
 
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-	}
+    }
 
 	public void SetTarget(GameObject newTarget)
     {
