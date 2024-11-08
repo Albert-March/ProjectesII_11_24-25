@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamage
 {
-    public Detection d;
-
     public string enemyName;
     public float movSpeed;
+    public float attackSpeed;
     public float health;
     public float dmg;
     public int economyGiven;
@@ -16,14 +17,24 @@ public class Enemy : MonoBehaviour
 
     public int currentTarget = 0;
 
+    private List<EnemyBehaviour> behaviours = new List<EnemyBehaviour>();
+
+    private IDamage _damageReciver;
+
+    private bool onDamageRange = false;
+    private float timeSinceLastAtack = 0;
+
     public void SetEnemyData(EnemyStats enemy)
     {
         this.enemyName = enemy.enemyName;
         this.movSpeed = enemy.movSpeed;
+        this.attackSpeed = enemy.attackSpeed;
         this.health = enemy.health;
         this.dmg = enemy.dmg;
         this.economyGiven = enemy.economyGiven;
         this.sprite.color = enemy.color;
+        behaviours.Add(gameObject.AddComponent<BaseMovement>());
+        behaviours.Add(gameObject.AddComponent<ObjectAvoidance>());
     }
 
     private void Awake()
@@ -33,7 +44,20 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        d.Move(this, path[currentTarget]);
+        PlayAllBehaviours();
+
+        if (_damageReciver == null)
+            return;
+        // if de temps de atack
+        _damageReciver.Damage(dmg);
+    }
+
+    private void PlayAllBehaviours() 
+    {
+        foreach (var behaviour in behaviours)
+        {
+            behaviour.Behave(this, path[currentTarget]);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -48,6 +72,17 @@ public class Enemy : MonoBehaviour
         else
         {
             //El Target sera el parasit
+            _damageReciver = col.GetComponent<IDamage>();
         }
     }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        _damageReciver = null;
+    }
+
+    public void Damage(float amount)
+    {
+        health -= amount;
+    }
+
 }

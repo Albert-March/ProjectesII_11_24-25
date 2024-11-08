@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1037088749377502099}
   - component: {fileID: 187529414342961661}
   - component: {fileID: 8996205955235700818}
-  - component: {fileID: 5314477283653470172}
   - component: {fileID: 2176080803243427887}
   - component: {fileID: -2029290060706385410}
   - component: {fileID: 967781967114191661}
@@ -101,26 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea169328c35fa224ba250f1628ea8b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  d: {fileID: 5314477283653470172}
+  AI: {fileID: 0}
   enemyName: 
   movSpeed: 0
   health: 0
   dmg: 0
   economyGiven: 0
   currentTarget: 0
---- !u!114 &5314477283653470172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4895671134027512076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e53211a9b79e94e843c8ad61320733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Obstacles: []
 --- !u!50 &2176080803243427887
 Rigidbody2D:
   serializedVersion: 4

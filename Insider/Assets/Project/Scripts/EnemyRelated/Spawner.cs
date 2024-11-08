@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     //EnemyManager vars
     public List<EnemyStats> spawneableEnemies = new List<EnemyStats>();
 
-    private float spawnTime = 1.0f;
+    private float spawnTime = 1f;
     private float currentSpawnTime = 0.0f;
 
     public EnemyManager enemyManager;
@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     public void Start()
     {
         //LOAD FROM FILE
-        char[] values = "1".ToCharArray();
+        char[] values = "111111111111111111111111111111111111111111111111111111111111111111111111111".ToCharArray();
         foreach (char c in values)
         {
             pendingEnemies.Enqueue(spawneableEnemies[c - '1']);

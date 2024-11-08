@@ -4,13 +4,13 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyStats", menuName = "ScriptableObjects/EnemyStats", order = 1)]
 public class EnemyStats : ScriptableObject
-    {
-        //public int positionInArray;
-        public string enemyName;
-        public float movSpeed;
-        public float health;
-        public float dmg;
-        public int economyGiven;
-        public Color color;
-        public GameObject prefab;
-    }
+{
+    public string enemyName;
+    public float movSpeed;
+    public float attackSpeed;
+    public float health;
+    public float dmg;
+    public int economyGiven;
+    public Color color;
+    public GameObject prefab;
+}
