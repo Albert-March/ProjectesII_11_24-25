@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    protected HashSet<Enemy> currentEnemies = new HashSet<Enemy>();
+    protected HashSet<Enemy> currentTower = new HashSet<Enemy>();
 
     public void AddSpawnedEnemy(Enemy e)
     {
-        currentEnemies.Add(e);
+        currentTower.Add(e);
     }
 
     public void RemoveEnemy(Enemy e)
     {
-        currentEnemies.Remove(e);
+		currentTower.Remove(e);
     }
 }
