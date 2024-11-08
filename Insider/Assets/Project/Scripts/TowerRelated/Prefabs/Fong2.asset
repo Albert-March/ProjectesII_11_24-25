@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
   m_Name: Fong2
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 30
   fireRate: 2
   DPS: 2
   projectileHp: 0
