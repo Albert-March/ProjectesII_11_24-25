@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour, IDamage
 
     public EnemyManager enemyManager;
 
-    public int currentTarget = 0;
+	EconomyManager economyScript;
+
+	public int currentTarget = 0;
 
     private List<EnemyBehaviour> behaviours = new List<EnemyBehaviour>();
 
@@ -87,6 +89,8 @@ public class Enemy : MonoBehaviour, IDamage
         {
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
+            economyScript = FindObjectOfType<EconomyManager>();
+			economyScript.economy += economyGiven;
         }
     }
 
