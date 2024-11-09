@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8347928862090050615}
   - component: {fileID: 4361864645289291428}
   - component: {fileID: 4875304122418390277}
-  - component: {fileID: 6507544010359199859}
+  - component: {fileID: -4171722768245866999}
   - component: {fileID: -8647042633835701479}
   - component: {fileID: -8436442682184797380}
   m_Layer: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff74ece12baaa644bb9419957dbf3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   damage: 0
   fireRate: 0
   DPS: 0
@@ -107,7 +108,9 @@ MonoBehaviour:
   projectileSpeed: 0
   hability: 0
   range: 0
---- !u!114 &6507544010359199859
+  enemiesInRange: []
+  attackManager: {fileID: -4171722768245866999}
+--- !u!114 &-4171722768245866999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,11 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1f54586d198cf46919549d8daea08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionCollider: {fileID: -8436442682184797380}
-  bulletPrefab: {fileID: 359090946922342455, guid: 5307cd918161fda4fa57ddc1bc0db77f, type: 3}
-  firePoint: {fileID: 8347928862090050615}
-  enemiesInRange: []
-  towerScript: {fileID: 0}
+  AttackBehaviours:
+  - {fileID: 0}
 --- !u!50 &-8647042633835701479
 Rigidbody2D:
   serializedVersion: 4

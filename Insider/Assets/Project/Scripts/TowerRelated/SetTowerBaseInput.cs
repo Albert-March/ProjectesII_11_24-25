@@ -9,7 +9,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject botonOpcion1;
 	public GameObject botonOpcion2;
 	public TowerSetter towerSetter;
-	public int id;
+	public int towerGrup;
 	bool active = false;
 
 	void Start()
@@ -36,7 +36,7 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void LlamarSpawnTowerOpcion1()
 	{
-		switch(id)
+		switch(towerGrup)
 		{
 			case 0:
 				towerSetter.SpawnTower(0, this.transform);
@@ -55,7 +55,7 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void LlamarSpawnTowerOpcion2()
 	{
-		switch (id)
+		switch (towerGrup)
 		{
 			case 0:
 				towerSetter.SpawnTower(1, this.transform);

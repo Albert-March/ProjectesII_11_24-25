@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamage
@@ -67,7 +65,6 @@ public class Enemy : MonoBehaviour, IDamage
         if(currentTarget < path.Count){
             if(col.transform == path[currentTarget].obj.transform)
             {
-                Debug.Log(currentTarget);
                 currentTarget++;
             }
         }

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ObjectAvoidance : EnemyBehaviour
 {
@@ -29,7 +27,6 @@ public class ObjectAvoidance : EnemyBehaviour
     public override void Behave(Enemy e, Target t) 
     {
         e.transform.up = RotateOvertime(nextAngle);
-
 
         Vector2 frontAngle1 = Quaternion.Euler(0, 0, -30) * transform.up;
         Vector2 frontAngle2 = Quaternion.Euler(0, 0, 30) * transform.up;

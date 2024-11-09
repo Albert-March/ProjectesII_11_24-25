@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class TowerSetter : MonoBehaviour
 {
@@ -16,11 +16,9 @@ public class TowerSetter : MonoBehaviour
 		}
 
 		TowerStats stats = towerStats[option];
+        GameObject towerObject = Instantiate(stats.prefab, towerPos.position, Quaternion.identity);
+        Tower tower = towerObject.GetComponent<Tower>();
+        tower.SetTowerData(stats);
 
-		GameObject towerObject = Instantiate(stats.prefab, towerPos.position, Quaternion.identity);
-
-		Tower tower = towerObject.GetComponent<Tower>();
-
-		tower.SetTowerData(stats);
 	}
 }
