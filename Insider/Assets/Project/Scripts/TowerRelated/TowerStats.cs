@@ -9,7 +9,7 @@ public class TowerStats : ScriptableObject
     public float damage;
 	public float fireRate;
 	public float DPS;
-	public float projectileHp;
+	public int projectileHp;
 	public float projectileSpeed;
 	public float hability; //No es un float (falta definir)
 	public float range;

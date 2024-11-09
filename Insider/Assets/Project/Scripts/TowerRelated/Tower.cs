@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour
 	public float damage;
 	public float fireRate;
 	public float DPS;
-	public float projectileHp;
+	public int projectileHp;
 	public float projectileSpeed;
 	public float hability; //No es un float (falta definir)
 	public float range;
@@ -19,7 +19,7 @@ public class Tower : MonoBehaviour
 
     public AttackManager attackManager;
 
-    protected float lastShootTime;
+    public float lastShootTime;
 
     private bool canShoot;
 
@@ -51,9 +51,10 @@ public class Tower : MonoBehaviour
         {
             if (enemiesInRange.Count > 0)
             {
-                attackManager.attackType.Attack(enemiesInRange[0]);
+                Enemy enemyHolder = enemiesInRange[0];
+                attackManager.attackType.Attack(enemyHolder);
                 lastShootTime = Time.time;
-            }
+            }     
         }
         
     }

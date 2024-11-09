@@ -18,20 +18,3 @@ public class A_Virus1 : MonoBehaviour, IAttackType
         }
     }
 }
-
-
-
-//public GameObject bulletPrefab;
-//public Transform firePoint;
-
-//void ShootAtTarget(GameObject target)
-//{
-//    GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-//    // Asignar objetiu
-//    Bullet bulletScript = bullet.GetComponent<Bullet>();
-//    bulletScript.towerScript = towerScript;
-//    if (bulletScript != null)
-//    {
-//        bulletScript.SetTarget(target);
-//    }
-//}

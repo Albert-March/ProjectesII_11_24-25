@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
   m_Name: Virus2
   m_EditorClassIdentifier: 
+  id: 1
   damage: 30
   fireRate: 2
   DPS: 2
   projectileHp: 0
   projectileSpeed: 10
   hability: 0
-  range: 0
+  range: 4
   colorTower: {r: 0.09518514, g: 0.81557876, b: 0.8773585, a: 1}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
+  attackManager: {fileID: 0}

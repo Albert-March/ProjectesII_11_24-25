@@ -28,7 +28,6 @@ public class ObjectAvoidance : EnemyBehaviour
     {
         e.transform.up = RotateOvertime(nextAngle);
 
-
         Vector2 frontAngle1 = Quaternion.Euler(0, 0, -30) * transform.up;
         Vector2 frontAngle2 = Quaternion.Euler(0, 0, 30) * transform.up;
         Vector2 rightAngle = Quaternion.Euler(0, 0, -35) * transform.up;
