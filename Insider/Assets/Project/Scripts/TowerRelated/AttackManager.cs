@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class AttackManager : MonoBehaviour
+public class AttackManager : MonoBehaviour
 {
-    public AttackManager towerAttackBehaviour;
-    public abstract void  Attack(Enemy e);
-    public void Set(int id)
+    public IAttackType attackType;
+
+    public void SetAttackType(int id) 
     {
-        switch (id) 
+
+        switch (id)
         {
             case 0:
-                towerAttackBehaviour.AddComponent<A_Virus1>();
+                attackType = gameObject.AddComponent<A_Virus1>();
+                break;
+            case 1:
+                attackType = gameObject.AddComponent<A_Virus2>();
                 break;
             default:
-                towerAttackBehaviour = null;
+                attackType = null;
                 break;
         }
     }

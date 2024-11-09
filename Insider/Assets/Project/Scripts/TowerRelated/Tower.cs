@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
+
 
 public class Tower : MonoBehaviour
 {
     public int id;
-
 	public float damage;
 	public float fireRate;
 	public float DPS;
@@ -20,17 +19,23 @@ public class Tower : MonoBehaviour
 
     public AttackManager attackManager;
 
+    protected float lastShootTime;
+
+    private bool canShoot;
+
     public void SetTowerData(TowerStats stats)
 	{
+        this.id = stats.id;
 		this.damage = stats.damage;
 		this.fireRate = stats.fireRate;
 		this.DPS = stats.DPS;
 		this.projectileHp = stats.projectileHp;
 		this.projectileSpeed = stats.projectileSpeed;
 		this.hability = stats.hability;
-		this.range = stats.range;
-		this.sprite.color = stats.colorTower;
-        attackManager.Set(id);
+        this.range = stats.range;
+
+        this.sprite.color = stats.colorTower;
+        attackManager.SetAttackType(id);
     }
 
 	private void Awake()
@@ -38,9 +43,19 @@ public class Tower : MonoBehaviour
 		sprite = GetComponent<SpriteRenderer>();
 		sprite.color = Color.red;
 	}
+
     private void Update()
     {
-        attackManager.Attack(enemiesInRange[0]);
+        GetComponent<CircleCollider2D>().radius = range;
+        if (Time.time >= lastShootTime + fireRate)
+        {
+            if (enemiesInRange.Count > 0)
+            {
+                attackManager.attackType.Attack(enemiesInRange[0]);
+                lastShootTime = Time.time;
+            }
+        }
+        
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -68,4 +83,5 @@ public class Tower : MonoBehaviour
 
         }
     }
+
 }
