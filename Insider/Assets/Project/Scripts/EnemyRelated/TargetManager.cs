@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
+    public GameObject finalTarget;
     public List<Target> allTargets = new List<Target>();
     public List<List<Target>> targetLists = new List<List<Target>>();
 
@@ -12,6 +13,7 @@ public class TargetManager : MonoBehaviour
     {
         GetAllTargets();
         SortTargetsInToLists();
+        SetParasiteOnAllPaths();
     }
 
     private void GetAllTargets()
@@ -23,6 +25,16 @@ public class TargetManager : MonoBehaviour
             Target targetHolder = new Target();
             targetHolder.obj = father.transform.GetChild(i).gameObject;
             allTargets.Add(targetHolder);
+        }
+    }
+
+    private void SetParasiteOnAllPaths() 
+    {
+        Target parasiteHolder = new Target();
+        parasiteHolder.obj = finalTarget.gameObject;
+        for (int i = 0; i < targetLists.Count; i++)
+        {
+            targetLists[i].Add(parasiteHolder);
         }
     }
 

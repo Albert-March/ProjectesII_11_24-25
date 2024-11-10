@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour, IDamage
 
     private IDamage _damageReciver;
 
-    private bool onDamageRange = false;
     private float timeSinceLastAtack = 0;
 
     public void SetEnemyData(EnemyStats enemy)
@@ -46,12 +45,17 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void Update()
     {
-        PlayAllBehaviours();
-
-        if (_damageReciver == null)
+        if (_damageReciver == null) 
+        {
+            PlayAllBehaviours();
             return;
-        // if de temps de atack
-        _damageReciver.Damage(dmg);
+        }
+
+
+        if (Time.time >= timeSinceLastAtack + attackSpeed)
+        {
+            _damageReciver.Damage(dmg);
+        }
     }
 
     private void PlayAllBehaviours() 
@@ -64,7 +68,7 @@ public class Enemy : MonoBehaviour, IDamage
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(currentTarget < path.Count){
+        if(currentTarget < path.Count-1){
             if(col.transform == path[currentTarget].obj.transform)
             {
                 currentTarget++;
@@ -72,13 +76,18 @@ public class Enemy : MonoBehaviour, IDamage
         }
         else
         {
-            //El Target sera el parasit
-            _damageReciver = col.GetComponent<IDamage>();
+            if (col.transform == path[currentTarget].obj.transform)
+            {
+                _damageReciver = col.GetComponent<IDamage>();
+            }
         }
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        _damageReciver = null;
+        if (col.transform == path[currentTarget].obj.transform)
+        {
+            _damageReciver = null;
+        }
     }
 
     public void Damage(float amount)

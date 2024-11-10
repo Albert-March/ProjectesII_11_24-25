@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: IgG
   movSpeed: 1
+  attackSpeed: 10
   health: 150
   dmg: 10
   economyGiven: 10

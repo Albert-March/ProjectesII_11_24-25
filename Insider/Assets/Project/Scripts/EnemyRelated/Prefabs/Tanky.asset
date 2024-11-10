@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: IgM
   movSpeed: 0.5
+  attackSpeed: 10
   health: 500
   dmg: 10
   economyGiven: 60

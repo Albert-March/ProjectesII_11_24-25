@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Defense
   movSpeed: 1.25
+  attackSpeed: 10
   health: 150
   dmg: 10
   economyGiven: 20
