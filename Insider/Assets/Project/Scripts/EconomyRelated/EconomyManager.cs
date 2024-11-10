@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EconomyManager : MonoBehaviour
 {
-    public int economy = 100;
+    public int economy;
 	public TextMeshProUGUI economyText;
 
 
