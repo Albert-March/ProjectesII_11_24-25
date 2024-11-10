@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EconomyManager : MonoBehaviour
 {
     public int economy;
-	public TextMeshProUGUI economyText;
+	public Text economyText;
 
 
 	void Update()

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   enemyName: Normal
-  movSpeed: 1
-  attackSpeed: 0
+  movSpeed: 5
+  attackSpeed: 10
   health: 100
   dmg: 10
   economyGiven: 10
