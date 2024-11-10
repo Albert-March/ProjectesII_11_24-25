@@ -50,8 +50,11 @@ public class Enemy : MonoBehaviour, IDamage
 
         if (_damageReciver == null)
             return;
-        // if de temps de atack
-        _damageReciver.Damage(dmg);
+
+        if (Time.time >= timeSinceLastAtack + attackSpeed)
+        {
+            _damageReciver.Damage(dmg);
+        }
     }
 
     private void PlayAllBehaviours() 
