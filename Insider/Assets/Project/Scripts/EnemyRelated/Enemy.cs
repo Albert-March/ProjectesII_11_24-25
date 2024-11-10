@@ -82,13 +82,6 @@ public class Enemy : MonoBehaviour, IDamage
             }
         }
     }
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.transform == path[currentTarget].obj.transform)
-        {
-            _damageReciver = null;
-        }
-    }
 
     public void Damage(float amount)
     {
