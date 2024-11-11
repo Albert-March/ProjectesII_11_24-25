@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 671
+  controlID: 101
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 670
+  controlID: 100
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -228,7 +228,7 @@ MonoBehaviour:
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: Default
+  m_LastLoadedLayoutName: 
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 144
+  controlID: 38
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 145
+  controlID: 39
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -371,7 +371,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Project/Scenes
+    - Assets/Project/Scenes/Levels
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -379,16 +379,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Project/Scenes
+  - Assets/Project/Scenes/Levels
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Aberche\Desktop\2n\Projecte2\Unity\ProjectesII_11_24-25\Insider
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fe840000
-    m_LastClickedID: 34046
-    m_ExpandedIDs: 000000004c8300004e83000050830000fe84000000ca9a3bffffff7f
+    m_SelectedIDs: 86770000
+    m_LastClickedID: 30598
+    m_ExpandedIDs: 00000000a6750000a8750000aa7500003477000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -416,7 +416,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004c8300004e83000050830000
+    m_ExpandedIDs: 00000000a6750000a8750000aa750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -556,9 +556,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ca8c0000
-      m_LastClickedID: 36042
-      m_ExpandedIDs: 628affffd4c0ffff26c1ffffcec1ffff6ac2ffff42fbffff6a880000
+      m_SelectedIDs: 92770000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 72f6fffff6faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -977,9 +977,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 9.206698, y: -17.494616, z: 4589.8447}
+    m_Target: {x: 29.953154, y: 8.472682, z: 2537.8992}
     speed: 2
-    m_Value: {x: 9.195147, y: -16.893894, z: 4798.397}
+    m_Value: {x: 32.002632, y: 9.425344, z: 2655.4521}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1029,9 +1029,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 126.01544
+    m_Target: 68.367424
     speed: 2
-    m_Value: 131.95334
+    m_Value: 71.58893
   m_Ortho:
     m_Target: 1
     speed: 2
