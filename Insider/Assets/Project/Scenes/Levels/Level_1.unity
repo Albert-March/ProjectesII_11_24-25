@@ -7952,6 +7952,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3678827202849752767}
     m_Modifications:
+    - target: {fileID: 4114044862472500140, guid: d1401941ee974f9429137c438f5cdf2a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1461.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114044862472500140, guid: d1401941ee974f9429137c438f5cdf2a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -993.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114044862472500140, guid: d1401941ee974f9429137c438f5cdf2a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114044862472500140, guid: d1401941ee974f9429137c438f5cdf2a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17
+      objectReference: {fileID: 0}
     - target: {fileID: 5140834424313282100, guid: d1401941ee974f9429137c438f5cdf2a, type: 3}
       propertyPath: m_Name
       value: UI
@@ -11747,7 +11763,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1217732977}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 10
+    OrthographicSize: 23
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -12092,7 +12108,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 23
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
