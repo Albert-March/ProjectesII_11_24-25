@@ -18,14 +18,16 @@ public class CameraMovement : MonoBehaviour
 
 	private bool drag = false;
 
+	private Vector2 draw;
+
 	private void Start()
 	{
 		maxDistance = 30;
-		minDistance = 20;
+		minDistance = 10;
 	}
 	private void Update()
 	{
-		if (Input.GetAxis("Mouse ScrollWheel") < 0f && vcam.m_Lens.OrthographicSize < maxDistance)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f && vcam.m_Lens.OrthographicSize < maxDistance)
 		{
 			vcam.m_Lens.OrthographicSize++;
 		}
@@ -52,11 +54,13 @@ public class CameraMovement : MonoBehaviour
 
 		if (drag)
 		{
-			transform.position = Origin - Difference;
+			Debug.Log(CalculateLimits());
+            transform.position = Origin - Difference;
 		}
 
 		transform.position = CalculateLimits();
-	}
+
+    }
 
 	private Vector2 CalculateLimits()
 	{
@@ -64,10 +68,17 @@ public class CameraMovement : MonoBehaviour
 		float halfWidth = halfHeight * cam.aspect;
 
 		Vector2 cameraSize = new Vector2(halfWidth, halfHeight);
+		float targetSpaceX = (parentCollider.size.x - halfWidth) / 2;
+		float targetSpaceY = (parentCollider.size.y - halfHeight) / 2;
+        draw = new Vector2(targetSpaceX, targetSpaceY) * 2;
 
-		float targetSpaceX = parentCollider.size.x - halfWidth;
-		float targetSpaceY = parentCollider.size.y - halfHeight;
-
-		return new Vector2(Mathf.Clamp(transform.position.x, -targetSpaceX, targetSpaceX), Mathf.Clamp(transform.position.y, -targetSpaceY, targetSpaceY));
+        return new Vector2(Mathf.Clamp(transform.position.x, -targetSpaceX, targetSpaceX), Mathf.Clamp(transform.position.y, -targetSpaceY, targetSpaceY));
 	}
+
+    void OnDrawGizmos()
+    {
+        // Draw a semitransparent red cube at the transforms position
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawWireCube(new Vector2(0,0), draw);
+    }
 }

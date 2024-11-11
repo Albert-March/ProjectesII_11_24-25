@@ -59,15 +59,18 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        EnemyStats enemyToSpawn = pendingEnemies.Dequeue();
-        Transform spawnPoint = GetLeastCooldownChild().transformChild;
-        Enemy e = Instantiate(enemyToSpawn.prefab, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
-        e.SetEnemyData(enemyToSpawn);
-        e.enemyManager = enemyManager;
-        e.path = targetManager.GetRandomPath();
+        if (pendingEnemies.Count != 0) 
+        {
+            EnemyStats enemyToSpawn = pendingEnemies.Dequeue();
+            Transform spawnPoint = GetLeastCooldownChild().transformChild;
+            Enemy e = Instantiate(enemyToSpawn.prefab, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
+            e.SetEnemyData(enemyToSpawn);
+            e.enemyManager = enemyManager;
+            e.path = targetManager.GetRandomPath();
 
 
-        enemyManager.AddSpawnedEnemy(e);
+            enemyManager.AddSpawnedEnemy(e);
+        }
     }
 
     public SpawnPoint GetLeastCooldownChild()

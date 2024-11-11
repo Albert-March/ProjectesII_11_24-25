@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour, IDamage
         if (Time.time >= timeSinceLastAtack + attackSpeed)
         {
             _damageReciver.Damage(dmg);
+            timeSinceLastAtack = Time.time;
         }
     }
 
