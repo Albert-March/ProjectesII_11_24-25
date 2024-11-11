@@ -74,7 +74,7 @@ public class ObjectAvoidance : EnemyBehaviour
         }
         else
         {
-            rotationSpeed = 0.1f;
+            rotationSpeed = 0.2f;
             Vector2 targetPos = t.obj.transform.position - e.transform.position;
             nextAngle = targetPos;
         }

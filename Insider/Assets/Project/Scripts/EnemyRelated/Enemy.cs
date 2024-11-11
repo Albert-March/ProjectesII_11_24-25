@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour, IDamage
         if (Time.time >= timeSinceLastAtack + attackSpeed)
         {
             _damageReciver.Damage(dmg);
+            timeSinceLastAtack = Time.time;
         }
     }
 
@@ -80,13 +81,6 @@ public class Enemy : MonoBehaviour, IDamage
             {
                 _damageReciver = col.GetComponent<IDamage>();
             }
-        }
-    }
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.transform == path[currentTarget].obj.transform)
-        {
-            _damageReciver = null;
         }
     }
 

@@ -10,5 +10,9 @@ public class ParasiteManager : MonoBehaviour, IDamage
 	public void Damage(float amount)
 	{
 		parasiteHealth -= amount;
+		if(parasiteHealth < 0)
+		{
+			Time.timeScale = 0f;
+		}
 	}
 }
