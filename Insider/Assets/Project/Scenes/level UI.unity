@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112414023}
+      - m_Target: {fileID: 1679211262}
         m_TargetAssemblyTypeName: ControlDesplegable, Assembly-CSharp
         m_MethodName: OcultarBotonesIzquierda
         m_Mode: 1
@@ -269,7 +269,6 @@ GameObject:
   - component: {fileID: 112414021}
   - component: {fileID: 112414020}
   - component: {fileID: 112414019}
-  - component: {fileID: 112414023}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -361,35 +360,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &112414023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112414018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac3142ae2cab5ab4592894b165fe690f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contenedorIzquierda: {fileID: 543868409}
-  contenedorDerecha: {fileID: 1836844890}
-  botonesIzquierda:
-  - {fileID: 1680994318}
-  - {fileID: 217202579}
-  - {fileID: 1626839158}
-  botonesDerecha:
-  - {fileID: 100185103}
-  - {fileID: 1019091702}
-  - {fileID: 165052655}
-  recuadroFondo: {fileID: 387378231}
-  posicionIzquierda: {x: -40.71755, y: 76.3689}
-  posicionDerecha: {x: 59.58242, y: 76.3689}
-  posicionCentral: {x: -5, y: 76.3689}
-  appearDuration: 0.2
-  disappearDuration: 0.2
-  moveToCenterDuration: 0.2
 --- !u!1 &165052655
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &387378232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -669,7 +639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.0168, y: 102.156}
+  m_AnchoredPosition: {x: 0, y: 56.7281}
   m_SizeDelta: {x: 216.2217, y: 174.9121}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387378233
@@ -685,7 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1639,6 +1609,7 @@ GameObject:
   - component: {fileID: 1679211261}
   - component: {fileID: 1679211260}
   - component: {fileID: 1679211259}
+  - component: {fileID: 1679211262}
   m_Layer: 5
   m_Name: BotonPrincipal
   m_TagString: Untagged
@@ -1667,7 +1638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.7, y: -83.6}
+  m_AnchoredPosition: {x: 0, y: -83.6}
   m_SizeDelta: {x: 63.3993, y: 19.1202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679211259
@@ -1714,8 +1685,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112414023}
-        m_TargetAssemblyTypeName: DesplegarBotones, Assembly-CSharp
+      - m_Target: {fileID: 1679211262}
+        m_TargetAssemblyTypeName: ControlDesplegable, Assembly-CSharp
         m_MethodName: AlternarBotones
         m_Mode: 1
         m_Arguments:
@@ -1764,6 +1735,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679211257}
   m_CullTransparentMesh: 1
+--- !u!114 &1679211262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679211257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3142ae2cab5ab4592894b165fe690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contenedorIzquierda: {fileID: 543868409}
+  contenedorDerecha: {fileID: 1836844890}
+  botonesIzquierda:
+  - {fileID: 1680994318}
+  - {fileID: 217202579}
+  - {fileID: 1626839158}
+  botonesDerecha:
+  - {fileID: 100185103}
+  - {fileID: 1019091702}
+  - {fileID: 165052655}
+  recuadroFondo: {fileID: 387378231}
+  posicionIzquierda: {x: -55, y: 76.3689}
+  posicionDerecha: {x: 45.5555, y: 76.3689}
+  posicionCentral: {x: -5, y: 76.3689}
+  appearDuration: 0.2
+  disappearDuration: 0.2
+  moveToCenterDuration: 0.2
 --- !u!1 &1680994318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112414023}
+      - m_Target: {fileID: 1679211262}
         m_TargetAssemblyTypeName: ControlDesplegable, Assembly-CSharp
         m_MethodName: OcultarBotonesDerecha
         m_Mode: 1
@@ -1952,8 +1952,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 165052656}
-  - {fileID: 1019091703}
   - {fileID: 100185104}
+  - {fileID: 1019091703}
   m_Father: {fileID: 1679211258}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

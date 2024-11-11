@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class ControlDesplegable : MonoBehaviour
+public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
 {
     public GameObject contenedorIzquierda;   // Contenedor para los botones de la izquierda
     public GameObject contenedorDerecha;     // Contenedor para los botones de la derecha
@@ -22,6 +23,12 @@ public class ControlDesplegable : MonoBehaviour
     private bool derechaBloqueada = false;   // Estado de bloqueo para los botones de la derecha
 
     // Método para alternar la visibilidad de los botones
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(botonesVisibles)
+            AlternarBotones();
+    }
     public void AlternarBotones()
     {
         botonesVisibles = !botonesVisibles;
@@ -164,6 +171,8 @@ public class ControlDesplegable : MonoBehaviour
             rt.anchoredPosition = nuevaPosicion;
         }
     }
+
+
 }
 
 
