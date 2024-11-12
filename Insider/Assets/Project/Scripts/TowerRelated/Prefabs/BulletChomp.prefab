@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6495411668400126069}
   - component: {fileID: 4510110059282872429}
   m_Layer: 0
-  m_Name: BulletLaser
+  m_Name: BulletChomp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 13
-  m_Sprite: {fileID: 21300000, guid: 9080734e3dab91443ba76c7fd272ee77, type: 3}
-  m_Color: {r: 0.1273585, g: 1, b: 0.9751319, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fc321d69a42df9a4eb09abd5fd9f7880, type: 3}
+  m_Color: {r: 1, g: 0.4292453, b: 0.90159726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2

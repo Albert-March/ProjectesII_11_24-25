@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,19 +9,25 @@ public class A_Virus2 : MonoBehaviour, IAttackType
 {
     private Enemy target;
 
-    private string assetAddress = "Prefabs/BulletLaser";
-    private GameObject laserPrefab;
-    private GameObject laser;
+    private string assetAddress = "Prefabs/BulletChomp";
+    private GameObject chompPrefab;
+    private GameObject chomp;
     private Vector2 direction;
     private float angle;
     private float distance;
-    private float extractSpeed = 10;
-    private float retractSpeed = 2;
+    private float extractSpeed;
+    private float retractSpeed;
+
+    float totalDistance;
+
+    IDamage enemyDmg;
 
     private bool canDelete = false;
 
     void Start()
     {
+        extractSpeed = 1f;
+        retractSpeed = extractSpeed / 4;
         Addressables.LoadAssetAsync<GameObject>(assetAddress).Completed += OnPrefabLoaded;
     }
 
@@ -28,7 +35,7 @@ public class A_Virus2 : MonoBehaviour, IAttackType
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
-            laserPrefab = handle.Result;
+            chompPrefab = handle.Result;
         }
     }
 
@@ -42,51 +49,71 @@ public class A_Virus2 : MonoBehaviour, IAttackType
         RaycastHit2D fire = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Enemy"));
         Debug.DrawRay(transform.position, target.transform.position - transform.position, Color.blue);
         Debug.Log(fire.transform.name);
-        IDamage enemyDmg = fire.transform.GetComponent<IDamage>();
+        enemyDmg = fire.transform.GetComponent<IDamage>();
         DrawTongue();
-        if (enemyDmg != null && canDelete)
-        {
-            enemyDmg.Damage(e.health);
-        }
         
     }
 
     void DrawTongue()
     {
-        laser = Instantiate(laserPrefab, transform.position, Quaternion.Euler(0, 0, angle));
-        laser.GetComponent<SpriteRenderer>().size = new Vector2(distance, laser.GetComponent<SpriteRenderer>().size.y);
+        chomp = Instantiate(chompPrefab, transform.position, Quaternion.identity);
+        chomp.GetComponent<SpriteRenderer>().size = new Vector2(0, chomp.GetComponent<SpriteRenderer>().size.y);
         StartCoroutine(ExtractTongue());
     }
-    IEnumerator ExtractTongue() 
+
+    IEnumerator ExtractTongue()
     {
-        float distance = Vector2.Distance(transform.position, target.transform.position);
+        totalDistance = Vector2.Distance(transform.position, target.transform.position);
+        chomp.GetComponent<SpriteRenderer>().size = new Vector2(0, chomp.GetComponent<SpriteRenderer>().size.y);
 
-        while (laser.transform.position != (target.transform.position - transform.position) / 2 && laser.GetComponent<SpriteRenderer>().size.x < Mathf.Abs(distance))
+        while (chomp.GetComponent<SpriteRenderer>().size.x < totalDistance && target != null)
         {
-            Vector2 updateDirection = (target.transform.position - transform.position).normalized;
-            float updateAngle = Mathf.Atan2(updateDirection.y, updateDirection.x) * Mathf.Rad2Deg;
+            totalDistance = Vector2.Distance(transform.position, target.transform.position);
 
-            Debug.DrawRay(transform.position, target.transform.position - transform.position, Color.blue);
-            laser.GetComponent<SpriteRenderer>().size = new Vector2(laser.GetComponent<SpriteRenderer>().size.x + (GetComponent<Tower>().fireRate / extractSpeed) * Time.deltaTime, laser.GetComponent<SpriteRenderer>().size.y);
-            laser.transform.position = Vector2.MoveTowards(laser.transform.position, Vector3.Lerp(transform.position, target.transform.position, 0.5f), 0.1f);
-            laser.transform.rotation = Quaternion.Euler(0, 0, updateAngle);
+            Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
+            float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+
+            Vector2 newSize = new Vector2(chomp.GetComponent<SpriteRenderer>().size.x + extractSpeed / GetComponent<Tower>().fireRate, chomp.GetComponent<SpriteRenderer>().size.y);
+
+            if (newSize.x > totalDistance)
+            {
+                newSize.x = totalDistance;
+            }
+
+            chomp.GetComponent<SpriteRenderer>().size = newSize;
+            chomp.transform.position = (Vector2)transform.position + directionToTarget * (chomp.GetComponent<SpriteRenderer>().size.x / 2);
+            chomp.transform.rotation = Quaternion.Euler(0, 0, targetAngle);
+
             yield return null;
         }
-        canDelete = true;
-    }
-    void RetractTongue() 
-    {
-    
+
+        yield return StartCoroutine(RetractTongue());
     }
 
-    IEnumerator DeleatLaser()
+    IEnumerator RetractTongue()
     {
-        while (laser.transform.localScale.y > 0)
+        Vector3 targetPos = target.transform.position;
+        if (enemyDmg != null)
         {
-            laser.transform.localScale = new Vector2(1, laser.transform.localScale.y - ((GetComponent<Tower>().fireRate / 2) * Time.deltaTime));
+            enemyDmg.Damage(target.health);
+        }
+        while (chomp.GetComponent<SpriteRenderer>().size.x > 0)
+        {
+            Vector2 newSize = new Vector2(chomp.GetComponent<SpriteRenderer>().size.x - retractSpeed / GetComponent<Tower>().fireRate, chomp.GetComponent<SpriteRenderer>().size.y);
+
+            if (newSize.x < 0)
+            {
+                newSize.x = 0;
+            }
+
+            chomp.GetComponent<SpriteRenderer>().size = newSize;
+
+            Vector2 directionToTarget = (targetPos - transform.position).normalized;
+            chomp.transform.position = (Vector2)transform.position + directionToTarget * (chomp.GetComponent<SpriteRenderer>().size.x / 2);
+
             yield return null;
         }
-        Destroy(laser);
 
+        Destroy(chomp);
     }
 }
