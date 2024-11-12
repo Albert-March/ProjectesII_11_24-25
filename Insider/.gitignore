@@ -46,6 +46,9 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# Ignore Unity layout files
+*.dwlt
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
