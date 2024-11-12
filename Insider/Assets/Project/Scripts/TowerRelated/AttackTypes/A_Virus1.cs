@@ -30,7 +30,7 @@ public class A_Virus1 : MonoBehaviour, IAttackType
     }
     public void Attack(Enemy e)
     {
-        target = e;
+        if (e != null) { target = e; }
         direction = (target.transform.position - transform.position).normalized;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         distance = Vector2.Distance(transform.position, target.transform.position);
@@ -56,7 +56,7 @@ public class A_Virus1 : MonoBehaviour, IAttackType
     {
         while (laser.transform.localScale.y > 0) 
         {
-            laser.transform.localScale = new Vector2(1, laser.transform.localScale.y - (1 *Time.deltaTime));
+            laser.transform.localScale = new Vector2(1, laser.transform.localScale.y - ((GetComponent<Tower>().fireRate/2) * Time.deltaTime));
             yield return null;
         }
         Destroy(laser);
