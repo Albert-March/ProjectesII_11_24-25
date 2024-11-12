@@ -10,20 +10,40 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
     public GameObject[] botonesDerecha;      // Array para los botones de la derecha
     public GameObject recuadroFondo;         // Recuadro de fondo que se despliega junto con el botón principal
 
-    public Vector2 posicionIzquierda; // Posición original de la columna izquierda
-    public Vector2 posicionDerecha;   // Posición original de la columna derecha
-    public Vector2 posicionCentral;   // Posición central para centrar la columna
+    public Vector2 posicionIzquierda;
+    public Vector2 posicionDerecha;
+    public Vector2 posicionCentral;
 
-    private bool botonesVisibles = false;    // Estado de visibilidad
-    public float appearDuration = 0.5f;      // Duración de la animación de escalado al aparecer
-    public float disappearDuration = 0.2f;   // Duración de la animación de escalado al desaparecer
-    public float moveToCenterDuration = 0.5f; // Duración de la animación de arrastre hacia el centro
+    private bool botonesVisibles = false;
+    public float appearDuration = 0.5f;
+    public float disappearDuration = 0.2f;
+    public float moveToCenterDuration = 0.5f;
 
-    private bool izquierdaBloqueada = false; // Estado de bloqueo para los botones de la izquierda
-    private bool derechaBloqueada = false;   // Estado de bloqueo para los botones de la derecha
+    private bool izquierdaBloqueada = false;
+    private bool derechaBloqueada = false;
 
-    // Método para alternar la visibilidad de los botones
+    private Vector3 nextPos;
 
+    private bool towerInstantiated = false;
+	public void Start()
+	{
+		nextPos = transform.localPosition + new Vector3(0, 70, 0);
+	}
+	public void Update()
+	{
+		if(transform.localPosition.y <= nextPos.y) 
+        { 
+            if (towerInstantiated)
+            { 
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, nextPos, 2); 
+            } 
+        }
+	}
+	private void PostInstantiate()
+    {
+        
+    }
+   
     public void OnPointerExit(PointerEventData eventData)
     {
         if(botonesVisibles)
@@ -82,6 +102,7 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
             StartCoroutine(AnimateOutGroup(botonesDerecha));
             derechaBloqueada = true; // Bloquea los botones de la derecha
             StartCoroutine(AnimateMoveToCenter(contenedorIzquierda, posicionCentral)); // Mueve la columna izquierda al centro con animación
+            towerInstantiated = true;
         }
     }
 
@@ -93,6 +114,7 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
             StartCoroutine(AnimateOutGroup(botonesIzquierda));
             izquierdaBloqueada = true; // Bloquea los botones de la izquierda
             StartCoroutine(AnimateMoveToCenter(contenedorDerecha, posicionCentral)); // Mueve la columna derecha al centro con animación
+            towerInstantiated = true;
         }
     }
 
