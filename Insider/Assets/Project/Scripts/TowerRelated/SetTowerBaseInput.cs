@@ -5,36 +5,10 @@ using UnityEngine.UI;
 
 public class SetTowerBaseInput : MonoBehaviour
 {
-	public GameObject mainButton;
-	public GameObject botonOpcion1;
-	public GameObject botonOpcion2;
 	public TowerSetter towerSetter;
 	public int towerGrup;
-	bool active = false;
 
 	EconomyManager economyScript;
-
-	void Start()
-	{
-		botonOpcion1.SetActive(false);
-		botonOpcion2.SetActive(false);
-	}
-
-	public void MostrarOpciones()
-	{
-		if(active == false)
-		{
-			botonOpcion1.SetActive(true);
-			botonOpcion2.SetActive(true);
-			active = true;
-		}
-		else
-		{
-			botonOpcion1.SetActive(false);
-			botonOpcion2.SetActive(false);
-			active = false;
-		}	
-	}
 
 	public void LlamarSpawnTowerOpcion1()
 	{
@@ -53,10 +27,6 @@ public class SetTowerBaseInput : MonoBehaviour
 					towerSetter.SpawnTower(4, this.transform);
 					break;
 			}
-			botonOpcion1.SetActive(false);
-			botonOpcion2.SetActive(false);
-			mainButton.SetActive(false);
-
 			economyScript.economy -= 300;
 		}
 	}
@@ -78,10 +48,6 @@ public class SetTowerBaseInput : MonoBehaviour
 					towerSetter.SpawnTower(5, this.transform);
 					break;
 			}
-			botonOpcion1.SetActive(false);
-			botonOpcion2.SetActive(false);
-			mainButton.SetActive(false);
-
 			economyScript.economy -= 300;
 		}
 	}
