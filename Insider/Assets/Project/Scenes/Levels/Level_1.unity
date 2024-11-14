@@ -1625,7 +1625,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 422053435}
-  - component: {fileID: 422053436}
   - component: {fileID: 422053437}
   m_Layer: 0
   m_Name: CameraBoundingBox
@@ -1649,55 +1648,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &422053436
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422053433}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 53.356335, y: 30.049511}
-      - {x: -53.36144, y: 30.047503}
-      - {x: -53.361298, y: -30.041061}
-      - {x: 53.33721, y: -30.004148}
-  m_UseDelaunayMesh: 0
 --- !u!61 &422053437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12305,7 +12255,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2146161284}
   - component: {fileID: 2146161283}
-  - component: {fileID: 2146161285}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -12335,7 +12284,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1217732977}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 29
+    OrthographicSize: 30.00008
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -12368,21 +12317,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2146161285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146161282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 422053436}
-  m_Damping: 0
-  m_MaxWindowSize: -1
 --- !u!81 &185625455521300529
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12680,7 +12614,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 29
+  orthographic size: 30.00008
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12937,7 +12871,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
