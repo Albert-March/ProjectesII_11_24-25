@@ -5,78 +5,108 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-	public BoxCollider2D parentCollider;
-	public Camera cam;
+    public BoxCollider2D parentCollider;
+    public Camera cam;
+    public CinemachineVirtualCamera vcam;
 
-	public CinemachineVirtualCamera vcam;
-	float maxDistance;
-	float minDistance;
+    private float maxDistance = 30f;
+    private float minDistance = 10f;
 
-	private Vector3 Origin;
-	private Vector3 Difference;
+    private Vector3 origin;
+    private Vector3 difference;
+    private bool drag = false;
 
-	private bool drag = false;
+    private bool startAnimation = true;
 
-	private Vector2 draw;
-
-	private void Start()
-	{
-		maxDistance = 30;
-		minDistance = 10;
-	}
-	private void Update()
-	{
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f && vcam.m_Lens.OrthographicSize < maxDistance)
-		{
-			vcam.m_Lens.OrthographicSize++;
-		}
-		else if (Input.GetAxis("Mouse ScrollWheel") > 0f && vcam.m_Lens.OrthographicSize > minDistance)
-		{
-			vcam.m_Lens.OrthographicSize--;	
-		}
-
-
-		if (Input.GetButton("Fire2"))
-		{
-			Difference = (cam.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
-			if (drag == false)
-			{
-				drag = true;
-				Origin = cam.ScreenToWorldPoint(Input.mousePosition);
-			}
-
-		}
-		else
-		{
-			drag = false;
-		}
-
-		if (drag)
-		{
-            transform.position = Origin - Difference;
-		}
-
-		transform.position = CalculateLimits();
-
+    private void Start()
+    {
+        vcam.m_Lens.OrthographicSize = 10;
+        transform.position = new Vector3(0,20,0);
+        StartCoroutine(StartAnimation());
     }
 
-	private Vector2 CalculateLimits()
-	{
-		float halfHeight = cam.orthographicSize * 2;
-		float halfWidth = halfHeight * cam.aspect;
-
-		Vector2 cameraSize = new Vector2(halfWidth, halfHeight);
-		float targetSpaceX = (parentCollider.size.x - halfWidth) / 2;
-		float targetSpaceY = (parentCollider.size.y - halfHeight) / 2;
-        draw = new Vector2(targetSpaceX, targetSpaceY) * 2;
-
-        return new Vector2(Mathf.Clamp(transform.position.x, -targetSpaceX, targetSpaceX), Mathf.Clamp(transform.position.y, -targetSpaceY, targetSpaceY));
-	}
-
-    void OnDrawGizmos()
+    private void Update()
     {
-        // Draw a semitransparent red cube at the transforms position
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawWireCube(new Vector2(0,0), draw);
+        if (!startAnimation) 
+        {
+            HandleZoom();
+            HandleDrag();
+        }
+        LimitCameraPosition();
+    }
+
+    private void HandleZoom()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f && vcam.m_Lens.OrthographicSize < maxDistance)
+        {
+            vcam.m_Lens.OrthographicSize++;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0f && vcam.m_Lens.OrthographicSize > minDistance)
+        {
+            vcam.m_Lens.OrthographicSize--;
+        }
+    }
+
+    private void HandleDrag()
+    {
+        if (Input.GetButton("Fire2"))
+        {
+            difference = (cam.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
+            if (!drag)
+            {
+                drag = true;
+                origin = cam.ScreenToWorldPoint(Input.mousePosition);
+            }
+        }
+        else
+        { 
+            drag = false;
+        }
+
+        if (drag)
+        {
+            transform.position = origin - difference;
+        }
+    }
+
+    private void LimitCameraPosition()
+    {
+        Vector2 clampedPosition = CalculateLimits();
+        transform.position = new Vector3(clampedPosition.x, clampedPosition.y, transform.position.z);
+    }
+    private Vector2 CalculateLimits()
+    {
+        float halfHeight = vcam.m_Lens.OrthographicSize;
+        float halfWidth = halfHeight * cam.aspect;
+
+        // Calculate the camera's half-size based on the orthographic size and aspect ratio
+        Vector2 cameraSize = new Vector2(halfWidth, halfHeight);
+
+        // Collider's world size and position adjusted for scale
+        Vector2 colliderSize = parentCollider.size * parentCollider.transform.lossyScale;
+        Vector2 colliderCenter = (Vector2)parentCollider.transform.position + parentCollider.offset;
+
+        // Calculate the boundaries, clamping them to ensure we don't exceed the collider's edges
+        float minX = Mathf.Max(colliderCenter.x - (colliderSize.x / 2) + cameraSize.x, colliderCenter.x - colliderSize.x / 2);
+        float maxX = Mathf.Min(colliderCenter.x + (colliderSize.x / 2) - cameraSize.x, colliderCenter.x + colliderSize.x / 2);
+        float minY = Mathf.Max(colliderCenter.y - (colliderSize.y / 2) + cameraSize.y, colliderCenter.y - colliderSize.y / 2);
+        float maxY = Mathf.Min(colliderCenter.y + (colliderSize.y / 2) - cameraSize.y, colliderCenter.y + colliderSize.y / 2);
+
+
+        return new Vector2(
+            Mathf.Clamp(transform.position.x, minX, maxX),
+            Mathf.Clamp(transform.position.y, minY, maxY)
+        );
+    }
+
+    IEnumerator StartAnimation()
+    {
+        while (vcam.m_Lens.OrthographicSize < maxDistance) 
+        {
+            vcam.m_Lens.OrthographicSize += 0.1f;
+            yield return null;
+        }
+        startAnimation = false;
     }
 }
+
