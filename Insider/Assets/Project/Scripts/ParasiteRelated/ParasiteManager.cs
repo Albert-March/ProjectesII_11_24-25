@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class ParasiteManager : MonoBehaviour, IDamage
@@ -12,7 +13,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
 		parasiteHealth -= amount;
 		if(parasiteHealth < 0)
 		{
-			Time.timeScale = 0f;
-		}
+            SceneManager.LoadScene("DeathScreen");
+        }
 	}
 }
