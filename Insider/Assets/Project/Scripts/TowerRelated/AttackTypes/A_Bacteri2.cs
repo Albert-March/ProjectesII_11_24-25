@@ -9,7 +9,7 @@ public class A_Bacteri2 : MonoBehaviour, IAttackType
     public GameObject bulletPrefab;
     private string assetAddress = "Prefabs/Bullet2";
 
-    void Start()
+    void Awake()
     {
         Addressables.LoadAssetAsync<GameObject>(assetAddress).Completed += OnPrefabLoaded;
     }
@@ -23,6 +23,7 @@ public class A_Bacteri2 : MonoBehaviour, IAttackType
     }
     public void Attack(Enemy e)
     {
+        
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         // Asignar objetiu
         NormalBullet bulletScript = bullet.GetComponent<NormalBullet>();

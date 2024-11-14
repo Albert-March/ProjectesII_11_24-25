@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class A_Bacteri1 : MonoBehaviour, IAttackType
 {
-    public GameObject bulletPrefab;
+    private GameObject bulletPrefab;
     private string assetAddress = "Prefabs/Bullet1";
 
     void Start()

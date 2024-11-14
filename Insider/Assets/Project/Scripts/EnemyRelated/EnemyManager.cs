@@ -14,8 +14,6 @@ public class EnemyManager : MonoBehaviour
 
     public void RemoveEnemy(Enemy e)
     {
-        Debug.Log(currentEnemy.Count);
-
         currentEnemy.Remove(e);
     }
 }

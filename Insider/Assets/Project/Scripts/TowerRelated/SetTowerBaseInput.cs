@@ -9,13 +9,15 @@ public class SetTowerBaseInput : MonoBehaviour
 	public int towerGrup;
 
 	EconomyManager economyScript;
-
-	public void LlamarSpawnTowerOpcion1()
+	public ControlDesplegable buttonControl;
+    public void LlamarSpawnTowerOpcion1()
 	{
 		economyScript = FindObjectOfType<EconomyManager>();
 		if (economyScript.economy >= 300)
 		{
-			switch (towerGrup)
+            buttonControl.OcultarBotonesIzquierda();
+
+            switch (towerGrup)
 			{
 				case 0:
 					towerSetter.SpawnTower(0, this.transform);
@@ -36,7 +38,8 @@ public class SetTowerBaseInput : MonoBehaviour
 		economyScript = FindObjectOfType<EconomyManager>();
 		if (economyScript.economy >= 300)
 		{
-			switch (towerGrup)
+            buttonControl.OcultarBotonesDerecha();
+            switch (towerGrup)
 			{
 				case 0:
 					towerSetter.SpawnTower(1, this.transform);

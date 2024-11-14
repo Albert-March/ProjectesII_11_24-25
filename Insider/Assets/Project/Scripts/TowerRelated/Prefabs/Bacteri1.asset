@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Bacteri1
   m_EditorClassIdentifier: 
   id: 2
-  damage: 30
-  fireRate: 2
+  damage: 25
+  fireRate: 3
   DPS: 2
-  projectileHp: 0
-  projectileSpeed: 2
+  projectileHp: 10
+  projectileSpeed: 10
   hability: 0
   range: 4
   colorTower: {r: 0.8018868, g: 0.43303308, b: 0.13238695, a: 1}

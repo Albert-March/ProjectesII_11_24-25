@@ -10,14 +10,18 @@ public class TagBullet : MonoBehaviour
     public int tagHp;
     public A_Fong1 fatherBullets;
     private float dmgCooldown = 0;
+    private float timeToDeleate = 0;
 
     public Tower towerScript;
     public List<GameObject> enemiesOnContact;
 
-
+    private void Start()
+    {
+        timeToDeleate = Time.time;
+    }
     void Update()
     {
-        if (Time.time >= dmgCooldown + towerScript.fireRate) //Els tics De daño son en base al firerate de la torre
+        if (Time.time >= dmgCooldown + 1) //Els tics De daño son en base al firerate de la torre
         {
             if (enemiesOnContact.Count > 0)
             {
@@ -30,11 +34,13 @@ public class TagBullet : MonoBehaviour
             }
         }
 
-        if (tagHp <= 0) 
+
+        if (tagHp <= 0 || (Time.time >= timeToDeleate + 30 && enemiesOnContact.Count < 1)) 
         {
             fatherBullets.amountOfTagsCreated.Remove(gameObject);
             Destroy(gameObject);
-        }
+        } 
+
     }
 
     public void SetTarget(Vector2 objectpos, A_Fong1 father)
