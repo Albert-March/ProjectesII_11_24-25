@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -54,7 +53,6 @@ public class CameraMovement : MonoBehaviour
 
 		if (drag)
 		{
-			Debug.Log(CalculateLimits());
             transform.position = Origin - Difference;
 		}
 

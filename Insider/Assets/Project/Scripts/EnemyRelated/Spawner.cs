@@ -29,13 +29,6 @@ public class Spawner : MonoBehaviour
 
     public void Start()
     {
-        //LOAD FROM FILE
-        char[] values = "111111111111111111111111111111111111111111111111111111111111111111111111111".ToCharArray();
-        foreach (char c in values)
-        {
-            pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
-        }
-
         foreach (Transform child in SP)
         {
             SpawnPoint childHolder = new SpawnPoint();
@@ -44,6 +37,14 @@ public class Spawner : MonoBehaviour
 
             childs.Add(childHolder);
         }
+
+        //LOAD FROM FILE
+        char[] values = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111121211112112111212111111211121211112212111212211211122222212222212221222222122222222222223222322322323223232323333333333333333333333333344333344334333444334434434444434444444454444445555".ToCharArray();
+        foreach (char c in values)
+        {
+            pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
+        }
+        Debug.Log(pendingEnemies.Count);
     }
 
     public void Update()

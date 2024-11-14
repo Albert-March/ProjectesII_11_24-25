@@ -18,7 +18,6 @@ public class ExplosiveBullet : MonoBehaviour
     private void Awake()
     {
         flyRadius = transform.localScale;
-        explosionRadius = transform.localScale * 7;
     }
     void Update()
 	{
@@ -47,6 +46,7 @@ public class ExplosiveBullet : MonoBehaviour
     {
 		if (target != newTarget) 
 		{
+            explosionRadius = transform.localScale * towerScript.projectileHp;
             lastPos = newTarget.transform.position;
             target = newTarget;
         }

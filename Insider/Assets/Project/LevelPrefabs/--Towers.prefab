@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 5003788431837859045}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7009613677941139701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,21 +111,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9033274295885178601}
     m_Modifications:
+    - target: {fileID: 263996682045463554, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 263996682045463554, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8856763209144816806}
+    - target: {fileID: 263996682045463554, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LlamarSpawnTowerOpcion1
+      objectReference: {fileID: 0}
+    - target: {fileID: 263996682045463554, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetTowerBaseInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 986047504564254612, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 986047504564254612, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8856763209144816806}
+    - target: {fileID: 986047504564254612, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LlamarSpawnTowerOpcion2
+      objectReference: {fileID: 0}
+    - target: {fileID: 986047504564254612, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetTowerBaseInput, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1678119136810850182, guid: 3254151174954a94e93007c04a128da6, type: 3}
       propertyPath: m_Name
       value: TowerSpot
       objectReference: {fileID: 0}
+    - target: {fileID: 4708134074825459487, guid: 3254151174954a94e93007c04a128da6, type: 3}
+      propertyPath: buttonControl
+      value: 
+      objectReference: {fileID: 2075292136061771773}
     - target: {fileID: 9137287805122551644, guid: 3254151174954a94e93007c04a128da6, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9137287805122551644, guid: 3254151174954a94e93007c04a128da6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 9137287805122551644, guid: 3254151174954a94e93007c04a128da6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 266
+      value: 159
       objectReference: {fileID: 0}
     - target: {fileID: 9137287805122551644, guid: 3254151174954a94e93007c04a128da6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -164,8 +200,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3254151174954a94e93007c04a128da6, type: 3}
+--- !u!114 &2075292136061771773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2842834568710360132, guid: 3254151174954a94e93007c04a128da6, type: 3}
+  m_PrefabInstance: {fileID: 4305210112788730809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3142ae2cab5ab4592894b165fe690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5003788431837859045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9137287805122551644, guid: 3254151174954a94e93007c04a128da6, type: 3}
   m_PrefabInstance: {fileID: 4305210112788730809}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8856763209144816806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4708134074825459487, guid: 3254151174954a94e93007c04a128da6, type: 3}
+  m_PrefabInstance: {fileID: 4305210112788730809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3a54f3a9581754db31ebd16b6c39b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

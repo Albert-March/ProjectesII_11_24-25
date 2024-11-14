@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   damage: 40
-  fireRate: 1
+  fireRate: 0.8
   DPS: 2
   projectileHp: 0
   projectileSpeed: 40

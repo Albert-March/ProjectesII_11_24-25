@@ -39,10 +39,6 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
             } 
         }
 	}
-	private void PostInstantiate()
-    {
-        
-    }
    
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -124,11 +120,11 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
         foreach (GameObject boton in botones)
         {
             RectTransform rt = boton.GetComponent<RectTransform>();
+            rt.localScale = Vector3.zero;
             boton.SetActive(true);
 
             if (rt != null)
             {
-                rt.localScale = Vector3.zero;
                 rt.anchoredPosition = posicionInicial; // Establece la posición inicial
 
                 for (float t = 0; t <= appearDuration; t += Time.deltaTime)
