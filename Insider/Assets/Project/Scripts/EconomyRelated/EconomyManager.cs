@@ -12,6 +12,6 @@ public class EconomyManager : MonoBehaviour
 
 	void Update()
 	{
-		economyText.text = "Economy: " + economy.ToString();
+		economyText.text = economy.ToString();
 	}
 }
