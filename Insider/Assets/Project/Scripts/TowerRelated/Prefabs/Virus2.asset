@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
+  m_Name: Virus2
+  m_EditorClassIdentifier: 
+  id: 1
+  damage: 100
+  fireRate: 4
+  DPS: 2
+  projectileHp: 0
+  projectileSpeed: 10
+  hability: 0
+  range: 4
+  colorTower: {r: 0.09518514, g: 0.81557876, b: 0.8773585, a: 1}
+  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
+  attackManager: {fileID: 0}
