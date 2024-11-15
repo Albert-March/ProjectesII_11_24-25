@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FastCam : MonoBehaviour
 {
     int currentSpeed = 1;
+    public Text speedText;
+
     void Update()
     {
         if (Input.GetButtonDown("SpeedUp")) 
@@ -19,5 +22,6 @@ public class FastCam : MonoBehaviour
         }
 
         Time.timeScale = currentSpeed;
+        speedText.text = "x"+currentSpeed.ToString();
     }
 }

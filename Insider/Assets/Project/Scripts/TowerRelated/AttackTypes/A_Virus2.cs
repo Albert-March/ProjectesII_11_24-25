@@ -22,12 +22,10 @@ public class A_Virus2 : MonoBehaviour, IAttackType
 
     IDamage enemyDmg;
 
-    private bool canDelete = false;
-
     void Start()
     {
-        extractSpeed = 1f;
-        retractSpeed = extractSpeed / 4;
+        extractSpeed = 0.5f;
+        retractSpeed = extractSpeed / 2;
         Addressables.LoadAssetAsync<GameObject>(assetAddress).Completed += OnPrefabLoaded;
     }
 
