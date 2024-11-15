@@ -17,11 +17,11 @@ public class Spawner : MonoBehaviour
     //EnemyManager vars
     public List<EnemyStats> spawneableEnemies = new List<EnemyStats>();
 
-    private float spawnTime = 1.0f;
+    private float spawnTime = 1f;
     private float currentSpawnTime = 0.0f;
 
     public EnemyManager enemyManager;
-
+    public TargetManager targetManager;
 
     //SELECTING THE SPAWN POINT
     public Transform SP;
@@ -29,13 +29,6 @@ public class Spawner : MonoBehaviour
 
     public void Start()
     {
-        //LOAD FROM FILE
-        char[] values = "1234511111111222222222221111144444444444333333333333355555555555".ToCharArray();
-        foreach (char c in values)
-        {
-            pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
-        }
-
         foreach (Transform child in SP)
         {
             SpawnPoint childHolder = new SpawnPoint();
@@ -44,6 +37,14 @@ public class Spawner : MonoBehaviour
 
             childs.Add(childHolder);
         }
+
+        //LOAD FROM FILE
+        char[] values = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111121211112112111212111111211121211112212111212211211122222212222212221222222122222222222223222322322323223232323333333333333333333333333344333344334333444334434434444434444444454444445555".ToCharArray();
+        foreach (char c in values)
+        {
+            pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
+        }
+        Debug.Log(pendingEnemies.Count);
     }
 
     public void Update()
@@ -59,17 +60,18 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        EnemyStats enemyToSpawn = pendingEnemies.Dequeue();
-        Transform spawnPoint = GetLeastCooldownChild().transformChild;
-        Enemy e = Instantiate(enemyToSpawn.prefab, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
+        if (pendingEnemies.Count != 0) 
+        {
+            EnemyStats enemyToSpawn = pendingEnemies.Dequeue();
+            Transform spawnPoint = GetLeastCooldownChild().transformChild;
+            Enemy e = Instantiate(enemyToSpawn.prefab, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
+            e.SetEnemyData(enemyToSpawn);
+            e.enemyManager = enemyManager;
+            e.path = targetManager.GetRandomPath();
 
-        enemyManager.AddSpawnedEnemy(e);
-    }
 
-    public SpawnPoint GetRandomChild()
-    {
-        int randomIndex = Random.Range(0, childs.Count);
-        return childs[randomIndex];
+            enemyManager.AddSpawnedEnemy(e);
+        }
     }
 
     public SpawnPoint GetLeastCooldownChild()
@@ -97,14 +99,12 @@ public class Spawner : MonoBehaviour
             {
                 childs[giveChildNum].isSpawnable = true;
                 childs[randomNum + 1].isSpawnable = false;
-                Debug.Log("Spawning At: " + (randomNum + 1));
                 return childs[randomNum + 1];
             }
             else 
             {
                 childs[giveChildNum].isSpawnable = true;
                 childs[randomNum].isSpawnable = false;
-                Debug.Log("Spawning At: " + (randomNum));
                 return childs[randomNum];
             }
             

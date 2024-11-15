@@ -6,6 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Project/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  m_configObjects: {}
+    path: Assets/Project/Scenes/MainMenu.unity
+    guid: 12ef3278d0d526f45afb54ae058f5f46
+  - enabled: 1
+    path: Assets/Project/Scenes/Levels/Level_1.unity
+    guid: 20c7a99d37baf714084db11342b931fc
+  - enabled: 1
+    path: Assets/Project/Scenes/TemporalForPrototipe/DeathScreen.unity
+    guid: 29292fe9f77bd3047a3b8ef319a78e0f
+  - enabled: 1
+    path: Assets/Project/Scenes/TemporalForPrototipe/WinScreen.unity
+    guid: ff2b235eb69a60542bb1e99251f5a19d
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 393d3cf979f57aa48977c6af937ac6bc, type: 2}
