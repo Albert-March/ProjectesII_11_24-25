@@ -10,7 +10,9 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
     public GameObject[] botonesDerecha;      // Array para los botones de la derecha
     public GameObject recuadroFondo;         // Recuadro de fondo que se despliega junto con el botón principal
 
-    public Vector2 posicionIzquierda;
+	StatesManager states;
+
+	public Vector2 posicionIzquierda;
     public Vector2 posicionDerecha;
     public Vector2 posicionCentral;
 
@@ -28,6 +30,7 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
 	public void Start()
 	{
 		nextPos = transform.localPosition + new Vector3(0, 70, 0);
+		states = FindObjectOfType<StatesManager>();
 	}
 	public void Update()
 	{
