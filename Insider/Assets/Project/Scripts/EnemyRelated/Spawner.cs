@@ -19,12 +19,14 @@ public class Spawner : MonoBehaviour
 
     private float spawnTime = 1f;
     private float currentSpawnTime = 0.0f;
+	private bool isInitialized = false;
 
-    public EnemyManager enemyManager;
+	public EnemyManager enemyManager;
     public TargetManager targetManager;
+	private SpawnManager spawnManager;
 
-    //SELECTING THE SPAWN POINT
-    public Transform SP;
+	//SELECTING THE SPAWN POINT
+	public Transform SP;
     List<SpawnPoint> childs = new List<SpawnPoint>();
 
     public void Start()
@@ -37,15 +39,8 @@ public class Spawner : MonoBehaviour
 
             childs.Add(childHolder);
         }
-
-        //LOAD FROM FILE
-        char[] values = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111121211112112111212111111211121211112212111212211211122222212222212221222222122222222222223222322322323223232323333333333333333333333333344333344334333444334434434444434444444454444445555".ToCharArray();
-        foreach (char c in values)
-        {
-            pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
-        }
-        Debug.Log(pendingEnemies.Count);
-    }
+		spawnManager = FindObjectOfType<SpawnManager>();
+	}
 
     public void Update()
     {
@@ -56,9 +51,34 @@ public class Spawner : MonoBehaviour
             SpawnEnemy();
             currentSpawnTime -= spawnTime;
         }
-    }
 
-    private void SpawnEnemy()
+		if (pendingEnemies.Count == 0)
+		{
+            if(isInitialized == false)
+            {
+				UpdatePendingEnemies();
+                isInitialized = true;
+			}
+            else
+            {
+				Debug.Log("Estado completado. Preparando para avanzar...");
+                spawnManager.AdvanceGameState();
+				UpdatePendingEnemies();
+			}
+		}
+	}
+
+	private void UpdatePendingEnemies()
+	{
+		pendingEnemies.Clear();
+		foreach (char c in spawnManager.enemiesList)
+		{
+			pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
+		}
+		Debug.Log($"Cola de enemigos actualizada: {pendingEnemies.Count} enemigos en cola.");
+	}
+
+	private void SpawnEnemy()
     {
         if (pendingEnemies.Count != 0) 
         {
