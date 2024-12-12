@@ -33,7 +33,7 @@ public class FollowDeformingMesh : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (spriteSkin == null)
             return;
