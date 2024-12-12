@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.VersionControl.Asset;
 
 public class SetTowerBaseInput : MonoBehaviour
 {
@@ -9,15 +10,19 @@ public class SetTowerBaseInput : MonoBehaviour
 	public int towerGrup;
 
 	EconomyManager economyScript;
+	StatesManager states;
+
 	public ControlDesplegable buttonControl;
     public void LlamarSpawnTowerOpcion1()
 	{
 		economyScript = FindObjectOfType<EconomyManager>();
+		states = FindObjectOfType<StatesManager>();
+
 		if (economyScript.economy >= 300)
 		{
             buttonControl.OcultarBotonesIzquierda();
 
-            switch (towerGrup)
+			switch (towerGrup)
 			{
 				case 0:
 					towerSetter.SpawnTower(0, this.transform);
@@ -30,16 +35,20 @@ public class SetTowerBaseInput : MonoBehaviour
 					break;
 			}
 			economyScript.economy -= 300;
+			states.IncrementPosition();
 		}
 	}
 
 	public void LlamarSpawnTowerOpcion2()
 	{
 		economyScript = FindObjectOfType<EconomyManager>();
+		states = FindObjectOfType<StatesManager>();
 		if (economyScript.economy >= 300)
 		{
             buttonControl.OcultarBotonesDerecha();
-            switch (towerGrup)
+
+
+			switch (towerGrup)
 			{
 				case 0:
 					towerSetter.SpawnTower(1, this.transform);
@@ -52,6 +61,7 @@ public class SetTowerBaseInput : MonoBehaviour
 					break;
 			}
 			economyScript.economy -= 300;
+			states.IncrementPosition();
 		}
 	}
 }
