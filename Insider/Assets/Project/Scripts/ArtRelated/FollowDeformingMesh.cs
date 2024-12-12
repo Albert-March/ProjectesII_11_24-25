@@ -8,7 +8,6 @@ using UnityEngine.U2D.Animation;
 public class FollowDeformingMesh : MonoBehaviour
 {
     public Transform movingSkin; // The SpriteRenderer for the background
-    public Transform elementTransform;    // The element to move with the deformation
     public int vertexIndex = 0;           // The vertex index to follow
 
     private SpriteSkin spriteSkin;
@@ -55,6 +54,6 @@ public class FollowDeformingMesh : MonoBehaviour
         Vector3 worldPosition = movingSkin.TransformPoint(localPosition);
 
         // Update the position of the element
-        elementTransform.position = worldPosition;
+        transform.position = worldPosition;
     }
 }
