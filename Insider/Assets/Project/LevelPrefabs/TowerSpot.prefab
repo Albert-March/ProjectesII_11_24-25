@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678119136810850182}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30, y: 266, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerSetter: {fileID: 0}
-  towerGrup: 0
+  towerGrup: 2
+  buttonControl: {fileID: 2842834568710360132}
 --- !u!1001 &123127362833328374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -70,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2842834568710360132}
+      objectReference: {fileID: 4708134074825459487}
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -85,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OcultarBotonesIzquierda
+      value: LlamarSpawnTowerOpcion1
       objectReference: {fileID: 0}
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -93,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ControlDesplegable, Assembly-CSharp
+      value: SetTowerBaseInput, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 152146271270614260, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -113,12 +114,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4708134074825459487}
     - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -128,8 +133,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LlamarSpawnTowerOpcion2
+      objectReference: {fileID: 0}
+    - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LlamarSpawnTowerOpcion2
+      objectReference: {fileID: 0}
+    - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetTowerBaseInput, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 872092302183096162, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -139,33 +152,85 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 966499922121733040, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1482576950384935241, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: ButonLevel_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482576950384935241, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1893714464632950582, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: ButonLevel_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1893714464632950582, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2021245844520715160, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: ButonLevel3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021245844520715160, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2136643167837093565, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: BotonLevel_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2136643167837093565, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2394535253818327210, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: ButonLevel_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394535253818327210, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3126680335203613978, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540861068948852091, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562832407457063516, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5353603610268706571, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: BotonPrincipal
       objectReference: {fileID: 0}
+    - target: {fileID: 5353603610268706571, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5529234260064124014, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Name
       value: ButonLevel_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529234260064124014, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385655938343727650, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797933536770252953, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7127222669804599113, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_Pivot.x
@@ -262,6 +327,28 @@ PrefabInstance:
     - target: {fileID: 7127222669804599113, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339144947721945201, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569933066706708640, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Text
+      value: 'Fungus
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851317579673645568, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894683711531614680, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Text
+      value: Boper
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045723663837980996, guid: 84f5f1e3f87a9c5499733390b02b4107, type: 3}
+      propertyPath: m_Text
+      value: Tager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
