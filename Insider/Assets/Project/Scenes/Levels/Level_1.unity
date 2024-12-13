@@ -1454,6 +1454,10 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 612377559248729542, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1511257638483874068, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: movingSkin
       value: 
@@ -1486,6 +1490,14 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 5276520718514896524, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393628405261294482, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: m_Name
+      value: SnapPoint (0)
+      objectReference: {fileID: 0}
     - target: {fileID: 7150479218046354685, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: movingSkin
       value: 
@@ -1498,6 +1510,10 @@ PrefabInstance:
       propertyPath: movingSkin
       value: 
       objectReference: {fileID: 1823439995}
+    - target: {fileID: 8191789447727578052, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8442640951370288220, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: movingSkin
       value: 
@@ -1506,6 +1522,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4320073616993013122}
+    - target: {fileID: 8614422694638835530, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 8856763209144816806, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: towerSetter
       value: 
@@ -3425,7 +3445,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &7866373590485983850
 MonoBehaviour:
