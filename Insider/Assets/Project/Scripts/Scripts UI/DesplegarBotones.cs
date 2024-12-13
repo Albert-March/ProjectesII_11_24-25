@@ -25,21 +25,25 @@ public class ControlDesplegable : MonoBehaviour, IPointerExitHandler
     private bool derechaBloqueada = false;
 
     private Vector3 nextPos;
+    private Vector3 nextSize;
 
     private bool towerInstantiated = false;
 	public void Start()
 	{
-		nextPos = transform.localPosition + new Vector3(0, 70, 0);
-		states = FindObjectOfType<StatesManager>();
+		nextPos = transform.localPosition + new Vector3(0, 50, 0);
+        nextSize = GetComponent<RectTransform>().sizeDelta + new Vector2(0,20);
+        states = FindObjectOfType<StatesManager>();
 	}
 	public void Update()
 	{
-		if(transform.localPosition.y <= nextPos.y) 
-        { 
+        transform.GetChild(0).rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        if (transform.localPosition != nextPos)
+        {
             if (towerInstantiated)
-            { 
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, nextPos, 2); 
-            } 
+            {
+                GetComponent<RectTransform>().sizeDelta = Vector3.MoveTowards(GetComponent<RectTransform>().sizeDelta, nextSize, 2);
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, nextPos, 2);
+            }
         }
 	}
    
