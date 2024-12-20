@@ -1514,6 +1514,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8208075307248938983, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8442640951370288220, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: movingSkin
       value: 
@@ -3249,7 +3253,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1217732977}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 24.00008
+    OrthographicSize: 30.00008
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3362,7 +3366,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 24.00008
+  orthographic size: 30.00008
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

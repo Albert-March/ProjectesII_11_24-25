@@ -14,7 +14,8 @@ public class Tower : MonoBehaviour
 	public float hability; //No es un float (falta definir)
 	public float range;
 	private SpriteRenderer sprite;
-
+    GameObject towerObject;
+    Animator animatorTower;
     public List<Enemy> enemiesInRange = new List<Enemy>();
 
     public AttackManager attackManager;
@@ -33,30 +34,37 @@ public class Tower : MonoBehaviour
 		this.projectileSpeed = stats.projectileSpeed;
 		this.hability = stats.hability;
         this.range = stats.range;
-
-        this.sprite.color = stats.colorTower;
+        GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
+        animatorTower = towerObject.GetComponent<Animator>();
+        towerObject.transform.SetParent(transform, true);
+        towerObject.transform.rotation = transform.rotation;
         attackManager.SetAttackType(id);
     }
 
 	private void Awake()
 	{
-		sprite = GetComponent<SpriteRenderer>();
-		sprite.color = Color.red;
+
 	}
 
     private void Update()
     {
         GetComponent<CircleCollider2D>().radius = range;
-        if (Time.time >= lastShootTime + fireRate)
+        if (enemiesInRange.Count > 0)
         {
-            if (enemiesInRange.Count > 0)
+            if (Time.time >= lastShootTime + fireRate)
             {
+                animatorTower.SetBool("IsAttacking", true);
                 Enemy enemyHolder = enemiesInRange[0];
                 attackManager.attackType.Attack(enemyHolder);
                 lastShootTime = Time.time;
-            }     
+
+            }
+            else 
+            {
+                animatorTower.SetBool("IsAttacking", false);
+            }
         }
-        
+
     }
 
     public void OnTriggerEnter2D(Collider2D other)
