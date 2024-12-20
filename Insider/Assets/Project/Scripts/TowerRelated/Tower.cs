@@ -33,8 +33,9 @@ public class Tower : MonoBehaviour
 		this.projectileSpeed = stats.projectileSpeed;
 		this.hability = stats.hability;
         this.range = stats.range;
-
-        this.sprite.color = stats.colorTower;
+        GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
+        towerObject.transform.SetParent(transform, true);
+        towerObject.transform.rotation = transform.rotation;
         attackManager.SetAttackType(id);
     }
 
