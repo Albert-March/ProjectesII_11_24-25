@@ -21,6 +21,7 @@ public class TowerSetter : MonoBehaviour
         towerObject.transform.rotation = towerPos.rotation;
         Tower tower = towerObject.GetComponent<Tower>();
         tower.SetTowerData(stats);
+        tower.enabled = true;
 
-	}
+    }
 }
