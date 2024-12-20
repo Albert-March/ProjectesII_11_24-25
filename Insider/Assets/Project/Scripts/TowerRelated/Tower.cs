@@ -34,6 +34,9 @@ public class Tower : MonoBehaviour
 		this.projectileSpeed = stats.projectileSpeed;
 		this.hability = stats.hability;
         this.range = stats.range;
+
+        GetComponent<CircleCollider2D>().radius = range;
+        GetComponent<CircleCollider2D>().offset = new Vector2(0,stats.rangeOffstY);
         GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
         animatorTower = towerObject.GetComponent<Animator>();
         towerObject.transform.SetParent(transform, true);
@@ -48,7 +51,7 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        GetComponent<CircleCollider2D>().radius = range;
+        if (animatorTower.GetCurrentAnimatorStateInfo(0).IsName("Spawn")) { return; }
         if (enemiesInRange.Count > 0)
         {
             if (Time.time >= lastShootTime + fireRate)
