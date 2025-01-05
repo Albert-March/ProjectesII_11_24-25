@@ -1772,6 +1772,10 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 232221297340045988, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     - target: {fileID: 288968993539183087, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: m_LocalScale.x
       value: 8
@@ -1872,10 +1876,18 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 4300909816218525676, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     - target: {fileID: 4466575228959561609, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 4466575228959561609, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     - target: {fileID: 4599512274284557441, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: m_Name
       value: --Towers
@@ -1884,6 +1896,10 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 4674353703368548176, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     - target: {fileID: 5276520718514896524, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1956,6 +1972,10 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 7793923946500174184, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     - target: {fileID: 8094515627473843702, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: movingSkin
       value: 
@@ -1988,6 +2008,10 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 8856763209144816806, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     - target: {fileID: 9033274295885178601, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2076,6 +2100,10 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 79412778}
+    - target: {fileID: 9182944672940762108, guid: 7e5d90a5498931c4e88d13898687cdba, type: 3}
+      propertyPath: levelUpParticles
+      value: 
+      objectReference: {fileID: 6006160586734424240, guid: da8c0beaf475584409443589f9560de0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

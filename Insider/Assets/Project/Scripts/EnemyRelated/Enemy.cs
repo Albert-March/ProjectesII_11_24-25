@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamage
     public float health;
     public float dmg;
     public int economyGiven;
+
     SpriteRenderer sprite;
     public List<Target> path;
 
@@ -25,7 +26,10 @@ public class Enemy : MonoBehaviour, IDamage
 
     private float timeSinceLastAtack = 0;
 
-    public void SetEnemyData(EnemyStats enemy)
+	[SerializeField] private ParticleSystem destroyParticles;
+	private ParticleSystem destroyParticlesInstance;
+
+	public void SetEnemyData(EnemyStats enemy)
     {
         this.enemyName = enemy.enemyName;
         this.movSpeed = enemy.movSpeed;
@@ -94,7 +98,14 @@ public class Enemy : MonoBehaviour, IDamage
             Destroy(gameObject);
             economyScript = FindObjectOfType<EconomyManager>();
 			economyScript.economy += economyGiven;
-        }
+            SpawnParticles();
+
+		}
     }
+
+	public void SpawnParticles()
+	{
+		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
+	}
 
 }

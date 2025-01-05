@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class SetTowerBaseInput : MonoBehaviour
 {
+	[SerializeField] private ParticleSystem levelUpParticles;
+	private ParticleSystem levelUpParticlesInstance;
+
 	public TowerSetter towerSetter;
 	public int towerGrup;
 
@@ -90,6 +93,7 @@ public class SetTowerBaseInput : MonoBehaviour
 					}
 				}
 			}
+			SpawnParticles();
 			economyScript.economy -= 100;
 			states.IncrementPosition();
 		}
@@ -110,9 +114,15 @@ public class SetTowerBaseInput : MonoBehaviour
 					}
 				}
 			}
+			SpawnParticles();
 			economyScript.economy -= 100;
 			states.IncrementPosition();
 		}
 		levelUp3 = true;
+	}
+
+	public void SpawnParticles()
+	{
+		levelUpParticlesInstance = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
 	}
 }

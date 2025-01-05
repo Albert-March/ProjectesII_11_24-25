@@ -108,6 +108,7 @@ MonoBehaviour:
   economyGiven: 0
   enemyManager: {fileID: 0}
   currentTarget: 0
+  destroyParticles: {fileID: 1560452431689086135, guid: 92b0ee759cde73b4ab6f8aea72d3ddb2, type: 3}
 --- !u!50 &2176080803243427887
 Rigidbody2D:
   serializedVersion: 4
