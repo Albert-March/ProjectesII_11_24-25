@@ -11,8 +11,10 @@ public class TowerStats : ScriptableObject
 	public float DPS;
 	public int projectileHp;
 	public float projectileSpeed;
-	public float hability; //No es un float (falta definir)
 	public float range;
+
+	public float hability; //No es un float (falta definir)
+
 	public float rangeOffstY;
 	public GameObject AnimationPrefab;
 	public GameObject prefab;

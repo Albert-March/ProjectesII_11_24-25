@@ -6,6 +6,8 @@ using UnityEngine;
 public class TowerSetter : MonoBehaviour
 {
 	public List<TowerStats> towerStats;
+	public List<TowerStats> towerUpgrades1;
+	public List<TowerStats> towerUpgrades2;
 
 	public void SpawnTower(int option, Transform towerPos)
 	{
@@ -24,4 +26,17 @@ public class TowerSetter : MonoBehaviour
         tower.enabled = true;
 
     }
+
+	public void LevelUp2(Tower tower)
+	{
+		TowerStats stats = towerUpgrades1[tower.id];
+		tower.LevelUp(stats);
+		
+	}
+
+	public void LevelUp3(Tower tower)
+	{
+		TowerStats stats = towerUpgrades2[tower.id];
+		tower.SetTowerData(stats);
+	}
 }

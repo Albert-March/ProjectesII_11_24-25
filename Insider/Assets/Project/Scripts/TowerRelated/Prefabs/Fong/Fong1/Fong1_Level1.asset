@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Virus2
+  m_Name: Fong1_Level1
   m_EditorClassIdentifier: 
-  id: 1
-  damage: 100
-  fireRate: 4
+  id: 4
+  damage: 30
+  fireRate: 3
   DPS: 2
-  projectileHp: 0
+  projectileHp: 4
   projectileSpeed: 10
   hability: 0
   range: 8
