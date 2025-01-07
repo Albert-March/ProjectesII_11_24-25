@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Virus2_Level1
   m_EditorClassIdentifier: 
   id: 1
-  damage: 20
-  fireRate: 0
-  DPS: 0
+  damage: 2
+  fireRate: 2
+  DPS: 2
   projectileHp: 0
   projectileSpeed: 0
-  range: 5
+  range: 30
   hability: 0
   rangeOffstY: 2
   AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}

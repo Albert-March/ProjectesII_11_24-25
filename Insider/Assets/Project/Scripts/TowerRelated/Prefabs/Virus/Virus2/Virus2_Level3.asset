@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Virus2_Level3
   m_EditorClassIdentifier: 
   id: 1
-  damage: 40
+  damage: 4
   fireRate: 0
   DPS: 0
   projectileHp: 0
