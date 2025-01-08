@@ -14,7 +14,6 @@ public class RewardManager : MonoBehaviour
 	public float acceleration = 30f;
 	public float maxSpeed = 200f;
 	private Vector3 targetPosition;
-	private bool isMovingToTarget = false;
 	private float currentSpeed = 0f;
 
 	private bool isPhase2Started = false;
@@ -53,7 +52,6 @@ public class RewardManager : MonoBehaviour
 	private void StartPhase2()
 	{
 		isPhase2Started = true;
-		isMovingToTarget = true;
 		downwardVelocity = Vector3.zero;
 	}
 

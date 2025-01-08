@@ -195,20 +195,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 4320073616993013122}
+    - target: {fileID: 2885483125031537487, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
+      propertyPath: fillImage
+      value: 
+      objectReference: {fileID: 679255913}
     - target: {fileID: 3685298084248578712, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3685298084248578712, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4751999204756228321, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4751999204756228321, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
@@ -1163,6 +1159,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c35f5f9dade44194a889f6776ba21e27, type: 3}
+--- !u!114 &679255913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8350729736160751677, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
+  m_PrefabInstance: {fileID: 203295063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &685267627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2786931379117616587, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}

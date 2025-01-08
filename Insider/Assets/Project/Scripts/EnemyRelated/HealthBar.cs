@@ -9,11 +9,23 @@ public class HealthBar : MonoBehaviour
 	[SerializeField] private Camera cam;
 	[SerializeField] private Transform target;
 	[SerializeField] private Vector3 offset;
-	public Enemy enemy;
+	[SerializeField] private Image fillImage;
 
 	public void UpdateHealthBar(float currentValue, float maxValue)
 	{
 		slider.value = currentValue / maxValue;
+		if (currentValue <= (maxValue / 2))
+		{
+			fillImage.color = Color.yellow;
+		}
+		else if(currentValue <= (maxValue / 4))
+		{
+			fillImage.color = Color.red;
+		}
+		else
+		{
+			fillImage.color = Color.green;
+		}
 	}
 	void Update()
     {
