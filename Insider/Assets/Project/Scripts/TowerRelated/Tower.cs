@@ -11,8 +11,9 @@ public class Tower : MonoBehaviour
 	public float DPS;
 	public int projectileHp;
 	public float projectileSpeed;
-	public float hability; //No es un float (falta definir)
 	public float range;
+	public float hability; //No es un float (falta definir)
+
 	private SpriteRenderer sprite;
     GameObject towerObject;
     Animator animatorTower;
@@ -24,25 +25,47 @@ public class Tower : MonoBehaviour
 
     private bool canShoot;
 
-    public void SetTowerData(TowerStats stats)
+	public int currentLevel = 1;
+	public const int maxLevel = 3;
+	public void SetTowerData(TowerStats stats)
 	{
-        this.id = stats.id;
+		this.id = stats.id;
 		this.damage = stats.damage;
 		this.fireRate = stats.fireRate;
 		this.DPS = stats.DPS;
 		this.projectileHp = stats.projectileHp;
 		this.projectileSpeed = stats.projectileSpeed;
-		this.hability = stats.hability;
-        this.range = stats.range;
+		this.range = stats.range;
 
-        GetComponent<CircleCollider2D>().radius = range;
+		this.hability = stats.hability;
+
+		GetComponent<CircleCollider2D>().radius = range;
         GetComponent<CircleCollider2D>().offset = new Vector2(0,stats.rangeOffstY);
-        GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
-        animatorTower = towerObject.GetComponent<Animator>();
-        towerObject.transform.SetParent(transform, true);
-        towerObject.transform.rotation = transform.rotation;
+
+        if (currentLevel == 1 && animatorTower == null)
+        {
+            GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
+            animatorTower = towerObject.GetComponent<Animator>();
+            towerObject.transform.SetParent(transform, true);
+            towerObject.transform.rotation = transform.rotation;
+        }
+
         attackManager.SetAttackType(id);
     }
+
+	public void LevelUp(TowerStats stats)
+	{
+		if (currentLevel < maxLevel)
+		{
+			currentLevel++;
+			SetTowerData(stats);
+			Debug.Log($"La torre ha subido al nivel {currentLevel}");
+		}
+		else
+		{
+			Debug.Log("¡La torre ya está en el nivel máximo!");
+		}
+	}
 
 	private void Awake()
 	{

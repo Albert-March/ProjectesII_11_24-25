@@ -10,17 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Bacteri2
+  m_Name: Bacteri2_Level2
   m_EditorClassIdentifier: 
-  id: 3
-  damage: 40
-  fireRate: 0.8
-  DPS: 2
-  projectileHp: 0
-  projectileSpeed: 40
+  id: 0
+  damage_1: 0
+  fireRate_1: 0
+  DPS_1: 0
+  projectileHp_1: 0
+  projectileSpeed_1: 0
+  range_1: 0
+  damage_2: 0
+  fireRate_2: 0
+  DPS_2: 0
+  projectileHp_2: 0
+  projectileSpeed_2: 0
+  range_2: 0
+  damage_3: 0
+  fireRate_3: 0
+  DPS_3: 0
+  projectileHp_3: 0
+  projectileSpeed_3: 0
+  range_3: 0
   hability: 0
-  range: 8
-  rangeOffstY: 2
-  AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
-  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
+  rangeOffstY: 0
+  AnimationPrefab: {fileID: 0}
+  prefab: {fileID: 0}
   attackManager: {fileID: 0}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour, IDamage
 {
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour, IDamage
     public float health;
     public float dmg;
     public int economyGiven;
+
     SpriteRenderer sprite;
     public List<Target> path;
 
@@ -25,7 +27,15 @@ public class Enemy : MonoBehaviour, IDamage
 
     private float timeSinceLastAtack = 0;
 
-    public void SetEnemyData(EnemyStats enemy)
+	[SerializeField] private ParticleSystem destroyParticles;
+	private ParticleSystem destroyParticlesInstance;
+
+    [SerializeField] HealthBar healthBar;
+
+    [SerializeField] private GameObject reward;
+    private GameObject rewardInstance;
+
+	public void SetEnemyData(EnemyStats enemy)
     {
         this.enemyName = enemy.enemyName;
         this.movSpeed = enemy.movSpeed;
@@ -41,7 +51,14 @@ public class Enemy : MonoBehaviour, IDamage
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        healthBar = GetComponentInChildren<HealthBar>();
     }
+
+    public float maxHealth;
+    public void Start()
+    {
+        maxHealth = health;
+	}
 
     public void Update()
     {
@@ -57,7 +74,7 @@ public class Enemy : MonoBehaviour, IDamage
             _damageReciver.Damage(dmg);
             timeSinceLastAtack = Time.time;
         }
-    }
+	}
 
     private void PlayAllBehaviours() 
     {
@@ -92,9 +109,25 @@ public class Enemy : MonoBehaviour, IDamage
         {
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
-            economyScript = FindObjectOfType<EconomyManager>();
+			economyScript = FindObjectOfType<EconomyManager>();
 			economyScript.economy += economyGiven;
-        }
-    }
+            SpawnParticles();
+            SpawnReward();
 
+		}
+		healthBar.UpdateHealthBar(health, maxHealth);
+	}
+
+	public void SpawnParticles()
+	{
+		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
+	}
+
+	public void SpawnReward()
+	{
+		rewardInstance = Instantiate(reward, transform.position, Quaternion.identity);
+		RewardManager rewardManager = rewardInstance.GetComponent<RewardManager>();
+		rewardManager = rewardInstance.AddComponent<RewardManager>();
+		rewardManager.Initialize(new Vector3(0, 20, 0));
+	}
 }
