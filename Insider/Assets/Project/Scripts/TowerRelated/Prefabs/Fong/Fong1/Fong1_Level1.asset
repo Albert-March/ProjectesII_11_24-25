@@ -18,8 +18,8 @@ MonoBehaviour:
   DPS: 2
   projectileHp: 4
   projectileSpeed: 10
-  hability: 0
   range: 8
+  hability: 0
   rangeOffstY: 2
   AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
