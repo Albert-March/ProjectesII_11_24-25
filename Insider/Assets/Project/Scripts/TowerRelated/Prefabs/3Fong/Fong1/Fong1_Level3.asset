@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Fong2_Level2
+  m_Name: Fong1_Level3
   m_EditorClassIdentifier: 
-  id: 0
-  damage: 0
-  fireRate: 0
-  DPS: 0
-  projectileHp: 0
-  projectileSpeed: 0
-  range: 0
+  id: 4
+  damage: 50
+  fireRate: 3
+  DPS: 2
+  projectileHp: 12
+  projectileSpeed: 10
+  range: 15
   hability: 0
   rangeOffstY: 0
   AnimationPrefab: {fileID: 901765758457287831, guid: 641c85ab194f6a74ca0b304060395caa, type: 3}

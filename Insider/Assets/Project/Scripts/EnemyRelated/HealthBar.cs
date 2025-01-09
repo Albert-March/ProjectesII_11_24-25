@@ -14,13 +14,13 @@ public class HealthBar : MonoBehaviour
 	public void UpdateHealthBar(float currentValue, float maxValue)
 	{
 		slider.value = currentValue / maxValue;
-		if (currentValue <= (maxValue / 2))
-		{
-			fillImage.color = Color.yellow;
-		}
-		else if(currentValue <= (maxValue / 4))
+		if (currentValue <= (maxValue / 4))
 		{
 			fillImage.color = Color.red;
+		}
+		else if (currentValue <= (maxValue / 2))
+		{
+			fillImage.color = Color.yellow;
 		}
 		else
 		{
