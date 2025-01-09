@@ -35,6 +35,11 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] private GameObject reward;
     private GameObject rewardInstance;
 
+    public GameObject parasite;
+
+    [SerializeField] private AudioClip damageSounClip;
+    private AudioSource AudioSource;
+
 	public void SetEnemyData(EnemyStats enemy)
     {
         this.enemyName = enemy.enemyName;
@@ -58,6 +63,8 @@ public class Enemy : MonoBehaviour, IDamage
     public void Start()
     {
         maxHealth = health;
+
+        AudioSource = GetComponent<AudioSource>();
 	}
 
     public void Update()
@@ -113,7 +120,8 @@ public class Enemy : MonoBehaviour, IDamage
 			economyScript.economy += economyGiven;
             SpawnParticles();
             SpawnReward();
-
+            AudioSource.clip = damageSounClip;
+            AudioSource.Play();
 		}
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}
@@ -128,6 +136,7 @@ public class Enemy : MonoBehaviour, IDamage
 		rewardInstance = Instantiate(reward, transform.position, Quaternion.identity);
 		RewardManager rewardManager = rewardInstance.GetComponent<RewardManager>();
 		rewardManager = rewardInstance.AddComponent<RewardManager>();
-		rewardManager.Initialize(new Vector3(0, 20, 0));
+        Vector3 vector3 = parasite.transform.position;
+		rewardManager.Initialize(vector3);
 	}
 }
