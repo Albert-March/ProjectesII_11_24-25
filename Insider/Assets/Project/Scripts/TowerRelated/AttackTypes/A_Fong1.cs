@@ -35,6 +35,7 @@ public class A_Fong1 : MonoBehaviour, IAttackType
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             // Asignar objetiu
+            bullet.transform.SetParent(this.transform);
             TagBullet bulletScript = bullet.GetComponent<TagBullet>();
             bulletScript.towerScript = GetComponent<Tower>();
             amountOfTagsCreated.Add(bullet);

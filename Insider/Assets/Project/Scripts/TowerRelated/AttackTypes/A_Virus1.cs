@@ -34,11 +34,10 @@ public class A_Virus1 : MonoBehaviour, IAttackType
         direction = (target.transform.position - transform.position).normalized;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         distance = Vector2.Distance(transform.position, target.transform.position);
-        RaycastHit2D fire = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Enemy"));
+
         DrawLaser();
-        Debug.DrawRay(transform.position, target.transform.position - transform.position, Color.blue);
-        Debug.Log(fire.transform.name);
-        IDamage enemyDmg = fire.transform.GetComponent<IDamage>();
+
+        IDamage enemyDmg = e.transform.GetComponent<IDamage>();
         if (enemyDmg != null)
         {
             enemyDmg.Damage(GetComponent<Tower>().damage);

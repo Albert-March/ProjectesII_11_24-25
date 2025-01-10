@@ -85,6 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 481272901225834591}
+  - component: {fileID: 4611704370367171262}
   m_Layer: 0
   m_Name: RewardPrefab
   m_TagString: Untagged
@@ -108,6 +109,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4611704370367171262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939825833925267419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250b2af3294bd7e468347a1050058c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialDownwardForce: 10
+  downwardDamping: 2
+  phase1Time: 0.2
+  acceleration: 30
+  maxSpeed: 200
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7204354797460571207
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +139,6 @@ GameObject:
   - component: {fileID: 4701146897498052614}
   - component: {fileID: 1375597622281587625}
   - component: {fileID: 2786004547488439596}
-  - component: {fileID: 9091888842940915179}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -212,20 +230,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &9091888842940915179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7204354797460571207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250b2af3294bd7e468347a1050058c21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDownwardForce: 10
-  downwardDamping: 2
-  phase1Time: 0.2
-  acceleration: 30
-  maxSpeed: 200

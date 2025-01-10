@@ -35,8 +35,6 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] private GameObject reward;
     private GameObject rewardInstance;
 
-    public GameObject parasite;
-
     [SerializeField] private AudioClip damageSounClip;
     private AudioSource AudioSource;
 
@@ -65,7 +63,8 @@ public class Enemy : MonoBehaviour, IDamage
         maxHealth = health;
 
         AudioSource = GetComponent<AudioSource>();
-	}
+        AudioSource.clip = damageSounClip;
+    }
 
     public void Update()
     {
@@ -114,15 +113,15 @@ public class Enemy : MonoBehaviour, IDamage
 
         if (health <= 0) 
         {
-            enemyManager.RemoveEnemy(this);
-            Destroy(gameObject);
 			economyScript = FindObjectOfType<EconomyManager>();
 			economyScript.economy += economyGiven;
             SpawnParticles();
             SpawnReward();
-            AudioSource.clip = damageSounClip;
             AudioSource.Play();
-		}
+
+            enemyManager.RemoveEnemy(this);
+            Destroy(gameObject);
+        }
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}
 
@@ -135,8 +134,7 @@ public class Enemy : MonoBehaviour, IDamage
 	{
 		rewardInstance = Instantiate(reward, transform.position, Quaternion.identity);
 		RewardManager rewardManager = rewardInstance.GetComponent<RewardManager>();
-		rewardManager = rewardInstance.AddComponent<RewardManager>();
-        Vector3 vector3 = parasite.transform.position;
+        Vector3 vector3 = path[path.Count-1].obj.transform.position;
 		rewardManager.Initialize(vector3);
 	}
 }

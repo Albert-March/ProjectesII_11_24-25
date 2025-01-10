@@ -88,6 +88,7 @@ public class Spawner : MonoBehaviour
             e.SetEnemyData(enemyToSpawn);
             e.enemyManager = enemyManager;
             e.path = targetManager.GetRandomPath();
+            e.enabled = true;
 
 
             enemyManager.AddSpawnedEnemy(e);

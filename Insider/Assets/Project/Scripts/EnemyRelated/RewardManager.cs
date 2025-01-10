@@ -13,7 +13,7 @@ public class RewardManager : MonoBehaviour
 	//Fase 2 (Hacia el destino)
 	public float acceleration = 30f;
 	public float maxSpeed = 200f;
-	private Vector3 targetPosition;
+	public Vector3 targetPosition;
 	private float currentSpeed = 0f;
 
 	private bool isPhase2Started = false;
@@ -63,7 +63,7 @@ public class RewardManager : MonoBehaviour
 
 		transform.position += direction * currentSpeed * Time.deltaTime;
 
-		if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+		if (Vector3.Distance(transform.position, targetPosition) < 0.5f)
 		{
 			Destroy(gameObject);
 		}
