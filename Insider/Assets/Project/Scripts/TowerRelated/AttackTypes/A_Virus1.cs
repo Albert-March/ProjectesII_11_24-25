@@ -46,7 +46,9 @@ public class A_Virus1 : MonoBehaviour, IAttackType
 
     void DrawLaser()
     {
+        if (target == null) { return; }
         laser = Instantiate(laserPrefab, Vector3.Lerp(transform.position, target.transform.position, 0.5f), Quaternion.Euler(0, 0, angle));
+        laser.transform.SetParent(this.transform);
         laser.GetComponent<SpriteRenderer>().size = new Vector2(distance, laser.GetComponent<SpriteRenderer>().size.y);
         StartCoroutine(DeleatLaser());
     }

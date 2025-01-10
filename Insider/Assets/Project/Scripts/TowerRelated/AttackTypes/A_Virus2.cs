@@ -66,6 +66,7 @@ public class A_Virus2 : MonoBehaviour, IAttackType
         }
 
         chomp = Instantiate(chompPrefab, transform.position, Quaternion.identity);
+        chomp.transform.SetParent(this.transform);
         chomp.GetComponent<TongeBullet>().target = target;
     }
 

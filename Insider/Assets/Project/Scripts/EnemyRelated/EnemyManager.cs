@@ -8,6 +8,8 @@ public class EnemyManager : MonoBehaviour
 {
     protected HashSet<Enemy> currentEnemy = new HashSet<Enemy>();
 
+    public SpawnManager spawnManager;
+
     public void AddSpawnedEnemy(Enemy e)
     {
         currentEnemy.Add(e);
@@ -16,7 +18,7 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemy(Enemy e)
     {
         currentEnemy.Remove(e);
-        if(currentEnemy.Count <= 0) 
+        if(currentEnemy.Count <= 0 && spawnManager.currentState.stateName == "finish") 
         {
             SceneManager.LoadScene("WinScreen");
         }

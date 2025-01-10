@@ -3,11 +3,11 @@
     {
       "stateName": "initial",
       "enemyTypes": {
-        "Type1": 10,
-        "Type2": 10,
-        "Type3": 2,
+        "Type1": 100,
+        "Type2": 100,
+        "Type3": 20,
         "spawnTime": 1.0,
-        "delay": 3.0
+        "delay": 20.0
       }
     },
     {
@@ -16,62 +16,62 @@
         {
           "waveNumber": "1",
           "enemyTypes": {
-            "Type1": 10,
-            "Type2": 5,
-            "Type3": 2
+            "Type1": 100,
+            "Type2": 50,
+            "Type3": 20
           },
           "spawnTime": 1.0,
-          "delay": 3.0
+          "delay": 20.0
         },
         {
           "waveNumber": "postWave1",
           "enemyTypes": {
-            "Type1": 10,
-            "Type2": 5,
-            "Type3": 2
+            "Type1": 100,
+            "Type2": 50,
+            "Type3": 20
           },
           "spawnTime": 2.0,
-          "delay": 2.0
+          "delay": 20.0
         },
         {
           "waveNumber": "2",
           "enemyTypes": {
-            "Type1": 10,
-            "Type2": 5,
-            "Type3": 2
+            "Type1": 100,
+            "Type2": 50,
+            "Type3": 20
           },
           "spawnTime": 1.5,
-          "delay": 3.5
+          "delay": 30.0
         },
         {
           "waveNumber": "postWave2",
           "enemyTypes": {
-            "Type1": 10,
-            "Type2": 5,
-            "Type3": 2
+            "Type1": 100,
+            "Type2": 50,
+            "Type3": 20
           },
           "spawnTime": 2.5,
-          "delay": 2.5
+          "delay": 20.0
         },
         {
           "waveNumber": "3",
           "enemyTypes": {
-            "Type1": 10,
-            "Type2": 5,
-            "Type3": 2
+            "Type1": 100,
+            "Type2": 50,
+            "Type3": 20
           },
           "spawnTime": 1.2,
-          "delay": 4.0
+          "delay": 20.0
         },
         {
           "waveNumber": "postWave3",
           "enemyTypes": {
-            "Type1": 10,
-            "Type2": 5,
-            "Type3": 2
+            "Type1": 100,
+            "Type2": 50,
+            "Type3": 20
           },
           "spawnTime": 3.0,
-          "delay": 2.0
+          "delay": 20.0
         }
       ]
     },

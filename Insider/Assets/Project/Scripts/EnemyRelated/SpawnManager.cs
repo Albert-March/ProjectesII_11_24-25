@@ -42,7 +42,10 @@ public class SpawnManager : MonoBehaviour
 	private int currentStateIndex = 0;
 	private int currentWaveIndex = 0;
 
-	public string jsonFilePath = "Assets/Project/Resources/gameStates.json";
+	public GameState currentState;
+
+
+    public string jsonFilePath = "Assets/Project/Resources/gameStates.json";
 
 	void Start()
 	{
@@ -68,7 +71,7 @@ public class SpawnManager : MonoBehaviour
 	{
 		if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
 		{
-			GameState currentState = gameStateRoot.gameStates[currentStateIndex];
+			currentState = gameStateRoot.gameStates[currentStateIndex];
 			if (currentState.stateName == "initial")
 			{
 				Debug.Log($"Estado: {currentState.stateName}");
@@ -101,6 +104,8 @@ public class SpawnManager : MonoBehaviour
 
 			if (currentState.stateName == "wave" && currentWaveIndex < currentState.waves.Count - 1)
 			{
+				float currentTime = Time.deltaTime;
+				//if(currentState.delay == )
 				currentWaveIndex++;
 				InitializeWave();
 			}

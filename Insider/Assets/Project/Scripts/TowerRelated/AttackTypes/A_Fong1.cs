@@ -70,7 +70,7 @@ public class A_Fong1 : MonoBehaviour, IAttackType
     {
         // Generate a random point within a circle's radius
         float angle = Random.Range(0f, Mathf.PI * 2);
-        float radius = Mathf.Sqrt(Random.Range(0f, 1f)) * circleCollider.radius*2;
+        float radius = Mathf.Sqrt(Random.Range(0f, 1f)) * circleCollider.radius;
 
         // Calculate the x and y position based on the angle and radius
         Vector2 point = new Vector2(

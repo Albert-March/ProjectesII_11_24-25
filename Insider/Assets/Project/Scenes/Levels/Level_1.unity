@@ -1815,6 +1815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 870802423}
   - component: {fileID: 870802422}
+  - component: {fileID: 870802424}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1851,6 +1852,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870802424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870802421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26155229910a1b4d998d3f6f6ee5ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &888550582
 GameObject:
   m_ObjectHideFlags: 0
@@ -3848,6 +3861,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 724304711285013860, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441305852567500060, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1688045341127687487, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3896,6 +3917,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: --Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2011932008000587832, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2382218060217341366, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
       propertyPath: movingSkin
       value: 
@@ -3908,6 +3933,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4320073616993013122}
+    - target: {fileID: 3461019973308343412, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922427849156332292, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942362289215637594, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4040303765982127022, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
       propertyPath: m_Color.b
       value: 0.45490196
@@ -3924,6 +3961,18 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: e09fa15cd1ab45f4ea75f6ded56dcabb, type: 3}
+    - target: {fileID: 4089285915186376787, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768914155117266544, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856758462405303818, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8603855081678910954, guid: 4f71c9b763667df4691c7c0e002a0e75, type: 3}
       propertyPath: movingSkin
       value: 
@@ -4153,6 +4202,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesList: 
+  currentState:
+    stateName: 
+    enemyTypes:
+      Type1: 0
+      Type2: 0
+      Type3: 0
+    waves: []
+    spawnTime: 0
+    delay: 0
   jsonFilePath: Assets/Project/Resources/gameStates.json
 --- !u!4 &2013577147 stripped
 Transform:

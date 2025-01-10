@@ -12,7 +12,7 @@ public class FastCam : MonoBehaviour
     {
         if (Input.GetButtonDown("SpeedUp")) 
         {
-            if (currentSpeed < 3)
+            if (currentSpeed < 6)
                 currentSpeed++;
         }
         if (Input.GetButtonDown("SpeedDown"))

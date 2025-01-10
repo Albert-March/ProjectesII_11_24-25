@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   damage: 40
-  fireRate: 3
+  fireRate: 2
   DPS: 2
   projectileHp: 8
-  projectileSpeed: 10
+  projectileSpeed: 8
   range: 10
   hability: 0
   rangeOffstY: 0

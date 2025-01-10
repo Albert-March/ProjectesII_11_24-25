@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Defense
   movSpeed: 1.25
   attackSpeed: 10
-  health: 150
+  health: 100
   dmg: 10
   economyGiven: 20
   color: {r: 0.7028302, g: 0.7028302, b: 1, a: 1}

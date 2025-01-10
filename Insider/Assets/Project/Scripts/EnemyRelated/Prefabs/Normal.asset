@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Normal
   movSpeed: 1
   attackSpeed: 10
-  health: 100
+  health: 200
   dmg: 10
   economyGiven: 10
   color: {r: 0.7028302, g: 1, b: 0.7028302, a: 1}

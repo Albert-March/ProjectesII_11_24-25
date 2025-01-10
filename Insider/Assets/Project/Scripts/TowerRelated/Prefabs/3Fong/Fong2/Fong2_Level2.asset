@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Fong2_Level2
   m_EditorClassIdentifier: 
   id: 5
-  damage: 12
-  fireRate: 4
+  damage: 25
+  fireRate: 3
   DPS: 2
   projectileHp: 8
   projectileSpeed: 10
-  range: 8
+  range: 6
   hability: 0
   rangeOffstY: 0
   AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
