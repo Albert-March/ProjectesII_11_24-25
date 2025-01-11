@@ -5,12 +5,14 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour, IDamage
 {
-    public string enemyName;
+    public int id;
     public float movSpeed;
     public float attackSpeed;
     public float health;
     public float dmg;
     public int economyGiven;
+
+    public EnemyTypeManager enemyTypeManager;
 
     SpriteRenderer sprite;
     public List<Target> path;
@@ -40,7 +42,7 @@ public class Enemy : MonoBehaviour, IDamage
 
 	public void SetEnemyData(EnemyStats enemy)
     {
-        this.enemyName = enemy.enemyName;
+        this.id = enemy.id;
         this.movSpeed = enemy.movSpeed;
         this.attackSpeed = enemy.attackSpeed;
         this.health = enemy.health;
@@ -49,20 +51,22 @@ public class Enemy : MonoBehaviour, IDamage
         this.sprite.color = enemy.color;
         behaviours.Add(gameObject.AddComponent<BaseMovement>());
         behaviours.Add(gameObject.AddComponent<ObjectAvoidance>());
-    }
+
+		enemyTypeManager.SetEnemyType(id);
+	}
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         healthBar = GetComponentInChildren<HealthBar>();
-    }
+	}
 
     public float maxHealth;
     public void Start()
     {
         maxHealth = health;
 
-        AudioSource = GetComponent<AudioSource>();
+		AudioSource = GetComponent<AudioSource>();
         AudioSource.clip = damageSounClip;
     }
 
@@ -109,15 +113,33 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void Damage(float amount)
     {
-        health -= amount;
+        if(id==4)
+        {
+            if(health == 100)
+            {
+                health -= 1;
+            }
+        }
+        else
+        {
+			health -= amount;
+		}
 
         if (health <= 0) 
         {
 			economyScript = FindObjectOfType<EconomyManager>();
 			economyScript.economy += economyGiven;
             SpawnParticles();
-            SpawnReward();
-            AudioSource.Play();
+			IRewardDropper rewardDropper = GetComponent<IRewardDropper>();
+			if (rewardDropper != null)
+			{
+				rewardDropper.SpawnReward(path);
+			}
+			else
+			{
+				Debug.LogWarning("No se encontró un componente que pueda generar recompensas.");
+			}
+			AudioSource.Play();
 
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
@@ -128,13 +150,5 @@ public class Enemy : MonoBehaviour, IDamage
 	public void SpawnParticles()
 	{
 		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
-	}
-
-	public void SpawnReward()
-	{
-		rewardInstance = Instantiate(reward, transform.position, Quaternion.identity);
-		RewardManager rewardManager = rewardInstance.GetComponent<RewardManager>();
-        Vector3 vector3 = path[path.Count-1].obj.transform.position;
-		rewardManager.Initialize(vector3);
 	}
 }

@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: -2029290060706385410}
   - component: {fileID: 967781967114191661}
   - component: {fileID: 4503045368835499026}
+  - component: {fileID: -7400421885680730298}
   m_Layer: 7
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -254,18 +255,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea169328c35fa224ba250f1628ea8b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: 
+  id: 0
   movSpeed: 0
   attackSpeed: 0
   health: 0
   dmg: 0
   economyGiven: 0
+  enemyTypeManager: {fileID: -7400421885680730298}
   enemyManager: {fileID: 0}
   currentTarget: 0
   destroyParticles: {fileID: 1560452431689086135, guid: 92b0ee759cde73b4ab6f8aea72d3ddb2, type: 3}
   healthBar: {fileID: 2885483125031537487}
   reward: {fileID: 6939825833925267419, guid: 027334f247860f0488883a3dd0e80976, type: 3}
-  parasite: {fileID: 2305510995378055850, guid: 9a9eea07c94ff214ca79b1b272ab9d39, type: 3}
   damageSounClip: {fileID: 8300000, guid: 99b7a9e342570cd46b0737463ddf36b0, type: 3}
   maxHealth: 0
 --- !u!50 &2176080803243427887
@@ -461,6 +462,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7400421885680730298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895671134027512076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5370e1c3576cd4f96b3a4097824f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5435523650024544826
 GameObject:
   m_ObjectHideFlags: 0

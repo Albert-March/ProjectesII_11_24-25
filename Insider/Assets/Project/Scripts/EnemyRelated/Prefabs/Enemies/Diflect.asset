@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79976ce6fd3909c4bb85fbed2a9cf3fc, type: 3}
-  m_Name: Speedy
+  m_Name: Diflect
   m_EditorClassIdentifier: 
-  enemyName: Speed
-  movSpeed: 1.5
+  id: 4
+  movSpeed: 1
   attackSpeed: 10
-  health: 400
+  health: 100
   dmg: 10
-  economyGiven: 20
-  color: {r: 1, g: 0.6273585, b: 0.6273585, a: 1}
+  economyGiven: 10
+  color: {r: 1, g: 0.8971328, b: 0.6839622, a: 1}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79976ce6fd3909c4bb85fbed2a9cf3fc, type: 3}
-  m_Name: Rock
+  m_Name: Runner
   m_EditorClassIdentifier: 
-  enemyName: Defense
-  movSpeed: 1.25
+  id: 5
+  movSpeed: 3
   attackSpeed: 10
-  health: 100
+  health: 50
   dmg: 10
-  economyGiven: 20
-  color: {r: 0.7028302, g: 0.7028302, b: 1, a: 1}
-  prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
+  economyGiven: 10
+  color: {r: 0, g: 0, b: 0, a: 0}
+  prefab: {fileID: 0}

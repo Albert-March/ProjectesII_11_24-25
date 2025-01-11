@@ -42,6 +42,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 027334f247860f0488883a3dd0e80976
+    m_Address: Prefabs/RewardPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75fe3831bf62add48b53fa4358014aef
+    m_Address: Prefabs/EnemyPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0727a1bc79a13446aebcafabd3d49a6
+    m_Address: Prefabs/ExolosionIfClick
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f1cff5694c6d13498a1e64761fdf11b
+    m_Address: Prefabs/EconomyIfClick
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 64978bce94bd5424f982e31cb461f1d2, type: 2}
   m_SchemaSet:
