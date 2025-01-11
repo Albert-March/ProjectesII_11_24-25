@@ -10,6 +10,12 @@ public class EnemyManager : MonoBehaviour
 
     public SpawnManager spawnManager;
 
+    public int EnemiesOnScreen;
+
+    public void Update()
+    {
+        EnemiesOnScreen = currentEnemy.Count;
+    }
     public void AddSpawnedEnemy(Enemy e)
     {
         currentEnemy.Add(e);

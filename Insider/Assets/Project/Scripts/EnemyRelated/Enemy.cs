@@ -113,14 +113,14 @@ public class Enemy : MonoBehaviour, IDamage
 
         if (health <= 0) 
         {
-			economyScript = FindObjectOfType<EconomyManager>();
+            economyScript = FindObjectOfType<EconomyManager>();
 			economyScript.economy += economyGiven;
             SpawnParticles();
             SpawnReward();
             AudioSource.Play();
-
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
+            
         }
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}

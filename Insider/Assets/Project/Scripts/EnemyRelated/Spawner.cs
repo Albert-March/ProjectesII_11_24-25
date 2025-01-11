@@ -61,10 +61,19 @@ public class Spawner : MonoBehaviour
 			}
             else
             {
-				Debug.Log("Estado completado. Preparando para avanzar...");
-                spawnManager.AdvanceGameState();
-				UpdatePendingEnemies();
-			}
+                if (enemyManager.EnemiesOnScreen <= 0) 
+                {
+                    Debug.Log("Estado completado. Preparando para avanzar...");
+                    spawnManager.StayOnDelay();
+
+                    if (!spawnManager.isInDelayState)
+                    {
+                        spawnManager.AdvanceGameState();
+                        UpdatePendingEnemies();
+                    }
+                }
+            }
+
 		}
 	}
 
