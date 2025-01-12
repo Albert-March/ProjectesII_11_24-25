@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -40,10 +41,12 @@ public class SpawnManager : MonoBehaviour
 	public List<char> enemiesList = new List<char>();
 	private Root gameStateRoot;
 	private int currentStateIndex = 0;
-	private int currentWaveIndex = 0;
+	public int currentWaveIndex = 0;
 
 	public GameState currentState;
 
+	public bool isInDelayState = false;
+	private float time;
 
     public string jsonFilePath = "Assets/Project/Resources/gameStates.json";
 
@@ -65,7 +68,27 @@ public class SpawnManager : MonoBehaviour
 
 		string jsonText = jsonTextAsset.text;
 		gameStateRoot = JsonUtility.FromJson<Root>(jsonText);
-	}
+
+        // Debug: Output loaded data to verify correctness
+        if (gameStateRoot != null)
+        {
+            foreach (var gameState in gameStateRoot.gameStates)
+            {
+                Debug.Log($"Loaded GameState: {gameState.stateName}, SpawnTime: {gameState.spawnTime}, Delay: {gameState.delay}");
+                if (gameState.waves != null)
+                {
+                    foreach (var wave in gameState.waves)
+                    {
+                        Debug.Log($" - Wave: {wave.waveNumber}, SpawnTime: {wave.spawnTime}, Delay: {wave.delay}");
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("Failed to parse the JSON into gameStateRoot.");
+        }
+    }
 
 	void InitializeGameState()
 	{
@@ -104,8 +127,6 @@ public class SpawnManager : MonoBehaviour
 
 			if (currentState.stateName == "wave" && currentWaveIndex < currentState.waves.Count - 1)
 			{
-				float currentTime = Time.deltaTime;
-				//if(currentState.delay == )
 				currentWaveIndex++;
 				InitializeWave();
 			}
@@ -129,8 +150,10 @@ public class SpawnManager : MonoBehaviour
 			GameState currentState = gameStateRoot.gameStates[currentStateIndex];
 			if (currentWaveIndex < currentState.waves.Count)
 			{
-				Wave currentWave = currentState.waves[currentWaveIndex];
-				Debug.Log($"Iniciando ola {currentWave.waveNumber}");
+                Wave currentWave = currentState.waves[currentWaveIndex];
+                currentState.delay = currentWave.delay;
+                currentState.spawnTime = currentWave.spawnTime;
+                Debug.Log($"Iniciando ola {currentWave.waveNumber}");
 				PopulateEnemiesList(currentWave.enemyTypes);
 			}
 		}
@@ -186,6 +209,23 @@ public class SpawnManager : MonoBehaviour
 		{
 			enemiesList.Add('3');
 			--totalEnemiesType3;
+		}
+	}
+
+	public void StayOnDelay() 
+	{
+		Debug.Log(isInDelayState);
+
+
+        if (currentState.delay >= time)
+		{
+            isInDelayState = true;
+            time += Time.deltaTime;
+        }
+		else 
+		{
+            isInDelayState = false;
+            time = 0;
 		}
 	}
 }
