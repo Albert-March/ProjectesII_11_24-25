@@ -4450,6 +4450,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -35.85
       objectReference: {fileID: 0}
+    - target: {fileID: 8273397221951829410, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
+      propertyPath: spawneableEnemies.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273397221951829410, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
+      propertyPath: spawneableEnemies.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: fb4612bcc80bee846983161c0c013aee, type: 2}
+    - target: {fileID: 8273397221951829410, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
+      propertyPath: spawneableEnemies.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e647543584c728c4a917a6704b20feea, type: 2}
     - target: {fileID: 8349644933299504636, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
       propertyPath: finalTarget
       value: 
@@ -4628,6 +4640,10 @@ MonoBehaviour:
       Type1: 0
       Type2: 0
       Type3: 0
+      Type4: 0
+      Type5: 0
+      Type6: 0
+      Type7: 0
     waves: []
     spawnTime: 0
     delay: 0

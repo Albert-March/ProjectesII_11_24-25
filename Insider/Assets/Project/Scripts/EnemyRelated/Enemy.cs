@@ -113,13 +113,12 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void Damage(float amount)
     {
-        if(id==4)
+        if(id==4 && health == 100)
         {
-            if(health == 100)
-            {
-                health -= 1;
-            }
-        }
+
+            health -= 1;
+
+		}
         else
         {
 			health -= amount;
