@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79976ce6fd3909c4bb85fbed2a9cf3fc, type: 3}
-  m_Name: Tanky
+  m_Name: Splitter
   m_EditorClassIdentifier: 
-  enemyName: IgM
-  movSpeed: 0.5
+  id: 1
+  movSpeed: 1.25
   attackSpeed: 10
-  health: 500
+  health: 100
   dmg: 10
-  economyGiven: 60
-  color: {r: 1, g: 0.8971328, b: 0.6839622, a: 1}
+  economyGiven: 20
+  color: {r: 0.7028302, g: 0.7028302, b: 1, a: 1}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

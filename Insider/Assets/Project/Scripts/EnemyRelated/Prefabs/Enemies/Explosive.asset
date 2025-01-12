@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79976ce6fd3909c4bb85fbed2a9cf3fc, type: 3}
-  m_Name: Spliter
+  m_Name: Explosive
   m_EditorClassIdentifier: 
-  enemyName: IgG
+  id: 3
   movSpeed: 1
   attackSpeed: 10
-  health: 200
+  health: 100
   dmg: 10
   economyGiven: 10
   color: {r: 1, g: 0.627451, b: 0.9944834, a: 1}
