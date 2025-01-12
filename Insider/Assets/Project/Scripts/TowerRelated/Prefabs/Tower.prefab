@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8347928862090050615}
   - component: {fileID: 4875304122418390277}
   - component: {fileID: -4171722768245866999}
+  - component: {fileID: 4025796865640102256}
   - component: {fileID: -8647042633835701479}
   - component: {fileID: -8436442682184797380}
   m_Layer: 0
@@ -53,11 +54,14 @@ MonoBehaviour:
   DPS: 0
   projectileHp: 0
   projectileSpeed: 0
-  hability: 0
   range: 0
+  hability: 0
   enemiesInRange: []
+  targetType: 0
   attackManager: {fileID: -4171722768245866999}
+  targetManager: {fileID: 4025796865640102256}
   lastShootTime: 0
+  currentLevel: 1
 --- !u!114 &-4171722768245866999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +72,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc1f54586d198cf46919549d8daea08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4025796865640102256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8410786250928630340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9d61b8f0efd9849ac2433b53ce1beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &-8647042633835701479
