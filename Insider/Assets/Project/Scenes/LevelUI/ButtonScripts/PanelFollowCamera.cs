@@ -11,7 +11,7 @@ public class PanelFollowCamera : MonoBehaviour
     {
         if (targetCamera != null)
         {
-                        Vector3 cameraCenter = targetCamera.ViewportToWorldPoint(new Vector3(0.5f, 0, targetCamera.nearClipPlane));
+            Vector3 cameraCenter = targetCamera.ViewportToWorldPoint(new Vector3(0.5f, 0, targetCamera.nearClipPlane));
             transform.position = cameraCenter + offset;
         }
     }

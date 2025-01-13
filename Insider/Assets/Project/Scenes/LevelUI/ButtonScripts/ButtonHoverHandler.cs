@@ -6,15 +6,12 @@ using UnityEngine.EventSystems;
 public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject hoverImage;
-    public Vector2 offset = new Vector2(150, 0);
-
-    private RectTransform hoverImageRect;
+    public GameObject towerSpot;
 
     void Start()
     {
-        if (hoverImage != null)
+		if (hoverImage != null)
         {
-            hoverImageRect = hoverImage.GetComponent<RectTransform>();
             hoverImage.SetActive(false);
         }
     }
@@ -25,8 +22,6 @@ public class ButtonHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (hoverImage != null)
         {
             hoverImage.SetActive(true);
-            Vector3 buttonPosition = GetComponent<RectTransform>().position;
-            hoverImageRect.position = buttonPosition + new Vector3(offset.x, offset.y, 0);
         }
     }
 
