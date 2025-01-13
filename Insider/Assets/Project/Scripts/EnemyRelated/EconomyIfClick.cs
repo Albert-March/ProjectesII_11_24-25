@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -12,6 +13,7 @@ public class EconomyIfClick : MonoBehaviour
 
 	private GameObject rewardInstance;
 	EconomyManager economyScript;
+	public GameObject button;
 
 	public SpriteRenderer spriteRenderer;
 
@@ -35,7 +37,8 @@ public class EconomyIfClick : MonoBehaviour
 	}
 	public void Collect()
 	{
-		economyScript = FindObjectOfType<EconomyManager>();
+        button.GetComponent<Image>().raycastTarget = false;
+        economyScript = FindObjectOfType<EconomyManager>();
 		economyScript.economy += 50;
 		Destroy(gameObject);
 		rewardInstance = Instantiate(reward, transform.position, Quaternion.identity);

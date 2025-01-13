@@ -15,6 +15,11 @@ public class EnemyManager : MonoBehaviour
     public void Update()
     {
         EnemiesOnScreen = currentEnemy.Count;
+        Debug.Log(EnemiesOnScreen);
+        if (spawnManager.currentState.stateName == "finish")
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
     }
     public void AddSpawnedEnemy(Enemy e)
     {
@@ -24,9 +29,5 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemy(Enemy e)
     {
         currentEnemy.Remove(e);
-        if(currentEnemy.Count <= 0 && spawnManager.currentState.stateName == "finish") 
-        {
-            SceneManager.LoadScene("WinScreen");
-        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FastCam : MonoBehaviour
 {
-    int currentSpeed = 1;
+    int currentSpeed = 3;
     public Text speedText;
 
     void Update()
