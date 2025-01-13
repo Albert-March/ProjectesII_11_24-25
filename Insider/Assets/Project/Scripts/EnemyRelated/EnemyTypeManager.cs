@@ -27,6 +27,9 @@ public class EnemyTypeManager : MonoBehaviour
 			case 5:
 				Normal Runner = gameObject.AddComponent<Normal>();
 				break;
+			case 6:
+				Normal Tank = gameObject.AddComponent<Normal>();
+				break;
 		}
 	}
 }

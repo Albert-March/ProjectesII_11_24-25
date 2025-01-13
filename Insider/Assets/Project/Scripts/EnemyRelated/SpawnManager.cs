@@ -11,6 +11,10 @@ public class SpawnManager : MonoBehaviour
 		public int Type1;
 		public int Type2;
 		public int Type3;
+		public int Type4;
+		public int Type5;
+		public int Type6;
+		public int Type7;
 	}
 
 	[System.Serializable]
@@ -174,6 +178,10 @@ public class SpawnManager : MonoBehaviour
 		int totalEnemiesType1 = enemyType.Type1;
 		int totalEnemiesType2 = enemyType.Type2;
 		int totalEnemiesType3 = enemyType.Type3;
+		int totalEnemiesType4 = enemyType.Type4;
+		int totalEnemiesType5 = enemyType.Type5;
+		int totalEnemiesType6 = enemyType.Type6;
+		int totalEnemiesType7 = enemyType.Type7;
 
 		while (totalEnemiesType1 > 0)
 		{
@@ -207,8 +215,68 @@ public class SpawnManager : MonoBehaviour
 
 		while (totalEnemiesType3 > 0)
 		{
-			enemiesList.Add('3');
-			--totalEnemiesType3;
+			float randValue = Random.value;
+			if (randValue < 0.6f && totalEnemiesType3 > 0)
+			{
+				enemiesList.Add('3');
+				--totalEnemiesType3;
+			}
+			else if (totalEnemiesType4 > 0)
+			{
+				enemiesList.Add('4');
+				--totalEnemiesType4;
+			}
+		}
+
+		while (totalEnemiesType4 > 0)
+		{
+			float randValue = Random.value;
+			if (randValue < 0.5f && totalEnemiesType4 > 0)
+			{
+				enemiesList.Add('4');
+				--totalEnemiesType4;
+			}
+			else if (totalEnemiesType5 > 0)
+			{
+				enemiesList.Add('5');
+				--totalEnemiesType5;
+			}
+		}
+
+		while (totalEnemiesType5 > 0)
+		{
+			float randValue = Random.value;
+			if (randValue < 0.4f && totalEnemiesType5 > 0)
+			{
+				enemiesList.Add('5');
+				--totalEnemiesType5;
+			}
+			else if (totalEnemiesType6 > 0)
+			{
+				enemiesList.Add('6');
+				--totalEnemiesType6;
+			}
+		}
+
+		while (totalEnemiesType6 > 0)
+		{
+			float randValue = Random.value;
+			if (randValue < 0.3f && totalEnemiesType6 > 0)
+			{
+				enemiesList.Add('6');
+				--totalEnemiesType6;
+			}
+			else if (totalEnemiesType7 > 0)
+			{
+				enemiesList.Add('7');
+				--totalEnemiesType7;
+			}
+		}
+
+		while (totalEnemiesType7 > 0)
+		{
+			enemiesList.Add('7');
+			--totalEnemiesType7;
 		}
 	}
 

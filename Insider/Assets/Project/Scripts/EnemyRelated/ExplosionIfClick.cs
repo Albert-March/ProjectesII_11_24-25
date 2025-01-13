@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ExplosionIfClick : MonoBehaviour
 {
-	public SpriteRenderer spriteRenderer;
+	private SpriteRenderer spriteRenderer;
+	[SerializeField] public Sprite newSprite;
+
+	[SerializeField] private ParticleSystem destroyParticles;
+	private ParticleSystem destroyParticlesInstance;
 
 	public float damage = 50f;
 
@@ -37,10 +41,11 @@ public class ExplosionIfClick : MonoBehaviour
 			if (timer <= 5f)
 			{
 				transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, 0f);
-				spriteRenderer.color = Color.red;
+				spriteRenderer.sprite = newSprite;
 			}
 			else
 			{
+				SpawnParticles();
 				DealDamageToEnemies();
 				Destroy(gameObject);
 			}
@@ -49,7 +54,6 @@ public class ExplosionIfClick : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		// Agrega enemigos dentro del rango al entrar
 		if (collision.CompareTag("Enemy"))
 		{
 			enemiesInRange.Add(collision.gameObject);
@@ -58,7 +62,6 @@ public class ExplosionIfClick : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		// Elimina enemigos al salir del rango
 		if (collision.CompareTag("Enemy"))
 		{
 			enemiesInRange.Remove(collision.gameObject);
@@ -74,5 +77,10 @@ public class ExplosionIfClick : MonoBehaviour
 				damageable.Damage(damage);
 			}
 		}
+	}
+
+	public void SpawnParticles()
+	{
+		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
 	}
 }
