@@ -19,7 +19,10 @@ public class Tower : MonoBehaviour
     Animator animatorTower;
     public List<Enemy> enemiesInRange = new List<Enemy>();
 
+
+    public int targetType = 0;
     public AttackManager attackManager;
+    public TargetingManager targetManager;
 
     public float lastShootTime;
 
@@ -80,7 +83,7 @@ public class Tower : MonoBehaviour
             animatorTower.SetBool("IsAttacking", true);
             if (Time.time >= lastShootTime + fireRate)
             {
-                Enemy enemyHolder = enemiesInRange[0];
+                Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
                 attackManager.attackType.Attack(enemyHolder);
                 lastShootTime = Time.time;
 
