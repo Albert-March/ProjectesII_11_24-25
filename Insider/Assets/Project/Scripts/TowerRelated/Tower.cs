@@ -80,21 +80,30 @@ public class Tower : MonoBehaviour
         if (animatorTower.GetCurrentAnimatorStateInfo(0).IsName("Spawn")) { return; }
         if (enemiesInRange.Count > 0)
         {
-            animatorTower.SetBool("IsAttacking", true);
-            if (Time.time >= lastShootTime + fireRate)
+            if(id == 3)
             {
-                Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
+				animatorTower.SetBool("IsAttacking", true);
+			}
+			if (Time.time >= lastShootTime + fireRate)
+            {
+				if(id != 3)
+				{
+					animatorTower.SetBool("IsAttacking", true);
+				}
+			    Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
                 attackManager.attackType.Attack(enemyHolder);
                 lastShootTime = Time.time;
-
             }
-        }
-        else 
-        {
-            animatorTower.SetBool("IsAttacking", false);
-        }
-
-    }
+		    else if(id != 3)
+		    {
+			    animatorTower.SetBool("IsAttacking", false);
+		    }
+		}
+		else
+		{
+			animatorTower.SetBool("IsAttacking", false);
+		}
+	}
 
     public void OnTriggerEnter2D(Collider2D other)
     {
