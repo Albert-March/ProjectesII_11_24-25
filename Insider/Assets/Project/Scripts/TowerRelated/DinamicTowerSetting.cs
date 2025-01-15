@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class DinamicTowerSetting : MonoBehaviour
 {
@@ -13,8 +14,15 @@ public class DinamicTowerSetting : MonoBehaviour
     public bool levelUp2 = false;
     public bool levelUp3 = false;
 
-    public void Clicked()
+    AudioManager audioManager;
+
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+	public void Clicked()
     {
         dynamicPanel.clickedButton = transform.parent.gameObject;
-    }
+		audioManager.PlaySFX(audioManager.selectTower);
+	}
 }

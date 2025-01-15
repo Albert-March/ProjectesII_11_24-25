@@ -14,10 +14,14 @@ public class AudioManager : MonoBehaviour
 	public AudioClip death;
 	public AudioClip towerShot;
 	public AudioClip selectTower;
+	public AudioClip selectButton;
+	public AudioClip collectReward;
+	public AudioClip upgradeTower;
 
 	private void Start()
 	{
 		musicSource.clip = music;
+		musicSource.volume = 0.2f;
 		musicSource.Play();
 	}
 
