@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Bacteri1_Level2
   m_EditorClassIdentifier: 
   id: 2
-  damage: 30
+  damage: 40
   fireRate: 3
-  DPS: 2
-  projectileHp: 10
-  projectileSpeed: 10
-  range: 10
+  DPS: 0
+  projectileHp: 18
+  projectileSpeed: 12
+  range: 12
   hability: 0
   rangeOffstY: 0
   AnimationPrefab: {fileID: 7137959831153074362, guid: e676769e801d32a4c96a716375e7bc4d, type: 3}

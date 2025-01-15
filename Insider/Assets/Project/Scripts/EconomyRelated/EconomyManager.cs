@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EconomyManager : MonoBehaviour
 {
-    public int economy;
+    public int economy = 400;
 	public Text economyText;
 
 

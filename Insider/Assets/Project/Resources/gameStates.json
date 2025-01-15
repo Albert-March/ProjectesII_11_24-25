@@ -2,7 +2,7 @@
   "gameStates": [
     {
       "stateName": "initial",
-        "delay": 10.0
+        "delay": 30.0
     },
     {
       "stateName": "wave",
@@ -10,13 +10,13 @@
         {
           "waveNumber": "1",
           "enemyTypes": {
-            "Type1": 2,
-            "Type2": 2,
-            "Type3": 2,
-            "Type4": 2,
-            "Type5": 2,
-            "Type6": 2,
-            "Type7": 2
+            "Type1": 20,
+            "Type2": 0,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 0,
+            "Type7": 0
           },
           "spawnTime": 1.0,
           "delay": 10.0
@@ -24,13 +24,13 @@
         {
           "waveNumber": "2",
           "enemyTypes": {
-            "Type1": 2,
-            "Type2": 2,
-            "Type3": 2,
-            "Type4": 2,
-            "Type5": 2,
-            "Type6": 2,
-            "Type7": 2
+            "Type1": 25,
+            "Type2": 0,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 3,
+            "Type7": 0
           },
           "spawnTime": 1.5,
           "delay": 10.0
@@ -38,16 +38,184 @@
         {
           "waveNumber": "3",
           "enemyTypes": {
-            "Type1": 2,
-            "Type2": 2,
-            "Type3": 2,
-            "Type4": 2,
-            "Type5": 2,
-            "Type6": 2,
-            "Type7": 2
+            "Type1": 10,
+            "Type2": 10,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 3,
+            "Type7": 0
           },
           "spawnTime": 1.2,
           "delay": 10.0
+        },
+        {
+          "waveNumber": "4",
+          "enemyTypes": {
+            "Type1": 0,
+            "Type2": 5,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 15,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 10.0
+        },
+        {
+          "waveNumber": "5",
+          "enemyTypes": {
+            "Type1": 0,
+            "Type2": 20,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 10,
+            "Type6": 0,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 10.0
+        },
+        {
+          "waveNumber": "6",
+          "enemyTypes": {
+            "Type1": 20,
+            "Type2": 0,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 0,
+            "Type7": 3
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "7",
+          "enemyTypes": {
+            "Type1": 30,
+            "Type2": 15,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 10,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "8",
+          "enemyTypes": {
+            "Type1": 30,
+            "Type2": 0,
+            "Type3": 0,
+            "Type4": 15,
+            "Type5": 0,
+            "Type6": 0,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "9",
+          "enemyTypes": {
+            "Type1": 10,
+            "Type2": 5,
+            "Type3": 0,
+            "Type4": 10,
+            "Type5": 0,
+            "Type6": 10,
+            "Type7": 1
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "10",
+          "enemyTypes": {
+            "Type1": 10,
+            "Type2": 5,
+            "Type3": 10,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 5,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "11",
+          "enemyTypes": {
+            "Type1": 0,
+            "Type2": 10,
+            "Type3": 5,
+            "Type4": 5,
+            "Type5": 5,
+            "Type6": 0,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "12",
+          "enemyTypes": {
+            "Type1": 10,
+            "Type2": 5,
+            "Type3": 10,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 5,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "13",
+          "enemyTypes": {
+            "Type1": 0,
+            "Type2": 0,
+            "Type3": 5,
+            "Type4": 5,
+            "Type5": 20,
+            "Type6": 0,
+            "Type7": 10
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "14",
+          "enemyTypes": {
+            "Type1": 0,
+            "Type2": 40,
+            "Type3": 4,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 20,
+            "Type7": 0
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
+        },
+        {
+          "waveNumber": "15",
+          "enemyTypes": {
+            "Type1": 0,
+            "Type2": 0,
+            "Type3": 0,
+            "Type4": 5,
+            "Type5": 40,
+            "Type6": 0,
+            "Type7": 20
+          },
+          "spawnTime": 1.2,
+          "delay": 15.0
         }
       ]
     },

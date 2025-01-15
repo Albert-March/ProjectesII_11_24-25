@@ -48,7 +48,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			economyScript = FindObjectOfType<EconomyManager>();
 			states = FindObjectOfType<StatesManager>();
 
-			if (economyScript.economy >= 300)
+			if (economyScript.economy >= 200)
 			{
 
 				switch (towerGrup)
@@ -63,7 +63,7 @@ public class SetTowerBaseInput : MonoBehaviour
 						towerSetter.SpawnTower(4, clickedButton.transform);
 						break;
 				}
-				economyScript.economy -= 300;
+				economyScript.economy -= 200;
 				audioManager.PlaySFX(3, 0.2f);
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
@@ -76,7 +76,7 @@ public class SetTowerBaseInput : MonoBehaviour
 		{
 			economyScript = FindObjectOfType<EconomyManager>();
 			states = FindObjectOfType<StatesManager>();
-			if (economyScript.economy >= 300)
+			if (economyScript.economy >= 200)
 			{
 				switch (towerGrup)
 				{
@@ -90,7 +90,7 @@ public class SetTowerBaseInput : MonoBehaviour
 						towerSetter.SpawnTower(5, clickedButton.transform);
 						break;
 				}
-				economyScript.economy -= 300;
+				economyScript.economy -= 200;
 				audioManager.PlaySFX(3, 0.2f);
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
@@ -100,7 +100,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp2()
 	{
 
-        if (!levelUp2)
+        if (!levelUp2 && economyScript.economy >= 400)
 		{
 			foreach (Transform child in clickedButton.transform)
 			{
@@ -113,7 +113,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				}
 			}
 			SpawnParticles();
-			economyScript.economy -= 100;
+			economyScript.economy -= 400;
 			audioManager.PlaySFX(4, 0.2f);
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
@@ -123,7 +123,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp3()
 	{
 
-        if (!levelUp3)
+        if (!levelUp3 && economyScript.economy >= 800)
 		{
 			foreach (Transform child in clickedButton.transform)
 			{
@@ -136,7 +136,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				}
 			}
 			SpawnParticles();
-			economyScript.economy -= 100;
+			economyScript.economy -= 800;
 			audioManager.PlaySFX(4, 0.2f);
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
         }

@@ -15,9 +15,9 @@ MonoBehaviour:
   id: 4
   damage: 50
   fireRate: 1
-  DPS: 2
+  DPS: 0
   projectileHp: 12
-  projectileSpeed: 12
+  projectileSpeed: 8
   range: 12
   hability: 0
   rangeOffstY: 0
