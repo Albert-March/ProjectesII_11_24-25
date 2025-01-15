@@ -135,9 +135,9 @@ public class Enemy : MonoBehaviour, IDamage
 			{
 				Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
 			}
-            audioManager.PlaySFX(audioManager.death);
+			audioManager.PlaySFX(0, 0.1f);
 
-            enemyManager.RemoveEnemy(this);
+			enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
             
         }

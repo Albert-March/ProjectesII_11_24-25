@@ -2792,12 +2792,12 @@ MonoBehaviour:
   musicSource: {fileID: 1496333148}
   SFXSource: {fileID: 351900002}
   music: {fileID: 8300000, guid: c1e2e10e76265da4280c13990ad67bd8, type: 3}
-  death: {fileID: 8300000, guid: 99b7a9e342570cd46b0737463ddf36b0, type: 3}
-  towerShot: {fileID: 8300000, guid: d9cba25e4c5ee5f4496507381fbf447c, type: 3}
-  selectTower: {fileID: 8300000, guid: 169b4784f11cf094b83c0ab86d613de7, type: 3}
-  selectButton: {fileID: 8300000, guid: dd4d2ad65aa292d44acf7c2f9d8cbc18, type: 3}
-  collectReward: {fileID: 8300000, guid: f4d6c19ce7bda8a47bbf1d57bf9db9c1, type: 3}
-  upgradeTower: {fileID: 8300000, guid: 496f9ae905574ff48ab56ab04921051f, type: 3}
+  SFXClips:
+  - {fileID: 8300000, guid: 99b7a9e342570cd46b0737463ddf36b0, type: 3}
+  - {fileID: 8300000, guid: d9cba25e4c5ee5f4496507381fbf447c, type: 3}
+  - {fileID: 8300000, guid: 169b4784f11cf094b83c0ab86d613de7, type: 3}
+  - {fileID: 8300000, guid: dd4d2ad65aa292d44acf7c2f9d8cbc18, type: 3}
+  - {fileID: 8300000, guid: 496f9ae905574ff48ab56ab04921051f, type: 3}
 --- !u!4 &946918642
 Transform:
   m_ObjectHideFlags: 0

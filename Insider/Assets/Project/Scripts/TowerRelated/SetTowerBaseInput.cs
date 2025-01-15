@@ -64,7 +64,7 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
-				audioManager.PlaySFX(audioManager.selectButton);
+				audioManager.PlaySFX(3, 0.2f);
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
 		}
@@ -91,7 +91,7 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
-				audioManager.PlaySFX(audioManager.selectButton);
+				audioManager.PlaySFX(3, 0.2f);
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
 		}
@@ -114,7 +114,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-			audioManager.PlaySFX(audioManager.upgradeTower);
+			audioManager.PlaySFX(4, 0.2f);
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
         }
@@ -125,7 +125,7 @@ public class SetTowerBaseInput : MonoBehaviour
 
         if (!levelUp3)
 		{
-			foreach (Transform child in transform)
+			foreach (Transform child in clickedButton.transform)
 			{
 				if (child.name == "Tower(Clone)")
 				{
@@ -137,7 +137,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-			audioManager.PlaySFX(audioManager.upgradeTower);
+			audioManager.PlaySFX(4, 0.2f);
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
         }
 		levelUp3 = true;

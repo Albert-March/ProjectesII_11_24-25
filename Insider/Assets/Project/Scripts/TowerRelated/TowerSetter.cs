@@ -37,6 +37,6 @@ public class TowerSetter : MonoBehaviour
 	public void LevelUp3(Tower tower)
 	{
 		TowerStats stats = towerUpgrades2[tower.id];
-		tower.SetTowerData(stats);
+		tower.LevelUp(stats);
 	}
 }
