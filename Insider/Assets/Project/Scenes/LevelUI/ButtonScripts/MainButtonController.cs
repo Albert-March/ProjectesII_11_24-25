@@ -13,13 +13,5 @@ public class MainButtonController : MonoBehaviour
             dynamicPanel.SetActive(false); // Asegurarse de que el panel esté oculto al inicio
         }
     }
-
-    void OnMouseDown()
-    {
-        if (dynamicPanel != null)
-        {
-            dynamicPanel.SetActive(!dynamicPanel.activeSelf); // Mostrar/Ocultar el panel
-        }
-    }
 }
 

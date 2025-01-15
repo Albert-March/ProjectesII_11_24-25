@@ -4,44 +4,70 @@ using UnityEngine;
 
 public class TowerSelectionManager : MonoBehaviour
 {
-    public GameObject[] towerButtons; // Botones secundarios para seleccionar torres
-    public GameObject[] upgradeButtons; // Botones de mejora de la torre
-    public GameObject dynamicPanel; // Panel que contiene los botones secundarios
-    private bool isTowerSelected = false; // Estado que indica si ya se seleccionó una torre
+    public GameObject[] towerButtons;
+    public GameObject[] upgradeButtons1;
+    public GameObject[] upgradeButtons2;
+    public GameObject[] targetUI;
+    public GameObject dynamicPanel;
+    private bool isTowerSelected = false;
+
+    private int towerState = 0;
 
     void Start()
     {
-        // Asegurarnos de que los botones de mejora estén desactivados al inicio
-        SetActiveButtons(towerButtons, false);
-        SetActiveButtons(upgradeButtons, false);
+        SetActiveButtons(towerButtons, true);
+        SetActiveButtons(upgradeButtons1, false);
+        SetActiveButtons(upgradeButtons2, false);
+        SetActiveButtons(targetUI, false);
     }
 
-    // Método llamado al presionar el botón principal
-    public void OnMainButtonClick()
+    private void Update()
     {
-        if (isTowerSelected)
+        Debug.Log(towerState);
+        if (towerState == 0)
         {
-            // Mostrar botones de mejora
-            SetActiveButtons(towerButtons, false);
-            SetActiveButtons(upgradeButtons, true);
-        }
-        else
-        {
-            // Mostrar botones secundarios
             SetActiveButtons(towerButtons, true);
-            SetActiveButtons(upgradeButtons, false);
+            SetActiveButtons(upgradeButtons1, false);
+            SetActiveButtons(upgradeButtons2, false);
+            SetActiveButtons(targetUI, false);
+
         }
+        else if (towerState == 1)
+        {
+            SetActiveButtons(towerButtons, false);
+            SetActiveButtons(upgradeButtons1, true);
+            SetActiveButtons(targetUI, true);
+        }
+        else if (towerState == 2)
+        {
+            SetActiveButtons(towerButtons, false);
+            SetActiveButtons(upgradeButtons2, true);
+            SetActiveButtons(targetUI, true);
+        }
+        else if (towerState == 3)
+        {
+            SetActiveButtons(towerButtons, false);
+            SetActiveButtons(targetUI, true);
+        }
+
+
+        if (dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton != null) 
+        {
+            towerState = 0;
+            if (!dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower) {  }
+            else { towerState = 1; }
+
+            if (!dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2) { }
+            else { towerState = 2; }
+
+            if (!dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3) { }
+            else { towerState = 3; }
+        }
+        else { towerState = 0; }
+
+
     }
 
-    // Método para seleccionar una torre (llamado al presionar un botón secundario)
-    public void OnTowerSelected(int towerIndex)
-    {
-        isTowerSelected = true; // Cambiar el estado a torre seleccionada
-        SetActiveButtons(towerButtons, false); // Ocultar botones secundarios
-        SetActiveButtons(upgradeButtons, true); // Mostrar botones de mejora
-
-        Debug.Log($"Torre seleccionada: {towerIndex}");
-    }
 
     // Método para gestionar botones dinámicamente
     private void SetActiveButtons(GameObject[] buttons, bool isActive)
@@ -50,13 +76,6 @@ public class TowerSelectionManager : MonoBehaviour
         {
             button.SetActive(isActive);
         }
-    }
-
-    // Método para seleccionar una mejora
-    public void OnUpgradeSelected(int upgradeIndex)
-    {
-        Debug.Log($"Mejora seleccionada: {upgradeIndex}");
-        // Aquí puedes manejar lógica adicional para aplicar la mejora
     }
 }
 

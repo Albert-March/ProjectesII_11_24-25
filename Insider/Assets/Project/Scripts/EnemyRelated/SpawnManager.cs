@@ -66,32 +66,11 @@ public class SpawnManager : MonoBehaviour
 		TextAsset jsonTextAsset = Resources.Load<TextAsset>(jsonFileName);
 		if (jsonTextAsset == null)
 		{
-			Debug.LogError($"No se encontró el archivo JSON en Resources con el nombre {jsonFileName}");
 			return;
 		}
 
 		string jsonText = jsonTextAsset.text;
 		gameStateRoot = JsonUtility.FromJson<Root>(jsonText);
-
-        // Debug: Output loaded data to verify correctness
-        if (gameStateRoot != null)
-        {
-            foreach (var gameState in gameStateRoot.gameStates)
-            {
-                Debug.Log($"Loaded GameState: {gameState.stateName}, SpawnTime: {gameState.spawnTime}, Delay: {gameState.delay}");
-                if (gameState.waves != null)
-                {
-                    foreach (var wave in gameState.waves)
-                    {
-                        Debug.Log($" - Wave: {wave.waveNumber}, SpawnTime: {wave.spawnTime}, Delay: {wave.delay}");
-                    }
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("Failed to parse the JSON into gameStateRoot.");
-        }
     }
 
 	void InitializeGameState()
@@ -101,23 +80,16 @@ public class SpawnManager : MonoBehaviour
 			currentState = gameStateRoot.gameStates[currentStateIndex];
 			if (currentState.stateName == "initial")
 			{
-				Debug.Log($"Estado: {currentState.stateName}");
 				PopulateEnemiesList(currentState.enemyTypes);
 			}
 			else if (currentState.stateName == "wave")
 			{
-				Debug.Log($"Estado: {currentState.stateName}");
 				currentWaveIndex = 0;
 				InitializeWave();
 			}
 			else if (currentState.stateName == "finish")
 			{
-				Debug.Log($"Estado: {currentState.stateName}");
 			}
-		}
-		else
-		{
-			Debug.Log("No hay más estados del juego.");
 		}
 	}
 
@@ -141,10 +113,6 @@ public class SpawnManager : MonoBehaviour
 				InitializeGameState();
 			}
 		}
-		else
-		{
-			Debug.Log("No hay más estados del juego.");
-		}
 	}
 
 	void InitializeWave()
@@ -157,7 +125,6 @@ public class SpawnManager : MonoBehaviour
                 Wave currentWave = currentState.waves[currentWaveIndex];
                 currentState.delay = currentWave.delay;
                 currentState.spawnTime = currentWave.spawnTime;
-                Debug.Log($"Iniciando ola {currentWave.waveNumber}");
 				PopulateEnemiesList(currentWave.enemyTypes);
 			}
 		}
@@ -169,8 +136,6 @@ public class SpawnManager : MonoBehaviour
 		{
 			AddEnemiesToListWithProbabilities(enemyType);
 		}
-
-		Debug.Log($"Lista de enemigos generada: {string.Join(", ", enemiesList)}");
 	}
 
 	void AddEnemiesToListWithProbabilities(EnemyType enemyType)
@@ -282,9 +247,6 @@ public class SpawnManager : MonoBehaviour
 
 	public void StayOnDelay() 
 	{
-		Debug.Log(isInDelayState);
-
-
         if (currentState.delay >= time)
 		{
             isInDelayState = true;

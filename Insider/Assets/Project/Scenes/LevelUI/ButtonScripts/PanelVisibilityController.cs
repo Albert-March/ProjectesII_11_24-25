@@ -8,7 +8,7 @@ public class PanelVisibilityController : MonoBehaviour
 
     public void TogglePanel()
     {
-        panel.SetActive(!panel.activeSelf);
+        panel.GetComponent<Animator>().SetBool("Open", !panel.GetComponent<Animator>().GetBool("Open"));
     }
 }
 

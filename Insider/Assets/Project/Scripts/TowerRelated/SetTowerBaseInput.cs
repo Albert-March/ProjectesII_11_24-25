@@ -9,81 +9,92 @@ public class SetTowerBaseInput : MonoBehaviour
 	private ParticleSystem levelUpParticlesInstance;
 
 	public TowerSetter towerSetter;
-	public int towerGrup;
+	public GameObject clickedButton;
+	public GameObject cam;
 
-	EconomyManager economyScript;
+    public int towerGrup;
+    public bool spawnTower;
+	bool levelUp2;
+	bool levelUp3;
+
+
+    EconomyManager economyScript;
 	StatesManager states;
+    private void Update()
+    {
+		if (clickedButton != null) 
+		{
+			cam.transform.position = new Vector3(clickedButton.transform.position.x, clickedButton.transform.position.y, -10);
 
-	bool spawnTower = false;
-	bool levelUp2 = false;
-	bool levelUp3 = false;
+            cam.transform.rotation = clickedButton.transform.rotation;
 
-	public ControlDesplegable buttonControl;
+            towerGrup = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().towerId;
+            spawnTower = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower;
+            levelUp2 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2;
+            levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
+        }
+    }
     public void LlamarSpawnTowerOpcion1()
 	{
-		if (!spawnTower)
+        
+        if (!spawnTower)
 		{
 			economyScript = FindObjectOfType<EconomyManager>();
 			states = FindObjectOfType<StatesManager>();
 
 			if (economyScript.economy >= 300)
 			{
-				buttonControl.OcultarBotonesIzquierda();
 
 				switch (towerGrup)
 				{
 					case 0:
-						towerSetter.SpawnTower(0, this.transform);
+						towerSetter.SpawnTower(0, clickedButton.transform);
 						break;
 					case 1:
-						towerSetter.SpawnTower(2, this.transform);
+						towerSetter.SpawnTower(2, clickedButton.transform);
 						break;
 					case 2:
-						towerSetter.SpawnTower(4, this.transform);
+						towerSetter.SpawnTower(4, clickedButton.transform);
 						break;
 				}
 				economyScript.economy -= 300;
-				states.IncrementPosition();
-			}
+                clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
+            }
 		}
-		spawnTower = true;
 	}
 
 	public void LlamarSpawnTowerOpcion2()
 	{
-		if (!spawnTower)
+        if (!spawnTower)
 		{
 			economyScript = FindObjectOfType<EconomyManager>();
 			states = FindObjectOfType<StatesManager>();
 			if (economyScript.economy >= 300)
 			{
-				buttonControl.OcultarBotonesDerecha();
-
-
 				switch (towerGrup)
 				{
 					case 0:
-						towerSetter.SpawnTower(1, this.transform);
+						towerSetter.SpawnTower(1, clickedButton.transform);
 						break;
 					case 1:
-						towerSetter.SpawnTower(3, this.transform);
+						towerSetter.SpawnTower(3, clickedButton.transform);
 						break;
 					case 2:
-						towerSetter.SpawnTower(5, this.transform);
+						towerSetter.SpawnTower(5, clickedButton.transform);
 						break;
 				}
 				economyScript.economy -= 300;
-				states.IncrementPosition();
-			}
+                clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
+            }
 		}
-		spawnTower = true;
 	}
 
 	public void LevelUp2()
 	{
-		if (!levelUp2)
+
+        if (!levelUp2)
 		{
-			foreach (Transform child in transform)
+			foreach (Transform child in clickedButton.transform)
 			{
 				if (child.name == "Tower(Clone)")
 				{
@@ -95,14 +106,15 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-			states.IncrementPosition();
-		}
-		levelUp2 = true;
+            clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+
+        }
 	}
 
 	public void LevelUp3()
 	{
-		if (!levelUp3)
+
+        if (!levelUp3)
 		{
 			foreach (Transform child in transform)
 			{
@@ -116,13 +128,13 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-			states.IncrementPosition();
-		}
+            clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
+        }
 		levelUp3 = true;
 	}
 
 	public void SpawnParticles()
 	{
-		levelUpParticlesInstance = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
-	}
+		levelUpParticlesInstance = Instantiate(levelUpParticles, clickedButton.transform.position, Quaternion.identity);
+    }
 }

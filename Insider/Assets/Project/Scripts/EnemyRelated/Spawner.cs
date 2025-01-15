@@ -63,7 +63,6 @@ public class Spawner : MonoBehaviour
             {
                 if (enemyManager.EnemiesOnScreen <= 0) 
                 {
-                    Debug.Log("Estado completado. Preparando para avanzar...");
                     spawnManager.StayOnDelay();
 
                     if (!spawnManager.isInDelayState)
@@ -84,7 +83,6 @@ public class Spawner : MonoBehaviour
 		{
 			pendingEnemies.Enqueue(spawneableEnemies[c - '1']);
 		}
-		Debug.Log($"Cola de enemigos actualizada: {pendingEnemies.Count} enemigos en cola.");
 	}
 
 	private void SpawnEnemy()
@@ -116,7 +114,6 @@ public class Spawner : MonoBehaviour
             {
                 giveChildNum = counter;
                 allChildsSpawnable = false;
-                Debug.Log("Spawning...");
                 break;
             }
             counter++;
