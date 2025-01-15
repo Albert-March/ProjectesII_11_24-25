@@ -5,7 +5,6 @@ using UnityEngine;
 public class DinamicTowerSetting : MonoBehaviour
 {
     public SetTowerBaseInput dynamicPanel;
-    public GameObject HoverImage;
 
     public int towerId;
     public int targetType;
@@ -17,6 +16,5 @@ public class DinamicTowerSetting : MonoBehaviour
     public void Clicked()
     {
         dynamicPanel.clickedButton = transform.parent.gameObject;
-        HoverImage.SetActive(false);
     }
 }

@@ -29,7 +29,7 @@ public class DinamicPanelAutocloser : MonoBehaviour, IPointerEnterHandler, IPoin
             LockButton.GetComponent<Image>().sprite = Lock[0];
             if (!isMouseOver && i == 1)
             {
-                hoverButton.SetActive(false);
+                GetComponent<ButtonHoverHandler>().OnHover = false;
                 panel.GetComponent<Animator>().SetBool("Open", false);
                 i = 0;
             }

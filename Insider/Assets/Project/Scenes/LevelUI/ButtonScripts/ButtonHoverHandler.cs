@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class ButtonHoverHandler : MonoBehaviour
 {
+    public bool OnHover;
     private char type = 'A';
     public SetTowerBaseInput dinamicPanel;
     public GameObject hoverImage;
@@ -32,6 +34,14 @@ public class ButtonHoverHandler : MonoBehaviour
         }
         else 
         {
+            if (!OnHover)
+            {
+                hoverImage.SetActive(false);
+            }
+            else 
+            { 
+                hoverImage.SetActive(true); 
+            }
             hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = false;
 
             switch (dinamicPanel.towerGrup)
@@ -71,6 +81,11 @@ public class ButtonHoverHandler : MonoBehaviour
         }
     }
 
+
+    public void OnHovering(bool OnHover) 
+    {
+        this.OnHover = OnHover;
+    }
     public void TypeA() 
     {
         type = 'A';
