@@ -19,7 +19,6 @@ public class Tower : MonoBehaviour
     Animator animatorTower;
     public List<Enemy> enemiesInRange = new List<Enemy>();
 
-
     public int targetType = 0;
     public AttackManager attackManager;
     public TargetingManager targetManager;
@@ -30,6 +29,8 @@ public class Tower : MonoBehaviour
 
 	public int currentLevel = 1;
 	public const int maxLevel = 3;
+
+	AudioManager audioManager;
 	public void SetTowerData(TowerStats stats)
 	{
 		this.id = stats.id;
@@ -72,7 +73,7 @@ public class Tower : MonoBehaviour
 
 	private void Awake()
 	{
-
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
 
     private void Update()
@@ -92,7 +93,8 @@ public class Tower : MonoBehaviour
 				}
 			    Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
                 attackManager.attackType.Attack(enemyHolder);
-                lastShootTime = Time.time;
+				audioManager.PlaySFX(audioManager.towerShot);
+				lastShootTime = Time.time;
             }
 		    else if(id != 3)
 		    {
