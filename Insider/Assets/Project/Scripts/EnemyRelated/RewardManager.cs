@@ -12,9 +12,9 @@ public class RewardManager : MonoBehaviour
 
 	//Fase 2 (Hacia el destino)
 	public float acceleration = 30f;
-	public float maxSpeed = 200f;
+	public float maxSpeed = 30f;
 	public Vector3 targetPosition;
-	private float currentSpeed = 0f;
+	[SerializeField]private float currentSpeed = 0f;
 
 	private bool isPhase2Started = false;
 	private float elapsedTime = 0f;
@@ -58,12 +58,14 @@ public class RewardManager : MonoBehaviour
 	private void MoveTowardsTarget()
 	{
 		Vector3 direction = (targetPosition - transform.position).normalized;
-
-		currentSpeed += acceleration * Time.deltaTime;
+		if (currentSpeed < maxSpeed) 
+		{
+            currentSpeed += acceleration * Time.deltaTime;
+        }
 
 		transform.position += direction * currentSpeed * Time.deltaTime;
 
-		if (Vector3.Distance(transform.position, targetPosition) < 0.5f)
+		if (Vector3.Distance(transform.position, targetPosition) < 1f)
 		{
 			Destroy(gameObject);
 		}

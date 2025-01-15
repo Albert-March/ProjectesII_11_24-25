@@ -36,6 +36,7 @@ public class TowerSelectionManager : MonoBehaviour
         {
             SetActiveButtons(towerButtons, false);
             SetActiveButtons(upgradeButtons1, true);
+            SetActiveButtons(upgradeButtons2, false);
             SetActiveButtons(targetUI, true);
         }
         else if (towerState == 2)
@@ -47,6 +48,8 @@ public class TowerSelectionManager : MonoBehaviour
         else if (towerState == 3)
         {
             SetActiveButtons(towerButtons, false);
+            SetActiveButtons(upgradeButtons1, false);
+            SetActiveButtons(upgradeButtons2, false);
             SetActiveButtons(targetUI, true);
         }
 
@@ -54,14 +57,9 @@ public class TowerSelectionManager : MonoBehaviour
         if (dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton != null) 
         {
             towerState = 0;
-            if (!dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower) {  }
-            else { towerState = 1; }
-
-            if (!dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2) { }
-            else { towerState = 2; }
-
-            if (!dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3) { }
-            else { towerState = 3; }
+            if (dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower) { towerState = 1; }
+            if (dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2) { towerState = 2; }
+            if (dynamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3) { towerState = 3; }
         }
         else { towerState = 0; }
 
