@@ -1997,9 +1997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c19a970f3c34a84f9f1a9becaf3cff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audios:
-  - {fileID: 8300000, guid: 99b7a9e342570cd46b0737463ddf36b0, type: 3}
-  controlAudio: {fileID: 0}
 --- !u!4 &870802423
 Transform:
   m_ObjectHideFlags: 0
@@ -2824,6 +2821,8 @@ MonoBehaviour:
   SFXSource: {fileID: 351900002}
   music: {fileID: 0}
   death: {fileID: 8300000, guid: 99b7a9e342570cd46b0737463ddf36b0, type: 3}
+  towerShot: {fileID: 8300000, guid: d9cba25e4c5ee5f4496507381fbf447c, type: 3}
+  selectTower: {fileID: 8300000, guid: 169b4784f11cf094b83c0ab86d613de7, type: 3}
 --- !u!4 &994686475
 Transform:
   m_ObjectHideFlags: 0

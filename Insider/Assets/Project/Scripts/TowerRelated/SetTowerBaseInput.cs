@@ -14,12 +14,19 @@ public class SetTowerBaseInput : MonoBehaviour
 	EconomyManager economyScript;
 	StatesManager states;
 
+	AudioManager audioManager;
+
 	bool spawnTower = false;
 	bool levelUp2 = false;
 	bool levelUp3 = false;
 
 	public ControlDesplegable buttonControl;
-    public void LlamarSpawnTowerOpcion1()
+
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+	public void LlamarSpawnTowerOpcion1()
 	{
 		if (!spawnTower)
 		{
@@ -43,6 +50,7 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
+				audioManager.PlaySFX(audioManager.selectTower);
 				states.IncrementPosition();
 			}
 		}
@@ -73,6 +81,7 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
+				audioManager.PlaySFX(audioManager.selectTower);
 				states.IncrementPosition();
 			}
 		}

@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
 	[Header("------Audio Clips------")]
 	public AudioClip music;
 	public AudioClip death;
+	public AudioClip towerShot;
+	public AudioClip selectTower;
 
 	private void Start()
 	{
