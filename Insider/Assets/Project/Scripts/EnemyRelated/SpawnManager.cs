@@ -74,7 +74,7 @@ public class SpawnManager : MonoBehaviour
         TextAsset jsonTextAsset = Resources.Load<TextAsset>(jsonFileName);
         if (jsonTextAsset == null)
         {
-            Debug.LogError($"No se encontró el archivo JSON en Resources con el nombre {jsonFileName}");
+            Debug.LogError($"No se encontrï¿½ el archivo JSON en Resources con el nombre {jsonFileName}");
             return;
         }
 
@@ -121,7 +121,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No hay más estados del juego.");
+            Debug.Log("No hay mï¿½s estados del juego.");
         }
     }
 
@@ -149,7 +149,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No hay más estados del juego.");
+            Debug.Log("No hay mï¿½s estados del juego.");
         }
     }
 
