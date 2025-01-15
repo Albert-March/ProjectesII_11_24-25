@@ -3593,7 +3593,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 46
+  m_SortingOrder: 25
   m_Sprite: {fileID: 21300000, guid: 29bd86ecd715bb9409bc4961fa6c8aed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6729,6 +6729,7 @@ GameObject:
   - component: {fileID: 185625455521300529}
   - component: {fileID: 8987086260923056628}
   - component: {fileID: 8987086260923056629}
+  - component: {fileID: 8987086260923056630}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6777,7 +6778,7 @@ Transform:
   m_GameObject: {fileID: 7661605613844360452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -28.7, y: -2.1, z: -0.15999217}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2765266830813742737}
@@ -7529,6 +7530,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8987086260923056630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416527721386364213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41758860f577ba24e85d08fa5c63b350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9126301664865706833
 RectTransform:
   m_ObjectHideFlags: 0
