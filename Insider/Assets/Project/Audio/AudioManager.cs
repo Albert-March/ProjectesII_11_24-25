@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -9,14 +10,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
-	[Header("------Audio Clips------")]
+	[Header("------Music Clip------")]
 	public AudioClip music;
-	public AudioClip death;
-	public AudioClip towerShot;
-	public AudioClip selectTower;
-	public AudioClip selectButton;
-	public AudioClip collectReward;
-	public AudioClip upgradeTower;
+
+	[Header("------SFX Clips------")]
+	public List<AudioClip> SFXClips = new List<AudioClip>();
 
 	private void Start()
 	{
@@ -25,9 +23,18 @@ public class AudioManager : MonoBehaviour
 		musicSource.Play();
 	}
 
-	public void PlaySFX(AudioClip clip)
+	public void PlaySFX(int index, float volume)
 	{
-		SFXSource.PlayOneShot(clip);
+		if (index >= 0 && index < SFXClips.Count)
+		{
+			SFXSource.volume = volume;
+			SFXSource.PlayOneShot(SFXClips[index]);
+		}
 	}
+	//0 = EnemyDeath
+	//1 = TowerShot
+	//2 = SelectTower
+	//3 = SelectButton
+	//4 = UpgradeTower
 }
 

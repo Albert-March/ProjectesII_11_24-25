@@ -23,6 +23,6 @@ public class DinamicTowerSetting : MonoBehaviour
 	public void Clicked()
     {
         dynamicPanel.clickedButton = transform.parent.gameObject;
-		audioManager.PlaySFX(audioManager.selectTower);
+		audioManager.PlaySFX(2, 0.2f);
 	}
 }

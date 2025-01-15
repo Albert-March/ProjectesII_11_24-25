@@ -93,7 +93,7 @@ public class Tower : MonoBehaviour
 				}
 			    Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
                 attackManager.attackType.Attack(enemyHolder);
-				audioManager.PlaySFX(audioManager.towerShot);
+				audioManager.PlaySFX(1, 0.1f);
 				lastShootTime = Time.time;
             }
 		    else if(id != 3)
