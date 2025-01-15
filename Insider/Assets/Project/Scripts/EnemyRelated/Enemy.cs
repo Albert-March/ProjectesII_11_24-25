@@ -37,8 +37,7 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] private GameObject reward;
     private GameObject rewardInstance;
 
-    [SerializeField] private AudioClip damageSounClip;
-    private AudioSource AudioSource;
+    AudioManager audioManager;
 
 	public void SetEnemyData(EnemyStats enemy)
     {
@@ -59,15 +58,13 @@ public class Enemy : MonoBehaviour, IDamage
     {
         sprite = GetComponent<SpriteRenderer>();
         healthBar = GetComponentInChildren<HealthBar>();
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
 
     public float maxHealth;
     public void Start()
     {
         maxHealth = health;
-
-		AudioSource = GetComponent<AudioSource>();
-        AudioSource.clip = damageSounClip;
     }
 
     public void Update()
@@ -138,7 +135,7 @@ public class Enemy : MonoBehaviour, IDamage
 			{
 				Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
 			}
-			AudioSource.Play();
+            audioManager.PlaySFX(audioManager.death);
 
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
