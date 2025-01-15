@@ -20,6 +20,8 @@ public class SetTowerBaseInput : MonoBehaviour
 
     EconomyManager economyScript;
 	StatesManager states;
+
+	AudioManager audioManager;
     private void Update()
     {
 		if (clickedButton != null) 
@@ -34,7 +36,11 @@ public class SetTowerBaseInput : MonoBehaviour
             levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
         }
     }
-    public void LlamarSpawnTowerOpcion1()
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+	public void LlamarSpawnTowerOpcion1()
 	{
         
         if (!spawnTower)
@@ -58,7 +64,8 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
-                clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
+				audioManager.PlaySFX(audioManager.selectButton);
+				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
 		}
 	}
@@ -84,7 +91,8 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
-                clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
+				audioManager.PlaySFX(audioManager.selectButton);
+				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
 		}
 	}
@@ -106,7 +114,8 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-            clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+			audioManager.PlaySFX(audioManager.upgradeTower);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
         }
 	}
@@ -128,7 +137,8 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-            clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
+			audioManager.PlaySFX(audioManager.upgradeTower);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
         }
 		levelUp3 = true;
 	}
