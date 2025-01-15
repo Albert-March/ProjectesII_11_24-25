@@ -17,6 +17,6 @@ MonoBehaviour:
   attackSpeed: 10
   health: 400
   dmg: 10
-  economyGiven: 20
+  economyGiven: 10
   color: {r: 1, g: 0.6273585, b: 0.6273585, a: 1}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

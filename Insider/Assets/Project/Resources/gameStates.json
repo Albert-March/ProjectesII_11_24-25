@@ -39,7 +39,7 @@
           "waveNumber": "3",
           "enemyTypes": {
             "Type1": 10,
-            "Type2": 10,
+            "Type2": 5,
             "Type3": 0,
             "Type4": 0,
             "Type5": 0,

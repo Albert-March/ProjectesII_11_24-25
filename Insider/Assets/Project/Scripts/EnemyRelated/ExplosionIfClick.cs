@@ -49,7 +49,6 @@ public class ExplosionIfClick : MonoBehaviour
 			{
 				SpawnParticles();
 				DealDamageToEnemies();
-				Destroy(gameObject);
 			}
 		}
 	}
@@ -79,7 +78,8 @@ public class ExplosionIfClick : MonoBehaviour
 				damageable.Damage(damage);
 			}
 		}
-	}
+        Destroy(gameObject);
+    }
 
 	public void SpawnParticles()
 	{

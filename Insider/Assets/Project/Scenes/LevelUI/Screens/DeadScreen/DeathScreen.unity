@@ -2031,7 +2031,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2008061576}
         m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: BackToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

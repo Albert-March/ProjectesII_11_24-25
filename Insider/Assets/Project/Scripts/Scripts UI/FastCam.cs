@@ -12,16 +12,16 @@ public class FastCam : MonoBehaviour
     {
         if (Input.GetButtonDown("SpeedUp")) 
         {
-            if (currentSpeed < 6)
+            if (currentSpeed < 4)
                 currentSpeed++;
         }
         if (Input.GetButtonDown("SpeedDown"))
         {
-            if (currentSpeed > 1)
+            if (currentSpeed > 3)
                 currentSpeed--;
         }
 
         Time.timeScale = currentSpeed;
-        speedText.text = "x"+currentSpeed.ToString();
+        speedText.text = "x"+(currentSpeed - 2).ToString();
     }
 }

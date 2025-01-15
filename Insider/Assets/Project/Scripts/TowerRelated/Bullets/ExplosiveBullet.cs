@@ -6,7 +6,7 @@ public class ExplosiveBullet : MonoBehaviour
 {
     private Enemy target;
 	private Vector3 lastPos;
-
+    bool hasExploded = false;
 	private float explosionDuration = 0.5f;
     private float elapsedTime = 0f;
     private Vector3 explosionRadius; //=ProjectileHP
@@ -31,12 +31,14 @@ public class ExplosiveBullet : MonoBehaviour
         }
 		if (transform.localScale == explosionRadius) 
 		{
-            if (enemiesOnContact.Count > 0)
+            if (enemiesOnContact.Count > 0 && !hasExploded)
             {
+                hasExploded = true;
                 foreach (GameObject d in enemiesOnContact)
                 {
                     d.GetComponent<IDamage>().Damage(towerScript.damage);
                 }
+                
             }
             Destroy(gameObject);
         }
