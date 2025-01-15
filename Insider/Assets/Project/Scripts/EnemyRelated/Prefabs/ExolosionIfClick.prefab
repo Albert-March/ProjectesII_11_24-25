@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 5172461798664215953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6219420818681145097}
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: ae76e00d885a31a48bc1c186f280ea36, type: 3}
   destroyParticles: {fileID: -4909169529848077171, guid: 36faf3f7e41b7ff44963ecc6a6e2886b, type: 3}
+  button: {fileID: 8359660362347339873}
   damage: 50
 --- !u!58 &1216605024204458420
 CircleCollider2D:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExplosionIfClick : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class ExplosionIfClick : MonoBehaviour
 
 	[SerializeField] private ParticleSystem destroyParticles;
 	private ParticleSystem destroyParticlesInstance;
-
-	public float damage = 50f;
+    public GameObject button;
+    public float damage = 50f;
 
 	private float timer = 0f;
 	private bool explode = false;
@@ -22,7 +23,8 @@ public class ExplosionIfClick : MonoBehaviour
 	}
 	public void Explode()
 	{
-		explode = true;
+        button.GetComponent<Image>().raycastTarget = false;
+        explode = true;
 	}
 
 	private void Update()

@@ -43,7 +43,6 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
-				states.IncrementPosition();
 			}
 		}
 		spawnTower = true;
@@ -73,7 +72,6 @@ public class SetTowerBaseInput : MonoBehaviour
 						break;
 				}
 				economyScript.economy -= 300;
-				states.IncrementPosition();
 			}
 		}
 		spawnTower = true;
@@ -95,7 +93,6 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-			states.IncrementPosition();
 		}
 		levelUp2 = true;
 	}
@@ -116,7 +113,6 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 			SpawnParticles();
 			economyScript.economy -= 100;
-			states.IncrementPosition();
 		}
 		levelUp3 = true;
 	}
