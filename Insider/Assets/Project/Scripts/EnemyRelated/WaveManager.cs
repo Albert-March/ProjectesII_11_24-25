@@ -56,11 +56,11 @@ public class WaveManager : MonoBehaviour
                     waveTop.text = "Nothing remains...";
                     waveBot.fontSize = 25;
 
-                    waveMidle.text = "You have consumed all in your path";
+                    waveMidle.text = "You have consumed all";
                     waveBot.fontSize = 70;
 
-                    waveBot.text = "";
-                    waveBot.fontSize = 150;
+                    waveBot.text = "in your path";
+                    waveBot.fontSize = 60;
                     break;
 
             }

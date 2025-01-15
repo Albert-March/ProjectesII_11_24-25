@@ -44,12 +44,13 @@ public class Spawner : MonoBehaviour
 
     public void Update()
     {
-        currentSpawnTime += Time.deltaTime;
+        if(!spawnManager.isInDelayState)
+            currentSpawnTime += Time.deltaTime;
 
         if(currentSpawnTime > spawnTime)
         {
             SpawnEnemy();
-            currentSpawnTime -= spawnTime;
+            currentSpawnTime = 0;
         }
 
 		if (pendingEnemies.Count == 0)
@@ -64,13 +65,8 @@ public class Spawner : MonoBehaviour
                 if (enemyManager.EnemiesOnScreen <= 0) 
                 {
                     Debug.Log("Estado completado. Preparando para avanzar...");
-                    spawnManager.StayOnDelay();
-
-                    if (!spawnManager.isInDelayState)
-                    {
-                        spawnManager.AdvanceGameState();
-                        UpdatePendingEnemies();
-                    }
+                    spawnManager.AdvanceGameState();
+                    isInitialized = false;
                 }
             }
 

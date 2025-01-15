@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     {
         EnemiesOnScreen = currentEnemy.Count;
         Debug.Log(EnemiesOnScreen);
-        if (spawnManager.currentState.stateName == "finish")
+        if (spawnManager.currentState.stateName == "finish" && !spawnManager.isInDelayState)
         {
             SceneManager.LoadScene("WinScreen");
         }
