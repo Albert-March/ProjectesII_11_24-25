@@ -1,0 +1,1 @@
+Virus1 = LeiserVirus2 = ChomperBacteri1 = BomberBacteri2 = CanonerFong1 = TagerFong2 = Boper

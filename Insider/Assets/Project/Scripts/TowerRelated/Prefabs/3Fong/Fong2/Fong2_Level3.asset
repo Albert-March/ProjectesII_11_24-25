@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Fong2_Level3
   m_EditorClassIdentifier: 
   id: 5
-  damage: 30
-  fireRate: 2
-  DPS: 3
-  projectileHp: 12
+  damage: 35
+  fireRate: 0.1
+  DPS: 0
+  projectileHp: 0
   projectileSpeed: 10
   range: 6
   hability: 0
