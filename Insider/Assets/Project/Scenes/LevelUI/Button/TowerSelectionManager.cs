@@ -9,7 +9,6 @@ public class TowerSelectionManager : MonoBehaviour
     public GameObject[] upgradeButtons2;
     public GameObject[] targetUI;
     public GameObject dynamicPanel;
-    private bool isTowerSelected = false;
 
     private int towerState = 0;
 

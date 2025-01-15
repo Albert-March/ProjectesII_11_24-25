@@ -17,7 +17,7 @@ MonoBehaviour:
   fireRate: 5
   DPS: 0
   projectileHp: 0
-  projectileSpeed: 10
+  projectileSpeed: 0
   range: 6
   hability: 0
   rangeOffstY: 0

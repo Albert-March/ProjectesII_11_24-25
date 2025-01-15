@@ -1,0 +1,5 @@
+ExplosiveBullet:
+ProjectileHP = ExplosionRadius
+
+Tager:
+ProjectileSpeed = numTags

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Bacteri1_Level1
   m_EditorClassIdentifier: 
   id: 2
-  damage: 25
+  damage: 30
   fireRate: 3
-  DPS: 2
-  projectileHp: 10
+  DPS: 0
+  projectileHp: 12
   projectileSpeed: 10
   range: 8
   hability: 0

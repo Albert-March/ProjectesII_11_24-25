@@ -9,7 +9,7 @@ public class ExplosiveBullet : MonoBehaviour
 
 	private float explosionDuration = 0.5f;
     private float elapsedTime = 0f;
-    private Vector3 explosionRadius;
+    private Vector3 explosionRadius; //=ProjectileHP
     private Vector3 flyRadius;
 
     public Tower towerScript;

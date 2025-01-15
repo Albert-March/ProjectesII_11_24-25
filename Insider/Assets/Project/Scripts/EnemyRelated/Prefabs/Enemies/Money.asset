@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 2
   movSpeed: 1
   attackSpeed: 10
-  health: 100
+  health: 400
   dmg: 10
   economyGiven: 20
   color: {r: 1, g: 0.6273585, b: 0.6273585, a: 1}
