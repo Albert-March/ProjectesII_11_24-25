@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour, IDamage
 	private ParticleSystem destroyParticlesInstance;
 
     [SerializeField] HealthBar healthBar;
+    [SerializeField] GameObject hpb;
 
     [SerializeField] private GameObject reward;
     private GameObject rewardInstance;
@@ -69,6 +70,14 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void Update()
     {
+        if (this.health == maxHealth)
+        {
+            hpb.SetActive(false);
+        }
+        else 
+        {
+            hpb.SetActive(true);
+        }
         if (_damageReciver == null) 
         {
             PlayAllBehaviours();

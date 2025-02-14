@@ -17,6 +17,14 @@ public class SetTowerBaseInput : MonoBehaviour
 	bool levelUp2;
 	bool levelUp3;
 
+	public string[] names = { "LEISER", "CHOMPER", "BOMBER", "CANONER", "TAGER", "BOPER" };
+
+	public Text textoA;
+	public Text textoB;
+	public Text price;
+
+	public GameObject rangeGO;
+
 
     EconomyManager economyScript;
 	StatesManager states;
@@ -27,6 +35,11 @@ public class SetTowerBaseInput : MonoBehaviour
 		if (clickedButton != null) 
 		{
 			cam.transform.position = new Vector3(clickedButton.transform.position.x, clickedButton.transform.position.y, -10);
+			if (spawnTower == true)
+			{
+				rangeGO.transform.position = new Vector3(clickedButton.transform.position.x, clickedButton.transform.position.y, -10);
+				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1);
+			}
 
             cam.transform.rotation = clickedButton.transform.rotation;
 
@@ -34,6 +47,32 @@ public class SetTowerBaseInput : MonoBehaviour
             spawnTower = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower;
             levelUp2 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2;
             levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
+
+
+			switch(towerGrup)
+			{
+				case 0:
+					textoA.text = names[0];
+					textoB.text = names[1];
+                    break;
+				case 1:
+                    textoA.text = names[2];
+                    textoB.text = names[3];
+                    break;
+				case 2:
+                    textoA.text = names[4];
+                    textoB.text = names[5];
+                    break;
+            }
+
+			if (levelUp3 == true)
+			{ price.text = " "; }
+			else if (levelUp2 == true)
+			{ price.text = "800"; }
+			else if (spawnTower == true)
+			{ price.text = "400"; }
+			else 
+			{ price.text = "200"; }
         }
     }
 	private void Awake()
@@ -51,7 +90,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			if (economyScript.economy >= 200)
 			{
 
-				switch (towerGrup)
+                switch (towerGrup)
 				{
 					case 0:
 						towerSetter.SpawnTower(0, clickedButton.transform);
