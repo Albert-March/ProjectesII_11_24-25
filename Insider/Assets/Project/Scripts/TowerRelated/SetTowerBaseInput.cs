@@ -32,40 +32,41 @@ public class SetTowerBaseInput : MonoBehaviour
 	AudioManager audioManager;
     private void Update()
     {
-		if (clickedButton != null) 
+		
+		if (clickedButton != null)
 		{
 			cam.transform.position = new Vector3(clickedButton.transform.position.x, clickedButton.transform.position.y, -10);
 
 
-            cam.transform.rotation = clickedButton.transform.rotation;
+			cam.transform.rotation = clickedButton.transform.rotation;
 
-            towerGrup = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().towerId;
-            spawnTower = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower;
-            levelUp2 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2;
-            levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
+			towerGrup = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().towerId;
+			spawnTower = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower;
+			levelUp2 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2;
+			levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
 
-            if (spawnTower == true)
-            {
-                rangeGO.transform.position = new Vector2(clickedButton.transform.position.x, clickedButton.transform.position.y) - clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().offset;
-				rangeGO.transform.loca = clickedButton.transform.rotation;
-                rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2;
-            }
+			if (spawnTower == true)
+			{
+                rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open"));
+                rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
+				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
+			}
 
-            switch (towerGrup)
+			switch (towerGrup)
 			{
 				case 0:
 					textoA.text = names[0];
 					textoB.text = names[1];
-                    break;
+					break;
 				case 1:
-                    textoA.text = names[2];
-                    textoB.text = names[3];
-                    break;
+					textoA.text = names[2];
+					textoB.text = names[3];
+					break;
 				case 2:
-                    textoA.text = names[4];
-                    textoB.text = names[5];
-                    break;
-            }
+					textoA.text = names[4];
+					textoB.text = names[5];
+					break;
+			}
 
 			if (levelUp3 == true)
 			{ price.text = " "; }
@@ -73,9 +74,9 @@ public class SetTowerBaseInput : MonoBehaviour
 			{ price.text = "800"; }
 			else if (spawnTower == true)
 			{ price.text = "400"; }
-			else 
+			else
 			{ price.text = "200"; }
-        }
+		}
     }
 	private void Awake()
 	{

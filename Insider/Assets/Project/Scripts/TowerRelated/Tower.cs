@@ -109,6 +109,8 @@ public class Tower : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.isTrigger) return;
+
         if (other.transform.tag == "Enemy")
         {
 

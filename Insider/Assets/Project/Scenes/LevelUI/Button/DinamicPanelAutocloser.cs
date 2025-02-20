@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class DinamicPanelAutocloser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    bool locked = false;
+    public bool locked = false;
     public GameObject LockButton;
     public Sprite[] Lock;
 
