@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class ButtonHoverHandler : MonoBehaviour
 {
-    public bool OnHover;
+    public bool OnHover = false;
     private char type = 'A';
     public SetTowerBaseInput dinamicPanel;
     public GameObject hoverImage;
@@ -17,30 +17,27 @@ public class ButtonHoverHandler : MonoBehaviour
 
     void Start()
     {
-		if (hoverImage != null)
-        {
-            hoverImage.SetActive(false);
-        }
+        
     }
 
     private void Update()
     {
-
+        Debug.Log(hoverImage.GetComponent<Animator>().GetBool("Open"));
         if (dinamicPanel.spawnTower)
         {
             hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
-            hoverImage.SetActive(true);
+            hoverImage.GetComponent<Animator>().SetBool("Open", true);
             image.texture = cameraTower;
         }
         else 
         {
             if (!OnHover)
             {
-                hoverImage.SetActive(false);
+                hoverImage.GetComponent<Animator>().SetBool("Open", false);
             }
             else 
             { 
-                hoverImage.SetActive(true); 
+                hoverImage.GetComponent<Animator>().SetBool("Open", true);
             }
             hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = false;
 
