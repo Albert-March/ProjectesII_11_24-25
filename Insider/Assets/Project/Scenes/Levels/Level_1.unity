@@ -423,7 +423,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2998357867372081950, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+        - m_Target: {fileID: 1428039644}
           m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
           m_MethodName: OnUpgradeButtonHover
           m_Mode: 6
@@ -7244,7 +7244,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2998357867372081950, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+        - m_Target: {fileID: 1428039644}
           m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
           m_MethodName: OnUpgradeButtonHover
           m_Mode: 6
@@ -7260,7 +7260,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2998357867372081950, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+        - m_Target: {fileID: 1428039644}
           m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
           m_MethodName: OnUpgradeButtonHover
           m_Mode: 6
