@@ -22,7 +22,6 @@ public class TowerSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(towerState);
         if (towerState == 0)
         {
             SetActiveButtons(towerButtons, true);

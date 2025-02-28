@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 
 public class ButtonHoverHandler : MonoBehaviour
 {
@@ -27,7 +26,6 @@ public class ButtonHoverHandler : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(hoverImage.GetComponent<Animator>().GetBool("Open"));
         if (dinamicPanel.spawnTower)
         {
             hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
@@ -71,7 +69,6 @@ public class ButtonHoverHandler : MonoBehaviour
     public void TypeA()
     {
         type = 'A';
-
     }
 
     public void TypeB()

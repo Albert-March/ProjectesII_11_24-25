@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+
 
 public class SetTowerBaseInput : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public Text statsTextA;
 	public Text statsTextB;
-	private bool isHoveringUpgradeButton = false;
+	public bool isHoveringUpgradeButton = false;
 
 
 	EconomyManager economyScript;
@@ -58,7 +58,8 @@ public class SetTowerBaseInput : MonoBehaviour
                 rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
 
-				if (isHoveringUpgradeButton)
+                Debug.Log(isHoveringUpgradeButton);
+                if (isHoveringUpgradeButton)
 				{
 					ShowUpgradeStats();
 				}
@@ -106,8 +107,11 @@ public class SetTowerBaseInput : MonoBehaviour
 	{
 		TowerStats option1 = towerSetter.towerStats[towerGrup * 2];
 		TowerStats option2 = towerSetter.towerStats[towerGrup * 2 + 1];
-
-		statsTextA.text = $"Damage: {option1.damage}\nFire Rate: {option1.fireRate}\nRange: {option1.range}";
+        statsTextA.gameObject.SetActive(true);
+        statsTextB.gameObject.SetActive(true);
+        textoA.gameObject.SetActive(true);
+        textoB.gameObject.SetActive(true);
+        statsTextA.text = $"Damage: {option1.damage}\nFire Rate: {option1.fireRate}\nRange: {option1.range}";
 		statsTextB.text = $"Damage: {option2.damage}\nFire Rate: {option2.fireRate}\nRange: {option2.range}";
 	}
 	private void ShowUpgradeStats()
@@ -117,30 +121,58 @@ public class SetTowerBaseInput : MonoBehaviour
 			if (child.name == "Tower(Clone)")
 			{
 				Tower tower = child.GetComponent<Tower>();
+                if (type == 'A')
+                {
+                    if (tower.currentLevel == 1)
+                    {
+                        statsTextA.text = $"Damage:";
+                        TowerStats upgradeStats = towerSetter.towerUpgrades1[tower.id];
+                        statsTextA.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+                                          $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+                                          $"Range: {tower.range} -> {upgradeStats.range}";
+                    }
+                    else if (tower.currentLevel == 2)
+                    {
+                        TowerStats upgradeStats = towerSetter.towerUpgrades2[tower.id];
+                        statsTextA.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+                                          $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+                                          $"Range: {tower.range} -> {upgradeStats.range}";
+                    }
+                    else
+                    {
+                        statsTextA.text = $"Damage: {tower.damage}\n" +
+                                          $"Fire Rate: {tower.fireRate}\n" +
+                                          $"Range: {tower.range}\n" +
+                                          $"(Max Level Reached)";
+                    }
+                }
+                else if (type == 'B')
+                {
+                    if (tower.currentLevel == 1)
+                    {
+                        Debug.Log("Prova");
+                        statsTextB.text = $"Damage:";
+                        TowerStats upgradeStats = towerSetter.towerUpgrades1[tower.id];
+                        statsTextB.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+                                          $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+                                          $"Range: {tower.range} -> {upgradeStats.range}";
+                    }
+                    else if (tower.currentLevel == 2)
+                    {
+                        TowerStats upgradeStats = towerSetter.towerUpgrades2[tower.id];
+                        statsTextB.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+                                          $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+                                          $"Range: {tower.range} -> {upgradeStats.range}";
+                    }
+                    else
+                    {
+                        statsTextB.text = $"Damage: {tower.damage}\n" +
+                                          $"Fire Rate: {tower.fireRate}\n" +
+                                          $"Range: {tower.range}\n" +
+                                          $"(Max Level Reached)";
+                    }
+                }
 
-				if (tower.currentLevel == 1)
-				{
-					Debug.Log("Prova");
-					statsTextA.text = $"Damage:";
-					TowerStats upgradeStats = towerSetter.towerUpgrades1[tower.id];
-					statsTextA.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
-									  $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
-									  $"Range: {tower.range} -> {upgradeStats.range}";
-				}
-				else if (tower.currentLevel == 2)
-				{
-					TowerStats upgradeStats = towerSetter.towerUpgrades2[tower.id];
-					statsTextA.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
-									  $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
-									  $"Range: {tower.range} -> {upgradeStats.range}";
-				}
-				else
-				{
-					statsTextA.text = $"Damage: {tower.damage}\n" +
-									  $"Fire Rate: {tower.fireRate}\n" +
-									  $"Range: {tower.range}\n" +
-									  $"(Max Level Reached)";
-				}
 			}
 		}
 	}
@@ -165,15 +197,13 @@ public class SetTowerBaseInput : MonoBehaviour
 	}
 
 
-	public void OnUpgradeButtonEnter()
+	public void OnUpgradeButtonHover(bool hover)
 	{
-		isHoveringUpgradeButton = true;
-	}
+		Debug.Log(hover);
+        this.isHoveringUpgradeButton = hover;
 
-	public void OnUpgradeButtonExit()
-	{
-		isHoveringUpgradeButton = false;
-	}
+    }
+
 
 	public void LlamarSpawnTowerOpcion1()
 	{
