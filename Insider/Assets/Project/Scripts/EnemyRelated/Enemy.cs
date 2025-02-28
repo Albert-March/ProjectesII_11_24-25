@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamage
         this.sprite.color = enemy.color;
         behaviours.Add(gameObject.AddComponent<BaseMovement>());
         behaviours.Add(gameObject.AddComponent<ObjectAvoidance>());
+        behaviours.Add(gameObject.AddComponent<BoidMovement>());
 
 		enemyTypeManager.SetEnemyType(id);
 	}

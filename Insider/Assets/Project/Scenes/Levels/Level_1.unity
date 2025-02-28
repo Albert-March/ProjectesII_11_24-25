@@ -1355,7 +1355,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 0}
+  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2340,7 +2340,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 0}
+  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5020,7 +5020,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 0}
+  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5249,7 +5249,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 0}
+  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5657,7 +5657,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 0}
+  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6800,7 +6800,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 0}
+  m_Color: {r: 0.3679245, g: 0, b: 0.32752505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7172,7 +7172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1390380709659834166, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1650519621016328314, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7188,7 +7188,7 @@ PrefabInstance:
       objectReference: {fileID: 2008872179}
     - target: {fileID: 2734342444412688555, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2786931379117616587, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
       propertyPath: m_RootOrder
@@ -7927,7 +7927,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1217732977}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 30.00008
+    OrthographicSize: 22.00008
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -8370,7 +8370,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 30.00008
+  orthographic size: 22.00008
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
