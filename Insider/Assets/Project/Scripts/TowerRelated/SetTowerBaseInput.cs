@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class SetTowerBaseInput : MonoBehaviour
 {
@@ -28,9 +30,10 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public Text statsTextA;
 	public Text statsTextB;
+	private bool isHoveringUpgradeButton = false;
 
 
-    EconomyManager economyScript;
+	EconomyManager economyScript;
 	StatesManager states;
 
 	AudioManager audioManager;
@@ -54,25 +57,19 @@ public class SetTowerBaseInput : MonoBehaviour
                 rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open"));
                 rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
-			}
 
-			foreach (Transform child in clickedButton.transform)
-			{
-				if (child.name == "Tower(Clone)")
+				if (isHoveringUpgradeButton)
 				{
-					Tower tower = child.GetComponent<Tower>();
-					if (type == 'A')
-					{
-						statsTextA.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
-						statsTextB.text = "";
-					}
-					else if (type == 'A')
-					{
-						statsTextB.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
-						statsTextA.text = "";
-						statsTextA.gameObject.SetActive(false);
-					}
+					ShowUpgradeStats();
 				}
+				else
+				{
+					ShowCurrentStats();
+				}
+			}
+			else
+			{
+				ShowTowerOptions();
 			}
 
 			switch (towerGrup)
@@ -105,6 +102,79 @@ public class SetTowerBaseInput : MonoBehaviour
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
+	private void ShowTowerOptions()
+	{
+		TowerStats option1 = towerSetter.towerStats[towerGrup * 2];
+		TowerStats option2 = towerSetter.towerStats[towerGrup * 2 + 1];
+
+		statsTextA.text = $"Damage: {option1.damage}\nFire Rate: {option1.fireRate}\nRange: {option1.range}";
+		statsTextB.text = $"Damage: {option2.damage}\nFire Rate: {option2.fireRate}\nRange: {option2.range}";
+	}
+	private void ShowUpgradeStats()
+	{
+		foreach (Transform child in clickedButton.transform)
+		{
+			if (child.name == "Tower(Clone)")
+			{
+				Tower tower = child.GetComponent<Tower>();
+
+				if (tower.currentLevel == 1)
+				{
+					Debug.Log("Prova");
+					statsTextA.text = $"Damage:";
+					TowerStats upgradeStats = towerSetter.towerUpgrades1[tower.id];
+					statsTextA.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+									  $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+									  $"Range: {tower.range} -> {upgradeStats.range}";
+				}
+				else if (tower.currentLevel == 2)
+				{
+					TowerStats upgradeStats = towerSetter.towerUpgrades2[tower.id];
+					statsTextA.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+									  $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+									  $"Range: {tower.range} -> {upgradeStats.range}";
+				}
+				else
+				{
+					statsTextA.text = $"Damage: {tower.damage}\n" +
+									  $"Fire Rate: {tower.fireRate}\n" +
+									  $"Range: {tower.range}\n" +
+									  $"(Max Level Reached)";
+				}
+			}
+		}
+	}
+	private void ShowCurrentStats()
+	{
+		foreach (Transform child in clickedButton.transform)
+		{
+			if (child.name == "Tower(Clone)")
+			{
+				Tower tower = child.GetComponent<Tower>();
+
+				if (type == 'A')
+				{
+					statsTextA.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+				}
+				else if (type == 'B')
+				{
+					statsTextB.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+				}
+			}
+		}
+	}
+
+
+	public void OnUpgradeButtonEnter()
+	{
+		isHoveringUpgradeButton = true;
+	}
+
+	public void OnUpgradeButtonExit()
+	{
+		isHoveringUpgradeButton = false;
+	}
+
 	public void LlamarSpawnTowerOpcion1()
 	{
         
