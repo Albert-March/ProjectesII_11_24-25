@@ -18,12 +18,16 @@ public class SetTowerBaseInput : MonoBehaviour
 	bool levelUp3;
 
 	public string[] names = { "LEISER", "CHOMPER", "BOMBER", "CANONER", "TAGER", "BOPER" };
+	private char type = 'A';
 
 	public Text textoA;
 	public Text textoB;
 	public Text price;
 
 	public GameObject rangeGO;
+
+	public Text statsTextA;
+	public Text statsTextB;
 
 
     EconomyManager economyScript;
@@ -50,6 +54,25 @@ public class SetTowerBaseInput : MonoBehaviour
                 rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open"));
                 rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
+			}
+
+			foreach (Transform child in clickedButton.transform)
+			{
+				if (child.name == "Tower(Clone)")
+				{
+					Tower tower = child.GetComponent<Tower>();
+					if (type == 'A')
+					{
+						statsTextA.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+						statsTextB.text = "";
+					}
+					else if (type == 'A')
+					{
+						statsTextB.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+						statsTextA.text = "";
+						statsTextA.gameObject.SetActive(false);
+					}
+				}
 			}
 
 			switch (towerGrup)
@@ -110,6 +133,9 @@ public class SetTowerBaseInput : MonoBehaviour
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
 		}
+		type = 'A';
+		textoB.gameObject.SetActive(false);
+		statsTextB.gameObject.SetActive(false);
 	}
 
 	public void LlamarSpawnTowerOpcion2()
@@ -137,6 +163,9 @@ public class SetTowerBaseInput : MonoBehaviour
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
             }
 		}
+		type = 'B';
+		textoA.gameObject.SetActive(false);
+		statsTextA.gameObject.SetActive(false);
 	}
 
 	public void LevelUp2()

@@ -11,14 +11,19 @@ public class ButtonHoverHandler : MonoBehaviour
     private char type = 'A';
     public SetTowerBaseInput dinamicPanel;
     public GameObject hoverImage;
+    public Text descriptionBox;
+
+    public Tower towerReference;
+
     public RawImage image;
+    public RawImage image2;
     public Sprite[] towerSpot;
     public Texture cameraTower;
 
     void Start()
     {
-        
-    }
+		towerReference = dinamicPanel.transform.GetChild(2).GetComponent<Tower>();
+	}
 
     private void Update()
     {
@@ -45,47 +50,28 @@ public class ButtonHoverHandler : MonoBehaviour
             {
 
                 case 0:
-                    if (type == 'A')
-                    {
-                        image.texture = towerSpot[0].texture;
-                    }
-                    else if (type == 'B')
-                    {
-                        image.texture = towerSpot[1].texture;
-                    }
-                    break;
+                    image.texture = towerSpot[0].texture;
+                    image2.texture = towerSpot[1].texture;
+					break;
                 case 1:
-                    if (type == 'A')
-                    {
-                        image.texture = towerSpot[2].texture;
-                    }
-                    else if (type == 'B')
-                    {
-                        image.texture = towerSpot[3].texture;
-                    }
+                    image.texture = towerSpot[2].texture;
+                    image2.texture = towerSpot[3].texture;
                     break;
                 case 2:
-                    if (type == 'A')
-                    {
-                        image.texture = towerSpot[4].texture;
-                    }
-                    else if (type == 'B')
-                    {
-                        image.texture = towerSpot[5].texture;
-                    }
+                    image.texture = towerSpot[4].texture;
+                    image2.texture = towerSpot[5].texture;
                     break;
             }
         }
     }
-
-
     public void OnHovering(bool OnHover) 
     {
         this.OnHover = OnHover;
     }
-    public void TypeA() 
+    public void TypeA()
     {
         type = 'A';
+
     }
 
     public void TypeB()
@@ -93,7 +79,3 @@ public class ButtonHoverHandler : MonoBehaviour
         type = 'B';
     }
 }
-
-
-
-
