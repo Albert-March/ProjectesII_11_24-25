@@ -409,15 +409,15 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1428039644}
           m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
-          m_MethodName: OnUpgradeButtonEnter
-          m_Mode: 1
+          m_MethodName: OnUpgradeButtonHover
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
   - eventID: 1
     callback:
@@ -425,8 +425,8 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2998357867372081950, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
           m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
-          m_MethodName: OnUpgradeButtonExit
-          m_Mode: 1
+          m_MethodName: OnUpgradeButtonHover
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4111,7 +4111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290174216674176046, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 503
+      value: 483
       objectReference: {fileID: 0}
     - target: {fileID: 5290174216674176046, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4124,6 +4124,10 @@ PrefabInstance:
     - target: {fileID: 5501859060948933993, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5501859060948933993, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+      propertyPath: m_RaycastPadding.y
+      value: -162.61
       objectReference: {fileID: 0}
     - target: {fileID: 5540453951642299116, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
       propertyPath: m_IsActive
@@ -4190,6 +4194,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7021163874035311377, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 115457006}
+    - targetCorrespondingSourceObject: {fileID: 516645610976151250, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1977676359}
   m_SourcePrefab: {fileID: 100100000, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
 --- !u!4 &1032892089 stripped
 Transform:
@@ -6932,7 +6939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -341, y: 2.095749}
+  m_AnchoredPosition: {x: -341, y: 2.125}
   m_SizeDelta: {x: -844.77, y: -110.1915}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1781538270
@@ -7215,6 +7222,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976515434}
   m_CullTransparentMesh: 1
+--- !u!1 &1977676354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 516645610976151250, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+  m_PrefabInstance: {fileID: 983771947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1977676359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977676354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2998357867372081950, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+          m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
+          m_MethodName: OnUpgradeButtonHover
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2998357867372081950, guid: abdb25412a09c794aa4cabf310a3910e, type: 3}
+          m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
+          m_MethodName: OnUpgradeButtonHover
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1994500825
 PrefabInstance:
   m_ObjectHideFlags: 0
