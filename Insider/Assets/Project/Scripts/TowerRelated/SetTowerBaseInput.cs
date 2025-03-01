@@ -10,6 +10,9 @@ public class SetTowerBaseInput : MonoBehaviour
 	[SerializeField] private ParticleSystem levelUpParticles;
 	private ParticleSystem levelUpParticlesInstance;
 
+	public GameObject buttonTowerA;
+	public GameObject buttonTowerB;
+
 	public TowerSetter towerSetter;
 	public GameObject clickedButton;
 	public GameObject cam;
@@ -24,7 +27,8 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public Text textoA;
 	public Text textoB;
-	public Text price;
+	public Text priceA;
+	public Text priceB;
 
 	public GameObject rangeGO;
 
@@ -90,13 +94,13 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 
 			if (levelUp3 == true)
-			{ price.text = " "; }
+			{ priceA.text = " "; priceB.text = " "; }
 			else if (levelUp2 == true)
-			{ price.text = "800"; }
+			{ priceA.text = "800"; priceB.text = "800"; }
 			else if (spawnTower == true)
-			{ price.text = "400"; }
+			{ priceA.text = "400"; priceB.text = "400"; }
 			else
-			{ price.text = "200"; }
+			{ priceA.text = "200"; priceB.text = "200"; }
 		}
     }
 	private void Awake()
@@ -111,6 +115,8 @@ public class SetTowerBaseInput : MonoBehaviour
         statsTextB.gameObject.SetActive(true);
         textoA.gameObject.SetActive(true);
         textoB.gameObject.SetActive(true);
+		buttonTowerA.gameObject.SetActive(true);
+		buttonTowerB.gameObject.SetActive(true);
         statsTextA.text = $"Damage: {option1.damage}\nFire Rate: {option1.fireRate}\nRange: {option1.range}";
 		statsTextB.text = $"Damage: {option2.damage}\nFire Rate: {option2.fireRate}\nRange: {option2.range}";
 	}
@@ -236,6 +242,7 @@ public class SetTowerBaseInput : MonoBehaviour
 		type = 'A';
 		textoB.gameObject.SetActive(false);
 		statsTextB.gameObject.SetActive(false);
+		buttonTowerB.gameObject.SetActive(false);
 	}
 
 	public void LlamarSpawnTowerOpcion2()
@@ -266,6 +273,7 @@ public class SetTowerBaseInput : MonoBehaviour
 		type = 'B';
 		textoA.gameObject.SetActive(false);
 		statsTextA.gameObject.SetActive(false);
+		buttonTowerA.gameObject.SetActive(false);
 	}
 
 	public void LevelUp2()

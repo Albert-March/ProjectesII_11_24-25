@@ -14,8 +14,8 @@ public class ButtonHoverHandler : MonoBehaviour
 
     public Tower towerReference;
 
-    public RawImage image;
-    public RawImage image2;
+    public RawImage imageA;
+    public RawImage imageB;
     public Sprite[] towerSpot;
     public Texture cameraTower;
 
@@ -28,36 +28,45 @@ public class ButtonHoverHandler : MonoBehaviour
     {
         if (dinamicPanel.spawnTower)
         {
-            hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
-            hoverImage.GetComponent<Animator>().SetBool("Open", true);
-            image.texture = cameraTower;
-        }
+            if (type == 'A')
+            {
+                hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
+                hoverImage.GetComponent<Animator>().SetBool("Open", true);
+                imageA.texture = cameraTower;
+            }
+			if (type == 'B')
+			{
+				hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
+				hoverImage.GetComponent<Animator>().SetBool("Open", true);
+				imageB.texture = cameraTower;
+			}
+		}
         else 
         {
-            if (!OnHover)
-            {
-                hoverImage.GetComponent<Animator>().SetBool("Open", false);
-            }
-            else 
-            { 
-                hoverImage.GetComponent<Animator>().SetBool("Open", true);
-            }
-            hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = false;
+            //if (!OnHover)
+            //{
+            //    hoverImage.GetComponent<Animator>().SetBool("Open", false);
+            //}
+            //else 
+            //{ 
+            //    hoverImage.GetComponent<Animator>().SetBool("Open", true);
+            //}
+            //hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = false;
 
             switch (dinamicPanel.towerGrup)
             {
 
                 case 0:
-                    image.texture = towerSpot[0].texture;
-                    image2.texture = towerSpot[1].texture;
+                    imageA.texture = towerSpot[0].texture;
+                    imageB.texture = towerSpot[1].texture;
 					break;
                 case 1:
-                    image.texture = towerSpot[2].texture;
-                    image2.texture = towerSpot[3].texture;
+                    imageA.texture = towerSpot[2].texture;
+                    imageB.texture = towerSpot[3].texture;
                     break;
                 case 2:
-                    image.texture = towerSpot[4].texture;
-                    image2.texture = towerSpot[5].texture;
+                    imageA.texture = towerSpot[4].texture;
+                    imageB.texture = towerSpot[5].texture;
                     break;
             }
         }
