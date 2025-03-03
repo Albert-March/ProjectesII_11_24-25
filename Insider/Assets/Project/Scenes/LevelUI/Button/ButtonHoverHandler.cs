@@ -9,7 +9,6 @@ public class ButtonHoverHandler : MonoBehaviour
     public bool OnHover = false;
     private char type = 'A';
     public SetTowerBaseInput dinamicPanel;
-    public GameObject hoverImage;
     public Text descriptionBox;
 
     public Tower towerReference;
@@ -30,14 +29,10 @@ public class ButtonHoverHandler : MonoBehaviour
         {
             if (type == 'A')
             {
-                hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
-                hoverImage.GetComponent<Animator>().SetBool("Open", true);
                 imageA.texture = cameraTower;
             }
 			if (type == 'B')
 			{
-				hoverImage.transform.GetChild(1).GetComponent<Image>().enabled = true;
-				hoverImage.GetComponent<Animator>().SetBool("Open", true);
 				imageB.texture = cameraTower;
 			}
 		}

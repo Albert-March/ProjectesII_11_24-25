@@ -12,6 +12,8 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public GameObject buttonTowerA;
 	public GameObject buttonTowerB;
+	private Vector3 defaultPosA;
+	private Vector3 defaultPosB;
 
 	public TowerSetter towerSetter;
 	public GameObject clickedButton;
@@ -56,12 +58,10 @@ public class SetTowerBaseInput : MonoBehaviour
 			levelUp2 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2;
 			levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
 
-			if (spawnTower == true)
+            if (spawnTower == true)
 			{
-                rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open"));
                 rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
-				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
-
+                rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
                 Debug.Log(isHoveringUpgradeButton);
                 if (isHoveringUpgradeButton)
 				{
@@ -106,7 +106,10 @@ public class SetTowerBaseInput : MonoBehaviour
 	private void Awake()
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-	}
+		defaultPosA = buttonTowerA.transform.localPosition;
+		defaultPosB = buttonTowerB.transform.localPosition;
+
+    }
 	private void ShowTowerOptions()
 	{
 		TowerStats option1 = towerSetter.towerStats[towerGrup * 2];
@@ -115,7 +118,11 @@ public class SetTowerBaseInput : MonoBehaviour
         statsTextB.gameObject.SetActive(true);
         textoA.gameObject.SetActive(true);
         textoB.gameObject.SetActive(true);
-		buttonTowerA.gameObject.SetActive(true);
+
+        buttonTowerA.transform.localPosition = defaultPosA;
+        buttonTowerB.transform.localPosition = defaultPosB;
+
+        buttonTowerA.gameObject.SetActive(true);
 		buttonTowerB.gameObject.SetActive(true);
         statsTextA.text = $"Damage: {option1.damage}\nFire Rate: {option1.fireRate}\nRange: {option1.range}";
 		statsTextB.text = $"Damage: {option2.damage}\nFire Rate: {option2.fireRate}\nRange: {option2.range}";
@@ -207,6 +214,8 @@ public class SetTowerBaseInput : MonoBehaviour
 	{
 		Debug.Log(hover);
         this.isHoveringUpgradeButton = hover;
+        if (spawnTower == true)
+            rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open") && hover);
 
     }
 
@@ -273,7 +282,8 @@ public class SetTowerBaseInput : MonoBehaviour
 		type = 'B';
 		textoA.gameObject.SetActive(false);
 		statsTextA.gameObject.SetActive(false);
-		buttonTowerA.gameObject.SetActive(false);
+		buttonTowerB.transform.localPosition = defaultPosA;
+        buttonTowerA.gameObject.SetActive(false);
 	}
 
 	public void LevelUp2()
