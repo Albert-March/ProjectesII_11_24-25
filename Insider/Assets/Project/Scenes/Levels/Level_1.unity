@@ -10310,6 +10310,10 @@ PrefabInstance:
       propertyPath: HoverImage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1039491223790595070, guid: 8aeefdf3177088f4ca6c00236371fee9, type: 3}
+      propertyPath: dynamicPanel
+      value: 
+      objectReference: {fileID: 2998357866942224437}
     - target: {fileID: 2138590951911042902, guid: 8aeefdf3177088f4ca6c00236371fee9, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -10318,6 +10322,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3650778841021212436, guid: 8aeefdf3177088f4ca6c00236371fee9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3677403218714357494}
     - target: {fileID: 3650778841021212436, guid: 8aeefdf3177088f4ca6c00236371fee9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
