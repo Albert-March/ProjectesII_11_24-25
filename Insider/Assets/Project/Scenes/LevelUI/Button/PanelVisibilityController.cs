@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PanelVisibilityController : MonoBehaviour
@@ -7,12 +8,18 @@ public class PanelVisibilityController : MonoBehaviour
     public GameObject panel;
     public DinamicPanelAutocloser lockbutton;
 
-    public void TogglePanel()
+	private void Update()
+	{
+		if (panel.GetComponent<Animator>().GetBool("Open") == true && Input.GetMouseButtonDown(0))
+		{
+			panel.GetComponent<Animator>().SetBool("Open", false);
+		}
+	}
+	public void TogglePanel()
     {
         if (panel.GetComponent<Animator>().GetBool("Open"))
         {
             panel.GetComponent<Animator>().SetBool("Open", false);
-            panel.GetComponent<Animator>().SetBool("Open", true);
         }
         else 
         {
