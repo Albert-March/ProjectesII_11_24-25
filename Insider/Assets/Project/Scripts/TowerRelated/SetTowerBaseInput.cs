@@ -60,9 +60,21 @@ public class SetTowerBaseInput : MonoBehaviour
 
             if (spawnTower == true)
 			{
+				if(type == 'A')
+				{
+                    textoB.gameObject.SetActive(false);
+                    statsTextB.gameObject.SetActive(false);
+                    buttonTowerB.gameObject.SetActive(false);
+                }
+				else if(type == 'B')
+				{
+                    textoA.gameObject.SetActive(false);
+                    statsTextA.gameObject.SetActive(false);
+                    buttonTowerB.transform.localPosition = defaultPosA;
+                    buttonTowerA.gameObject.SetActive(false);
+                }
                 rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
                 rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
-                Debug.Log(isHoveringUpgradeButton);
                 if (isHoveringUpgradeButton)
 				{
 					ShowUpgradeStats();
@@ -129,13 +141,14 @@ public class SetTowerBaseInput : MonoBehaviour
 	}
 	private void ShowUpgradeStats()
 	{
-		foreach (Transform child in clickedButton.transform)
+        foreach (Transform child in clickedButton.transform)
 		{
 			if (child.name == "Tower(Clone)")
 			{
 				Tower tower = child.GetComponent<Tower>();
                 if (type == 'A')
                 {
+
                     if (tower.currentLevel == 1)
                     {
                         statsTextA.text = $"Damage:";
@@ -163,7 +176,6 @@ public class SetTowerBaseInput : MonoBehaviour
                 {
                     if (tower.currentLevel == 1)
                     {
-                        Debug.Log("Prova");
                         statsTextB.text = $"Damage:";
                         TowerStats upgradeStats = towerSetter.towerUpgrades1[tower.id];
                         statsTextB.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
@@ -212,7 +224,6 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void OnUpgradeButtonHover(bool hover)
 	{
-		Debug.Log(hover);
         this.isHoveringUpgradeButton = hover;
         if (spawnTower == true)
             rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open") && hover);

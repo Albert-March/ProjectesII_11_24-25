@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class RewardManager : MonoBehaviour
@@ -64,10 +65,14 @@ public class RewardManager : MonoBehaviour
         }
 
 		transform.position += direction * currentSpeed * Time.deltaTime;
-
-		if (Vector3.Distance(transform.position, targetPosition) < 1f)
-		{
-			Destroy(gameObject);
-		}
 	}
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+            if (col.transform.tag == "Player")
+            {
+				Destroy(gameObject);
+			}
+    }
 }

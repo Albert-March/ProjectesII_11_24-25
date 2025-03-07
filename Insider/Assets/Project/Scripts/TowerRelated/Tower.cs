@@ -63,11 +63,6 @@ public class Tower : MonoBehaviour
 		{
 			currentLevel++;
 			SetTowerData(stats);
-			Debug.Log($"La torre ha subido al nivel {currentLevel}");
-		}
-		else
-		{
-			Debug.Log("¡La torre ya está en el nivel máximo!");
 		}
 	}
 
