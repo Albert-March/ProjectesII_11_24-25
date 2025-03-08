@@ -16428,6 +16428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1432096770232490051, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4099320986885165147, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -16444,6 +16448,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4320073616993013122}
+    - target: {fileID: 5363875079221005269, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -76.85711
+      objectReference: {fileID: 0}
     - target: {fileID: 5577983669520227661, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -16584,6 +16592,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7493645418116200468, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493645418116200468, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8004678196369272281, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8004678196369272281, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 8278856199699484742, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: orthographic size
       value: 30.00008
@@ -16616,6 +16640,18 @@ PrefabInstance:
       propertyPath: levelUpParticles
       value: 
       objectReference: {fileID: 4170634768669290866}
+    - target: {fileID: 8921530736872850743, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921530736872850743, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921530736872850743, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

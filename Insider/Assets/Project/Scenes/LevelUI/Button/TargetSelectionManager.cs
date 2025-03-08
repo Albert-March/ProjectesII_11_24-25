@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,7 +45,7 @@ public class TargetSelectionManager : MonoBehaviour
         }
         dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType = t;
         currentTarget = target;
-        selectedTargetText.text = $"Target: {currentTarget}";
+        selectedTargetText.text = $" ↓ Target: {currentTarget}";
         targetOptionsPanel.SetActive(false);
     }
 }
