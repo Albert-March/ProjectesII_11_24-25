@@ -1,43 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelVisibilityController : MonoBehaviour
 {
     public GameObject panel;
-    public DinamicPanelAutocloser lockbutton;
     public Camera m_Camera;
+    private Button lastButton = null;
+    public GameObject bg;
+    AudioManager audioManager;
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        bg.SetActive(false);
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
-            if (hit.collider != null) // Check if we hit something
+    public void TogglePanel(Button button)
+    {
+        if (!panel.GetComponent<Animator>().GetBool("Open"))
+        {
+            OpenPanel(button);
+        }
+        else
+        {
+            if (button == lastButton)
             {
-                Debug.Log(hit.transform.gameObject.layer);
-                if (hit.transform.gameObject.layer != LayerMask.NameToLayer("UI"))
-                {
-                    panel.GetComponent<Animator>().SetBool("Open", false);
-                }
+                ClosePanel();
+            }
+            else
+            {
+                StartCoroutine(SwapPanel(button));
             }
         }
     }
 
-
-    public void TogglePanel()
+    private void OpenPanel(Button button)
     {
-        if (panel.GetComponent<Animator>().GetBool("Open"))
-        {
-            panel.GetComponent<Animator>().SetBool("Open", false);
-        }
-        else 
-        {
-            panel.GetComponent<Animator>().SetBool("Open", !panel.GetComponent<Animator>().GetBool("Open"));
-        }
+        panel.GetComponent<Animator>().SetBool("Open", true);
+        lastButton = button;
+        bg.SetActive(true);
+
+    }
+
+    private void ClosePanel()
+    {
+        panel.GetComponent<Animator>().SetBool("Open", false);
+        lastButton = null;
+        bg.SetActive(false);
+    }
+
+    private IEnumerator SwapPanel(Button button)
+    {
+        ClosePanel();
+        yield return new WaitForSeconds(0.3f); // Simula animación de cierre
+        OpenPanel(button);
+    }
+
+    public void CloseBGPanel()
+    {
+        panel.GetComponent<Animator>().SetBool("Open", false);
+        lastButton = null;
+        bg.SetActive(false);
+        audioManager.PlaySFX(2, 0.2f);
     }
 }
 
