@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1597582164428135232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7400320303071686622}
+  - component: {fileID: 5964986467513954661}
+  m_Layer: 0
+  m_Name: TowerSetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7400320303071686622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597582164428135232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 550.5, y: 259.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5964986467513954661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597582164428135232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5f40a6d20145b44840adbb950dd60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerStats:
+  - {fileID: 11400000, guid: 42927f998019a804c98c78e86bfe823a, type: 2}
+  - {fileID: 11400000, guid: 94af7f61cfa5d104a857e3751f3a4a2c, type: 2}
+  - {fileID: 11400000, guid: d189962ab30c22e4089afad163d0c3c5, type: 2}
+  - {fileID: 11400000, guid: e588470325ce38a47a7b76a4db00e1fd, type: 2}
+  - {fileID: 11400000, guid: edd856879fe3eaa499d98c492d9b4fd6, type: 2}
+  - {fileID: 11400000, guid: 13a35fb87793c7f418b544981851356b, type: 2}
+  towerUpgrades1:
+  - {fileID: 11400000, guid: 3a619c7ed64ad2a4a899da06397bfb75, type: 2}
+  - {fileID: 11400000, guid: 4c111f6e563544a4fabbceba0d3c25a0, type: 2}
+  - {fileID: 11400000, guid: 71fb50333a72b494b810841a2a39f05f, type: 2}
+  - {fileID: 11400000, guid: d760dcb17225c3847b1b0e79c361afc2, type: 2}
+  - {fileID: 11400000, guid: 7a3fadfe450b01244bd64f3ae44fef1d, type: 2}
+  - {fileID: 11400000, guid: 1c705bfc1c2e79b4fbaea6dd29170981, type: 2}
+  towerUpgrades2:
+  - {fileID: 11400000, guid: 6e96bc0618d8cc347891316403cc4b14, type: 2}
+  - {fileID: 11400000, guid: fdc47d6e473aff8479b513cee685763b, type: 2}
+  - {fileID: 11400000, guid: f6adf58ee9ad5974ea3e42b46f441858, type: 2}
+  - {fileID: 11400000, guid: b07b8640b81b2bb499dd4d4a03f303e8, type: 2}
+  - {fileID: 11400000, guid: 308668ac81551da45b08d79313c2f6c3, type: 2}
+  - {fileID: 11400000, guid: edd2d3c235896cb4abb241bd0c109493, type: 2}

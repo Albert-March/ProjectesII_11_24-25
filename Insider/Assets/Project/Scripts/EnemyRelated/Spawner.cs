@@ -64,7 +64,6 @@ public class Spawner : MonoBehaviour
             {
                 if (enemyManager.EnemiesOnScreen <= 0) 
                 {
-                    Debug.Log("Estado completado. Preparando para avanzar...");
                     spawnManager.AdvanceGameState();
                     isInitialized = false;
                 }
