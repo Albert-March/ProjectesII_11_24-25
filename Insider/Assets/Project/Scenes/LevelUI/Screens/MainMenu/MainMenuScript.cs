@@ -32,6 +32,12 @@ public class MainMenuScript : MonoBehaviour
     {
         anim.Play("LevelSelectorClose");
     }
+
+    public void GoMainMenu()
+    {
+		S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+		transition.CallPass("MainMenu");
+	}
     public void ExitGame()
     {
         Application.Quit();

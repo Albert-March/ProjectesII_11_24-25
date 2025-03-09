@@ -1318,13 +1318,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218550050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2999991, y: -14.400005, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1712237521}
   - {fileID: 187757012}
-  m_Father: {fileID: 501808733}
+  m_Father: {fileID: 707317664}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &220103653
@@ -2068,18 +2068,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501808732}
-  m_LocalRotation: {x: -0, y: -0, z: 0.02669458, w: 0.9996436}
+  m_LocalRotation: {x: -0, y: 0, z: -0.9429325, w: -0.3329841}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 218550051}
+  - {fileID: 1116364417}
   m_Father: {fileID: 4473063904369192278}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.059}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -218.9}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259.48965, y: 263.9904}
+  m_AnchoredPosition: {x: 363, y: 403}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &501808734
@@ -2850,7 +2850,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1116364417}
+  - {fileID: 218550051}
   m_Father: {fileID: 4473063904369192278}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 54.373}
@@ -3081,7 +3081,7 @@ Transform:
   m_Children:
   - {fileID: 1487808776}
   - {fileID: 256789164}
-  m_Father: {fileID: 1134900998}
+  m_Father: {fileID: 1120119907}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &863861742
@@ -4086,13 +4086,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116364416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3000295, y: -14.4000025, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1338066239}
   - {fileID: 1333945575}
-  m_Father: {fileID: 707317664}
+  m_Father: {fileID: 501808733}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120119906
@@ -4124,7 +4124,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1271158849}
+  - {fileID: 811023146}
   m_Father: {fileID: 4473063904369192278}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -141.439}
@@ -4176,7 +4176,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 811023146}
+  - {fileID: 1271158849}
   m_Father: {fileID: 4473063904369192278}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -75.083}
@@ -4368,13 +4368,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271158848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2999978, y: -14.39999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1942185925}
   - {fileID: 863861743}
-  m_Father: {fileID: 1120119907}
+  m_Father: {fileID: 1134900998}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1333945574
@@ -7499,6 +7499,10 @@ PrefabInstance:
     - target: {fileID: 6042267022719990822, guid: a4fcf3780d04f69459e4143f382084ab, type: 3}
       propertyPath: m_Name
       value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042267022719990822, guid: a4fcf3780d04f69459e4143f382084ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12687,7 +12691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6a6cd84e661344a33975721a1481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parasiteHealth: 10000000
+  parasiteHealth: 100
   parasiteText: {fileID: 6577068330115069895}
 --- !u!1 &2435688787833888393
 GameObject:
@@ -19599,7 +19603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ac50a652bd568488bf988238010757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  economy: 10000
+  economy: 600
   economyText: {fileID: 4697362616183105427}
 --- !u!60 &3383952320440774198
 PolygonCollider2D:

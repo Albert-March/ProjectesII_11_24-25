@@ -122,12 +122,12 @@
         {
           "waveNumber": "9",
           "enemyTypes": {
-            "Type1": 10,
+            "Type1": 15,
             "Type2": 10,
             "Type3": 0,
             "Type4": 20,
             "Type5": 0,
-            "Type6": 0,
+            "Type6": 5,
             "Type7": 0
           },
           "spawnTime": 1.2,
