@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   damage: 40
-  fireRate: 2
+  fireRate: 3
   DPS: 0
-  projectileHp: 6
-  projectileSpeed: 7
-  range: 10
+  projectileHp: 4
+  projectileSpeed: 5
+  range: 9
   hability: 0
   rangeOffstY: 0
   AnimationPrefab: {fileID: 901765758457287831, guid: 641c85ab194f6a74ca0b304060395caa, type: 3}
