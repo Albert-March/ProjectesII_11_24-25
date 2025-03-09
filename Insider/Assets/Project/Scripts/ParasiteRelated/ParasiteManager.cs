@@ -18,7 +18,8 @@ public class ParasiteManager : MonoBehaviour, IDamage
 		parasiteHealth -= amount;
         if (parasiteHealth < 0)
 		{
-            SceneManager.LoadScene("DeathScreen");
+            S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+            transition.CallPass("DeathScreen");
         }
         parasiteText.text = "HP: " + parasiteHealth.ToString();
     }

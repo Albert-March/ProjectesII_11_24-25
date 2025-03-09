@@ -11,25 +11,26 @@ public class MainMenuScript : MonoBehaviour
     public void PlayGame(Animator anim)
     {
         anim.Play("LevelSelectorOpen");
-        //SceneManager.LoadScene("Level_1");
     }
     public void PlayTutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("Tutorial");
     }
     public void PlayLvl1()
     {
-        SceneManager.LoadScene("Level_1");
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("Level_1");
     }
     public void PlayLvl2()
     {
-        SceneManager.LoadScene("Level_2");
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("Level_2");
     }
 
     public void BackToMain(Animator anim)
     {
         anim.Play("LevelSelectorClose");
-        //SceneManager.LoadScene("MainMenu");
     }
     public void ExitGame()
     {

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transcition: {fileID: 9074740371437261148}
-  ttime: 1
+  ttime: 3
 --- !u!1 &8756893334062857665
 GameObject:
   m_ObjectHideFlags: 0

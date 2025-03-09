@@ -8,6 +8,11 @@ public class FastCam : MonoBehaviour
     int currentSpeed = 3;
     public Text speedText;
 
+    private void Start()
+    {
+        currentSpeed = (int)Time.timeScale;
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("SpeedUp")) 
