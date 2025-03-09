@@ -1,37 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    public TextMeshProUGUI tutorialText;
+    public GameObject P1;
+    public GameObject P2;
 
     private int currentStep = 0;
-    private List<string> tutorialSteps = new List<string>
-    {
-        "How to play: Insider\r\n\nWelcome to Insider, a game where you play as a parasite on a mission to invade the body and prevent antibodies from healing it. To survive, you'll need to build strategic defenses and upgrade your army of infections.",
-        "Objective of the game:\r\n\nYour mission is to parasitize all the organs and reach the brain before it is eliminated by the antibodies. To do this, you must:\r\n\nEliminate waves of antibodies.\r\n\nBuild biological defenses such as viruses, fungi and bacteria.\r\n\nUpgrade your units to make them more effective.\r\n\nManage your economy well to resist until the end.",
-        "Types of Defenses:\r\n\nYou can deploy three types of biological defenses, each with its own strengths:\r\n\nViruses:\r\n\nFungi:\r\n\nBacteria:\r\n\nEach tower can be upgraded with money.",
-        "Key Mechanics:\r\n\nEarning Money:\nEarned by removing antibodies. Spend wisely!\r\n\nUpgrading:\nDon't just build towers, but upgrade the ones you already have.\r\n\nParasite Resistance:\nIf antibodies get to it, you'll lose health. Don't let that happen!",
-        "Can you make it to the brain before you're eliminated? Good luck, parasite!"
-    };
 
-    void Start()
+    private void Start()
     {
-        tutorialText.text = tutorialSteps[currentStep];
+        currentStep = 0;
+    }
+
+    void Update()
+    {
+        if (currentStep == 0)
+        {
+            P1.SetActive(true);
+            P2.SetActive(false);
+        }
+        else if (currentStep == 1)
+        {
+            P1.SetActive(false);
+            P2.SetActive(true);
+        }
+        else
+        {
+            S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+            transition.CallPass("MainMenu");
+        }
     }
 
     public void NextStep()
     {
         currentStep++;
-        if (currentStep < tutorialSteps.Count)
-        {
-            tutorialText.text = tutorialSteps[currentStep];
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
     }
 }
