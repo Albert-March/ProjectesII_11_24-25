@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6a6cd84e661344a33975721a1481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parasiteHealth: 1000
+  parasiteHealth: 100
   parasiteText: {fileID: 4040303764549591540}
 --- !u!4 &869899828165087838
 Transform:
@@ -16428,6 +16428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3372236966487006399, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: economy
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4099320986885165147, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
