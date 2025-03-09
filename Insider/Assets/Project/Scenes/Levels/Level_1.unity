@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6a6cd84e661344a33975721a1481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parasiteHealth: 1000
+  parasiteHealth: 100
   parasiteText: {fileID: 4040303764549591540}
 --- !u!4 &869899828165087838
 Transform:
