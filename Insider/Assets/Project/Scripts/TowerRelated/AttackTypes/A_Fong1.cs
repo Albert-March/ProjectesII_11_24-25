@@ -39,7 +39,7 @@ public class A_Fong1 : MonoBehaviour, IAttackType
             TagBullet bulletScript = bullet.GetComponent<TagBullet>();
             bulletScript.towerScript = GetComponent<Tower>();
             amountOfTagsCreated.Add(bullet);
-            bulletScript.SetTarget(GetRandomPointInsideCircle(), this);
+            bulletScript.SetTarget(e.gameObject.transform.position, this);
         }
 
     }
