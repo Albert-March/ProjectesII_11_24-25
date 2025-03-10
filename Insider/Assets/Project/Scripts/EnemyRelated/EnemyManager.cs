@@ -17,7 +17,8 @@ public class EnemyManager : MonoBehaviour
         EnemiesOnScreen = currentEnemy.Count;
         if (spawnManager.currentState.stateName == "finish" && !spawnManager.isInDelayState)
         {
-            SceneManager.LoadScene("WinScreen");
+            S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+            transition.CallPass("WinScreen");
         }
     }
     public void AddSpawnedEnemy(Enemy e)

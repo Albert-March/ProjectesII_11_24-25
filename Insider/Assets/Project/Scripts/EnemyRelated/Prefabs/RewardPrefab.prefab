@@ -128,8 +128,7 @@ MonoBehaviour:
   phase1Time: 0.2
   acceleration: 30
   maxSpeed: 200
-  targetPosition: {x: 0, y: 0, z: 0}
-  currentSpeed: 0
+  targetPosition: {x: 0, y: 0}
 --- !u!58 &-5938419689630223546
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,7 +163,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!50 &-7179133921349383991
 Rigidbody2D:
   serializedVersion: 4

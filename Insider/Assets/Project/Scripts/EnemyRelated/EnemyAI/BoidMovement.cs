@@ -1,17 +1,19 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoidMovement : EnemyBehaviour
 {
-    [SerializeField] private float separationDistance = 1.5f;
-    [SerializeField] private float alignmentWeight = 0.7f;
-    [SerializeField] private float cohesionWeight = 1.5f;
-    [SerializeField] private float separationWeight = 1.2f;
-    [SerializeField] private float baseNeighborRadius = 3.0f;
-    [SerializeField] private float jitterStrength = 0.2f;
+    [SerializeField] private float separationDistance = 1.2f;
+    [SerializeField] private float alignmentWeight = 0.6f;
+    [SerializeField] private float cohesionWeight = 1.2f;
+    [SerializeField] private float separationWeight = 0.8f;
+    [SerializeField] private float baseNeighborRadius = 2.5f;
+    [SerializeField] private float jitterStrength = 0.1f;
     [SerializeField] private float boidSpeedMultiplier = 1.0f;
-    [SerializeField] private float stuckTimeThreshold = 2.0f;
+    [SerializeField] private float stuckTimeThreshold = 1.5f;
+    [SerializeField] private float avoidanceStrength = 1.8f; // Reduced to prevent sharp turns
+    [SerializeField] private float wallDetectionDistance = 2.8f;
     private Vector2 groupMidpoint = Vector2.zero;
     private Vector2 groupAvoidance = Vector2.zero;
     private float timeStuck = 0.0f;
@@ -36,16 +38,7 @@ public class BoidMovement : EnemyBehaviour
             }
         }
 
-        // Find group's midpoint
-        if (count > 0)
-        {
-            groupMidpoint = totalPosition / count;
-        }
-        else
-        {
-            groupMidpoint = e.transform.position;
-        }
-
+        groupMidpoint = (count > 0) ? totalPosition / count : e.transform.position;
         float adjustedNeighborRadius = Mathf.Max(1.5f, baseNeighborRadius - (count * 0.2f));
 
         Vector2 separation = Vector2.zero;
@@ -91,8 +84,7 @@ public class BoidMovement : EnemyBehaviour
 
         if (DetectStuck(e))
         {
-            Vector2 unstuckDirection = Quaternion.Euler(0, 0, Random.Range(-90, 90)) * e.transform.up;
-            groupAvoidance = unstuckDirection * 2f;
+            groupAvoidance = SteerOutOfObstacle(e);
         }
         else
         {
@@ -101,47 +93,55 @@ public class BoidMovement : EnemyBehaviour
 
         Vector2 jitter = new Vector2(Random.Range(-jitterStrength, jitterStrength), Random.Range(-jitterStrength, jitterStrength));
 
+        // 🔹 **Final movement direction with smoother blending**
         Vector2 targetDirection = (e.path[e.currentTarget].obj.transform.position - e.transform.position).normalized;
-        Vector2 boidDirection = targetDirection + separation * separationWeight + cohesion + alignment + groupAvoidance + jitter;
+        Vector2 boidDirection = Vector2.Lerp(targetDirection,
+            separation * separationWeight + cohesion * 0.9f + alignment + groupAvoidance * avoidanceStrength + jitter, 0.3f);
+
         boidDirection = boidDirection.normalized * boidSpeedMultiplier;
 
-        e.transform.up = Vector2.Lerp(e.transform.up, boidDirection, Time.deltaTime * 3);
+        // **Smooth Rotation using `Slerp` (Prevents Sharp Turns)**
+        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, boidDirection);
+        e.transform.rotation = Quaternion.Slerp(e.transform.rotation, targetRotation, Time.deltaTime * 4); // Adjust turning speed
+
         e.transform.position += (Vector3)(boidDirection * e.movSpeed * Time.deltaTime);
     }
 
+    // **🚀 Improved Wall Avoidance (Less Overpowering) 🚀**
     private Vector2 CalculateGroupAvoidance(Enemy e)
     {
         Vector2 avoidance = Vector2.zero;
         LayerMask mask = LayerMask.GetMask("Terrain");
 
         Vector2 forward = e.transform.up;
-        Vector2 right = Quaternion.Euler(0, 0, -40) * forward;
-        Vector2 left = Quaternion.Euler(0, 0, 40) * forward;
+        Vector2 right45 = Quaternion.Euler(0, 0, -45) * forward;
+        Vector2 left45 = Quaternion.Euler(0, 0, 45) * forward;
 
-        RaycastHit2D hitForward = Physics2D.Raycast(groupMidpoint, forward, 2.5f, mask);
-        RaycastHit2D hitRight = Physics2D.Raycast(groupMidpoint, right, 2.0f, mask);
-        RaycastHit2D hitLeft = Physics2D.Raycast(groupMidpoint, left, 2.0f, mask);
-
-        Debug.DrawRay(groupMidpoint, forward * 2.5f, Color.green);
-        Debug.DrawRay(groupMidpoint, right * 2.0f, Color.red);
-        Debug.DrawRay(groupMidpoint, left * 2.0f, Color.blue);
+        RaycastHit2D hitForward = Physics2D.Raycast(groupMidpoint, forward, wallDetectionDistance, mask);
+        RaycastHit2D hitRight45 = Physics2D.Raycast(groupMidpoint, right45, wallDetectionDistance - 1.0f, mask);
+        RaycastHit2D hitLeft45 = Physics2D.Raycast(groupMidpoint, left45, wallDetectionDistance - 1.0f, mask);
 
         if (hitForward.collider != null)
         {
-            avoidance = -forward * 1.5f;
+            avoidance += -forward * 2.5f;
         }
-        else if (hitRight.collider != null)
+        if (hitRight45.collider != null)
         {
-            avoidance = left * 1.5f;
+            avoidance += left45 * 1.8f;
         }
-        else if (hitLeft.collider != null)
+        if (hitLeft45.collider != null)
         {
-            avoidance = right * 1.5f;
+            avoidance += right45 * 1.8f;
         }
 
-        return avoidance;
+        return avoidance.normalized;
     }
 
+    // **🚀 Improved Stuck Fix (Enemies Stay in Motion) 🚀**
+    private Vector2 SteerOutOfObstacle(Enemy e)
+    {
+        return Quaternion.Euler(0, 0, Random.Range(-45, 45)) * e.transform.up * 1.5f;
+    }
 
     private bool DetectStuck(Enemy e)
     {

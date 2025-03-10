@@ -61,6 +61,7 @@ public class PauseMenu : MonoBehaviour
 
 	public void BackToMain()
 	{
-		SceneManager.LoadScene("MainMenu");
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("MainMenu");
 	}
 }

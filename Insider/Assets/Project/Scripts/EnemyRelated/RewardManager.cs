@@ -5,25 +5,37 @@ using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
-	//Fase 1 (Un poco hacia abajo)
+	// Fase 1 (Un poco hacia abajo)
 	public float initialDownwardForce = 10f;
 	public float downwardDamping = 2f;
 	public float phase1Time = 0.2f;
-	private Vector3 downwardVelocity;
+	private Vector2 downwardVelocity;
 
-	//Fase 2 (Hacia el destino)
-	public float acceleration = 30f;
-	public float maxSpeed = 30f;
-	public Vector3 targetPosition;
-	[SerializeField]private float currentSpeed = 0f;
+	// Fase 2 (Hacia el destino)
+	public float acceleration = 15f;
+	public float maxSpeed = 10f;
+	public Vector2 targetPosition;
+	private float currentSpeed = 0f;
 
 	private bool isPhase2Started = false;
 	private float elapsedTime = 0f;
 
-	public void Initialize(Vector3 target)
+	private Rigidbody2D rb;
+
+	public void Initialize(Vector2 target)
 	{
 		targetPosition = target;
-		downwardVelocity = Vector3.down * initialDownwardForce;
+		downwardVelocity = Vector2.down * initialDownwardForce;
+	}
+
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+	}
+
+	private void Start()
+	{
+		rb.velocity = downwardVelocity;
 	}
 
 	private void Update()
@@ -46,33 +58,31 @@ public class RewardManager : MonoBehaviour
 
 	private void ApplyDownwardForce()
 	{
-		transform.position += downwardVelocity * Time.deltaTime;
-		downwardVelocity = Vector3.Lerp(downwardVelocity, Vector3.zero, downwardDamping * Time.deltaTime);
+		rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, downwardDamping * Time.deltaTime);
 	}
 
 	private void StartPhase2()
 	{
 		isPhase2Started = true;
-		downwardVelocity = Vector3.zero;
+		rb.velocity = Vector2.zero;
 	}
 
 	private void MoveTowardsTarget()
 	{
-		Vector3 direction = (targetPosition - transform.position).normalized;
-		if (currentSpeed < maxSpeed) 
+		Vector2 direction = (targetPosition - rb.position).normalized;
+		if (currentSpeed < maxSpeed)
 		{
-            currentSpeed += acceleration * Time.deltaTime;
-        }
+			currentSpeed += acceleration * Time.deltaTime;
+		}
 
-		transform.position += direction * currentSpeed * Time.deltaTime;
+		rb.velocity = direction * currentSpeed;
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-
-            if (col.transform.tag == "Player")
-            {
-				Destroy(gameObject);
-			}
-    }
+	private void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.CompareTag("Player"))
+		{
+			Destroy(gameObject);
+		}
+	}
 }

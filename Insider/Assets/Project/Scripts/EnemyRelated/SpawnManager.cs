@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -52,11 +53,15 @@ public class SpawnManager : MonoBehaviour
     public bool isInDelayState = false;
     private float time;
 
-    public string jsonFilePath = "Assets/Project/Resources/gameStates.json";
+    string jsonFileName;
+    string sceneName;
 
-    void Start()
+	//public string jsonFilePath = "Assets/Project/Resources/Level_1_States.json";
+
+	void Start()
     {
-        LoadGameStates();
+		sceneName = SceneManager.GetActiveScene().name;
+		LoadGameStates();
         InitializeGameState();
     }
 
@@ -70,7 +75,18 @@ public class SpawnManager : MonoBehaviour
 
     void LoadGameStates()
     {
-        string jsonFileName = "gameStates";
+        switch (sceneName)
+        {
+            case "Level_1":
+                jsonFileName = "Level_1_States";
+                break;
+            case "Level_2":
+				jsonFileName = "Level_2_States";
+				break;
+            default:
+                break;
+        }
+
         TextAsset jsonTextAsset = Resources.Load<TextAsset>(jsonFileName);
         if (jsonTextAsset == null)
         {
