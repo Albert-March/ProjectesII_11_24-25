@@ -12,8 +12,8 @@ public class RewardManager : MonoBehaviour
 	private Vector2 downwardVelocity;
 
 	// Fase 2 (Hacia el destino)
-	public float acceleration = 30f;
-	public float maxSpeed = 30f;
+	public float acceleration = 15f;
+	public float maxSpeed = 10f;
 	public Vector2 targetPosition;
 	private float currentSpeed = 0f;
 
