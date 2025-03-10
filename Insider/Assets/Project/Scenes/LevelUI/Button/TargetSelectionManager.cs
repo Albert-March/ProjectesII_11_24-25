@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +9,41 @@ public class TargetSelectionManager : MonoBehaviour
     public GameObject targetOptionsPanel;
     public Text selectedTargetText;
     private string currentTarget = "First";
+    int targetType = 0;
 
     void Start()
     {
         targetOptionsPanel.SetActive(false);
     }
 
-    
-    public void ToggleTargetOptions()
+	private void Update()
+	{
+		if (dinamicPanel.GetComponent<SetTowerBaseInput>().spawnTower == true)
+        {
+			targetType = dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType;
+			switch (targetType)
+			{
+				case 0:
+					currentTarget = "First";
+					break;
+				case 1:
+					currentTarget = "Last";
+					break;
+				case 2:
+					currentTarget = "Strong";
+					break;
+				case 3:
+					currentTarget = "Far";
+					break;
+				default:
+					currentTarget = "First";
+					break;
+			}
+			selectedTargetText.text = $" ↓ Target: {currentTarget}";
+		}  
+	}
+
+	public void ToggleTargetOptions()
     {
         targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
     }
@@ -43,9 +70,7 @@ public class TargetSelectionManager : MonoBehaviour
                 t = 0;
                 break;
         }
-        dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType = t;
-        currentTarget = target;
-        selectedTargetText.text = $"Target: {currentTarget}";
+		dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType = t;
         targetOptionsPanel.SetActive(false);
     }
 }

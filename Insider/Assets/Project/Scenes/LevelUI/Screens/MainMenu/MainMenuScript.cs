@@ -3,32 +3,41 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (SceneManager.GetActiveScene().name == "MainMenu")
-            {
-                Application.Quit();
-            }
-            else 
-            {
-                SceneManager.LoadScene("MainMenu");
-            }
 
-        }
     }
 
-    public void PlayGame()
+    public void PlayGame(Animator anim)
     {
-        SceneManager.LoadScene("Level_1");
+        anim.Play("LevelSelectorOpen");
+    }
+    public void PlayTutorial()
+    {
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("Tutorial");
+    }
+    public void PlayLvl1()
+    {
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("Level_1");
+    }
+    public void PlayLvl2()
+    {
+        S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+        transition.CallPass("Level_2");
     }
 
-    public void BackToMain()
+    public void BackToMain(Animator anim)
     {
-        SceneManager.LoadScene("MainMenu");
+        anim.Play("LevelSelectorClose");
     }
+
+    public void GoMainMenu()
+    {
+		S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
+		transition.CallPass("MainMenu");
+	}
     public void ExitGame()
     {
         Application.Quit();

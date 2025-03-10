@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/LevelUI/Screens/MainMenu/MainMenu.unity
     guid: 15d18c069715d9c4cb0cd45a3309e4c7
-  - enabled: 0
-    path: Assets/Project/Scenes/LevelManager/LevelManager.unity
-    guid: d6c77976573192b42a83cc7039cf7b21
+  - enabled: 1
+    path: Assets/Project/Scenes/Levels/Tutorial.unity
+    guid: dbbb6764a2e96384ea45c17d914bacbe
   - enabled: 1
     path: Assets/Project/Scenes/Levels/Level_1.unity
     guid: 20c7a99d37baf714084db11342b931fc
+  - enabled: 1
+    path: Assets/Project/Scenes/Levels/Level_2.unity
+    guid: d35f0bf37b99a504c8d1b03afdaebcd9
   - enabled: 1
     path: Assets/Project/Scenes/LevelUI/Screens/WinScreen/WinScreen.unity
     guid: 853447a7cf5599144ace6208857c04d2

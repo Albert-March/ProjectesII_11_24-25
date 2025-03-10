@@ -6,15 +6,14 @@ using UnityEngine.EventSystems;
 
 public class DinamicPanelAutocloser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    bool locked = false;
+    public bool locked = true;
     public GameObject LockButton;
     public Sprite[] Lock;
 
     public GameObject panel;
-    public GameObject hoverButton;
     private bool isMouseOver = false;
     int i = 0;
-    public void ToggleLock() 
+    public void ToggleLock()
     {
         locked = !locked;
     }

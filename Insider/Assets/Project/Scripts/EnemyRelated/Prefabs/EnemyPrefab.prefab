@@ -189,7 +189,7 @@ Transform:
   m_Children:
   - {fileID: 6297263634730631387}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &187529414342961661
 SpriteRenderer:
@@ -266,8 +266,8 @@ MonoBehaviour:
   currentTarget: 0
   destroyParticles: {fileID: 1560452431689086135, guid: 92b0ee759cde73b4ab6f8aea72d3ddb2, type: 3}
   healthBar: {fileID: 2885483125031537487}
+  hpb: {fileID: 6083784961332667760}
   reward: {fileID: 6939825833925267419, guid: 027334f247860f0488883a3dd0e80976, type: 3}
-  damageSounClip: {fileID: 8300000, guid: 99b7a9e342570cd46b0737463ddf36b0, type: 3}
   maxHealth: 0
 --- !u!50 &2176080803243427887
 Rigidbody2D:
@@ -293,8 +293,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &-2029290060706385410
 CircleCollider2D:
@@ -330,7 +330,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!58 &967781967114191661
 CircleCollider2D:
   m_ObjectHideFlags: 0

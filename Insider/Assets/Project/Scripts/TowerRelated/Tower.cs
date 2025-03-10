@@ -63,11 +63,6 @@ public class Tower : MonoBehaviour
 		{
 			currentLevel++;
 			SetTowerData(stats);
-			Debug.Log($"La torre ha subido al nivel {currentLevel}");
-		}
-		else
-		{
-			Debug.Log("¡La torre ya está en el nivel máximo!");
 		}
 	}
 
@@ -109,6 +104,8 @@ public class Tower : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.isTrigger) return;
+
         if (other.transform.tag == "Enemy")
         {
 
