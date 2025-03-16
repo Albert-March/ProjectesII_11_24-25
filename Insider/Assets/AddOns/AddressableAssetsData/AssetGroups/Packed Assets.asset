@@ -52,13 +52,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b0727a1bc79a13446aebcafabd3d49a6
-    m_Address: Prefabs/ExolosionIfClick
+  - m_GUID: d85821846b23cc2438f5fb3fe2cbaa68
+    m_Address: Prefabs/HealingEnemy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1f1cff5694c6d13498a1e64761fdf11b
-    m_Address: Prefabs/EconomyIfClick
+  - m_GUID: 687ef34adf12b5b4ab488ed01ef293ea
+    m_Address: Prefabs/RageEnemy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

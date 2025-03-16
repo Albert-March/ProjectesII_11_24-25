@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour, IDamage
+public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 {
     public int id;
     public float movSpeed;
@@ -64,10 +64,15 @@ public class Enemy : MonoBehaviour, IDamage
 	}
 
     public float maxHealth;
-    public void Start()
+	private float originalSpeed;
+	private bool hasExitedRageZone = false;
+	private float speedResetTime = 0f;
+
+	public void Start()
     {
         maxHealth = health;
-    }
+		originalSpeed = movSpeed;
+	}
 
     public void Update()
     {
@@ -91,6 +96,13 @@ public class Enemy : MonoBehaviour, IDamage
             _damageReciver.Damage(dmg);
             timeSinceLastAtack = Time.time;
         }
+
+		if (hasExitedRageZone && Time.time >= speedResetTime)
+		{
+			movSpeed = originalSpeed;
+			hasExitedRageZone = false;
+            speedResetTime = 0;
+		}
 	}
 
     private void PlayAllBehaviours() 
@@ -157,5 +169,23 @@ public class Enemy : MonoBehaviour, IDamage
 	public void SpawnParticles()
 	{
 		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
+	}
+	public void Heal(float amount)
+	{
+		health += amount;
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+		healthBar.UpdateHealthBar(health, maxHealth);
+	}
+	public void Rage(float speedMultiplier)
+	{
+		movSpeed = originalSpeed * speedMultiplier; // Aumenta la velocidad
+	}
+
+	public void ResetSpeed()
+	{
+		movSpeed = originalSpeed; // Restaura la velocidad original
 	}
 }
