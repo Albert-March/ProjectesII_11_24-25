@@ -18,7 +18,19 @@ public class AudioManager : MonoBehaviour
 	[Header("------SFX Clips------")]
 	public List<AudioClip> SFXClips = new List<AudioClip>();
 
-
+	public static AudioManager instance;
+	private void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 	private void Start()
 	{
 		musicSource.clip = music;
