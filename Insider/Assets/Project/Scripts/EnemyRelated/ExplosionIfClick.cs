@@ -71,9 +71,9 @@ public class ExplosionIfClick : MonoBehaviour
 
 	private void DealDamageToEnemies()
 	{
-		foreach (GameObject enemy in enemiesInRange)
+		for (int i = enemiesInRange.Count - 1; i >= 0; i--)
 		{
-			if (enemy != null && enemy.TryGetComponent<IDamage>(out IDamage damageable))
+			if (enemiesInRange[i] != null && enemiesInRange[i].TryGetComponent<IDamage>(out IDamage damageable))
 			{
 				damageable.Damage(damage);
 			}

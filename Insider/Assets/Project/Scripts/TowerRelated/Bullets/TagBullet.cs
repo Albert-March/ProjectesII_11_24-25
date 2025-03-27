@@ -14,9 +14,11 @@ public class TagBullet : MonoBehaviour
 
     public Tower towerScript;
     public List<GameObject> enemiesOnContact;
+    private Animator animator;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         timeToDeleate = Time.time;
     }
     void Update()
@@ -25,9 +27,9 @@ public class TagBullet : MonoBehaviour
         {
             if (enemiesOnContact.Count > 0)
             {
-                foreach (GameObject d in enemiesOnContact)
+                for (int i = enemiesOnContact.Count - 1; i >= 0; i--)
                 {
-                    d.GetComponent<IDamage>().Damage(towerScript.damage);
+                    enemiesOnContact[i].GetComponent<IDamage>().Damage(towerScript.damage);
                 }
                 tagHp--;
                 dmgCooldown = Time.time;
@@ -38,9 +40,16 @@ public class TagBullet : MonoBehaviour
         if (tagHp <= 0 || (Time.time >= timeToDeleate + 30 && enemiesOnContact.Count < 1)) 
         {
             fatherBullets.amountOfTagsCreated.Remove(gameObject);
-            Destroy(gameObject);
+            animator.SetBool("IsDead", true);
+            StartCoroutine(CheckIfAnimationFinished());
         } 
 
+    }
+
+    IEnumerator CheckIfAnimationFinished()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
     }
 
     public void SetTarget(Vector2 objectpos, A_Fong1 father)

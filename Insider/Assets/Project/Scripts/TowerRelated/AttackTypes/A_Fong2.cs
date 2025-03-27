@@ -9,9 +9,9 @@ public class A_Fong2 : MonoBehaviour, IAttackType
     {
         if (enemiesOnContact.Count > 0)
         {
-            foreach (GameObject d in enemiesOnContact)
+            for (int i = enemiesOnContact.Count - 1; i >= 0; i--)
             {
-                d.GetComponent<IDamage>().Damage(GetComponent<Tower>().damage);
+                enemiesOnContact[i].GetComponent<IDamage>().Damage(GetComponent<Tower>().damage);
             }
         }
     }

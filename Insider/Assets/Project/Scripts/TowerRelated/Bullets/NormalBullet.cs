@@ -15,11 +15,14 @@ public class NormalBullet : MonoBehaviour
             towerScript.lastShootTime += towerScript.fireRate;
             return;
         }
-        Vector2 direction = (target.transform.position - transform.position).normalized;
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, towerScript.projectileSpeed * Time.deltaTime);
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        else 
+        {
+            Vector2 direction = (target.transform.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, towerScript.projectileSpeed * Time.deltaTime);
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        }
     }
 
     public void SetTarget(Enemy newTarget)
@@ -29,11 +32,14 @@ public class NormalBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == target.gameObject && !collision.isTrigger)
+        if (target != null) 
         {
-            IDamage _enemyReference = collision.GetComponent<IDamage>();
-            _enemyReference.Damage(towerScript.damage);
-            Destroy(gameObject);
+            if (collision.gameObject == target.gameObject && !collision.isTrigger)
+            {
+                IDamage _enemyReference = collision.GetComponent<IDamage>();
+                _enemyReference.Damage(towerScript.damage);
+                Destroy(gameObject);
+            }
         }
     }
 }
