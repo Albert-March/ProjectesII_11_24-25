@@ -52,13 +52,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d85821846b23cc2438f5fb3fe2cbaa68
-    m_Address: Prefabs/HealingEnemy
+  - m_GUID: 687ef34adf12b5b4ab488ed01ef293ea
+    m_Address: Prefabs/RageEnemy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 687ef34adf12b5b4ab488ed01ef293ea
-    m_Address: Prefabs/RageEnemy
+  - m_GUID: 007722a08f424584abdde1e45567f5b0
+    m_Address: Prefabs/HealingEnemy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
