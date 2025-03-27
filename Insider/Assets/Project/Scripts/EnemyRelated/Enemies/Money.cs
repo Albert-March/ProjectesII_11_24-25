@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Money : MonoBehaviour, IRewardDropper
 {
-	private string assetAddress = "Prefabs/EconomyIfClick";
+	private string assetAddress = "Prefabs/RageEnemy";
 	public GameObject reward;
 
 	private void Start()
@@ -24,7 +24,5 @@ public class Money : MonoBehaviour, IRewardDropper
 	public void SpawnReward(List<Target> path)
 	{
 		GameObject rewardInstance = Instantiate(reward, transform.position, Quaternion.identity);
-		EconomyIfClick economyScript = rewardInstance.GetComponent<EconomyIfClick>();
-		economyScript.SetPath(path);
 	}
 }
