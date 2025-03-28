@@ -35,6 +35,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject rangeGO;
 
 	public bool isHoveringUpgradeButton = false;
+	private bool hoverBlockedUntilExit = false;
 
 	EconomyManager economyScript;
 	StatesManager states;
@@ -47,10 +48,8 @@ public class SetTowerBaseInput : MonoBehaviour
 		{
 			cam.transform.position = new Vector3(clickedButton.transform.position.x, clickedButton.transform.position.y, -10);
 
-
 			cam.transform.rotation = clickedButton.transform.rotation;
 
-			//towerGrup = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().towerId;
 			spawnTower = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower;
 			levelUp2 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2;
 			levelUp3 = clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3;
@@ -60,7 +59,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
 
-				if (isHoveringUpgradeButton)
+				if (isHoveringUpgradeButton && !hoverBlockedUntilExit)
 				{
 					ShowUpgradeStats();
 				}
@@ -165,14 +164,30 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void OnUpgradeButtonHover(bool hover)
 	{
+		if (hoverBlockedUntilExit)
+		{
+			if (!hover)
+				hoverBlockedUntilExit = false;
+
+			isHoveringUpgradeButton = false;
+			rangeGO.SetActive(false);
+			return;
+		}
+
 		this.isHoveringUpgradeButton = hover;
+
 		if (spawnTower == true)
-			rangeGO.SetActive(transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open") && hover);
+		{
+			bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
+			rangeGO.SetActive(panelOpen && hover);
+		}
 
 	}
 
 	public void TowerButton()
 	{
+		hoverBlockedUntilExit = true;
+
 		if (!spawnTower)
 		{
 			BuildSelectedTower();
