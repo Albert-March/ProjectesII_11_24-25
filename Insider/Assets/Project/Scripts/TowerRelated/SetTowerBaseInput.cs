@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting;
 
 
 public class SetTowerBaseInput : MonoBehaviour
@@ -14,7 +16,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public TowerSetter towerSetter;
 	public GameObject clickedButton;
 	public GameObject cam;
-	public GameObject buildTowerButton;
+	public GameObject towerButton;
 
 	private int pendingTowerId = 3;
 	public bool spawnTower;
@@ -27,7 +29,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Texture towerCam;
 
 	public Text texto;
-	public Text price;
+	public Text towerPrice;
 	public Text statsText;
 
 	public GameObject rangeGO;
@@ -57,6 +59,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			{
 				rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
+
 				if (isHoveringUpgradeButton)
 				{
 					ShowUpgradeStats();
@@ -66,12 +69,19 @@ public class SetTowerBaseInput : MonoBehaviour
 					ShowCurrentStats();
 				}
 				image.texture = towerCam;
-				buildTowerButton.SetActive(false);
 			}
 			else
 			{
 				ShowTowerOptions();
-				buildTowerButton.SetActive(true);
+			}
+
+			if(!levelUp3)
+			{
+				towerButton.SetActive(true);
+			}
+			else
+			{
+				towerButton.SetActive(false);
 			}
 		}
 	}
@@ -95,22 +105,14 @@ public class SetTowerBaseInput : MonoBehaviour
 		{
 			TowerStats stats = towerSetter.towerStats[pendingTowerId];
 			statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}";
+
+			towerPrice.text = $"{ stats.priceLevel_1}";
 		}
 
 		image.texture = towerSpot[pendingTowerId].texture;
 
 		statsText.gameObject.SetActive(true);
 		texto.gameObject.SetActive(true);
-
-		// Mostrar precio
-		//if (levelUp3)
-		//	price.text = " ";
-		//else if (levelUp2)
-		//	price.text = "800";
-		//else if (spawnTower)
-		//	price.text = "400";
-		//else
-		//	price.text = "200";
 	}
 
 	private void ShowCurrentStats()
@@ -121,33 +123,15 @@ public class SetTowerBaseInput : MonoBehaviour
 			{
 				Tower tower = child.GetComponent<Tower>();
 
-				if (isHoveringUpgradeButton)
+				if (tower.currentLevel == 1)
 				{
-					TowerStats upgradeStats = null;
-
-					if (tower.currentLevel == 1)
-						upgradeStats = towerSetter.towerUpgrades1[tower.id];
-					else if (tower.currentLevel == 2)
-						upgradeStats = towerSetter.towerUpgrades2[tower.id];
-
-					if (upgradeStats != null)
-					{
-						statsText.text = $"Damage: {tower.damage} ? {upgradeStats.damage}\n" +
-										 $"Fire Rate: {tower.fireRate} ? {upgradeStats.fireRate}\n" +
-										 $"Range: {tower.range} ? {upgradeStats.range}";
-					}
-					else
-					{
-						statsText.text = $"Damage: {tower.damage}\n" +
-										 $"Fire Rate: {tower.fireRate}\n" +
-										 $"Range: {tower.range}\n" +
-										 $"(Max Level Reached)";
-					}
+					towerPrice.text = $"{tower.priceLevel_2}";
 				}
-				else
+				else if (tower.currentLevel == 2)
 				{
-					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+					towerPrice.text = $"{tower.priceLevel_3}";
 				}
+			    statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
 			}
 		}
 	}
@@ -160,6 +144,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				Tower tower = child.GetComponent<Tower>();
 				TowerStats upgradeStats = null;
 
+
 				if (tower.currentLevel == 1)
 				{
 					upgradeStats = towerSetter.towerUpgrades1[tower.id];
@@ -168,19 +153,11 @@ public class SetTowerBaseInput : MonoBehaviour
 				{
 					upgradeStats = towerSetter.towerUpgrades2[tower.id];
 				}
-
 				if (upgradeStats != null)
 				{
-					statsText.text = $"Damage: {tower.damage} ? {upgradeStats.damage}\n" +
-									  $"Fire Rate: {tower.fireRate} ? {upgradeStats.fireRate}\n" +
-									  $"Range: {tower.range} ? {upgradeStats.range}";
-				}
-				else
-				{
-					statsText.text = $"Damage: {tower.damage}\n" +
-									  $"Fire Rate: {tower.fireRate}\n" +
-									  $"Range: {tower.range}\n" +
-									  $"(Max Level Reached)";
+					statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+									 $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+									 $"Range: {tower.range} -> {upgradeStats.range}";
 				}
 			}
 		}
@@ -194,16 +171,42 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	}
 
+	public void TowerButton()
+	{
+		if (!spawnTower)
+		{
+			BuildSelectedTower();
+			return;
+		}
+
+		foreach (Transform child in clickedButton.transform)
+		{
+			if (child.name == "Tower(Clone)")
+			{
+				Tower tower = child.GetComponent<Tower>();
+				if (tower.currentLevel == 1)
+				{
+					LevelUp2();
+				}
+				else if (tower.currentLevel == 2)
+				{
+					LevelUp3();
+				}
+			}
+		}
+	}
+
 	public void BuildSelectedTower()
 	{
+		TowerStats stats = towerSetter.towerStats[pendingTowerId];
 		economyScript = FindObjectOfType<EconomyManager>();
 		states = FindObjectOfType<StatesManager>();
 
-		if (economyScript.economy >= 200)
+		if (economyScript.economy >= stats.priceLevel_1)
 		{
 			towerSetter.SpawnTower(pendingTowerId, clickedButton.transform);
 
-			economyScript.economy -= 200;
+			economyScript.economy -= stats.priceLevel_1;
 			audioManager.PlaySFX(3, 0.2f);
 
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
@@ -212,6 +215,52 @@ public class SetTowerBaseInput : MonoBehaviour
 		}
 	}
 
+	public void LevelUp2()
+	{
+		TowerStats stats = towerSetter.towerStats[pendingTowerId];
+		if (!levelUp2 && economyScript.economy >= stats.priceLevel_2)
+		{
+			foreach (Transform child in clickedButton.transform)
+			{
+				if (child.name == "Tower(Clone)")
+				{
+					if (child.GetComponent<Tower>().currentLevel == 1)
+					{
+						towerSetter.LevelUp2(child.GetComponent<Tower>());
+					}
+				}
+			}
+			SpawnParticles();
+			economyScript.economy -= stats.priceLevel_2;
+			audioManager.PlaySFX(4, 0.2f);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+
+			towerPrice.text = $"{stats.priceLevel_3}";
+		}
+	}
+
+	public void LevelUp3()
+	{
+		TowerStats stats = towerSetter.towerStats[pendingTowerId];
+		if (!levelUp3 && economyScript.economy >= stats.priceLevel_3)
+		{
+			foreach (Transform child in clickedButton.transform)
+			{
+				if (child.name == "Tower(Clone)")
+				{
+					if (child.GetComponent<Tower>().currentLevel == 2)
+					{
+						towerSetter.LevelUp3(child.GetComponent<Tower>());
+					}
+				}
+			}
+			SpawnParticles();
+			economyScript.economy -= stats.priceLevel_3;
+			audioManager.PlaySFX(4, 0.2f);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
+		}
+		levelUp3 = true;
+	}
 	public void SpawnCannonerTower()
 	{
 		pendingTowerId = 3; // ID del Cannoner
@@ -240,52 +289,6 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void SpawnChomperTower()
 	{
 		pendingTowerId = 1; // ID del Chomper
-	}
-
-	public void LevelUp2()
-	{
-
-		if (!levelUp2 && economyScript.economy >= 400)
-		{
-			foreach (Transform child in clickedButton.transform)
-			{
-				if (child.name == "Tower(Clone)")
-				{
-					if (child.GetComponent<Tower>().currentLevel == 1)
-					{
-						towerSetter.LevelUp2(child.GetComponent<Tower>());
-					}
-				}
-			}
-			SpawnParticles();
-			economyScript.economy -= 400;
-			audioManager.PlaySFX(4, 0.2f);
-			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
-
-		}
-	}
-
-	public void LevelUp3()
-	{
-
-		if (!levelUp3 && economyScript.economy >= 800)
-		{
-			foreach (Transform child in clickedButton.transform)
-			{
-				if (child.name == "Tower(Clone)")
-				{
-					if (child.GetComponent<Tower>().currentLevel == 2)
-					{
-						towerSetter.LevelUp3(child.GetComponent<Tower>());
-					}
-				}
-			}
-			SpawnParticles();
-			economyScript.economy -= 800;
-			audioManager.PlaySFX(4, 0.2f);
-			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
-		}
-		levelUp3 = true;
 	}
 
 	public void SpawnParticles()

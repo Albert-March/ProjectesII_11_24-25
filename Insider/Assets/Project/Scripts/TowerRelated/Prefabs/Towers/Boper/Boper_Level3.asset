@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Fong1_Level3
+  m_Name: Boper_Level3
   m_EditorClassIdentifier: 
-  id: 4
-  damage: 50
-  fireRate: 3
+  id: 5
+  damage: 40
+  fireRate: 2
   DPS: 0
-  projectileHp: 5
-  projectileSpeed: 6
-  range: 10
+  projectileHp: 0
+  projectileSpeed: 0
+  range: 6
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 0
   hability: 0
   rangeOffstY: 0
-  AnimationPrefab: {fileID: 901765758457287831, guid: 641c85ab194f6a74ca0b304060395caa, type: 3}
+  AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
   prefab: {fileID: 0}
   attackManager: {fileID: 0}

@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Fong2_Level1
+  m_Name: Cannoner_Level2
   m_EditorClassIdentifier: 
-  id: 5
-  damage: 20
-  fireRate: 3
+  id: 3
+  damage: 50
+  fireRate: 1
   DPS: 0
   projectileHp: 0
-  projectileSpeed: 0
-  range: 6
+  projectileSpeed: 20
+  range: 13
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 0
   hability: 0
-  rangeOffstY: 2
-  AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
-  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
+  rangeOffstY: 0
+  AnimationPrefab: {fileID: 826557860073593700, guid: c352305603a31b048b6ac2a58e2f2e33, type: 3}
+  prefab: {fileID: 0}
   attackManager: {fileID: 0}

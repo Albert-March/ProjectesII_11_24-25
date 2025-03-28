@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Fong1_Level1
+  m_Name: Chomper_Level1
   m_EditorClassIdentifier: 
-  id: 4
-  damage: 30
-  fireRate: 3
+  id: 1
+  damage: 0
+  fireRate: 10
   DPS: 0
-  projectileHp: 3
-  projectileSpeed: 4
-  range: 8
+  projectileHp: 0
+  projectileSpeed: 0
+  range: 6
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 0
   hability: 0
   rangeOffstY: 2
-  AnimationPrefab: {fileID: 901765758457287831, guid: 641c85ab194f6a74ca0b304060395caa, type: 3}
+  AnimationPrefab: {fileID: 4246025846546519770, guid: 81130991fe71db441b4d7f6950510598, type: 3}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
   attackManager: {fileID: 0}

@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Fong2_Level2
+  m_Name: Bomber_Level2
   m_EditorClassIdentifier: 
-  id: 5
-  damage: 30
+  id: 2
+  damage: 70
   fireRate: 3
   DPS: 0
-  projectileHp: 0
-  projectileSpeed: 0
-  range: 6
+  projectileHp: 18
+  projectileSpeed: 16
+  range: 13
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 800
   hability: 0
   rangeOffstY: 0
-  AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
+  AnimationPrefab: {fileID: 7137959831153074362, guid: e676769e801d32a4c96a716375e7bc4d, type: 3}
   prefab: {fileID: 0}
   attackManager: {fileID: 0}

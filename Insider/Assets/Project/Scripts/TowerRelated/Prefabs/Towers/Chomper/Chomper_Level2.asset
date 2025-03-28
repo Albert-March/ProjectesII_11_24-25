@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Bacteri2_Level3
+  m_Name: Chomper_Level2
   m_EditorClassIdentifier: 
-  id: 3
-  damage: 50
-  fireRate: 0.5
+  id: 1
+  damage: 0
+  fireRate: 8
   DPS: 0
   projectileHp: 0
-  projectileSpeed: 20
-  range: 16
+  projectileSpeed: 0
+  range: 7
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 0
   hability: 0
   rangeOffstY: 0
-  AnimationPrefab: {fileID: 826557860073593700, guid: c352305603a31b048b6ac2a58e2f2e33, type: 3}
-  prefab: {fileID: 0}
+  AnimationPrefab: {fileID: 4246025846546519770, guid: 81130991fe71db441b4d7f6950510598, type: 3}
+  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
   attackManager: {fileID: 0}

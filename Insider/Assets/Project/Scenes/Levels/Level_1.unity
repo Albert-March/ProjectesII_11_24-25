@@ -399,8 +399,10 @@ GameObject:
   - component: {fileID: 247432209}
   - component: {fileID: 247432208}
   - component: {fileID: 247432210}
+  - component: {fileID: 247432211}
+  - component: {fileID: 247432212}
   m_Layer: 5
-  m_Name: buildTowerButton
+  m_Name: TowerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,14 +419,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 968513029}
   m_Father: {fileID: 2124198703}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -369}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 10, y: -285}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &247432208
 MonoBehaviour:
@@ -446,7 +449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ebb4e0e3caafee94687d431d7afe4d64, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -510,7 +513,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2998357866942224437}
         m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
-        m_MethodName: BuildSelectedTower
+        m_MethodName: TowerButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -520,6 +523,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &247432211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247432206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalScale: {x: 1, y: 1, z: 1}
+  newScale: {x: 1.2, y: 1.2, z: 1.2}
+  transitionDuration: 0.2
+--- !u!114 &247432212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247432206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2998357866942224437}
+          m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
+          m_MethodName: OnUpgradeButtonHover
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2998357866942224437}
+          m_TargetAssemblyTypeName: SetTowerBaseInput, Assembly-CSharp
+          m_MethodName: OnUpgradeButtonHover
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &289714942
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,26 +769,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397187363}
   m_CullTransparentMesh: 1
---- !u!1 &462226941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 13981461025012892, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
-  m_PrefabInstance: {fileID: 8176102890751471859}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &462226946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462226941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalScale: {x: 1, y: 1, z: 1}
-  newScale: {x: 1.2, y: 1.2, z: 1.2}
-  transitionDuration: 0.2
 --- !u!1 &506391928 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7839375279633879538, guid: 8be0d795f1935934c830490b4b8029d9, type: 3}
@@ -1906,6 +1949,86 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &968513028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 968513029}
+  - component: {fileID: 968513030}
+  - component: {fileID: 968513031}
+  m_Layer: 5
+  m_Name: Price
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &968513029
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968513028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 247432207}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &968513030
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968513028}
+  m_CullTransparentMesh: 1
+--- !u!114 &968513031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968513028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7176471, g: 0.8509804, b: 0.45490196, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 9b0983ae5d91e42478381655d93cbae9, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Price
 --- !u!224 &1109537325 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4077724124799416161, guid: 8aeefdf3177088f4ca6c00236371fee9, type: 3}
@@ -3443,26 +3566,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &2003164811 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 53032448416953691, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
-  m_PrefabInstance: {fileID: 8176102890751471859}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2003164816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003164811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalScale: {x: 1, y: 1, z: 1}
-  newScale: {x: 1.2, y: 1.2, z: 1.2}
-  transitionDuration: 0.2
 --- !u!1001 &2008613848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17380,6 +17483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesList: 
+  pathIndicesList: 
   currentWaveIndex: 0
   currentState:
     stateName: 
@@ -20198,6 +20302,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1589710687}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: price
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: texto
       value: 
       objectReference: {fileID: 1805630469}
@@ -20213,6 +20321,14 @@ PrefabInstance:
       propertyPath: statsText
       value: 
       objectReference: {fileID: 58757874}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: towerPrice
+      value: 
+      objectReference: {fileID: 968513031}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: towerButton
+      value: 
+      objectReference: {fileID: 247432206}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSetter
       value: 
@@ -20270,6 +20386,8 @@ PrefabInstance:
     - {fileID: 6342350905564278326, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
     - {fileID: 2810424842920134116, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
     - {fileID: 321027355317360788, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+    - {fileID: 13981461025012892, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+    - {fileID: 53032448416953691, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8410329214893350961, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       insertIndex: -1
@@ -20293,12 +20411,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 620867160}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 53032448416953691, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2003164816}
-    - targetCorrespondingSourceObject: {fileID: 13981461025012892, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 462226946}
     - targetCorrespondingSourceObject: {fileID: 2193253678666225201, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 353244117}

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+	//Stats
     public int id;
 	public float damage;
 	public float fireRate;
@@ -12,6 +13,12 @@ public class Tower : MonoBehaviour
 	public int projectileHp;
 	public float projectileSpeed;
 	public float range;
+
+	//Prices
+	public int priceLevel_1;
+	public int priceLevel_2;
+	public int priceLevel_3;
+
 	public float hability; //No es un float (falta definir)
 
 	private SpriteRenderer sprite;
@@ -40,6 +47,10 @@ public class Tower : MonoBehaviour
 		this.projectileHp = stats.projectileHp;
 		this.projectileSpeed = stats.projectileSpeed;
 		this.range = stats.range;
+
+		this.priceLevel_1 = stats.priceLevel_1;
+		this.priceLevel_2 = stats.priceLevel_2;
+		this.priceLevel_3 = stats.priceLevel_3;
 
 		this.hability = stats.hability;
 

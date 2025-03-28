@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Virus2_Level2
+  m_Name: Leiser_Level3
   m_EditorClassIdentifier: 
-  id: 1
-  damage: 0
-  fireRate: 8
+  id: 0
+  damage: 90
+  fireRate: 6
   DPS: 0
   projectileHp: 0
   projectileSpeed: 0
-  range: 7
+  range: 45
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 0
   hability: 0
   rangeOffstY: 0
-  AnimationPrefab: {fileID: 4246025846546519770, guid: 81130991fe71db441b4d7f6950510598, type: 3}
+  AnimationPrefab: {fileID: 3344904414203484110, guid: 10c516cb59b1ae94fbc7ea6f043cd32b, type: 3}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
   attackManager: {fileID: 0}
