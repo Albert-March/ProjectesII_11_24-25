@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Explosive : MonoBehaviour, IRewardDropper
 {
-	private string assetAddress = "Prefabs/ExolosionIfClick";
+	private string assetAddress = "Prefabs/HealingEnemy";
 	public GameObject reward;
 
 	private void Start()

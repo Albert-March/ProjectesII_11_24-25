@@ -10,10 +10,10 @@
         {
           "waveNumber": "1",
           "enemyTypes": {
-            "Type1": 20,
+            "Type1": 0,
             "Type2": 0,
-            "Type3": 0,
-            "Type4": 0,
+            "Type3": 10,
+            "Type4": 10,
             "Type5": 0,
             "Type6": 0,
             "Type7": 0

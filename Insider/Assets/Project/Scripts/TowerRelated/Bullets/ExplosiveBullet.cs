@@ -21,9 +21,14 @@ public class ExplosiveBullet : MonoBehaviour
     }
     void Update()
 	{
-        Vector2 direction = (lastPos - transform.position).normalized;
-		transform.position = Vector2.MoveTowards(transform.position, lastPos, towerScript.projectileSpeed * Time.deltaTime);
-		if (transform.position == lastPos)
+        if (target != null)
+        {
+            lastPos = target.transform.position;
+        }
+        transform.position = Vector2.MoveTowards(transform.position, lastPos, towerScript.projectileSpeed * Time.deltaTime);
+
+
+        if (transform.position == lastPos)
 		{
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / explosionDuration;
@@ -34,15 +39,16 @@ public class ExplosiveBullet : MonoBehaviour
             if (enemiesOnContact.Count > 0 && !hasExploded)
             {
                 hasExploded = true;
-                foreach (GameObject d in enemiesOnContact)
+                for (int i = enemiesOnContact.Count - 1; i >= 0; i--)
                 {
-                    d.GetComponent<IDamage>().Damage(towerScript.damage);
+                    enemiesOnContact[i].GetComponent<IDamage>().Damage(towerScript.damage);
                 }
                 
             }
             Destroy(gameObject);
         }
-	}
+
+    }
 
 	public void SetTarget(Enemy newTarget)
     {

@@ -869,8 +869,6 @@ MonoBehaviour:
   music: {fileID: 8300000, guid: c1e2e10e76265da4280c13990ad67bd8, type: 3}
   SFXClips:
   - {fileID: 8300000, guid: dd4d2ad65aa292d44acf7c2f9d8cbc18, type: 3}
-  musicSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
 --- !u!4 &429933548
 Transform:
   m_ObjectHideFlags: 0
