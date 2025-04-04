@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 239469895}
   - component: {fileID: 239469894}
   m_Layer: 5
-  m_Name: Price
+  m_Name: CannonerPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 289714945}
   - component: {fileID: 289714944}
   m_Layer: 5
-  m_Name: Cannoner
+  m_Name: Bomber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 397187366}
   - component: {fileID: 397187365}
   m_Layer: 5
-  m_Name: Price
+  m_Name: ChomperPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 598166126}
   - component: {fileID: 598166125}
   m_Layer: 5
-  m_Name: Price
+  m_Name: LeiserPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2126,7 +2126,7 @@ GameObject:
   - component: {fileID: 1241958725}
   - component: {fileID: 1241958724}
   m_Layer: 5
-  m_Name: Price
+  m_Name: BomberPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2243,7 +2243,7 @@ GameObject:
   - component: {fileID: 1353824960}
   - component: {fileID: 1353824959}
   m_Layer: 5
-  m_Name: Cannoner
+  m_Name: Leiser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 1359041306}
   - component: {fileID: 1359041305}
   m_Layer: 5
-  m_Name: Price
+  m_Name: TagerPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2637,7 +2637,7 @@ GameObject:
   - component: {fileID: 1584881852}
   - component: {fileID: 1584881851}
   m_Layer: 5
-  m_Name: Cannoner
+  m_Name: Tager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2786,7 +2786,7 @@ GameObject:
   - component: {fileID: 1608163060}
   - component: {fileID: 1608163059}
   m_Layer: 5
-  m_Name: Cannoner
+  m_Name: Chomper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3067,7 +3067,7 @@ GameObject:
   - component: {fileID: 1796364523}
   - component: {fileID: 1796364522}
   m_Layer: 5
-  m_Name: Cannoner
+  m_Name: Boper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3358,7 +3358,7 @@ GameObject:
   - component: {fileID: 1920966881}
   - component: {fileID: 1920966880}
   m_Layer: 5
-  m_Name: Price
+  m_Name: BoperPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20322,9 +20322,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 58757874}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: boperPrice
+      value: 
+      objectReference: {fileID: 1920966880}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: tagerPrice
+      value: 
+      objectReference: {fileID: 1359041305}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerPrice
       value: 
       objectReference: {fileID: 968513031}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: bomberPrice
+      value: 
+      objectReference: {fileID: 1241958724}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: leiserPrice
+      value: 
+      objectReference: {fileID: 598166125}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerButton
       value: 
@@ -20333,6 +20349,14 @@ PrefabInstance:
       propertyPath: towerSetter
       value: 
       objectReference: {fileID: 1767503583407530509}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: chomperPrice
+      value: 
+      objectReference: {fileID: 397187365}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: cannonerPrice
+      value: 
+      objectReference: {fileID: 239469894}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: buildTowerButton
       value: 
