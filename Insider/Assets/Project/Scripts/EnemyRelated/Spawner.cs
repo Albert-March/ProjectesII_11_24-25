@@ -93,7 +93,6 @@ public class Spawner : MonoBehaviour
             e.path = targetManager.GetRandomPath();
             e.enabled = true;
 
-
             enemyManager.AddSpawnedEnemy(e);
         }
     }

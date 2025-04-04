@@ -11,6 +11,9 @@ public class EnemyStats : ScriptableObject
     public float health;
     public float dmg;
     public int economyGiven;
-    public Color color;
+    public Vector2 size;
+    public GameObject AnimationsPrefab;
     public GameObject prefab;
 }
+
+//

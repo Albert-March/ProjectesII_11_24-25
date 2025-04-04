@@ -10,13 +10,13 @@
         {
           "waveNumber": "1",
           "enemyTypes": {
-            "Type1": 0,
-            "Type2": 0,
-            "Type3": 10,
-            "Type4": 10,
+            "Type1": 1,
+            "Type2": 1,
+            "Type3": 0,
+            "Type4": 1,
             "Type5": 0,
-            "Type6": 0,
-            "Type7": 0
+            "Type6": 1,
+            "Type7": 1
           },
           "spawnTime": 1.0,
           "delay": 10.0

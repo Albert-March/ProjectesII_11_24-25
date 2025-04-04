@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
     public float health;
     public float dmg;
     public int economyGiven;
-
+    public Vector2 visualSize;
     public EnemyTypeManager enemyTypeManager;
 
     SpriteRenderer sprite;
@@ -48,7 +48,14 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
         this.health = enemy.health;
         this.dmg = enemy.dmg;
         this.economyGiven = enemy.economyGiven;
-        this.sprite.color = enemy.color;
+
+        //InstantiateAnimation:
+
+        visualSize = enemy.size;
+        GameObject animationGO = Instantiate(enemy.AnimationsPrefab, transform);
+        animationGO.transform.localScale = visualSize;
+
+        //this.sprite.color = enemy.color;
         behaviours.Add(gameObject.AddComponent<BaseMovement>());
         behaviours.Add(gameObject.AddComponent<ObjectAvoidance>());
         behaviours.Add(gameObject.AddComponent<BoidMovement>());

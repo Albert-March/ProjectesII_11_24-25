@@ -18,5 +18,6 @@ MonoBehaviour:
   health: 100
   dmg: 10
   economyGiven: 10
-  color: {r: 0.7028302, g: 1, b: 0.7028302, a: 1}
+  size: {x: 1, y: 1}
+  AnimationsPrefab: {fileID: 8505458628454462441, guid: c5a8abc170a1ee2479459029b4c64738, type: 3}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
