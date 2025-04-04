@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
     public float dmg;
     public int economyGiven;
     public Vector2 visualSize;
+    public CircleCollider2D EnemyCollider;
+    public GameObject animationGO;
+
     public EnemyTypeManager enemyTypeManager;
 
     SpriteRenderer sprite;
@@ -52,8 +55,9 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
         //InstantiateAnimation:
 
         visualSize = enemy.size;
-        GameObject animationGO = Instantiate(enemy.AnimationsPrefab, transform);
+        animationGO = Instantiate(enemy.AnimationsPrefab, transform);
         animationGO.transform.localScale = visualSize;
+        EnemyCollider.radius *= (visualSize.x + visualSize.y);
 
         //this.sprite.color = enemy.color;
         behaviours.Add(gameObject.AddComponent<BaseMovement>());
@@ -139,21 +143,13 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 
     public void Damage(float amount)
     {
-        if(id==4 && health == 100)
-        {
-
-            health -= 1;
-
-		}
-        else
-        {
-			health -= amount;
-		}
+		health -= amount;
 
         if (health <= 0) 
         {
             economyScript = FindObjectOfType<EconomyManager>();
 			economyScript.economy += economyGiven;
+            
             SpawnParticles();
 			IRewardDropper rewardDropper = GetComponent<IRewardDropper>();
 			if (rewardDropper != null)
@@ -165,8 +161,12 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 				Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
 			}
 			audioManager.PlaySFX(0, 0.1f);
-
-			enemyManager.RemoveEnemy(this);
+            animationGO.GetComponent<Animator>().SetBool("Death", true);
+            if (animationGO.GetComponent<Animator>())
+            {
+                
+            }
+            enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
             
         }

@@ -262,6 +262,7 @@ MonoBehaviour:
   dmg: 0
   economyGiven: 0
   visualSize: {x: 0, y: 0}
+  EnemyCollider: {fileID: -2029290060706385410}
   enemyTypeManager: {fileID: -7400421885680730298}
   enemyManager: {fileID: 0}
   currentTarget: 0
