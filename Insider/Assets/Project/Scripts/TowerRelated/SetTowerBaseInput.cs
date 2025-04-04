@@ -28,6 +28,16 @@ public class SetTowerBaseInput : MonoBehaviour
 	public RawImage image;
 	public Texture towerCam;
 
+	public Text cannonerPrice;
+	public Text bomberPrice;
+	public Text tagerPrice;
+	public Text boperPrice;
+	public Text leiserPrice;
+	public Text chomperPrice;
+
+
+
+
 	public Text texto;
 	public Text towerPrice;
 	public Text statsText;
@@ -72,6 +82,12 @@ public class SetTowerBaseInput : MonoBehaviour
 			else
 			{
 				ShowTowerOptions();
+				cannonerPrice.text = towerSetter.towerStats[3].priceLevel_1.ToString();
+				bomberPrice.text = towerSetter.towerStats[2].priceLevel_1.ToString();
+				tagerPrice.text = towerSetter.towerStats[4].priceLevel_1.ToString();
+				boperPrice.text = towerSetter.towerStats[5].priceLevel_1.ToString();
+				leiserPrice.text = towerSetter.towerStats[0].priceLevel_1.ToString();
+				chomperPrice.text = towerSetter.towerStats[1].priceLevel_1.ToString();
 			}
 
 			if(!levelUp3)
@@ -181,7 +197,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
 			rangeGO.SetActive(panelOpen && hover);
 		}
-
+		pendingTowerId = 3;
 	}
 
 	public void TowerButton()
@@ -278,32 +294,74 @@ public class SetTowerBaseInput : MonoBehaviour
 	}
 	public void SpawnCannonerTower()
 	{
-		pendingTowerId = 3; // ID del Cannoner
+		if (pendingTowerId == 3)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 3; // ID del Cannoner
+		}
 	}
 
 	public void SpawnBomberTower()
 	{
-		pendingTowerId = 2; // ID del Bomber
+		if (pendingTowerId == 2)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 2; // ID del Bomber
+		}
 	}
 
 	public void SpawnTagerTower()
 	{
-		pendingTowerId = 4; // ID del Tager
+		if (pendingTowerId == 4)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 4; // ID del Tager
+		}
 	}
 
 	public void SpawnBoperTower()
 	{
-		pendingTowerId = 5; // ID del Boper
+		if (pendingTowerId == 5)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 5; // ID del Boper
+		}
 	}
 
 	public void SpawnLeiserTower()
 	{
-		pendingTowerId = 0; // ID del Leiser
+		if (pendingTowerId == 0)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 0; // ID del Leiser
+		}
 	}
 
 	public void SpawnChomperTower()
 	{
-		pendingTowerId = 1; // ID del Chomper
+		if (pendingTowerId == 1)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 1; // ID del Chomper
+		}
 	}
 
 	public void SpawnParticles()
