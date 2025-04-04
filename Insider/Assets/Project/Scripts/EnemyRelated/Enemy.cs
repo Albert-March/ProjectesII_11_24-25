@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
+public class Enemy : MonoBehaviour, IDamage, IHealable
 {
     public int id;
     public float movSpeed;
@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 
     public EnemyTypeManager enemyTypeManager;
 
-    SpriteRenderer sprite;
     public List<Target> path;
 
     public EnemyManager enemyManager;
@@ -30,7 +29,6 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 
     private IDamage _damageReciver;
 
-    private float timeSinceLastAtack = 0;
 
 	[SerializeField] private ParticleSystem destroyParticles;
 	private ParticleSystem destroyParticlesInstance;
@@ -40,6 +38,8 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 
     [SerializeField] private GameObject reward;
     private GameObject rewardInstance;
+
+    public bool hasAtacked = false;
 
     AudioManager audioManager;
 
@@ -69,20 +69,15 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 
     private void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
         healthBar = GetComponentInChildren<HealthBar>();
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
 
     public float maxHealth;
-	private float originalSpeed;
-	private bool hasExitedRageZone = false;
-	private float speedResetTime = 0f;
 
 	public void Start()
     {
         maxHealth = health;
-		originalSpeed = movSpeed;
 	}
 
     public void Update()
@@ -102,20 +97,35 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
         }
 
 
-        if (Time.time >= timeSinceLastAtack + attackSpeed)
+        if (_damageReciver != null && !hasAtacked)
         {
-            _damageReciver.Damage(dmg);
-            timeSinceLastAtack = Time.time;
+            hasAtacked = true;
+            Animator anim = animationGO.GetComponent<Animator>();
+            anim.SetBool("Atack", true);
+            StartCoroutine(WaitForAtackEnd());
         }
-
-		if (hasExitedRageZone && Time.time >= speedResetTime)
-		{
-			movSpeed = originalSpeed;
-			hasExitedRageZone = false;
-            speedResetTime = 0;
-		}
 	}
 
+    private IEnumerator WaitForAtackEnd()
+    {
+        while (!animationGO.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Atack"))
+        {
+            yield return null;
+        }
+
+        while (animationGO.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            yield return null;
+        }
+        _damageReciver.Damage(dmg);
+        StartCoroutine(DieAfterDelay());
+
+    }
+    private IEnumerator DieAfterDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Damage(health);
+    }
     private void PlayAllBehaviours() 
     {
         foreach (var behaviour in behaviours)
@@ -161,19 +171,22 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 				Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
 			}
 			audioManager.PlaySFX(0, 0.1f);
-            animationGO.GetComponent<Animator>().SetBool("Death", true);
-            if (animationGO.GetComponent<Animator>())
-            {
-                
-            }
+
+            animationGO.transform.parent = null;
+
+            Animator anim = animationGO.GetComponent<Animator>();
+            anim.SetBool("Dead", true);
+            
+            animationGO.AddComponent<DelayedSelfDestruct>();
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
-            
         }
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}
 
-	public void SpawnParticles()
+
+
+    public void SpawnParticles()
 	{
 		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
 	}
@@ -185,14 +198,5 @@ public class Enemy : MonoBehaviour, IDamage, IHealable, IMovable
 			health = maxHealth;
 		}
 		healthBar.UpdateHealthBar(health, maxHealth);
-	}
-	public void Rage(float speedMultiplier)
-	{
-		movSpeed = originalSpeed * speedMultiplier; // Aumenta la velocidad
-	}
-
-	public void ResetSpeed()
-	{
-		movSpeed = originalSpeed; // Restaura la velocidad original
 	}
 }
