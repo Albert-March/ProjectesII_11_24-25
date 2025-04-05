@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnPoint
 {
@@ -20,10 +21,13 @@ public class Spawner : MonoBehaviour
     private float spawnTime = 1f;
     private float currentSpawnTime = 0.0f;
 	private bool isInitialized = false;
+    public bool waitingForNextWave = false;
 
 	public EnemyManager enemyManager;
     public TargetManager targetManager;
 	private SpawnManager spawnManager;
+
+	public Image buttonImage;
 
 	//SELECTING THE SPAWN POINT
 	public Transform SP;
@@ -69,6 +73,34 @@ public class Spawner : MonoBehaviour
                 }
             }
 
+		}
+
+        if (spawnManager.currentState.stateName == "wave" && spawnManager.currentWaveIndex < spawnManager.currentState.waves.Count - 1 &&
+			enemyManager.EnemiesOnScreen <= 0 && pendingEnemies.Count == 0)
+        {
+            waitingForNextWave = true;
+        }
+        else
+        {
+			waitingForNextWave = false;
+		}
+
+        if (waitingForNextWave)
+        {
+			buttonImage.color = Color.green;
+		}
+        else
+        {
+            buttonImage.color = Color.red;
+        }
+	}
+
+	public void NextWave()
+	{
+		if (waitingForNextWave)
+		{
+			spawnManager.currentWaveIndex++;
+			spawnManager.InitializeWave();
 		}
 	}
 

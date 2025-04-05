@@ -53,6 +53,7 @@ public class SpawnManager : MonoBehaviour
 	public GameState currentState;
 
 	public bool isInDelayState = false;
+	private bool pendingStateAdvance = false;
 	private float time;
 
 	string jsonFileName;
@@ -62,7 +63,11 @@ public class SpawnManager : MonoBehaviour
 	{
 		sceneName = SceneManager.GetActiveScene().name;
 		LoadGameStates();
-		InitializeGameState();
+
+		if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
+		{
+			currentState = gameStateRoot.gameStates[currentStateIndex];
+		}
 	}
 
 	void Update()
@@ -95,25 +100,6 @@ public class SpawnManager : MonoBehaviour
 		gameStateRoot = JsonUtility.FromJson<Root>(jsonText);
 	}
 
-	void InitializeGameState()
-	{
-		if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
-		{
-			currentState = gameStateRoot.gameStates[currentStateIndex];
-
-			if (currentState.stateName == "initial" || currentState.stateName == "finish")
-			{
-				PopulateEnemiesList(currentState.enemyTypes);
-				StartDelay(currentState.delay);
-			}
-			else if (currentState.stateName == "wave")
-			{
-				currentWaveIndex = 0;
-				InitializeWave();
-			}
-		}
-	}
-
 	public void AdvanceGameState()
 	{
 		if (isInDelayState) return;
@@ -122,23 +108,20 @@ public class SpawnManager : MonoBehaviour
 
 		if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
 		{
-			GameState currentState = gameStateRoot.gameStates[currentStateIndex];
-
-			if (currentState.stateName == "wave" && currentWaveIndex < currentState.waves.Count - 1)
+			if (currentState.stateName == "initial")
 			{
-				currentWaveIndex++;
-				InitializeWave();
+				StartDelay(currentState.delay);
+				pendingStateAdvance = true;
 			}
-			else
+			else if (currentState.stateName == "wave" && currentWaveIndex > currentState.waves.Count - 1)
 			{
-				currentStateIndex++;
-				currentWaveIndex = 0;
-				InitializeGameState();
+				StartDelay(currentState.delay);
+				pendingStateAdvance = true;
 			}
 		}
 	}
 
-	void InitializeWave()
+	public void InitializeWave()
 	{
 		if (currentState.waves != null && currentWaveIndex < currentState.waves.Count)
 		{
@@ -272,6 +255,21 @@ public class SpawnManager : MonoBehaviour
 		{
 			isInDelayState = false;
 			time = 0;
+
+			if (pendingStateAdvance)
+			{
+				currentStateIndex++;
+				if (currentStateIndex < gameStateRoot.gameStates.Count)
+				{
+					currentState = gameStateRoot.gameStates[currentStateIndex];
+
+					if (currentState.stateName == "wave")
+					{
+						currentWaveIndex = -1; // si quieres esperar botón para avanzar
+					}
+				}
+				pendingStateAdvance = false;
+			}
 		}
 	}
 }

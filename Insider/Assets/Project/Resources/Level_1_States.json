@@ -2,7 +2,7 @@
   "gameStates": [
     {
       "stateName": "initial",
-      "delay": 30.0
+      "delay": 10.0
     },
     {
       "stateName": "wave",
