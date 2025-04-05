@@ -37,9 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LaserEdgeSmothnes: 0
-    - _LaserEdgeThiccnes: 10
-    - _LaserSpeed: 1
+    - _LaserEdgeSmothnes: 9
+    - _LaserEdgeThiccnes: 8
+    - _LaserSpeed: 0.1
     m_Colors:
     - _Color: {r: 0.98833746, g: 0.60089254, b: 0, a: 0}
   m_BuildTextureStacks: []

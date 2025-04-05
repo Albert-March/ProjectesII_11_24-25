@@ -9,10 +9,10 @@ public class TowerStats : ScriptableObject
     public int id;
     public float damage;
 	public float fireRate;
-	public float DPS;
 	public int projectileHp;
 	public float projectileSpeed;
 	public float range;
+	public int targetAmount;
 
 	//Prices
 	public int priceLevel_1;

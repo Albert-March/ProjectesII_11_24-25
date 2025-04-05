@@ -32,8 +32,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ca06f6f502523b94482a98355382c3c7
-    m_Address: Prefabs/BulletLaser
+  - m_GUID: 16feb6341075bb44ba8ddbba3bfc3d4a
+    m_Address: Prefabs/NewLaser
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

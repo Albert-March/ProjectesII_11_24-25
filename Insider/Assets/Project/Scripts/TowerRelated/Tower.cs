@@ -13,7 +13,7 @@ public class Tower : MonoBehaviour
 	public int projectileHp;
 	public float projectileSpeed;
 	public float range;
-
+	public int targetAmount;
 	//Prices
 	public int priceLevel_1;
 	public int priceLevel_2;
@@ -43,10 +43,10 @@ public class Tower : MonoBehaviour
 		this.id = stats.id;
 		this.damage = stats.damage;
 		this.fireRate = stats.fireRate;
-		this.DPS = stats.DPS;
 		this.projectileHp = stats.projectileHp;
 		this.projectileSpeed = stats.projectileSpeed;
 		this.range = stats.range;
+		this.targetAmount = stats.targetAmount;
 
 		this.priceLevel_1 = stats.priceLevel_1;
 		this.priceLevel_2 = stats.priceLevel_2;
@@ -87,30 +87,9 @@ public class Tower : MonoBehaviour
         if (animatorTower.GetCurrentAnimatorStateInfo(0).IsName("Spawn")) { return; }
         if (enemiesInRange.Count > 0)
         {
-            if(id == 3)
-            {
-				animatorTower.SetBool("IsAttacking", true);
-			}
-			if (Time.time >= lastShootTime + fireRate)
-            {
-				if(id != 3)
-				{
-					animatorTower.SetBool("IsAttacking", true);
-				}
-			    Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
-                attackManager.attackType.Attack(enemyHolder, animatorTower, audioManager);
-				audioManager.PlaySFX(1, 0.1f);
-				lastShootTime = Time.time;
-            }
-		    else if(id != 3)
-		    {
-			    animatorTower.SetBool("IsAttacking", false);
-		    }
+            attackManager.attackType.Attack(enemiesInRange, targetAmount, animatorTower, audioManager, targetType, targetManager);
 		}
-		else
-		{
-			animatorTower.SetBool("IsAttacking", false);
-		}
+
 	}
 
     public void OnTriggerEnter2D(Collider2D other)

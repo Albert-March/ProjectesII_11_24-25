@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Leiser_Level1
   m_EditorClassIdentifier: 
   id: 0
-  damage: 20
-  fireRate: 5
-  DPS: 0
+  damage: 5
+  fireRate: 4
   projectileHp: 0
   projectileSpeed: 0
   range: 25
+  targetAmount: 4
   priceLevel_1: 200
   priceLevel_2: 400
   priceLevel_3: 0
