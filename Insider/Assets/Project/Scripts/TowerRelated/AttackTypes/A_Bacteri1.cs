@@ -21,12 +21,13 @@ public class A_Bacteri1 : MonoBehaviour, IAttackType
             bulletPrefab = handle.Result;
         }
     }
-    public void Attack(Enemy e)
+    public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         // Asignar objetiu
         ExplosiveBullet bulletScript = bullet.GetComponent<ExplosiveBullet>();
         bulletScript.towerScript = GetComponent<Tower>();
-        bulletScript.SetTarget(e);
+        List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount, targetType);
+        bulletScript.SetTarget(enemyHolder[0]);
     }
 }

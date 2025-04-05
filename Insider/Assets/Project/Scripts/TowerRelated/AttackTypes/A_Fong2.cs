@@ -5,7 +5,7 @@ using UnityEngine;
 public class A_Fong2 : MonoBehaviour, IAttackType
 {
     public List<GameObject> enemiesOnContact = new List<GameObject>();
-    public void Attack(Enemy e)
+    public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
         if (enemiesOnContact.Count > 0)
         {

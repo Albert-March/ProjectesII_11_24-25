@@ -29,7 +29,7 @@ public class A_Fong1 : MonoBehaviour, IAttackType
     {
         circleCollider = GetComponent<CircleCollider2D>();
     }
-    public void Attack(Enemy e)
+    public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
         if (amountOfTagsCreated.Count < GetComponent<Tower>().projectileSpeed) 
         {
@@ -39,7 +39,8 @@ public class A_Fong1 : MonoBehaviour, IAttackType
             TagBullet bulletScript = bullet.GetComponent<TagBullet>();
             bulletScript.towerScript = GetComponent<Tower>();
             amountOfTagsCreated.Add(bullet);
-            bulletScript.SetTarget(e.gameObject.transform.position, this);
+            List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount, targetType);
+            bulletScript.SetTarget(enemyHolder[0].gameObject.transform.position, this);
         }
 
     }

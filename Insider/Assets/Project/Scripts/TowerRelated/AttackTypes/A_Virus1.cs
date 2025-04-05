@@ -7,14 +7,11 @@ using UnityEngine.UI;
 
 public class A_Virus1 : MonoBehaviour, IAttackType
 {
-    private Enemy target;
-    
-    private string assetAddress = "Prefabs/BulletLaser";
     private GameObject laserPrefab;
-    private GameObject laser;
-    private Vector2 direction;
-    private float angle;
-    private float distance;
+    private string assetAddress = "Prefabs/NewLaser";
+
+    private HashSet<Enemy> activeTargets = new HashSet<Enemy>();
+    private int activeLaserCount = 0;
 
     void Start()
     {
@@ -28,40 +25,137 @@ public class A_Virus1 : MonoBehaviour, IAttackType
             laserPrefab = handle.Result;
         }
     }
-    public void Attack(Enemy e)
+
+    public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
-        if (e != null) { target = e; }
-        direction = (target.transform.position - transform.position).normalized;
-        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        distance = Vector2.Distance(transform.position, target.transform.position);
+        if (laserPrefab == null || e == null) return;
 
-        DrawLaser();
+        int allowed = TargetAmount - activeLaserCount;
+        if (allowed <= 0) return;
 
-        IDamage enemyDmg = e.transform.GetComponent<IDamage>();
-        if (enemyDmg != null)
+        int assigned = 0;
+        List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount * 2, targetType);
+
+        foreach (Enemy candidate in enemyHolder)
         {
-            enemyDmg.Damage(GetComponent<Tower>().damage);
+            if (candidate == null || activeTargets.Contains(candidate)) continue;
+
+            activeTargets.Add(candidate);
+            activeLaserCount++;
+            StartCoroutine(HandleLaserAttack(candidate));
+            assigned++;
+
+            if (assigned >= allowed)
+                break;
         }
     }
 
-    void DrawLaser()
+    IEnumerator HandleLaserAttack(Enemy target)
     {
-        if (target == null) { return; }
-        laser = Instantiate(laserPrefab, Vector3.Lerp(transform.position, target.transform.position, 0.5f), Quaternion.Euler(0, 0, angle));
-        laser.transform.SetParent(this.transform);
-        laser.GetComponent<SpriteRenderer>().size = new Vector2(distance, laser.GetComponent<SpriteRenderer>().size.y);
-        StartCoroutine(DeleatLaser());
-    }
+        Tower tower = GetComponent<Tower>();
+        Vector3 startWorld = tower.transform.position;
 
-    IEnumerator DeleatLaser()
-    {
-        while (laser.transform.localScale.y > 0) 
+        GameObject laserObj = Instantiate(laserPrefab, startWorld, Quaternion.identity);
+        laserObj.transform.SetParent(tower.transform);
+
+        Transform startVFX = laserObj.transform.Find("Start");
+        Transform lineObj = laserObj.transform.Find("Line");
+        Transform endVFX = laserObj.transform.Find("End");
+
+        LineRenderer lr = lineObj.GetComponent<LineRenderer>();
+        ParticleSystem startParticles = startVFX.GetComponent<ParticleSystem>();
+        ParticleSystem endParticles = endVFX.GetComponent<ParticleSystem>();
+
+        laserObj.transform.position = startWorld;
+        Vector3 startLocal = startVFX.localPosition;
+
+        lr.useWorldSpace = false;
+        lr.SetPosition(0, startLocal);
+        lr.SetPosition(1, startLocal);
+
+        float t = 0f;
+        Vector3 velocity = Vector3.zero;
+        Vector3 endLocal = Vector3.zero;
+
+        while (t < 1f && target != null)
         {
-            laser.transform.localScale = new Vector2(1, laser.transform.localScale.y - ((GetComponent<Tower>().fireRate/2) * Time.deltaTime));
+            t += Time.deltaTime * 5f;
+            Vector3 targetWorld = target.transform.position;
+            endLocal = laserObj.transform.InverseTransformPoint(targetWorld);
+
+            Vector3 interpolatedEnd = Vector3.Lerp(startLocal, endLocal, t);
+            lr.SetPosition(1, interpolatedEnd);
+            endVFX.localPosition = interpolatedEnd;
+
+            Vector3 dir = (interpolatedEnd - startLocal).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            startVFX.localRotation = Quaternion.Euler(-angle, 0f, 0f);
+            endVFX.localRotation = Quaternion.Euler(-angle + 180f, 0f, 0f);
+
             yield return null;
         }
-        Destroy(laser);
 
+        if (target == null)
+        {
+            activeTargets.Remove(target);
+            activeLaserCount--;
+            Destroy(laserObj);
+            yield break;
+        }
+
+        float fireCooldown = 0f;
+        Vector3 currentEnd = lr.GetPosition(1);
+
+        while (target != null)
+        {
+            fireCooldown -= Time.deltaTime;
+
+            Vector3 targetWorld = target.transform.position;
+            endLocal = laserObj.transform.InverseTransformPoint(targetWorld);
+
+            currentEnd = Vector3.SmoothDamp(currentEnd, endLocal, ref velocity, 0.05f);
+            lr.SetPosition(1, currentEnd);
+            endVFX.localPosition = currentEnd;
+
+            Vector3 dir = (currentEnd - startLocal).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            startVFX.localRotation = Quaternion.Euler(-angle, 90f, 0f);
+            endVFX.localRotation = Quaternion.Euler(angle, -90f, 0f);
+
+            if (fireCooldown <= 0f)
+            {
+                IDamage enemyDmg = target.GetComponent<IDamage>();
+                if (enemyDmg != null)
+                    enemyDmg.Damage(tower.damage);
+
+                fireCooldown = 1f / tower.fireRate;
+            }
+
+            yield return null;
+        }
+
+        Vector3 returnStart = currentEnd;
+        float returnT = 0f;
+
+        while (returnT < 1f)
+        {
+            returnT += Time.deltaTime * 5f;
+            Vector3 back = Vector3.Lerp(returnStart, startLocal, returnT);
+            lr.SetPosition(1, back);
+            endVFX.localPosition = back;
+
+            Vector3 dir = (back - startLocal).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            startVFX.localRotation = Quaternion.Euler(-angle, 0f, 0f);
+            endVFX.localRotation = Quaternion.Euler(angle, -90f, 0f);
+
+            yield return null;
+        }
+
+        activeTargets.Remove(target);
+        activeLaserCount--;
+
+        Destroy(laserObj);
     }
 }
 

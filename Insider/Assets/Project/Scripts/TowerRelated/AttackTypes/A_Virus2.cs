@@ -33,7 +33,7 @@ public class A_Virus2 : MonoBehaviour, IAttackType
         }
     }
 
-    public void Attack(Enemy e)
+    public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
         if (!isPrefabLoaded)
         {
@@ -41,20 +41,21 @@ public class A_Virus2 : MonoBehaviour, IAttackType
             return;
         }
 
-        if (e != null)
-        {
-            target = e;
-        }
-
-
         if (target == null)
         {
             Debug.LogWarning("No target assigned.");
             return;
         }
 
-
-        DrawTongue();
+        if (e != null)
+        {
+            List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount, targetType);
+            for (int i = 0; i < TargetAmount; i++)
+            {
+                target = enemyHolder[i];
+                DrawTongue();
+            }
+        }
     }
 
     void DrawTongue()

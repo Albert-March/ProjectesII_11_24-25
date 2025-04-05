@@ -19,7 +19,6 @@ public class HealingEnemy : MonoBehaviour
 	private void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		Destroy(gameObject, 5f);
 	}
 
 	private void Update()
@@ -67,4 +66,6 @@ public class HealingEnemy : MonoBehaviour
 			Instantiate(healingParticles, position, Quaternion.identity);
 		}
 	}
+
+
 }
