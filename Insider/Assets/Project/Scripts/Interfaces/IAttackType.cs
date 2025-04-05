@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackType
 {
-    public void Attack(Enemy e);
+    public void Attack(Enemy e, Animator anim, AudioManager audio);
 }

@@ -98,7 +98,7 @@ public class Tower : MonoBehaviour
 					animatorTower.SetBool("IsAttacking", true);
 				}
 			    Enemy enemyHolder = targetManager.GetEnemyTargetFromList(enemiesInRange, targetType);
-                attackManager.attackType.Attack(enemyHolder);
+                attackManager.attackType.Attack(enemyHolder, animatorTower, audioManager);
 				audioManager.PlaySFX(1, 0.1f);
 				lastShootTime = Time.time;
             }

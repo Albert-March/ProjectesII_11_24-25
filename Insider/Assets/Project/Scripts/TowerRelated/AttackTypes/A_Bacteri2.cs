@@ -21,7 +21,7 @@ public class A_Bacteri2 : MonoBehaviour, IAttackType
             bulletPrefab = handle.Result;
         }
     }
-    public void Attack(Enemy e)
+    public void Attack(Enemy e, Animator anim, AudioManager a)
     {
         
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);

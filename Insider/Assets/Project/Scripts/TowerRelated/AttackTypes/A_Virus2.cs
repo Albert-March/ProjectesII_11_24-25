@@ -33,7 +33,7 @@ public class A_Virus2 : MonoBehaviour, IAttackType
         }
     }
 
-    public void Attack(Enemy e)
+    public void Attack(Enemy e, Animator anim, AudioManager a)
     {
         if (!isPrefabLoaded)
         {

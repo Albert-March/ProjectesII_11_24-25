@@ -29,7 +29,7 @@ public class A_Fong1 : MonoBehaviour, IAttackType
     {
         circleCollider = GetComponent<CircleCollider2D>();
     }
-    public void Attack(Enemy e)
+    public void Attack(Enemy e, Animator anim, AudioManager a)
     {
         if (amountOfTagsCreated.Count < GetComponent<Tower>().projectileSpeed) 
         {

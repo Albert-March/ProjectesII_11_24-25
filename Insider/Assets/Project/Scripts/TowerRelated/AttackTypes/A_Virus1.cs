@@ -28,7 +28,7 @@ public class A_Virus1 : MonoBehaviour, IAttackType
             laserPrefab = handle.Result;
         }
     }
-    public void Attack(Enemy e)
+    public void Attack(Enemy e, Animator anim, AudioManager audio)
     {
         if (e != null) { target = e; }
         direction = (target.transform.position - transform.position).normalized;
