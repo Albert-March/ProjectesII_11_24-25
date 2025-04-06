@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
 
-public class A_Virus1 : MonoBehaviour, IAttackType
+public class Attack_Laser : MonoBehaviour, IAttackType
 {
     private GameObject laserPrefab;
     private string assetAddress = "Prefabs/NewLaser";
@@ -158,4 +157,3 @@ public class A_Virus1 : MonoBehaviour, IAttackType
         Destroy(laserObj);
     }
 }
-

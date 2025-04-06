@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class A_Bacteri2 : MonoBehaviour, IAttackType
+public class Atack_Cannoner : MonoBehaviour, IAttackType
 {
     public GameObject bulletPrefab;
     private string assetAddress = "Prefabs/Bullet2";
@@ -23,7 +23,7 @@ public class A_Bacteri2 : MonoBehaviour, IAttackType
     }
     public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
-        
+
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         // Asignar objetiu
         NormalBullet bulletScript = bullet.GetComponent<NormalBullet>();

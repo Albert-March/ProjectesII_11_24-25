@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class A_Fong2 : MonoBehaviour, IAttackType
+public class Attack_Boper : MonoBehaviour, IAttackType
 {
     public List<GameObject> enemiesOnContact = new List<GameObject>();
     public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
