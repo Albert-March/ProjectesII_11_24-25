@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
   m_Name: Boper_Level2
   m_EditorClassIdentifier: 
-  id: 5
+  id: 1
   damage: 30
   fireRate: 3
-  DPS: 0
   projectileHp: 0
   projectileSpeed: 0
   range: 6
+  targetAmount: 0
   priceLevel_1: 200
   priceLevel_2: 400
   priceLevel_3: 0

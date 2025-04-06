@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79976ce6fd3909c4bb85fbed2a9cf3fc, type: 3}
   m_Name: Runner
   m_EditorClassIdentifier: 
-  id: 5
+  id: 2
   movSpeed: 3
   attackSpeed: 10
   health: 100

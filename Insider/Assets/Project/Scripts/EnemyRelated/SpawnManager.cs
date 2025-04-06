@@ -149,9 +149,7 @@ public class SpawnManager : MonoBehaviour
 		{ 2, enemyType.Type2 },
 		{ 3, enemyType.Type3 },
 		{ 4, enemyType.Type4 },
-		{ 5, enemyType.Type5 },
-		{ 6, enemyType.Type6 },
-		{ 7, enemyType.Type7 }
+		{ 5, enemyType.Type5 }
 	};
 
 		List<int> secuencia = GenerarSecuenciaEnemigos(enemigosPorTipo);

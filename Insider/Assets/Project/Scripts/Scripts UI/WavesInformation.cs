@@ -47,9 +47,7 @@ public class WavesInformation : MonoBehaviour
 			(2, enemyTypes.Type2),
 			(3, enemyTypes.Type3),
 			(4, enemyTypes.Type4),
-			(5, enemyTypes.Type5),
-			(6, enemyTypes.Type6),
-			(7, enemyTypes.Type7)
+			(5, enemyTypes.Type5)
 		};
 
 		List<(int tipo, int cantidad)> activos = tiposConCantidad.FindAll(t => t.cantidad > 0);

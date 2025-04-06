@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
   m_Name: Leiser_Level1
   m_EditorClassIdentifier: 
-  id: 0
+  id: 2
   damage: 5
   fireRate: 4
   projectileHp: 0

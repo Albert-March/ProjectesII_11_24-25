@@ -18,22 +18,19 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject cam;
 	public GameObject towerButton;
 
-	private int pendingTowerId = 3;
+	private int pendingTowerId = 0;
 	public bool spawnTower;
 	bool levelUp2;
 	bool levelUp3;
 
-	public string[] names = { "LEISER", "CHOMPER", "BOMBER", "CANONER", "TAGER", "BOPER" };
+	public string[] names = { "CANONER", "BOPER", "LEISER" };
 	public Sprite[] towerSpot;
 	public RawImage image;
 	public Texture towerCam;
 
 	public Text cannonerPrice;
-	public Text bomberPrice;
-	public Text tagerPrice;
 	public Text boperPrice;
 	public Text leiserPrice;
-	public Text chomperPrice;
 
 
 
@@ -82,12 +79,9 @@ public class SetTowerBaseInput : MonoBehaviour
 			else
 			{
 				ShowTowerOptions();
-				cannonerPrice.text = towerSetter.towerStats[3].priceLevel_1.ToString();
-				bomberPrice.text = towerSetter.towerStats[2].priceLevel_1.ToString();
-				tagerPrice.text = towerSetter.towerStats[4].priceLevel_1.ToString();
-				boperPrice.text = towerSetter.towerStats[5].priceLevel_1.ToString();
-				leiserPrice.text = towerSetter.towerStats[0].priceLevel_1.ToString();
-				chomperPrice.text = towerSetter.towerStats[1].priceLevel_1.ToString();
+				cannonerPrice.text = towerSetter.towerStats[0].priceLevel_1.ToString();
+				boperPrice.text = towerSetter.towerStats[1].priceLevel_1.ToString();
+				leiserPrice.text = towerSetter.towerStats[2].priceLevel_1.ToString();
 			}
 
 			if(!levelUp3)
@@ -242,7 +236,7 @@ public class SetTowerBaseInput : MonoBehaviour
 
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
 
-			pendingTowerId = 3;
+			pendingTowerId = 0;
 		}
 	}
 
@@ -294,65 +288,17 @@ public class SetTowerBaseInput : MonoBehaviour
 	}
 	public void SpawnCannonerTower()
 	{
-		if (pendingTowerId == 3)
-		{
-			TowerButton();
-		}
-		else
-		{
-			pendingTowerId = 3; // ID del Cannoner
-		}
-	}
-
-	public void SpawnBomberTower()
-	{
-		if (pendingTowerId == 2)
-		{
-			TowerButton();
-		}
-		else
-		{
-			pendingTowerId = 2; // ID del Bomber
-		}
-	}
-
-	public void SpawnTagerTower()
-	{
-		if (pendingTowerId == 4)
-		{
-			TowerButton();
-		}
-		else
-		{
-			pendingTowerId = 4; // ID del Tager
-		}
-	}
-
-	public void SpawnBoperTower()
-	{
-		if (pendingTowerId == 5)
-		{
-			TowerButton();
-		}
-		else
-		{
-			pendingTowerId = 5; // ID del Boper
-		}
-	}
-
-	public void SpawnLeiserTower()
-	{
 		if (pendingTowerId == 0)
 		{
 			TowerButton();
 		}
 		else
 		{
-			pendingTowerId = 0; // ID del Leiser
+			pendingTowerId = 0; // ID del Cannoner
 		}
 	}
 
-	public void SpawnChomperTower()
+	public void SpawnBoperTower()
 	{
 		if (pendingTowerId == 1)
 		{
@@ -360,7 +306,19 @@ public class SetTowerBaseInput : MonoBehaviour
 		}
 		else
 		{
-			pendingTowerId = 1; // ID del Chomper
+			pendingTowerId = 1; // ID del Boper
+		}
+	}
+
+	public void SpawnLeiserTower()
+	{
+		if (pendingTowerId == 2)
+		{
+			TowerButton();
+		}
+		else
+		{
+			pendingTowerId = 2; // ID del Leiser
 		}
 	}
 
