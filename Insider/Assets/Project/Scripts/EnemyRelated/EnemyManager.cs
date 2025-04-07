@@ -10,9 +10,16 @@ public class EnemyManager : MonoBehaviour
 
     public SpawnManager spawnManager;
 
-    public int EnemiesOnScreen;
+	public WavesInformation wavesInfo;
 
-    public void Update()
+	public int EnemiesOnScreen;
+
+	void Start()
+	{
+		wavesInfo = FindObjectOfType<WavesInformation>();
+	}
+
+	public void Update()
     {
         EnemiesOnScreen = currentEnemy.Count;
         if (spawnManager.currentState.stateName == "finish" && !spawnManager.isInDelayState)
@@ -26,8 +33,24 @@ public class EnemyManager : MonoBehaviour
         currentEnemy.Add(e);
     }
 
-    public void RemoveEnemy(Enemy e)
-    {
-        currentEnemy.Remove(e);
-    }
+	public void RemoveEnemy(Enemy e)
+	{
+		currentEnemy.Remove(e);
+
+		if (wavesInfo != null)
+		{
+			int tipo = e.id + 1;
+			char tipoChar = tipo.ToString()[0];
+
+			// Eliminar la primera aparición de ese tipo en la lista
+			if (wavesInfo.simulatedEnemies.Contains(tipoChar))
+			{
+				wavesInfo.simulatedEnemies.Remove(tipoChar);
+			}
+			else
+			{
+				Debug.LogWarning($"Tipo {tipoChar} no encontrado en simulatedEnemies.");
+			}
+		}
+	}
 }
