@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class WavesInformation : MonoBehaviour
 {
 	public Spawner spawner;
 	public SpawnManager spawnManager;
+
+	public List<char> simulatedEnemies;
 
 	public List<GameObject> enemyInfoObjects = new List<GameObject>(); // Tus 5 GameObjects
 
@@ -14,9 +17,16 @@ public class WavesInformation : MonoBehaviour
 
 	private bool infoShown = false;
 
+	private Animator panelAnimator;
+	public bool isPanelOpen = false;
+	private bool lastPanelState = false;
+	private bool autocloser = false;
+
 	private void Start()
 	{
 		ClearUI();
+
+		panelAnimator = GetComponent<Animator>();
 	}
 	void Update()
 	{
@@ -29,6 +39,20 @@ public class WavesInformation : MonoBehaviour
 		{
 			infoShown = false;
 		}
+
+		PrintRemainingEnemies();
+
+		//Panel
+		if (panelAnimator != null && isPanelOpen != lastPanelState)
+		{
+			panelAnimator.SetBool("Open", isPanelOpen);
+			lastPanelState = isPanelOpen;
+		}
+		if(!spawner.waitingForNextWave && !autocloser)
+		{
+			isPanelOpen = false;
+			autocloser = true;
+		}
 	}
 
 	void ShowNextWaveEnemyInfo()
@@ -38,27 +62,45 @@ public class WavesInformation : MonoBehaviour
 		if (spawnManager.currentState.stateName != "wave") return;
 		if (spawnManager.currentWaveIndex + 1 >= spawnManager.currentState.waves.Count) return;
 
-		SpawnManager.Wave nextWave = spawnManager.currentState.waves[spawnManager.currentWaveIndex + 1];
-		SpawnManager.EnemyType enemyTypes = nextWave.enemyTypes;
+		var nextWave = spawnManager.currentState.waves[spawnManager.currentWaveIndex + 1];
+		simulatedEnemies = spawnManager.GetSimulatedEnemiesList(nextWave.enemyTypes);
+		Debug.Log("Enemigos siguiente oleada: " + string.Join(", ", simulatedEnemies));
 
-		List<(int tipo, int cantidad)> tiposConCantidad = new List<(int, int)>
+		isPanelOpen = true;
+		autocloser = false;
+	}
+
+	void PrintRemainingEnemies()
+	{
+		if (simulatedEnemies == null || simulatedEnemies.Count == 0)
 		{
-			(1, enemyTypes.Type1),
-			(2, enemyTypes.Type2),
-			(3, enemyTypes.Type3),
-			(4, enemyTypes.Type4),
-			(5, enemyTypes.Type5)
-		};
+			Debug.Log("No quedan enemigos en la oleada actual.");
+			ClearUI();
+			return;
+		}
 
-		List<(int tipo, int cantidad)> activos = tiposConCantidad.FindAll(t => t.cantidad > 0);
+		Debug.Log("Enemigos restantes: " + string.Join(", ", simulatedEnemies));
+
+		// Agrupar enemigos por tipo
+		var agrupados = new Dictionary<char, int>();
+		foreach (var c in simulatedEnemies)
+		{
+			if (!agrupados.ContainsKey(c))
+				agrupados[c] = 0;
+			agrupados[c]++;
+		}
+
+		var tipos = new List<char>(agrupados.Keys);
+		tipos.Sort();
 
 		for (int i = 0; i < enemyInfoObjects.Count; i++)
 		{
-			if (i < activos.Count)
+			if (i < tipos.Count)
 			{
 				var obj = enemyInfoObjects[i];
-				var tipo = activos[i].tipo;
-				var cantidad = activos[i].cantidad;
+				char tipoChar = tipos[i];
+				int tipo = tipoChar - '0';
+				int cantidad = agrupados[tipoChar];
 
 				Image img = obj.GetComponentInChildren<Image>();
 				Text txt = obj.GetComponentInChildren<Text>();
@@ -90,5 +132,10 @@ public class WavesInformation : MonoBehaviour
 		{
 			obj.SetActive(false);
 		}
+	}
+
+	public void TogglePanel()
+	{
+		isPanelOpen = !isPanelOpen;
 	}
 }

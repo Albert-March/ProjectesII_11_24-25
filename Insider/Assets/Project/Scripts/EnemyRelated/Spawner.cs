@@ -29,6 +29,15 @@ public class Spawner : MonoBehaviour
 
 	public Image buttonImage;
 
+	private Vector3 originalScale;
+	public float pulseSpeed = 2f;
+	public float pulseAmount = 0.1f;
+
+	public float shakeDuration = 0.3f;
+	public float shakeMagnitude = 10f;
+	private Vector3 originalPosition;
+	private bool isShaking = false;
+
 	//SELECTING THE SPAWN POINT
 	public Transform SP;
     List<SpawnPoint> childs = new List<SpawnPoint>();
@@ -44,6 +53,9 @@ public class Spawner : MonoBehaviour
             childs.Add(childHolder);
         }
 		spawnManager = FindObjectOfType<SpawnManager>();
+
+		originalScale = buttonImage.transform.localScale;
+		originalPosition = buttonImage.transform.localPosition;
 	}
 
     public void Update()
@@ -88,11 +100,14 @@ public class Spawner : MonoBehaviour
         if (waitingForNextWave)
         {
 			buttonImage.color = Color.green;
+			float scaleFactor = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
+			buttonImage.transform.localScale = originalScale * scaleFactor;
 		}
         else
         {
             buttonImage.color = Color.red;
-        }
+			buttonImage.transform.localScale = originalScale;
+		}
 	}
 
 	public void NextWave()
@@ -101,6 +116,11 @@ public class Spawner : MonoBehaviour
 		{
 			spawnManager.currentWaveIndex++;
 			spawnManager.InitializeWave();
+		}
+		else
+		{
+			if (!isShaking)
+				StartCoroutine(ShakeButton());
 		}
 	}
 
@@ -170,5 +190,22 @@ public class Spawner : MonoBehaviour
 
         return childs[giveChildNum];
     }
+
+	IEnumerator ShakeButton()
+	{
+		isShaking = true;
+		float elapsed = 0f;
+
+		while (elapsed < shakeDuration)
+		{
+			float xOffset = Mathf.Sin(elapsed * 50f) * shakeMagnitude;
+			buttonImage.transform.localPosition = originalPosition + new Vector3(xOffset, 0f, 0f);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		buttonImage.transform.localPosition = originalPosition;
+		isShaking = false;
+	}
 }
 

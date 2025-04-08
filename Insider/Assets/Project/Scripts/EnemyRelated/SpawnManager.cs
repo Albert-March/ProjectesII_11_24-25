@@ -175,6 +175,28 @@ public class SpawnManager : MonoBehaviour
 		}
 	}
 
+	public List<char> GetSimulatedEnemiesList(EnemyType enemyType)
+	{
+		Dictionary<int, int> enemigosPorTipo = new Dictionary<int, int>
+	{
+		{ 1, enemyType.Type1 },
+		{ 2, enemyType.Type2 },
+		{ 3, enemyType.Type3 },
+		{ 4, enemyType.Type4 },
+		{ 5, enemyType.Type5 }
+	};
+
+		List<int> secuencia = GenerarSecuenciaEnemigos(enemigosPorTipo);
+
+		List<char> simulatedList = new List<char>();
+		foreach (int tipo in secuencia)
+		{
+			simulatedList.Add(tipo.ToString()[0]);
+		}
+
+		return simulatedList;
+	}
+
 	List<int> GenerarSecuenciaEnemigos(Dictionary<int, int> enemigosPorTipo)
 	{
 		// Crear una lista con todos los enemigos según cantidad

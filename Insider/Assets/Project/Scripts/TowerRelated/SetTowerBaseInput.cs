@@ -191,7 +191,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
 			rangeGO.SetActive(panelOpen && hover);
 		}
-		pendingTowerId = 3;
+		pendingTowerId = 0;
 	}
 
 	public void TowerButton()
