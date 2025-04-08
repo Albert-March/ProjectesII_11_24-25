@@ -79,9 +79,9 @@ public class SetTowerBaseInput : MonoBehaviour
 			else
 			{
 				ShowTowerOptions();
-				cannonerPrice.text = towerSetter.towerStats[0].priceLevel_1.ToString();
-				boperPrice.text = towerSetter.towerStats[1].priceLevel_1.ToString();
-				leiserPrice.text = towerSetter.towerStats[2].priceLevel_1.ToString();
+				cannonerPrice.text = towerSetter.towerStats[0].priceLevel_1_Type0.ToString();
+				boperPrice.text = towerSetter.towerStats[1].priceLevel_1_Type0.ToString();
+				leiserPrice.text = towerSetter.towerStats[2].priceLevel_1_Type0.ToString();
 			}
 
 			if(!levelUp3)
@@ -115,7 +115,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			TowerStats stats = towerSetter.towerStats[pendingTowerId];
 			statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}";
 
-			towerPrice.text = $"{ stats.priceLevel_1}";
+			towerPrice.text = $"{ stats.priceLevel_1_Type0}";
 		}
 
 		image.texture = towerSpot[pendingTowerId].texture;
@@ -134,11 +134,11 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				if (tower.currentLevel == 1)
 				{
-					towerPrice.text = $"{tower.priceLevel_2}";
+                    towerPrice.text = $"{tower.priceLevel_2_Type1}";
 				}
 				else if (tower.currentLevel == 2)
 				{
-					towerPrice.text = $"{tower.priceLevel_3}";
+					towerPrice.text = $"{tower.priceLevel_3_Type1}";
 				}
 			    statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
 			}
@@ -227,11 +227,11 @@ public class SetTowerBaseInput : MonoBehaviour
 		economyScript = FindObjectOfType<EconomyManager>();
 		states = FindObjectOfType<StatesManager>();
 
-		if (economyScript.economy >= stats.priceLevel_1)
+		if (economyScript.economy >= stats.priceLevel_1_Type0)
 		{
 			towerSetter.SpawnTower(pendingTowerId, clickedButton.transform);
 
-			economyScript.economy -= stats.priceLevel_1;
+			economyScript.economy -= stats.priceLevel_1_Type0;
 			audioManager.PlaySFX(3, 0.2f);
 
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
@@ -243,7 +243,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp2()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if (!levelUp2 && economyScript.economy >= stats.priceLevel_2)
+		if (!levelUp2 && economyScript.economy >= stats.priceLevel_2_Type1)
 		{
 			foreach (Transform child in clickedButton.transform)
 			{
@@ -256,18 +256,18 @@ public class SetTowerBaseInput : MonoBehaviour
 				}
 			}
 			SpawnParticles();
-			economyScript.economy -= stats.priceLevel_2;
+			economyScript.economy -= stats.priceLevel_2_Type1;
 			audioManager.PlaySFX(4, 0.2f);
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
-			towerPrice.text = $"{stats.priceLevel_3}";
+			towerPrice.text = $"{stats.priceLevel_3_Type1}";
 		}
 	}
 
 	public void LevelUp3()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if (!levelUp3 && economyScript.economy >= stats.priceLevel_3)
+		if (!levelUp3 && economyScript.economy >= stats.priceLevel_3_Type1)
 		{
 			foreach (Transform child in clickedButton.transform)
 			{
@@ -280,7 +280,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				}
 			}
 			SpawnParticles();
-			economyScript.economy -= stats.priceLevel_3;
+			economyScript.economy -= stats.priceLevel_3_Type1;
 			audioManager.PlaySFX(4, 0.2f);
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 		}

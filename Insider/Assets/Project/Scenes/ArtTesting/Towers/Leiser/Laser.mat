@@ -41,7 +41,7 @@ Material:
     - _LaserEdgeThiccnes: 8
     - _LaserSpeed: 0.1
     m_Colors:
-    - _Color: {r: 0.98833746, g: 0.60089254, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3983271340064541898
 MonoBehaviour:

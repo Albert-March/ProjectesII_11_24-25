@@ -155,28 +155,28 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
     {
 		health -= amount;
 
-        if (health <= 0) 
+        if (health <= 0)
         {
             economyScript = FindObjectOfType<EconomyManager>();
-			economyScript.economy += economyGiven;
-            
+            economyScript.economy += economyGiven;
+
             SpawnParticles();
-			IRewardDropper rewardDropper = GetComponent<IRewardDropper>();
-			if (rewardDropper != null)
-			{
-				rewardDropper.SpawnReward(path);
-			}
-			else
-			{
-				Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
-			}
-			audioManager.PlaySFX(0, 0.1f);
+            IRewardDropper rewardDropper = GetComponent<IRewardDropper>();
+            if (rewardDropper != null)
+            {
+                rewardDropper.SpawnReward(path);
+            }
+            else
+            {
+                Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
+            }
+            audioManager.PlaySFX(0, 0.1f);
 
             animationGO.transform.parent = null;
 
             Animator anim = animationGO.GetComponent<Animator>();
             anim.SetBool("Dead", true);
-            
+
             animationGO.AddComponent<DelayedSelfDestruct>();
             enemyManager.RemoveEnemy(this);
             Destroy(gameObject);

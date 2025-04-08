@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
-  m_Name: Leiser_Level2
+  m_Name: Boper_Level2_Type2
   m_EditorClassIdentifier: 
-  id: 2
-  damage: 50
-  fireRate: 5
+  id: 1
+  type: 2
+  damage: 30
+  fireRate: 3
   projectileHp: 0
   projectileSpeed: 0
-  range: 30
+  range: 6
   targetAmount: 0
-  priceLevel_1: 200
-  priceLevel_2: 400
-  priceLevel_3: 0
-  hability: 0
+  priceLevel_1_Type0: 0
+  priceLevel_2_Type1: 0
+  priceLevel_2_Type2: 0
+  priceLevel_3_Type1: 0
+  priceLevel_3_Type2: 0
   rangeOffstY: 0
-  AnimationPrefab: {fileID: 3344904414203484110, guid: 10c516cb59b1ae94fbc7ea6f043cd32b, type: 3}
-  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
+  AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
+  prefab: {fileID: 0}
   attackManager: {fileID: 0}
