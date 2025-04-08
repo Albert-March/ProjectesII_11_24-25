@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -27,25 +28,38 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
     public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
-        if (laserPrefab == null || e == null) return;
+        Tower tower = GetComponent<Tower>();
 
-        int allowed = TargetAmount - activeLaserCount;
-        if (allowed <= 0) return;
-
-        int assigned = 0;
-        List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount * 2, targetType);
-
-        foreach (Enemy candidate in enemyHolder)
+        if (tower.type == 0)
         {
-            if (candidate == null || activeTargets.Contains(candidate)) continue;
 
-            activeTargets.Add(candidate);
-            activeLaserCount++;
-            StartCoroutine(HandleLaserAttack(candidate));
-            assigned++;
+        }
+        else if (tower.type == 1)
+        {
+            if (laserPrefab == null || e == null) return;
 
-            if (assigned >= allowed)
-                break;
+            int allowed = TargetAmount - activeLaserCount;
+            if (allowed <= 0) return;
+
+            int assigned = 0;
+            List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount * 2, targetType);
+
+            foreach (Enemy candidate in enemyHolder)
+            {
+                if (candidate == null || activeTargets.Contains(candidate)) continue;
+
+                activeTargets.Add(candidate);
+                activeLaserCount++;
+                StartCoroutine(HandleLaserAttack(candidate));
+                assigned++;
+
+                if (assigned >= allowed)
+                    break;
+            }
+        }
+        else if (tower.type == 2)
+        {
+            // TODO: Implement type 2
         }
     }
 
@@ -57,13 +71,38 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         GameObject laserObj = Instantiate(laserPrefab, startWorld, Quaternion.identity);
         laserObj.transform.SetParent(tower.transform);
 
-        Transform startVFX = laserObj.transform.Find("Start");
-        Transform lineObj = laserObj.transform.Find("Line");
-        Transform endVFX = laserObj.transform.Find("End");
+        GameObject GOstartVFX = laserObj.transform.Find("Start").gameObject;
+        GameObject GOlineObj = laserObj.transform.Find("Line").gameObject;
+        GameObject GOendVFX = laserObj.transform.Find("End").gameObject;
+
+        Transform startVFX = GOstartVFX.transform;
+        Transform lineObj = GOlineObj.transform;
+        Transform endVFX = GOendVFX.transform;
+
+        Color newColor = new Color32(0, 0, 0, 255);
+
+        if (tower.currentLevel == 2)
+        {
+            newColor = new Color32(255, 255, 255, 255);
+        }
+        else if (tower.currentLevel == 3)
+        {
+            newColor = new Color32(0, 0, 0, 255);
+        }
 
         LineRenderer lr = lineObj.GetComponent<LineRenderer>();
+        lr.startColor = newColor;
+        lr.endColor = newColor;
+
         ParticleSystem startParticles = startVFX.GetComponent<ParticleSystem>();
+        var startRenderer = startVFX.GetComponent<ParticleSystemRenderer>();
+        startRenderer.material = new Material(startRenderer.material);
+        startRenderer.material.SetColor("_BaseColor", newColor);
+
         ParticleSystem endParticles = endVFX.GetComponent<ParticleSystem>();
+        var endRenderer = endVFX.GetComponent<ParticleSystemRenderer>();
+        endRenderer.material = new Material(endRenderer.material);
+        endRenderer.material.SetColor("_BaseColor", newColor);
 
         laserObj.transform.position = startWorld;
         Vector3 startLocal = startVFX.localPosition;

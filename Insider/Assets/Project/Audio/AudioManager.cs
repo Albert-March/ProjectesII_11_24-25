@@ -50,5 +50,6 @@ public class AudioManager : MonoBehaviour
 	//2 = SelectTower
 	//3 = SelectButton
 	//4 = UpgradeTower
+	//5 = EnemyHit
 }
 

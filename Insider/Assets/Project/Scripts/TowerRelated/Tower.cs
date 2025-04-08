@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour
 {
 	//Stats
     public int id;
+    public int type;
 	public float damage;
 	public float fireRate;
 	public float DPS;
@@ -14,14 +15,14 @@ public class Tower : MonoBehaviour
 	public float projectileSpeed;
 	public float range;
 	public int targetAmount;
-	//Prices
-	public int priceLevel_1;
-	public int priceLevel_2;
-	public int priceLevel_3;
+    //Prices
+    public int priceLevel_1_Type0;
+    public int priceLevel_2_Type1;
+    public int priceLevel_2_Type2;
+    public int priceLevel_3_Type1;
+    public int priceLevel_3_Type2;
 
-	public float hability; //No es un float (falta definir)
 
-	private SpriteRenderer sprite;
     GameObject towerObject;
     Animator animatorTower;
     public List<Enemy> enemiesInRange = new List<Enemy>();
@@ -41,6 +42,7 @@ public class Tower : MonoBehaviour
 	public void SetTowerData(TowerStats stats)
 	{
 		this.id = stats.id;
+		this.type = stats.type;
 		this.damage = stats.damage;
 		this.fireRate = stats.fireRate;
 		this.projectileHp = stats.projectileHp;
@@ -48,11 +50,12 @@ public class Tower : MonoBehaviour
 		this.range = stats.range;
 		this.targetAmount = stats.targetAmount;
 
-		this.priceLevel_1 = stats.priceLevel_1;
-		this.priceLevel_2 = stats.priceLevel_2;
-		this.priceLevel_3 = stats.priceLevel_3;
+		this.priceLevel_1_Type0 = stats.priceLevel_1_Type0;
+		this.priceLevel_2_Type1 = stats.priceLevel_2_Type1;
+		this.priceLevel_2_Type2 = stats.priceLevel_2_Type2;
+		this.priceLevel_3_Type1 = stats.priceLevel_3_Type1;
+		this.priceLevel_3_Type2 = stats.priceLevel_3_Type2;
 
-		this.hability = stats.hability;
 
 		GetComponent<CircleCollider2D>().radius = range;
         GetComponent<CircleCollider2D>().offset = new Vector2(0,stats.rangeOffstY);

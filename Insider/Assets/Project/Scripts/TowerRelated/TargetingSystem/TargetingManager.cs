@@ -27,6 +27,10 @@ public class TargetingManager : MonoBehaviour
 
     private List<Enemy> Firstin(List<Enemy> enemyList, int amount)
     {
+        if (amount == 0) 
+        {
+            return enemyList;
+        }
         List<Enemy> enemiesToSend = new List<Enemy>();
 
         int count = Mathf.Min(amount, enemyList.Count);
@@ -40,6 +44,10 @@ public class TargetingManager : MonoBehaviour
 
     private List<Enemy> LastIn(List<Enemy> enemyList, int amount)
     {
+        if (amount == 0)
+        {
+            return enemyList;
+        }
         List<Enemy> enemiesToSend = new List<Enemy>();
 
         int count = Mathf.Min(amount, enemyList.Count);
@@ -54,6 +62,10 @@ public class TargetingManager : MonoBehaviour
 
     private List<Enemy> MostHP(List<Enemy> enemyList, int amount)
     {
+        if (amount == 0)
+        {
+            return enemyList;
+        }
         List<Enemy> enemiesToSend = new List<Enemy>();
 
         for (int i = 0; i < amount; i++)
@@ -87,6 +99,10 @@ public class TargetingManager : MonoBehaviour
 
     private List<Enemy> LeastHP(List<Enemy> enemyList, int amount)
     {
+        if (amount == 0)
+        {
+            return enemyList;
+        }
         List<Enemy> enemiesToSend = new List<Enemy>();
 
         for (int i = 0; i < amount; i++)
@@ -120,6 +136,10 @@ public class TargetingManager : MonoBehaviour
 
     private List<Enemy> CloserToEnd(List<Enemy> enemyList, int amount)
     {
+        if (amount == 0)
+        {
+            return enemyList;
+        }
         List<Enemy> enemiesToSend = new List<Enemy>();
 
         for (int i = 0; i < amount; i++)
