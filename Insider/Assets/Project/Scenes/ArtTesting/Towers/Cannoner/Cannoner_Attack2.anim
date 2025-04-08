@@ -382,7 +382,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: {x: 0, y: 0, z: -94.186}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -452,7 +452,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: {x: 0, y: 0, z: -40.433}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -2378,7 +2378,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2453,7 +2453,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2528,7 +2528,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: -94.186
         inSlope: 0
         outSlope: 0
@@ -2603,7 +2603,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2678,7 +2678,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2753,7 +2753,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.68333334
+        time: 0.6666667
         value: -40.433
         inSlope: 0
         outSlope: 0
@@ -4416,7 +4416,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_3
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4428,7 +4428,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_3
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4440,7 +4440,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_3
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4704,7 +4704,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_4
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4716,7 +4716,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_4
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4728,7 +4728,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_4
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4776,7 +4776,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4788,7 +4788,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4800,7 +4800,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5
+    path: Cannoner_1/bone_1/Cannoner_0/bone_1/bone_10/bone_9/bone_8/bone_7/bone_6/bone_5/bone_2/bone_4
     classID: 4
     script: {fileID: 0}
     flags: 0

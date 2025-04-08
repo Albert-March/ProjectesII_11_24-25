@@ -10,10 +10,10 @@
         {
           "waveNumber": "1",
           "enemyTypes": {
-            "Type1": 1,
-            "Type2": 1,
+            "Type1": 0,
+            "Type2": 2,
             "Type3": 0,
-            "Type4": 1,
+            "Type4": 0,
             "Type5": 0
           },
           "spawnTime": 1.0,

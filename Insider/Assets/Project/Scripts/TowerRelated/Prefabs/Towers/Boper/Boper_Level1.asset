@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Boper_Level1
   m_EditorClassIdentifier: 
   id: 1
+  type: 0
   damage: 20
-  fireRate: 3
+  fireRate: 1
   projectileHp: 0
   projectileSpeed: 0
   range: 6
   targetAmount: 0
-  priceLevel_1: 200
-  priceLevel_2: 400
-  priceLevel_3: 0
-  hability: 0
+  priceLevel_1_Type0: 0
+  priceLevel_2_Type1: 0
+  priceLevel_2_Type2: 0
+  priceLevel_3_Type1: 0
+  priceLevel_3_Type2: 0
   rangeOffstY: 2
   AnimationPrefab: {fileID: 8081320197449987438, guid: 7d57f1c2155305b479b22e8d6d5fc23b, type: 3}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}

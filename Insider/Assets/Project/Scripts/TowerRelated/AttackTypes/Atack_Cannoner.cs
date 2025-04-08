@@ -8,7 +8,7 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
 {
     public GameObject bulletPrefab;
     private string assetAddress = "Prefabs/Bullet2";
-
+    private float lastShotTime = 0f;
     void Awake()
     {
         Addressables.LoadAssetAsync<GameObject>(assetAddress).Completed += OnPrefabLoaded;
@@ -23,6 +23,8 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
     }
     public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
+        Tower tower = GetComponent<Tower>();
+        if (Time.time < lastShotTime + 1f / tower.fireRate) return;
 
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         // Asignar objetiu
@@ -30,5 +32,6 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
         bulletScript.towerScript = GetComponent<Tower>();
         List<Enemy> enemyHolder = targetManager.GetEnemyTargetFromList(e, TargetAmount, targetType);
         bulletScript.SetTarget(enemyHolder[0]);
+        lastShotTime = Time.time;
     }
 }

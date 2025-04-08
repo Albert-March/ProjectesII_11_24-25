@@ -73,6 +73,8 @@ public class Splitter : MonoBehaviour, IRewardDropper
 			enemyScript.enabled = true;
 
 			enemyManager.AddSpawnedEnemy(enemyScript);
-		}
+			enemyManager.wavesInfo.simulatedEnemies.Add('1');
+
+        }
 	}
 }
