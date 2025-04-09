@@ -21176,25 +21176,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4170634768669290866}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: names.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: names.Array.data[0]
+      value: CANONER
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: names.Array.data[1]
+      value: BOPER
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: names.Array.data[2]
+      value: LEISER
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.size
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: c0c3d8427c265d14e851b27a0d79c1c8, type: 3}
+      objectReference: {fileID: 21300000, guid: 01fda0feb0eabbf41b54a63114d34d8e, type: 3}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 3ac128729d43aa946b6eff8a24543692, type: 3}
+      objectReference: {fileID: 21300000, guid: 8777acf52d28eae4eb3d83c68dd909b3, type: 3}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 41ac4b9ae0c3f244093974b37c91d100, type: 3}
+      objectReference: {fileID: 21300000, guid: c0c3d8427c265d14e851b27a0d79c1c8, type: 3}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 01fda0feb0eabbf41b54a63114d34d8e, type: 3}
+      objectReference: {fileID: 21300000, guid: 3d5ae07c182a1774db202d48debe322e, type: 3}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.data[4]
       value: 
@@ -21202,7 +21218,7 @@ PrefabInstance:
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpot.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: 8777acf52d28eae4eb3d83c68dd909b3, type: 3}
+      objectReference: {fileID: 21300000, guid: 3d5ae07c182a1774db202d48debe322e, type: 3}
     - target: {fileID: 8921530736872850743, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.65
