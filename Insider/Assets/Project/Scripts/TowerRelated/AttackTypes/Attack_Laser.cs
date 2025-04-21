@@ -85,7 +85,14 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         }
         else if (tower.type == 2)
         {
-            // TODO: Implement type 2
+            if (laserPrefab == null || e == null) return;
+
+            Enemy candidate = targetManager.GetEnemyTargetFromList(e, 1, targetType)[0];
+            if (candidate == null || activeTargets.Contains(candidate)) return;
+
+            activeTargets.Add(candidate);
+            activeLaserCount++;
+            StartCoroutine(HandleLaserRampDamage(candidate));
         }
     }
 
@@ -93,34 +100,25 @@ public class Attack_Laser : MonoBehaviour, IAttackType
     {
         if (target == null) return;
 
-        Tower tower = GetComponent<Tower>();
+        laser = Instantiate(laserPrefab, Vector3.Lerp(transform.position, target.transform.position, 0.5f), Quaternion.Euler(0, 0, angle));
+        laser.transform.SetParent(this.transform);
 
-        GameObject laserObj = Instantiate(laserPrefab, Vector3.Lerp(transform.position, target.transform.position, 0.5f), Quaternion.Euler(0, 0, angle));
-        laserObj.transform.SetParent(tower.transform);
+        GameObject GOline = laser.transform.Find("Line").gameObject;
+        LineRenderer lineRenderer = GOline.GetComponent<LineRenderer>();
+        lineRenderer.useWorldSpace = false;
+        lineRenderer.SetPosition(0, laser.transform.InverseTransformPoint(transform.position));
+        lineRenderer.SetPosition(1, laser.transform.InverseTransformPoint(target.transform.position));
 
-        GameObject GOstartVFX = laserObj.transform.Find("Start").gameObject;
-        GameObject GOlineObj = laserObj.transform.Find("Line").gameObject;
-        GameObject GOendVFX = laserObj.transform.Find("End").gameObject;
-
-        LineRenderer lr = GOlineObj.GetComponent<LineRenderer>();
-
-        lr.useWorldSpace = false;
-        lr.SetPosition(0, laserObj.transform.InverseTransformPoint(transform.position));
-        lr.SetPosition(1, laserObj.transform.InverseTransformPoint(target.transform.position));
-        GOstartVFX.transform.position = transform.position;
-        GOendVFX.transform.position = target.transform.position;
-        StartCoroutine(DeleteLaser(laserObj));
+        StartCoroutine(DeleteLaser(lineRenderer, laser));
     }
 
-    IEnumerator DeleteLaser(GameObject lineRenderer)
+    IEnumerator DeleteLaser(LineRenderer lineRenderer, GameObject laserObj)
     {
         if (lineRenderer == null) yield break;
-        GameObject GOlineObj = lineRenderer.transform.Find("Line").gameObject;
-        LineRenderer lr = GOlineObj.GetComponent<LineRenderer>();
 
-        float initialWidth = lr.startWidth * 2f;
-        lr.startWidth = initialWidth;
-        lr.endWidth = initialWidth;
+        float initialWidth = lineRenderer.startWidth * 2f;
+        lineRenderer.startWidth = initialWidth;
+        lineRenderer.endWidth = initialWidth;
 
         float shrinkDuration = 1f;
         float elapsed = 0f;
@@ -129,20 +127,20 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         {
             elapsed += Time.deltaTime;
             float width = Mathf.Lerp(initialWidth, 0f, elapsed / shrinkDuration);
-            lr.startWidth = width;
-            lr.endWidth = width;
+            lineRenderer.startWidth = width;
+            lineRenderer.endWidth = width;
             yield return null;
         }
 
-        if (lineRenderer != null)
+        if (laserObj != null)
         {
-            ParticleSystem[] particles = lineRenderer.GetComponentsInChildren<ParticleSystem>();
+            ParticleSystem[] particles = laserObj.GetComponentsInChildren<ParticleSystem>();
             foreach (var ps in particles)
             {
                 ps.Stop();
                 ps.Clear();
             }
-            Destroy(lineRenderer);
+            Destroy(laserObj);
         }
     }
 
@@ -278,5 +276,98 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
         Destroy(laserObj);
     }
+    IEnumerator HandleLaserRampDamage(Enemy target)
+    {
+        Tower tower = GetComponent<Tower>();
+        Vector3 startWorld = tower.transform.position;
+
+        GameObject laserObj = Instantiate(laserPrefab, startWorld, Quaternion.identity);
+        laserObj.transform.SetParent(tower.transform);
+
+        GameObject GOstartVFX = laserObj.transform.Find("Start").gameObject;
+        GameObject GOlineObj = laserObj.transform.Find("Line").gameObject;
+        GameObject GOendVFX = laserObj.transform.Find("End").gameObject;
+
+        Transform startVFX = GOstartVFX.transform;
+        Transform lineObj = GOlineObj.transform;
+        Transform endVFX = GOendVFX.transform;
+
+        LineRenderer lr = lineObj.GetComponent<LineRenderer>();
+        lr.useWorldSpace = false;
+
+        Vector3 startLocal = startVFX.localPosition;
+        lr.SetPosition(0, startLocal);
+        lr.SetPosition(1, startLocal);
+
+        float t = 0f;
+        Vector3 velocity = Vector3.zero;
+        Vector3 endLocal = Vector3.zero;
+
+        while (t < 1f && target != null)
+        {
+            t += Time.deltaTime * 5f;
+            Vector3 targetWorld = target.transform.position;
+            endLocal = laserObj.transform.InverseTransformPoint(targetWorld);
+
+            Vector3 interpolatedEnd = Vector3.Lerp(startLocal, endLocal, t);
+            lr.SetPosition(1, interpolatedEnd);
+            endVFX.localPosition = interpolatedEnd;
+
+            Vector3 dir = (interpolatedEnd - startLocal).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            startVFX.localRotation = Quaternion.Euler(-angle, 0f, 0f);
+            endVFX.localRotation = Quaternion.Euler(-angle + 180f, 0f, 0f);
+
+            yield return null;
+        }
+
+        if (target == null)
+        {
+            activeTargets.Remove(target);
+            activeLaserCount--;
+            Destroy(laserObj);
+            yield break;
+        }
+
+        float fireCooldown = 0f;
+        float damageMultiplier = 1f;
+        Vector3 currentEnd = lr.GetPosition(1);
+
+        while (target != null)
+        {
+            fireCooldown -= Time.deltaTime;
+
+            Vector3 targetWorld = target.transform.position;
+            endLocal = laserObj.transform.InverseTransformPoint(targetWorld);
+
+            currentEnd = Vector3.SmoothDamp(currentEnd, endLocal, ref velocity, 0.05f);
+            lr.SetPosition(1, currentEnd);
+            endVFX.localPosition = currentEnd;
+
+            Vector3 dir = (currentEnd - startLocal).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            startVFX.localRotation = Quaternion.Euler(-angle, 90f, 0f);
+            endVFX.localRotation = Quaternion.Euler(angle, -90f, 0f);
+
+            if (fireCooldown <= 0f)
+            {
+                IDamage enemyDmg = target.GetComponent<IDamage>();
+                if (enemyDmg != null)
+                    enemyDmg.Damage(tower.damage * damageMultiplier);
+
+                damageMultiplier *= 1.1f;
+                fireCooldown = 1f / tower.fireRate;
+            }
+
+            yield return null;
+        }
+
+        activeTargets.Remove(target);
+        activeLaserCount--;
+        Destroy(laserObj);
+    }
+
 }
+
+
 
