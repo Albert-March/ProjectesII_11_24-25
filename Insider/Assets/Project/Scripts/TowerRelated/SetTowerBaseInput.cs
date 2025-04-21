@@ -229,6 +229,8 @@ public class SetTowerBaseInput : MonoBehaviour
 		if (!spawnTower)
 		{
 			BuildSelectedTower();
+			option1.SetActive(true);
+			option2.SetActive(true);
 			return;
 		}
 
@@ -272,47 +274,98 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp2()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if (!levelUp2 && economyScript.economy >= stats.priceLevel_2_Type1)
+		if(type == 1)
 		{
-			foreach (Transform child in clickedButton.transform)
+			if (!levelUp2 && economyScript.economy >= stats.priceLevel_2_Type1)
 			{
-				if (child.name == "Tower(Clone)")
+				foreach (Transform child in clickedButton.transform)
 				{
-					if (child.GetComponent<Tower>().currentLevel == 1)
+					if (child.name == "Tower(Clone)")
 					{
-						towerSetter.LevelUp2(child.GetComponent<Tower>());
+						if (child.GetComponent<Tower>().currentLevel == 1)
+						{
+							towerSetter.LevelUp2(child.GetComponent<Tower>());
+						}
 					}
 				}
-			}
-			SpawnParticles();
-			economyScript.economy -= stats.priceLevel_2_Type1;
-			audioManager.PlaySFX(4, 0.2f);
-			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+				SpawnParticles();
+				economyScript.economy -= stats.priceLevel_2_Type1;
+				audioManager.PlaySFX(4, 0.2f);
+				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
-			towerPrice.text = $"{stats.priceLevel_3_Type1}";
+				towerPrice.text = $"{stats.priceLevel_3_Type1}";
+			}
 		}
+
+		if (type == 2)
+		{
+			if (!levelUp2 && economyScript.economy >= stats.priceLevel_2_Type2)
+			{
+				foreach (Transform child in clickedButton.transform)
+				{
+					if (child.name == "Tower(Clone)")
+					{
+						if (child.GetComponent<Tower>().currentLevel == 1)
+						{
+							towerSetter.LevelUp2(child.GetComponent<Tower>());
+						}
+					}
+				}
+				SpawnParticles();
+				economyScript.economy -= stats.priceLevel_2_Type2;
+				audioManager.PlaySFX(4, 0.2f);
+				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+
+				towerPrice.text = $"{stats.priceLevel_3_Type2}";
+			}
+		}
+
 	}
 
 	public void LevelUp3()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if (!levelUp3 && economyScript.economy >= stats.priceLevel_3_Type1)
+		if(type == 1)
 		{
-			foreach (Transform child in clickedButton.transform)
+			if (!levelUp3 && economyScript.economy >= stats.priceLevel_3_Type1)
 			{
-				if (child.name == "Tower(Clone)")
+				foreach (Transform child in clickedButton.transform)
 				{
-					if (child.GetComponent<Tower>().currentLevel == 2)
+					if (child.name == "Tower(Clone)")
 					{
-						towerSetter.LevelUp3(child.GetComponent<Tower>());
+						if (child.GetComponent<Tower>().currentLevel == 2)
+						{
+							towerSetter.LevelUp3(child.GetComponent<Tower>());
+						}
 					}
 				}
+				SpawnParticles();
+				economyScript.economy -= stats.priceLevel_3_Type1;
+				audioManager.PlaySFX(4, 0.2f);
+				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 			}
-			SpawnParticles();
-			economyScript.economy -= stats.priceLevel_3_Type1;
-			audioManager.PlaySFX(4, 0.2f);
-			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 		}
+		if (type == 2)
+		{
+			if (!levelUp3 && economyScript.economy >= stats.priceLevel_3_Type2)
+			{
+				foreach (Transform child in clickedButton.transform)
+				{
+					if (child.name == "Tower(Clone)")
+					{
+						if (child.GetComponent<Tower>().currentLevel == 2)
+						{
+							towerSetter.LevelUp3(child.GetComponent<Tower>());
+						}
+					}
+				}
+				SpawnParticles();
+				economyScript.economy -= stats.priceLevel_3_Type2;
+				audioManager.PlaySFX(4, 0.2f);
+				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
+			}
+		}
+
 		levelUp3 = true;
 	}
 	public void SpawnCannonerTower()
@@ -353,6 +406,11 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void Type1()
 	{
+		if (type == 1)
+		{
+			LevelUp3();
+		}
+
 		if (spawnTower)
 		{
 			type = 1;
@@ -363,6 +421,11 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void Type2()
 	{
+		if (type == 2)
+		{
+			LevelUp3();
+		}
+
 		if (spawnTower)
 		{
 			type = 2;
