@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
+using static UnityEditor.PlayerSettings;
 
 
 public class SetTowerBaseInput : MonoBehaviour
@@ -17,6 +18,11 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject clickedButton;
 	public GameObject cam;
 	public GameObject towerButton;
+	public GameObject instanciateTowerButtons;
+	public GameObject towerSelected;
+	public GameObject towerOptions;
+	public GameObject option1;
+	public GameObject option2;
 
 	private int pendingTowerId = 0;
 	public bool spawnTower;
@@ -32,8 +38,9 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Text boperPrice;
 	public Text leiserPrice;
 
+	private int type = 0;
 
-
+	Vector3 pos;
 
 	public Text texto;
 	public Text towerPrice;
@@ -48,9 +55,9 @@ public class SetTowerBaseInput : MonoBehaviour
 	StatesManager states;
 
 	AudioManager audioManager;
+
 	private void Update()
 	{
-
 		if (clickedButton != null)
 		{
 			cam.transform.position = new Vector3(clickedButton.transform.position.x, clickedButton.transform.position.y, -10);
@@ -86,12 +93,28 @@ public class SetTowerBaseInput : MonoBehaviour
 
 			if(!levelUp3)
 			{
-				towerButton.SetActive(true);
+				//towerButton.SetActive(true);
 			}
 			else
 			{
 				towerButton.SetActive(false);
 			}
+
+			pos = towerSelected.transform.position;
+			if (!spawnTower)
+			{
+				instanciateTowerButtons.SetActive(true);
+				towerOptions.SetActive(false);
+
+				towerSelected.transform.position = new Vector3(pos.x, 0, pos.z);
+			}
+			else
+			{
+				instanciateTowerButtons.SetActive(false);
+				towerOptions.SetActive(true);
+
+				towerSelected.transform.position = new Vector3(pos.x, 14, pos.z);
+			}			
 		}
 	}
 	private void Awake()
@@ -156,11 +179,17 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				if (tower.currentLevel == 1)
 				{
-					upgradeStats = towerSetter.towerUpgrades1[tower.id];
+					if(tower.type == 1)
+						upgradeStats = towerSetter.towerUpgrades1Type1[tower.id];
+					else if (tower.type == 2)
+						upgradeStats = towerSetter.towerUpgrades1Type2[tower.id];
 				}
 				else if (tower.currentLevel == 2)
 				{
-					upgradeStats = towerSetter.towerUpgrades2[tower.id];
+					if (tower.type == 1)
+						upgradeStats = towerSetter.towerUpgrades2Type1[tower.id];
+					else if (tower.type == 2)
+						upgradeStats = towerSetter.towerUpgrades2Type2[tower.id];
 				}
 				if (upgradeStats != null)
 				{
@@ -210,6 +239,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				Tower tower = child.GetComponent<Tower>();
 				if (tower.currentLevel == 1)
 				{
+					tower.type = type;
 					LevelUp2();
 				}
 				else if (tower.currentLevel == 2)
@@ -318,6 +348,26 @@ public class SetTowerBaseInput : MonoBehaviour
 		else
 		{
 			pendingTowerId = 2; // ID del Leiser
+		}
+	}
+
+	public void Type1()
+	{
+		if (spawnTower)
+		{
+			type = 1;
+			TowerButton();
+			option2.SetActive(false);
+		}
+	}
+
+	public void Type2()
+	{
+		if (spawnTower)
+		{
+			type = 2;
+			TowerButton();
+			option1.SetActive(false);
 		}
 	}
 
