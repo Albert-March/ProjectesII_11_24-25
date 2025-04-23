@@ -4,16 +4,67 @@ using UnityEngine;
 
 public class Attack_Boper : MonoBehaviour, IAttackType
 {
-    private float lastShotTime = 0f;
+    private bool isAttacking = false;
+    private bool hasFiredThisCycle = false;
     private Dictionary<Enemy, Coroutine> bleedCoroutines = new Dictionary<Enemy, Coroutine>();
-
 
     public void Attack(List<Enemy> e, int TargetAmount, Animator anim, AudioManager audio, int targetType, TargetingManager targetManager)
     {
+        if (isAttacking || anim == null) return;
+
         Tower tower = GetComponent<Tower>();
         if (e == null || e.Count == 0) return;
-        if (Time.time < lastShotTime + 1f / tower.fireRate) return;
 
+        anim.speed = tower.fireRate;
+        anim.SetBool("IsAttacking", true);
+
+        isAttacking = true;
+        hasFiredThisCycle = false;
+
+        StartCoroutine(HandleBopAttack(e, tower, anim));
+    }
+
+    private IEnumerator HandleBopAttack(List<Enemy> enemies, Tower tower, Animator anim)
+    {
+        float fireMoment = 0.666f;
+        hasFiredThisCycle = false;
+
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+        while (!state.IsName("Attack"))
+        {
+            state = anim.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        while (true)
+        {
+            if (tower.enemiesInRange == null || tower.enemiesInRange.Count == 0)
+                break;
+
+            state = anim.GetCurrentAnimatorStateInfo(0);
+            float time = state.normalizedTime % 1f;
+
+            if (time >= fireMoment && !hasFiredThisCycle)
+            {
+                ApplyEffect(enemies, tower);
+                hasFiredThisCycle = true;
+            }
+
+            if (time < 0.1f)
+                hasFiredThisCycle = false;
+
+            if (state.IsName("Idle") || state.normalizedTime >= 1f)
+                break;
+
+            yield return null;
+        }
+
+        anim.SetBool("IsAttacking", false);
+        isAttacking = false;
+    }
+
+    private void ApplyEffect(List<Enemy> e, Tower tower)
+    {
         foreach (Enemy enemy in e)
         {
             if (enemy == null) continue;
@@ -25,15 +76,10 @@ public class Attack_Boper : MonoBehaviour, IAttackType
             else if (tower.type == 1)
             {
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
-                if (tower.currentLevel == 2) 
-                {
+                if (tower.currentLevel == 2)
                     StartCoroutine(ApplySlow(enemy, 0.5f, 0.5f / tower.fireRate));
-                }
-                if (tower.currentLevel == 3) 
-                {
+                if (tower.currentLevel == 3)
                     StartCoroutine(ApplySlow(enemy, 0, 0.5f / tower.fireRate));
-                }
-
             }
             else if (tower.type == 2)
             {
@@ -49,8 +95,6 @@ public class Attack_Boper : MonoBehaviour, IAttackType
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
             }
         }
-
-        lastShotTime = Time.time;
     }
 
     private IEnumerator ApplySlow(Enemy enemy, float slowFactor, float duration)
@@ -63,19 +107,15 @@ public class Attack_Boper : MonoBehaviour, IAttackType
         yield return new WaitForSeconds(duration);
 
         if (enemy != null)
-        {
             enemy.movSpeed = originalSpeed;
-        }
     }
 
-    private IEnumerator ApplyBleed(Tower t,Enemy enemy, float damagePerTick, int ticks)
+    private IEnumerator ApplyBleed(Tower t, Enemy enemy, float damagePerTick, int ticks)
     {
         if (enemy == null) yield break;
 
         if (t.currentLevel == 3)
-        {
             enemy.isBleeding = true;
-        }
 
         for (int i = 0; i < ticks; i++)
         {
@@ -87,9 +127,8 @@ public class Attack_Boper : MonoBehaviour, IAttackType
         if (enemy != null)
         {
             if (t.currentLevel == 3)
-            {
                 enemy.isBleeding = false;
-            }
+
             if (bleedCoroutines.ContainsKey(enemy))
                 bleedCoroutines.Remove(enemy);
         }
