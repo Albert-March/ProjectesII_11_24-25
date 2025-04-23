@@ -9,9 +9,15 @@ public class WaveManager : MonoBehaviour
 	public float time;
 	public float timeToAct;
 	public CanvasGroup img;
-	public Text waveTop;
-	public Text waveMidle;
-	public Text waveBot;
+	public Text I_waveTop;
+	public Text W_waveTop;
+	public Text F_waveTop;
+	public Text I_waveMidle;
+	public Text W_waveMidle;
+	public Text F_waveMidle;
+	public Text I_waveBot;
+	public Text W_waveBot;
+	public Text F_waveBot;
 
 	public bool created;
 	// Start is called before the first frame update
@@ -32,35 +38,35 @@ public class WaveManager : MonoBehaviour
 			switch (s)
 			{
 				case "initial":
-					waveTop.text = "They are getting closer...";
-					waveTop.fontSize = 25;
+					//I_waveTop.text = "They are getting closer...";
+					I_waveTop.fontSize = 25;
 
-					waveMidle.text = "Brace yourself...";
-					waveMidle.fontSize = 70;
+					//I_waveMidle.text = "Brace yourself...";
+					I_waveMidle.fontSize = 70;
 
-					waveBot.text = "Spread and consume everything in your path";
-					waveBot.fontSize = 45;
+					//I_waveBot.text = "Spread and consume everything in your path";
+					I_waveBot.fontSize = 45;
 					break;
 				case "wave":
-					waveTop.text = "The swarm grows stronger!";
-					waveTop.fontSize = 25;
+					//W_waveTop.text = "The swarm grows stronger!";
+					W_waveTop.fontSize = 25;
 
-					waveMidle.text = "Wave";
-					waveMidle.fontSize = 150;
+					//W_waveMidle.text = "Wave";
+					W_waveMidle.fontSize = 150;
 
-					waveBot.text = (spawnManager.currentWaveIndex + 1).ToString();
-					waveBot.fontSize = 150;
+					W_waveBot.text = (spawnManager.currentWaveIndex + 1).ToString();
+					W_waveBot.fontSize = 150;
 
 					break;
 				case "finish":
-					waveTop.text = "Nothing remains...";
-					waveBot.fontSize = 25;
+					//F_waveTop.text = "Nothing remains...";
+					F_waveBot.fontSize = 25;
 
-					waveMidle.text = "You have consumed all";
-					waveBot.fontSize = 70;
+					//F_waveMidle.text = "You have consumed all";
+					F_waveBot.fontSize = 70;
 
-					waveBot.text = "in your path";
-					waveBot.fontSize = 60;
+					//F_waveBot.text = "in your path";
+					F_waveBot.fontSize = 60;
 					break;
 
 			}
