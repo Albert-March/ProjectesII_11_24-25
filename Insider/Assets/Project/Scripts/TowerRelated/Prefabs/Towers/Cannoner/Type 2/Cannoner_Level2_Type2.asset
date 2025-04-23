@@ -16,10 +16,10 @@ MonoBehaviour:
   type: 2
   damage: 50
   fireRate: 1
-  projectileHp: 0
+  projectileHp: 10
   projectileSpeed: 20
   range: 14
-  targetAmount: 0
+  targetAmount: 1
   priceLevel_1_Type0: 0
   priceLevel_2_Type1: 0
   priceLevel_2_Type2: 0

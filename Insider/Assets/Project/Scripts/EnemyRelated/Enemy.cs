@@ -43,7 +43,11 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
 
     AudioManager audioManager;
 
-	public void SetEnemyData(EnemyStats enemy)
+    public Rigidbody2D rb;
+
+    public bool isBleeding = false;
+
+    public void SetEnemyData(EnemyStats enemy)
     {
         this.id = enemy.id;
         this.movSpeed = enemy.movSpeed;
@@ -69,6 +73,8 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         healthBar = GetComponentInChildren<HealthBar>();
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
@@ -153,7 +159,10 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
 
     public void Damage(float amount)
     {
-		health -= amount;
+        if (isBleeding)
+            amount *= 2f;
+
+        health -= amount;
 
         if (health <= 0)
         {

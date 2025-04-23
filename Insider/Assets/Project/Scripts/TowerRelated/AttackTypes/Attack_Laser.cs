@@ -46,9 +46,6 @@ public class Attack_Laser : MonoBehaviour, IAttackType
             target = targetManager.GetEnemyTargetFromList(e, 1, targetType)[0];
             if (target == null) return;
 
-            direction = (target.transform.position - transform.position).normalized;
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            distance = Vector2.Distance(transform.position, target.transform.position);
 
             DrawLaser();
 
@@ -100,14 +97,48 @@ public class Attack_Laser : MonoBehaviour, IAttackType
     {
         if (target == null) return;
 
-        laser = Instantiate(laserPrefab, Vector3.Lerp(transform.position, target.transform.position, 0.5f), Quaternion.Euler(0, 0, angle));
+
+
+        laser = Instantiate(laserPrefab, this.transform.position, Quaternion.identity);
         laser.transform.SetParent(this.transform);
 
         GameObject GOline = laser.transform.Find("Line").gameObject;
+        GameObject GOstart = laser.transform.Find("Start").gameObject;
+        GameObject GOend = laser.transform.Find("End").gameObject;
+
+        Transform startVFX = GOstart.transform;
+        Transform lineObj = GOline.transform;
+        Transform endVFX = GOend.transform;
+
+        Color newColor = Color.yellow;
+
+        LineRenderer lr = lineObj.GetComponent<LineRenderer>();
+        lr.startColor = newColor;
+        lr.endColor = newColor;
+
+        ParticleSystem startParticles = startVFX.GetComponent<ParticleSystem>();
+        var startRenderer = startVFX.GetComponent<ParticleSystemRenderer>();
+        startRenderer.material = new Material(startRenderer.material);
+        startRenderer.material.SetColor("_BaseColor", newColor);
+
+        ParticleSystem endParticles = endVFX.GetComponent<ParticleSystem>();
+        var endRenderer = endVFX.GetComponent<ParticleSystemRenderer>();
+        endRenderer.material = new Material(endRenderer.material);
+        endRenderer.material.SetColor("_BaseColor", newColor);
+
+        Vector3 targetWorld = target.transform.position;
+
+        endVFX.transform.position = targetWorld;
+
         LineRenderer lineRenderer = GOline.GetComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
         lineRenderer.SetPosition(0, laser.transform.InverseTransformPoint(transform.position));
         lineRenderer.SetPosition(1, laser.transform.InverseTransformPoint(target.transform.position));
+
+        Vector3 dir = (targetWorld - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        startVFX.localRotation = Quaternion.Euler(-angle, 0f, 0f);
+        endVFX.localRotation = Quaternion.Euler(-angle + 180f, 0f, 0f);
 
         StartCoroutine(DeleteLaser(lineRenderer, laser));
     }
@@ -160,15 +191,15 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         Transform lineObj = GOlineObj.transform;
         Transform endVFX = GOendVFX.transform;
 
-        Color newColor = new Color32(0, 0, 0, 255);
+        Color newColor = Color.yellow;
 
         if (tower.currentLevel == 2)
         {
-            newColor = new Color32(255, 255, 255, 255);
+            newColor = Color.yellow;
         }
         else if (tower.currentLevel == 3)
         {
-            newColor = new Color32(0, 0, 0, 255);
+            newColor = Color.yellow;
         }
 
         LineRenderer lr = lineObj.GetComponent<LineRenderer>();

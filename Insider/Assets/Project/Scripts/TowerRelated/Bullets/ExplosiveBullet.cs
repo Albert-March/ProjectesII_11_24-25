@@ -15,6 +15,8 @@ public class ExplosiveBullet : MonoBehaviour
     public Tower towerScript;
 	public List<GameObject> enemiesOnContact;
 
+    public GameObject puddle;
+
     private void Awake()
     {
         flyRadius = transform.localScale;
@@ -34,6 +36,7 @@ public class ExplosiveBullet : MonoBehaviour
             float progress = elapsedTime / explosionDuration;
             transform.localScale = Vector3.Lerp(flyRadius, explosionRadius, progress);
         }
+
 		if (transform.localScale == explosionRadius) 
 		{
             if (enemiesOnContact.Count > 0 && !hasExploded)
@@ -43,7 +46,11 @@ public class ExplosiveBullet : MonoBehaviour
                 {
                     enemiesOnContact[i].GetComponent<IDamage>().Damage(towerScript.damage);
                 }
-                
+            }
+            if (towerScript.currentLevel == 3 && puddle != null)
+            {
+                GameObject newPuddle = Instantiate(puddle, transform.position, Quaternion.identity);
+                newPuddle.transform.localScale = explosionRadius;
             }
             Destroy(gameObject);
         }

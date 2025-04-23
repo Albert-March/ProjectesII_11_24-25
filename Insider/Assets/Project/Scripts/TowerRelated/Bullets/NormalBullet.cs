@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NormalBullet : MonoBehaviour
 {
-    private Enemy target;
+    public Enemy target;
     public Tower towerScript;
 
     void Update()

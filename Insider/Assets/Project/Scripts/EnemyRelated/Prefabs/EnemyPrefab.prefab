@@ -271,6 +271,8 @@ MonoBehaviour:
   healthBar: {fileID: 2885483125031537487}
   hpb: {fileID: 6083784961332667760}
   reward: {fileID: 6939825833925267419, guid: 027334f247860f0488883a3dd0e80976, type: 3}
+  hasAtacked: 0
+  rb: {fileID: 0}
   maxHealth: 0
 --- !u!50 &2176080803243427887
 Rigidbody2D:
@@ -368,7 +370,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 2.5
 --- !u!82 &4503045368835499026
 AudioSource:
   m_ObjectHideFlags: 0
