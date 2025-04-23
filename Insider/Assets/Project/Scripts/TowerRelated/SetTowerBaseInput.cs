@@ -23,6 +23,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject towerOptions;
 	public GameObject option1;
 	public GameObject option2;
+	public GameObject towerHabilities;
 
 	private int pendingTowerId = 0;
 	public bool spawnTower;
@@ -76,10 +77,12 @@ public class SetTowerBaseInput : MonoBehaviour
 				if (isHoveringUpgradeButton && !hoverBlockedUntilExit)
 				{
 					ShowUpgradeStats();
+					towerHabilities.SetActive(true);
 				}
 				else
 				{
 					ShowCurrentStats();
+					towerHabilities.SetActive(false);
 				}
 				image.texture = towerCam;
 			}
@@ -213,7 +216,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			return;
 		}
 
-		this.isHoveringUpgradeButton = hover;
+		isHoveringUpgradeButton = hover;
 
 		if (spawnTower == true)
 		{
@@ -258,25 +261,29 @@ public class SetTowerBaseInput : MonoBehaviour
 		economyScript = FindObjectOfType<EconomyManager>();
 		states = FindObjectOfType<StatesManager>();
 
-		if (economyScript.economy >= stats.priceLevel_1_Type0)
+		if (economyScript.towerSpots >= 1)
 		{
 			towerSetter.SpawnTower(pendingTowerId, clickedButton.transform);
 
-			economyScript.economy -= stats.priceLevel_1_Type0;
+			economyScript.towerSpots--;
 			audioManager.PlaySFX(3, 0.2f);
 
 			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().spawnTower = true;
 
 			pendingTowerId = 0;
 		}
+		else
+		{
+			economyScript.insufficientTowerSpots = true;
+		}
 	}
 
 	public void LevelUp2()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if(type == 1)
+		if(type == 1 && !levelUp2)
 		{
-			if (!levelUp2 && economyScript.economy >= stats.priceLevel_2_Type1)
+			if (economyScript.economy >= stats.priceLevel_2_Type1)
 			{
 				foreach (Transform child in clickedButton.transform)
 				{
@@ -295,11 +302,15 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				towerPrice.text = $"{stats.priceLevel_3_Type1}";
 			}
+			else
+			{
+				economyScript.insufficientEconomy = true;
+			}
 		}
 
-		if (type == 2)
+		if (type == 2 && !levelUp2)
 		{
-			if (!levelUp2 && economyScript.economy >= stats.priceLevel_2_Type2)
+			if (economyScript.economy >= stats.priceLevel_2_Type2)
 			{
 				foreach (Transform child in clickedButton.transform)
 				{
@@ -318,6 +329,10 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				towerPrice.text = $"{stats.priceLevel_3_Type2}";
 			}
+			else
+			{
+				economyScript.insufficientEconomy = true;
+			}
 		}
 
 	}
@@ -325,9 +340,9 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp3()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if(type == 1)
+		if(type == 1 && !levelUp3)
 		{
-			if (!levelUp3 && economyScript.economy >= stats.priceLevel_3_Type1)
+			if (economyScript.economy >= stats.priceLevel_3_Type1)
 			{
 				foreach (Transform child in clickedButton.transform)
 				{
@@ -344,10 +359,14 @@ public class SetTowerBaseInput : MonoBehaviour
 				audioManager.PlaySFX(4, 0.2f);
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 			}
+			else
+			{
+				economyScript.insufficientEconomy = true;
+			}
 		}
-		if (type == 2)
+		if (type == 2 && !levelUp3)
 		{
-			if (!levelUp3 && economyScript.economy >= stats.priceLevel_3_Type2)
+			if (economyScript.economy >= stats.priceLevel_3_Type2)
 			{
 				foreach (Transform child in clickedButton.transform)
 				{
@@ -363,6 +382,10 @@ public class SetTowerBaseInput : MonoBehaviour
 				economyScript.economy -= stats.priceLevel_3_Type2;
 				audioManager.PlaySFX(4, 0.2f);
 				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
+			}
+			else
+			{
+				economyScript.insufficientEconomy = true;
 			}
 		}
 
