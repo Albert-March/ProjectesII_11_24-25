@@ -8,9 +8,6 @@ public class ChainBullet : MonoBehaviour
 	private int currentTargetIndex = 0;
 	public Tower towerScript;
 
-	public GameObject impactEffectPrefab;
-	public GameObject chainEffectPrefab;
-
 	private float currentSpeed;
 
 	private Enemy CurrentTarget =>
@@ -18,7 +15,7 @@ public class ChainBullet : MonoBehaviour
 
 	void Start()
 	{
-		currentSpeed = towerScript.projectileSpeed; // velocidad inicial normal
+		currentSpeed = towerScript.projectileSpeed;
 	}
 
 	void Update()
@@ -29,11 +26,9 @@ public class ChainBullet : MonoBehaviour
 			return;
 		}
 
-		// Movimiento hacia el objetivo actual
 		Vector2 direction = (CurrentTarget.transform.position - transform.position).normalized;
 		transform.position = Vector2.MoveTowards(transform.position, CurrentTarget.transform.position, currentSpeed * Time.deltaTime);
 
-		// Rotación hacia el objetivo
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
 		transform.rotation = Quaternion.Euler(0, 0, angle);
 	}
@@ -50,52 +45,43 @@ public class ChainBullet : MonoBehaviour
 
 		if (collision.gameObject == CurrentTarget.gameObject)
 		{
-			// Hacer daño
 			IDamage enemyReference = collision.GetComponent<IDamage>();
 			if (enemyReference != null)
 			{
 				enemyReference.Damage(towerScript.damage);
 			}
 
-			// Efecto visual de impacto
-			if (impactEffectPrefab != null)
-			{
-				Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
-			}
+            if (towerScript.currentLevel == 3)
+            {
+                StartCoroutine(ApplyStun(CurrentTarget, 0.5f));
+            }
 
-			currentTargetIndex++;
+            currentTargetIndex++;
 
-			// Validar próximos objetivos
 			while (currentTargetIndex < chainTargets.Count &&
 				   (chainTargets[currentTargetIndex] == null || chainTargets[currentTargetIndex].gameObject == null))
 			{
 				currentTargetIndex++;
 			}
 
-			// Si ya no hay más objetivos, destruir
 			if (currentTargetIndex >= chainTargets.Count)
 			{
 				Destroy(gameObject);
 				return;
 			}
 
-			// Efecto de rayo entre rebotes
-			if (chainEffectPrefab != null)
-			{
-				Vector3 from = transform.position;
-				Vector3 to = chainTargets[currentTargetIndex].transform.position;
-				GameObject effect = Instantiate(chainEffectPrefab, from, Quaternion.identity);
-				LineRenderer lr = effect.GetComponent<LineRenderer>();
-				if (lr != null)
-				{
-					lr.SetPosition(0, from);
-					lr.SetPosition(1, to);
-				}
-				Destroy(effect, 0.3f);
-			}
-
-			// Reducir velocidad después de cada rebote
-			currentSpeed *= 0.8f; // Reduce un 20% por rebote
+			currentSpeed *= 0.8f;
 		}
 	}
+    private IEnumerator ApplyStun(Enemy enemy, float duration)
+    {
+        if (enemy == null) yield break;
+
+        enemy.isStuned = true;
+
+        yield return new WaitForSeconds(duration);
+
+        if (enemy != null)
+            enemy.isStuned = false;
+    }
 }

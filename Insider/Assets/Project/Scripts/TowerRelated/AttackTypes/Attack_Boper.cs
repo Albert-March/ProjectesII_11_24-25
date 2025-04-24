@@ -38,8 +38,14 @@ public class Attack_Boper : MonoBehaviour, IAttackType
 
         while (true)
         {
-            if (tower.enemiesInRange == null || tower.enemiesInRange.Count == 0)
-                break;
+            if (tower.enemiesInRange == null || tower.enemiesInRange.Count == 0) 
+            { 
+                anim.SetBool("IsAttacking", false);
+                isAttacking = false;
+                break; 
+            }
+
+                
 
             state = anim.GetCurrentAnimatorStateInfo(0);
             float time = state.normalizedTime % 1f;
@@ -77,9 +83,9 @@ public class Attack_Boper : MonoBehaviour, IAttackType
             {
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
                 if (tower.currentLevel == 2)
-                    StartCoroutine(ApplySlow(enemy, 0.5f, 0.5f / tower.fireRate));
+                    StartCoroutine(ApplySlow(enemy, 0.5f / tower.fireRate));
                 if (tower.currentLevel == 3)
-                    StartCoroutine(ApplySlow(enemy, 0, 0.5f / tower.fireRate));
+                    StartCoroutine(ApplyStun(enemy, 0.5f / tower.fireRate));
             }
             else if (tower.type == 2)
             {
@@ -97,17 +103,28 @@ public class Attack_Boper : MonoBehaviour, IAttackType
         }
     }
 
-    private IEnumerator ApplySlow(Enemy enemy, float slowFactor, float duration)
+    private IEnumerator ApplySlow(Enemy enemy, float duration)
     {
         if (enemy == null) yield break;
 
-        float originalSpeed = enemy.movSpeed;
-        enemy.movSpeed *= slowFactor;
+        enemy.isSlowed = true;
 
         yield return new WaitForSeconds(duration);
 
         if (enemy != null)
-            enemy.movSpeed = originalSpeed;
+            enemy.isSlowed = false;
+    }
+
+    private IEnumerator ApplyStun(Enemy enemy, float duration)
+    {
+        if (enemy == null) yield break;
+
+        enemy.isStuned = true;
+
+        yield return new WaitForSeconds(duration);
+
+        if (enemy != null)
+            enemy.isStuned = false;
     }
 
     private IEnumerator ApplyBleed(Tower t, Enemy enemy, float damagePerTick, int ticks)
@@ -115,21 +132,23 @@ public class Attack_Boper : MonoBehaviour, IAttackType
         if (enemy == null) yield break;
 
         if (t.currentLevel == 3)
-            enemy.isBleeding = true;
+            enemy.isWeek = true;
 
         for (int i = 0; i < ticks; i++)
         {
             if (enemy == null) break;
             enemy.GetComponent<IDamage>().Damage(damagePerTick);
+            enemy.isBleeding = true;
             yield return new WaitForSeconds(2f);
         }
 
         if (enemy != null)
         {
             if (t.currentLevel == 3)
-                enemy.isBleeding = false;
+                enemy.isWeek = false;
 
             if (bleedCoroutines.ContainsKey(enemy))
+                enemy.isBleeding = false;
                 bleedCoroutines.Remove(enemy);
         }
     }

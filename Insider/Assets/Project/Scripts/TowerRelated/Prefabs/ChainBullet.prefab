@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerScript: {fileID: 0}
   impactEffectPrefab: {fileID: 0}
-  chainEffectPrefab: {fileID: 1666238990957237703, guid: 627a1afc3dcbf814f8e9bc2b5e3b4723, type: 3}
+  stunEffectPrefab: {fileID: 6097779538034126439, guid: b6d3e2e4b8df2964eb3dfce561902f3e, type: 3}
 --- !u!1 &3724815541436531944
 GameObject:
   m_ObjectHideFlags: 0
