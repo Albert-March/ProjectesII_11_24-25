@@ -1461,7 +1461,6 @@ GameObject:
   - component: {fileID: 483864587}
   - component: {fileID: 483864586}
   - component: {fileID: 483864588}
-  - component: {fileID: 483864589}
   - component: {fileID: 483864590}
   m_Layer: 5
   m_Name: Option1
@@ -1584,21 +1583,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &483864589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483864584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalScale: {x: 1, y: 1, z: 1}
-  newScale: {x: 1.2, y: 1.2, z: 1.2}
-  transitionDuration: 0.2
 --- !u!114 &483864590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,7 +2097,6 @@ GameObject:
   - component: {fileID: 595477230}
   - component: {fileID: 595477229}
   - component: {fileID: 595477228}
-  - component: {fileID: 595477227}
   - component: {fileID: 595477226}
   m_Layer: 5
   m_Name: Option1.1
@@ -2187,21 +2170,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &595477227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595477224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalScale: {x: 1, y: 1, z: 1}
-  newScale: {x: 1.2, y: 1.2, z: 1.2}
-  transitionDuration: 0.2
 --- !u!114 &595477228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3566,44 +3534,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &776126126
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 776126127}
-  m_Layer: 5
-  m_Name: TowerHabilities
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &776126127
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776126126}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1744340486}
-  - {fileID: 913712913}
-  m_Father: {fileID: 3677403218714357495}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146, y: -85}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &786993025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,7 +3678,6 @@ GameObject:
   - component: {fileID: 805295940}
   - component: {fileID: 805295939}
   - component: {fileID: 805295941}
-  - component: {fileID: 805295942}
   - component: {fileID: 805295943}
   m_Layer: 5
   m_Name: Option2
@@ -3871,21 +3800,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &805295942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805295937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalScale: {x: 1, y: 1, z: 1}
-  newScale: {x: 1.2, y: 1.2, z: 1.2}
-  transitionDuration: 0.2
 --- !u!114 &805295943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4272,86 +4186,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &913712912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 913712913}
-  - component: {fileID: 913712915}
-  - component: {fileID: 913712914}
-  m_Layer: 5
-  m_Name: Name
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &913712913
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913712912}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 776126127}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -108}
-  m_SizeDelta: {x: 320, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &913712914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913712912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.7176471, g: 0.8509804, b: 0.45490196, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 9b0983ae5d91e42478381655d93cbae9, type: 3}
-    m_FontSize: 40
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 50
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Description
---- !u!222 &913712915
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913712912}
-  m_CullTransparentMesh: 1
 --- !u!1 &968513028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,7 +4806,6 @@ GameObject:
   - component: {fileID: 1230579251}
   - component: {fileID: 1230579250}
   - component: {fileID: 1230579249}
-  - component: {fileID: 1230579248}
   - component: {fileID: 1230579247}
   m_Layer: 5
   m_Name: Option2.1
@@ -5046,21 +4879,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1230579248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1230579245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65746cb1ec893644d96699da311c0a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalScale: {x: 1, y: 1, z: 1}
-  newScale: {x: 1.2, y: 1.2, z: 1.2}
-  transitionDuration: 0.2
 --- !u!114 &1230579249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6686,79 +6504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df31aec24aa0b94ea8e484186c89404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1744340485
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1744340486}
-  - component: {fileID: 1744340488}
-  - component: {fileID: 1744340487}
-  m_Layer: 5
-  m_Name: TowerImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1744340486
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744340485}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5000001, y: 1.5000001, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 776126127}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1744340487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744340485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: ef83e9b674029154ead3bd857dfdf0fc, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1744340488
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744340485}
-  m_CullTransparentMesh: 1
 --- !u!224 &1753072459 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4077724124799416161, guid: 8aeefdf3177088f4ca6c00236371fee9, type: 3}
@@ -23787,7 +23532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372236966487006399, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpots
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3372236966487006399, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpotsText
@@ -24238,9 +23983,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: Op1
+      value: 
+      objectReference: {fileID: 483864584}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: Op2
+      value: 
+      objectReference: {fileID: 805295937}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1443172642598720714}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: Op1_1
+      value: 
+      objectReference: {fileID: 595477224}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: Op2_1
+      value: 
+      objectReference: {fileID: 1230579245}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: image
       value: 
@@ -24336,7 +24097,7 @@ PrefabInstance:
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerHabilities
       value: 
-      objectReference: {fileID: 776126126}
+      objectReference: {fileID: 0}
     - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: buildTowerButton
       value: 
@@ -24441,9 +24202,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3010721348952065314, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 805534019}
-    - targetCorrespondingSourceObject: {fileID: 3010721348952065314, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 776126127}
     - targetCorrespondingSourceObject: {fileID: 4457050248988495852, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       insertIndex: 1
       addedObject: {fileID: 681628915}

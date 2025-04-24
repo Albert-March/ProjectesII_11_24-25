@@ -21,9 +21,17 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject instanciateTowerButtons;
 	public GameObject towerSelected;
 	public GameObject towerOptions;
+
 	public GameObject option1;
+	public GameObject Op1;
+	public GameObject Op1_1;
 	public GameObject option2;
-	public GameObject towerHabilities;
+	public GameObject Op2;
+	public GameObject Op2_1;
+	private Vector3 option1OriginalScale;
+	private Vector3 option2OriginalScale;
+	public float pulseSpeed = 2f;
+	public float pulseAmount = 0.1f;
 
 	private int pendingTowerId = 0;
 	public bool spawnTower;
@@ -56,6 +64,13 @@ public class SetTowerBaseInput : MonoBehaviour
 	StatesManager states;
 
 	AudioManager audioManager;
+	void Start()
+	{
+		option1OriginalScale = Op1.transform.localScale;
+		option1OriginalScale = Op1_1.transform.localScale;
+		option2OriginalScale = Op2.transform.localScale;
+		option2OriginalScale = Op2_1.transform.localScale;
+	}
 
 	private void Update()
 	{
@@ -76,21 +91,33 @@ public class SetTowerBaseInput : MonoBehaviour
 					if (child.name == "Tower(Clone)")
 					{
 						Tower tower = child.GetComponent<Tower>();
+						float scaleFactor = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
 
 						if (tower.type == 0)
 						{
 							option1.SetActive(true);
+							Op1.transform.localScale = option1OriginalScale * scaleFactor;
+
 							option2.SetActive(true);
+							Op2.transform.localScale = option2OriginalScale * scaleFactor;
 						}
 						else if (tower.type == 1)
 						{
 							option1.SetActive(true);
 							option2.SetActive(false);
+							if (tower.currentLevel == 2)
+							{
+								Op1_1.transform.localScale = option1OriginalScale * scaleFactor;
+							}
 						}
 						else if (tower.type == 2)
 						{
 							option1.SetActive(false);
 							option2.SetActive(true);
+							if(tower.currentLevel == 2)
+							{
+								Op2_1.transform.localScale = option1OriginalScale * scaleFactor;
+							}
 						}
 					}
 				}
@@ -101,12 +128,10 @@ public class SetTowerBaseInput : MonoBehaviour
 				if (isHoveringUpgradeButton && !hoverBlockedUntilExit)
 				{
 					ShowUpgradeStats();
-					towerHabilities.SetActive(true);
 				}
 				else
 				{
 					ShowCurrentStats();
-					towerHabilities.SetActive(false);
 				}
 				image.texture = towerCam;
 			}

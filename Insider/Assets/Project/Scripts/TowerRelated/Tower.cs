@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Tower : MonoBehaviour
@@ -22,8 +23,10 @@ public class Tower : MonoBehaviour
     public int priceLevel_3_Type1;
     public int priceLevel_3_Type2;
 
+	public List<Sprite> levelSprites = new List<Sprite>();
+	public Image levelIndicatorImage;
 
-    GameObject towerObject;
+	GameObject towerObject;
     Animator animatorTower;
     public List<Enemy> enemiesInRange = new List<Enemy>();
 
@@ -68,8 +71,44 @@ public class Tower : MonoBehaviour
             towerObject.transform.rotation = transform.rotation;
         }
 
-        attackManager.SetAttackType(id);
+		CreateOrUpdateLevelIndicator();
+
+		attackManager.SetAttackType(id);
     }
+
+	private void CreateOrUpdateLevelIndicator()
+	{
+		if (levelIndicatorImage == null)
+		{
+			// Crear Canvas
+			GameObject canvasGO = new GameObject("LevelCanvas");
+			canvasGO.transform.SetParent(transform);
+			canvasGO.transform.localPosition = new Vector3(1f, -1f, 0);
+
+			Canvas canvas = canvasGO.AddComponent<Canvas>();
+			canvas.overrideSorting = true;
+			canvas.sortingLayerName = "UI";
+			canvas.sortingOrder = 100;
+			canvas.renderMode = RenderMode.WorldSpace;
+			canvas.scaleFactor = 10f;
+
+			CanvasScaler scaler = canvasGO.AddComponent<CanvasScaler>();
+			scaler.dynamicPixelsPerUnit = 10f;
+
+			// Crear la Image
+			GameObject imageGO = new GameObject("LevelImage");
+			imageGO.transform.SetParent(canvasGO.transform);
+			levelIndicatorImage = imageGO.AddComponent<Image>();
+			levelIndicatorImage.rectTransform.sizeDelta = new Vector2(1f, 1f);
+			imageGO.transform.localPosition = Vector3.zero;
+		}
+
+		// Asignar sprite
+		if (levelSprites.Count >= currentLevel && levelIndicatorImage != null)
+		{
+			levelIndicatorImage.sprite = levelSprites[currentLevel - 1];
+		}
+	}
 
 	public void LevelUp(TowerStats stats)
 	{
