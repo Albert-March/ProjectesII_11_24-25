@@ -25,7 +25,7 @@ MonoBehaviour:
   priceLevel_2_Type2: 0
   priceLevel_3_Type1: 0
   priceLevel_3_Type2: 0
-  rangeOffstY: 2
+  rangeOffstY: 0
   AnimationPrefab: {fileID: 3344904414203484110, guid: 10c516cb59b1ae94fbc7ea6f043cd32b, type: 3}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
   attackManager: {fileID: 0}

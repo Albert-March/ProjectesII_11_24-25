@@ -20,6 +20,7 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
 
     public Transform Arm1Point;
     public Transform Arm2Point;
+    public GameObject BaseCannoner;
 
     void Awake()
     {
@@ -60,7 +61,7 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
     {
         Arm1Point = FindDeepChildByName(gameObject, "AP1").transform;
         Arm2Point = FindDeepChildByName(gameObject, "AP2").transform;
-
+        BaseCannoner = FindDeepChildByName(gameObject, "Cannoner_1");
         if (isAttacking || !anim) return;
 
         Tower tower = GetComponent<Tower>();
@@ -96,6 +97,14 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
         {
             if (tower.enemiesInRange == null || tower.enemiesInRange.Count == 0)
                 break;
+
+            Enemy mainTarget = tower.enemiesInRange[0];
+            if (mainTarget != null)
+            {
+                Vector3 dir = (mainTarget.transform.position - BaseCannoner.transform.position).normalized;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                BaseCannoner.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+            }
 
             state = anim.GetCurrentAnimatorStateInfo(0);
             float time = state.normalizedTime % 1f;
