@@ -28,6 +28,13 @@ public class SetTowerBaseInput : MonoBehaviour
 	public GameObject option2;
 	public GameObject Op2;
 	public GameObject Op2_1;
+
+	public Text Price1;
+	public Text Price1_1;
+	public Text Price2;
+	public Text Price2_1;
+
+
 	private Vector3 option1OriginalScale;
 	private Vector3 option2OriginalScale;
 	public float pulseSpeed = 2f;
@@ -119,6 +126,10 @@ public class SetTowerBaseInput : MonoBehaviour
 								Op2_1.transform.localScale = option1OriginalScale * scaleFactor;
 							}
 						}
+						Price1.text = tower.priceLevel_2_Type1.ToString();
+						Price1_1.text = tower.priceLevel_2_Type2.ToString();
+						Price2.text = tower.priceLevel_3_Type1.ToString();
+						Price2_1.text = tower.priceLevel_3_Type2.ToString();
 					}
 				}
 
