@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   type: 1
-  damage: 40
-  fireRate: 2
+  damage: 10
+  fireRate: 1
   projectileHp: 0
   projectileSpeed: 0
-  range: 6
+  range: 10
   targetAmount: 0
   priceLevel_1_Type0: 0
   priceLevel_2_Type1: 0

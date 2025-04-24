@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class Enemy : MonoBehaviour, IDamage, IHealable
 {
     public int id;
+    public float baseMovspeed;
     public float movSpeed;
     public float attackSpeed;
     public float health;
@@ -46,11 +47,20 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
     public Rigidbody2D rb;
 
     public bool isBleeding = false;
+    public bool isWeek = false;
+    public bool isSlowed = false;
+    public bool isStuned = false;
+
+    public GameObject StunEffect;
+    public GameObject WeekEffect;
+    public GameObject SlowEffect;
+    public GameObject BleedEffect;
 
     public void SetEnemyData(EnemyStats enemy)
     {
         this.id = enemy.id;
         this.movSpeed = enemy.movSpeed;
+        baseMovspeed = this.movSpeed;
         this.attackSpeed = enemy.attackSpeed;
         this.health = enemy.health;
         this.dmg = enemy.dmg;
@@ -96,11 +106,53 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
         {
             hpb.SetActive(true);
         }
+
+        if (isStuned)
+        {
+            movSpeed = 0f;
+            StunEffect.SetActive(true);
+        }
+        else
+        {
+            StunEffect.SetActive(false);
+        }
+
+        if (isSlowed && !isStuned)
+        {
+            movSpeed = baseMovspeed * 0.5f;
+            SlowEffect.SetActive(true);
+        }
+        else
+        {
+            SlowEffect.SetActive(false);
+        }
+
+        if (isWeek)
+        {
+            WeekEffect.SetActive(true);
+        }
+        else 
+        {
+            WeekEffect.SetActive(false);
+        }
+
+        if (isBleeding)
+        {
+            BleedEffect.SetActive(true);
+        }
+        else
+        {
+            BleedEffect.SetActive(false);
+        }
+
+        if (!isStuned && !isSlowed) { movSpeed = baseMovspeed; }
+
         if (_damageReciver == null) 
         {
             PlayAllBehaviours();
             return;
         }
+
 
 
         if (_damageReciver != null && !hasAtacked)
@@ -159,7 +211,7 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
 
     public void Damage(float amount)
     {
-        if (isBleeding)
+        if (isWeek)
             amount *= 2f;
 
         health -= amount;
