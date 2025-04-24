@@ -49,13 +49,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  type: 0
   damage: 0
   fireRate: 0
   DPS: 0
   projectileHp: 0
   projectileSpeed: 0
   range: 0
-  hability: 0
+  targetAmount: 0
+  priceLevel_1_Type0: 0
+  priceLevel_2_Type1: 0
+  priceLevel_2_Type2: 0
+  priceLevel_3_Type1: 0
+  priceLevel_3_Type2: 0
+  levelSprites:
+  - {fileID: 21300000, guid: 6fe5a5eeff90c33428dde50b1cad2d75, type: 3}
+  - {fileID: 21300000, guid: e7b40357236922443babeaf1b8275de1, type: 3}
+  - {fileID: 21300000, guid: b1b5c49ff2b685946a0a78331384c5b2, type: 3}
+  levelIndicatorImage: {fileID: 0}
   enemiesInRange: []
   targetType: 0
   attackManager: {fileID: -4171722768245866999}
