@@ -71,6 +71,30 @@ public class SetTowerBaseInput : MonoBehaviour
 
 			if (spawnTower == true)
 			{
+				foreach (Transform child in clickedButton.transform)
+				{
+					if (child.name == "Tower(Clone)")
+					{
+						Tower tower = child.GetComponent<Tower>();
+
+						if (tower.type == 0)
+						{
+							option1.SetActive(true);
+							option2.SetActive(true);
+						}
+						else if (tower.type == 1)
+						{
+							option1.SetActive(true);
+							option2.SetActive(false);
+						}
+						else if (tower.type == 2)
+						{
+							option1.SetActive(false);
+							option2.SetActive(true);
+						}
+					}
+				}
+
 				rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
 
@@ -94,7 +118,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				leiserPrice.text = towerSetter.towerStats[2].priceLevel_1_Type0.ToString();
 			}
 
-			if(!levelUp3)
+			if (!levelUp3)
 			{
 				//towerButton.SetActive(true);
 			}
@@ -117,9 +141,10 @@ public class SetTowerBaseInput : MonoBehaviour
 				towerOptions.SetActive(true);
 
 				towerSelected.transform.position = new Vector3(pos.x, 14, pos.z);
-			}			
+			}
 		}
 	}
+
 	private void Awake()
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -232,8 +257,6 @@ public class SetTowerBaseInput : MonoBehaviour
 		if (!spawnTower)
 		{
 			BuildSelectedTower();
-			option1.SetActive(true);
-			option2.SetActive(true);
 			return;
 		}
 
@@ -244,8 +267,9 @@ public class SetTowerBaseInput : MonoBehaviour
 				Tower tower = child.GetComponent<Tower>();
 				if (tower.currentLevel == 1)
 				{
-					tower.type = type;
-					LevelUp2();
+					//tower.type = type;
+					//LevelUp2();
+					return;
 				}
 				else if (tower.currentLevel == 2)
 				{
@@ -429,31 +453,31 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void Type1()
 	{
-		if (type == 1)
-		{
-			LevelUp3();
-		}
+		type = 1;
 
-		if (spawnTower)
+		foreach (Transform child in clickedButton.transform)
 		{
-			type = 1;
-			TowerButton();
-			option2.SetActive(false);
+			if (child.name == "Tower(Clone)")
+			{
+				Tower tower = child.GetComponent<Tower>();
+				tower.type = type;
+				LevelUp2();
+			}
 		}
 	}
 
 	public void Type2()
 	{
-		if (type == 2)
-		{
-			LevelUp3();
-		}
+		type = 2;
 
-		if (spawnTower)
+		foreach (Transform child in clickedButton.transform)
 		{
-			type = 2;
-			TowerButton();
-			option1.SetActive(false);
+			if (child.name == "Tower(Clone)")
+			{
+				Tower tower = child.GetComponent<Tower>();
+				tower.type = type;
+				LevelUp2();
+			}
 		}
 	}
 
