@@ -64,9 +64,9 @@ public class SetTowerBaseInput : MonoBehaviour
 	StatesManager states;
 
 	AudioManager audioManager;
-	void Start()
+	void Start() 
 	{
-		option1OriginalScale = Op1.transform.localScale;
+        option1OriginalScale = Op1.transform.localScale;
 		option1OriginalScale = Op1_1.transform.localScale;
 		option2OriginalScale = Op2.transform.localScale;
 		option2OriginalScale = Op2_1.transform.localScale;

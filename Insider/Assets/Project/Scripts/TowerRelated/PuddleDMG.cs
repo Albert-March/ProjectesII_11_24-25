@@ -13,12 +13,15 @@ public class PuddleDMG : MonoBehaviour
 
     private Vector3 initialScale;
 
+    AudioManager audioManager;
 
     private List<Enemy> enemiesInRange = new List<Enemy>();
 
     void Start()
     {
         initialScale = transform.localScale;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager.PlaySFX(9, 0.5f);
     }
 
     void Update()

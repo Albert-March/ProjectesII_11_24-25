@@ -51,6 +51,8 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
     public bool isSlowed = false;
     public bool isStuned = false;
 
+    public bool isDead = false;
+
     public GameObject StunEffect;
     public GameObject WeekEffect;
     public GameObject SlowEffect;
@@ -215,9 +217,9 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
             amount *= 2f;
 
         health -= amount;
-
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
+            isDead = true;
             economyScript = FindObjectOfType<EconomyManager>();
             economyScript.economy += economyGiven;
 
@@ -231,7 +233,7 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
             {
                 Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
             }
-            audioManager.PlaySFX(0, 0.1f);
+            audioManager.PlaySFX(0, 0.05f);
 
             animationGO.transform.parent = null;
 
@@ -245,7 +247,19 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}
 
+    public void Stun(float duration) 
+    {
+        StartCoroutine(ApplyStun(duration));
+    }
 
+    public IEnumerator ApplyStun(float duration)
+    {
+        isStuned = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isStuned = false;
+    }
 
     public void SpawnParticles()
 	{

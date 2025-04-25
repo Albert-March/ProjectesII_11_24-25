@@ -122,7 +122,8 @@ public class Tower : MonoBehaviour
 	private void Awake()
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-	}
+        audioManager.PlaySFX(5, 0.1f);
+    }
 
     private void Update()
     {
