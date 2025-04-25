@@ -27,12 +27,17 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!startAnimation) 
+        if (!startAnimation && !IsTutorialPaused())
         {
             HandleZoom();
             HandleDrag();
         }
         LimitCameraPosition();
+    }
+
+    private bool IsTutorialPaused()
+    {
+        return TutorialManager.instance != null && TutorialManager.instance.IsPaused();
     }
 
     private void HandleZoom()
