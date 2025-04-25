@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,18 +17,22 @@ public class TutorialManager : MonoBehaviour
     public Button nextButton;
 
     [Header("Tutorial Targets")]
-    public Transform buttonWave;
+    public GameObject buttonWave;
     public Transform enemyExample;
     public Transform towerPoint;
     public Transform moneyText;
     public Transform lifeText;
-
+    public SpawnManager spawnManager;
     public Spawner spRef;
 
-    private int currentStep = 0;
-    private bool isPaused = false;
-    private bool towerPlaced = false;
-    private bool coinCollected = false;
+    private bool hasStartedNextWaveDelay = false;
+    private bool hasStartedEnemiesDelay = false;
+
+    public int currentStep = 0;
+    public bool isPaused = false;
+    public bool towerPlaced = false;
+    public bool coinCollected = false;
+    private bool hasClickedNextWave = false;
 
     private Image highlightImage;
     private Color baseHighlightColor;
@@ -54,7 +59,6 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-     
         if (highlightBox.activeSelf)
         {
             float alpha = Mathf.PingPong(Time.unscaledTime * 2f, 0.5f) + 0.5f;
@@ -63,21 +67,18 @@ public class TutorialManager : MonoBehaviour
             highlightImage.color = color;
         }
 
-        
         switch (currentStep)
         {
             case 0:
-                if (!spRef.waitingForNextWave)
+                if (!spRef.waitingForNextWave && hasClickedNextWave)
                 {
-                    NextStep();
+                    StartCoroutine(DelayEnemiesAppearing(4f));
+                    currentStep++;
                 }
                 break;
 
             case 1:
-                if (GameObject.FindWithTag("Enemy") != null)
-                {
-                    NextStep();
-                }
+             
                 break;
 
             case 2:
@@ -88,10 +89,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 3:
-                if (coinCollected)
-                {
-                    NextStep();
-                }
+              
                 break;
         }
     }
@@ -102,7 +100,6 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.SetActive(true);
         highlightBox.SetActive(true);
 
-       
         if (index == 0)
             Time.timeScale = 1f;
         else
@@ -110,32 +107,31 @@ public class TutorialManager : MonoBehaviour
 
         isPaused = true;
 
-        
         switch (index)
         {
             case 0:
                 tutorialText.text = "Click here to start the first wave.";
-                highlightBox.transform.position = Camera.main.WorldToScreenPoint(buttonWave.position);
+                highlightBox.transform.position = buttonWave.transform.position;
                 break;
 
             case 1:
                 tutorialText.text = "These are the enemies. Stop them!";
-                highlightBox.transform.position = Camera.main.WorldToScreenPoint(enemyExample.position);
+                highlightBox.transform.position = enemyExample.position;
                 break;
 
             case 2:
                 tutorialText.text = "Place a tower here to defend!";
-                highlightBox.transform.position = Camera.main.WorldToScreenPoint(towerPoint.position);
+                highlightBox.transform.position = towerPoint.position;
                 break;
 
             case 3:
-                tutorialText.text = "This is a coin. You earn them by killing enemies and use them to build or upgrade towers.";
-                highlightBox.transform.position = Camera.main.WorldToScreenPoint(moneyText.position);
+                tutorialText.text = "This is your economy. Use it to place and upgrade towers.";
+                highlightBox.transform.position = moneyText.position;
                 break;
 
             case 4:
                 tutorialText.text = "This is your life. If it reaches 0, you lose!";
-                highlightBox.transform.position = Camera.main.WorldToScreenPoint(lifeText.position);
+                highlightBox.transform.position = lifeText.position;
                 break;
         }
     }
@@ -150,12 +146,22 @@ public class TutorialManager : MonoBehaviour
 
     public void OnTowerPlaced()
     {
-        towerPlaced = true;
+        if (currentStep == 2)
+        {
+            towerPlaced = true;
+            HideTutorial();
+            currentStep++; 
+        }
     }
 
     public void OnCoinCollected()
     {
-        coinCollected = true;
+        if (currentStep == 3 && !coinCollected)
+        {
+            coinCollected = true;
+
+            ShowStep(3);
+        }
     }
 
     public bool IsWaitingForCoinStep()
@@ -175,5 +181,36 @@ public class TutorialManager : MonoBehaviour
             ShowStep(currentStep);
         else
             HideTutorial();
+    }
+
+    public void OnClickNextWave()
+    {
+        hasClickedNextWave = true;
+    }
+
+    IEnumerator DelayEnemiesAppearing(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+
+        ShowEnemiesStep();
+        StartCoroutine(DelayShowTowerStep(2f));
+    }
+
+    void ShowEnemiesStep()
+    {
+        tutorialPanel.SetActive(true);
+        highlightBox.SetActive(true);
+        tutorialText.text = "These are the enemies. Stop them!";
+        highlightBox.transform.position = Camera.main.WorldToScreenPoint(enemyExample.position);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    IEnumerator DelayShowTowerStep(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+
+        ShowStep(2);
+        currentStep = 2;
     }
 }

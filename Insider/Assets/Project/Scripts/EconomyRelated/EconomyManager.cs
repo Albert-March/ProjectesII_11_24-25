@@ -13,18 +13,18 @@ public class EconomyManager : MonoBehaviour
 
     void Update()
     {
-        if (economy > lastEconomy)
-        {
-            scale = 1.4f;
-
-            if (TutorialManager.instance != null && TutorialManager.instance.IsWaitingForCoinStep())
-            {
-                TutorialManager.instance.OnCoinCollected();
-            }
-        }
-
         if (economy != lastEconomy)
         {
+            if (economy > lastEconomy)
+            {
+                scale = 1.4f;
+
+                if (TutorialManager.instance != null && TutorialManager.instance.IsWaitingForCoinStep())
+                {
+                    TutorialManager.instance.OnCoinCollected();
+                }
+            }
+
             economyText.text = economy.ToString();
             lastEconomy = economy;
         }
