@@ -11044,6 +11044,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 734b269688cb34b4fa6f08ce40314ff5, type: 3}
   - {fileID: 8300000, guid: 90e7c0c0b1ffcd4469506d330c64e921, type: 3}
   - {fileID: 8300000, guid: 73d887e74b59d974cb3fe3d6ed122f0b, type: 3}
+  - {fileID: 8300000, guid: 5106fafcd287f5c4c8c2569b36cfc98f, type: 3}
 --- !u!212 &3234730577443121563
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18699,7 +18700,7 @@ MonoBehaviour:
   m_Follow: {fileID: 7047671921890907500}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 24.00008
+    OrthographicSize: 23.00008
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -23541,7 +23542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8278856199699484742, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: orthographic size
-      value: 24.00008
+      value: 23.00008
       objectReference: {fileID: 0}
     - target: {fileID: 8410329214893350961, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -23565,7 +23566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8500142892520483303, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8629147234598406713, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_Value

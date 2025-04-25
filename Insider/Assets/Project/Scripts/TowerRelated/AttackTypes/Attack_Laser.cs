@@ -316,7 +316,7 @@ public class Attack_Laser : MonoBehaviour, IAttackType
                     isLaserLoopPlaying = false;
                 }
             }
-            else
+            else if (isLaserLoopPlaying)
             {
                 float newPitch = Mathf.Clamp(1f - (activeLaserCount * 0.01f), 0.5f, 1f);
                 AudioManager.instance.SetLoopPitch(laserLoopAudioIndex, newPitch);
@@ -355,7 +355,6 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         activeTargets.Remove(target);
         activeLaserCount--;
         animatingLasers--;
-        Destroy(laserObj);
 
         if (animatingLasers <= 0)
         {
@@ -368,11 +367,13 @@ public class Attack_Laser : MonoBehaviour, IAttackType
                 isLaserLoopPlaying = false;
             }
         }
-        else
+        else if (isLaserLoopPlaying)
         {
             float newPitch = Mathf.Clamp(1f - (activeLaserCount * 0.01f), 0.5f, 1f);
             AudioManager.instance.SetLoopPitch(laserLoopAudioIndex, newPitch);
         }
+
+        Destroy(laserObj);
     }
     IEnumerator HandleLaserRampDamage(Enemy target, Animator anim)
     {
