@@ -33,9 +33,12 @@ public class TargetSelectionManager : MonoBehaviour
 					currentTarget = "Strong";
 					break;
 				case 3:
-					currentTarget = "Far";
+					currentTarget = "Weak";
 					break;
-				default:
+                case 4:
+                    currentTarget = "Far";
+                    break;
+                default:
 					currentTarget = "First";
 					break;
 			}
@@ -63,8 +66,11 @@ public class TargetSelectionManager : MonoBehaviour
             case "Strong":
                 t = 2;
                 break;
-            case "Far":
+            case "Weak":
                 t = 3;
+                break;
+            case "Far":
+                t = 4;
                 break;
             default:
                 t = 0;

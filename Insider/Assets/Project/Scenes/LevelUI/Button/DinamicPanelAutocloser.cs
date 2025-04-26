@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 public class DinamicPanelAutocloser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public bool locked = true;
-    public GameObject LockButton;
-    public Sprite[] Lock;
 
     public GameObject panel;
     private bool isMouseOver = false;
@@ -21,11 +19,10 @@ public class DinamicPanelAutocloser : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (locked)
         {
-            LockButton.GetComponent<Image>().sprite = Lock[1];
         }
         else 
         {
-            LockButton.GetComponent<Image>().sprite = Lock[0];
+
             if (!isMouseOver && i == 1)
             {
                 GetComponent<ButtonHoverHandler>().OnHover = false;

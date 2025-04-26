@@ -38,7 +38,9 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Animator animator;
 
 	public GameObject materialL;
+	public GameObject materialLBlack;
 	public GameObject materialR;
+	public GameObject materialRBlack;
 	public Material material;
 	private Coroutine lerpCoroutine;
 
@@ -133,7 +135,9 @@ public class SetTowerBaseInput : MonoBehaviour
 
 							//material.SetFloat("_AmountDisplayed", 1f);
 							materialL.SetActive(true);
+							materialLBlack.SetActive(true);
 							materialR.SetActive(true);
+							materialRBlack.SetActive(true);
 						}
 						else if (tower.type == 1)
 						{
@@ -146,7 +150,9 @@ public class SetTowerBaseInput : MonoBehaviour
 							}
 
 							materialL.SetActive(true);
+                            materialLBlack.SetActive(true);
 							materialR.SetActive(false);
+                            materialRBlack.SetActive(false);
 						}
 						else if (tower.type == 2)
 						{
@@ -159,7 +165,9 @@ public class SetTowerBaseInput : MonoBehaviour
 							}
 
 							materialL.SetActive(false);
+                            materialLBlack.SetActive(false);
 							materialR.SetActive(true);
+                            materialRBlack.SetActive(true);
 						}
 						Price1.text = tower.priceLevel_2_Type1.ToString();
 						Price1_1.text = tower.priceLevel_2_Type2.ToString();
@@ -434,6 +442,10 @@ public class SetTowerBaseInput : MonoBehaviour
 		if (economyScript.towerSpots >= 1)
 		{
 			towerSetter.SpawnTower(pendingTowerId, clickedButton.transform);
+			if (pendingTowerId == 1) 
+			{
+                clickedButton.transform.localPosition += new Vector3(0, 45, 0);
+            }
 
 			economyScript.towerSpots--;
 			audioManager.PlaySFX(3, 0.2f);

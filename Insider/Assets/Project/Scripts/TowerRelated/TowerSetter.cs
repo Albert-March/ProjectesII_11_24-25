@@ -24,10 +24,6 @@ public class TowerSetter : MonoBehaviour
         GameObject towerObject = Instantiate(stats.prefab, towerPos.position, Quaternion.identity);
         towerObject.transform.SetParent(towerPos, true);
         towerObject.transform.rotation = towerPos.rotation;
-		if (option == 1) 
-		{
-			towerObject.transform.localPosition += new Vector3(0, 45, 0);
-        }
         Tower tower = towerObject.GetComponent<Tower>();
         tower.SetTowerData(stats);
         tower.enabled = true;
