@@ -13,7 +13,7 @@ public class FastCam : MonoBehaviour
     private bool GodMode = false; 
     private void Start()
     {
-        currentSpeed = (int)Time.timeScale;
+
     }
 
     void Update()
@@ -31,18 +31,18 @@ public class FastCam : MonoBehaviour
             Health.parasiteHealth += 100;
         }
 
-		//if (Input.GetButtonDown("SpeedUp"))
-		//{
-		//    if (currentSpeed < 4 || GodMode)
-		//        currentSpeed++;
-		//}
-		//if (Input.GetButtonDown("SpeedDown"))
-		//{
-		//    if (currentSpeed > 3)
-		//        currentSpeed--;
-		//}
+        if (Input.GetButtonDown("SpeedUp"))
+        {
+            if (currentSpeed < 4 || GodMode)
+                currentSpeed++;
+        }
+        if (Input.GetButtonDown("SpeedDown"))
+        {
+            if (currentSpeed > 3)
+                currentSpeed--;
+        }
 
-		Time.timeScale = currentSpeed;
+        Time.timeScale = currentSpeed;
         speedText.text = "x"+(currentSpeed - 2).ToString();
     }
 	public void SpeedUp()

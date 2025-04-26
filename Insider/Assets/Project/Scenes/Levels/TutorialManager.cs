@@ -42,12 +42,6 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        if (!tutorialEnabled)
-        {
-            tutorialPanel.SetActive(false);
-            highlightBox.SetActive(false);
-            return;
-        }
 
         highlightImage = highlightBox.GetComponent<Image>();
         baseHighlightColor = highlightImage.color;
@@ -57,6 +51,14 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
+
+        if (!tutorialEnabled)
+        {
+            tutorialPanel.SetActive(false);
+            highlightBox.SetActive(false);
+            return;
+        }
+
         if (highlightBox.activeSelf)
         {
             float alpha = Mathf.PingPong(Time.unscaledTime * 2f, 0.5f) + 0.5f;
