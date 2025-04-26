@@ -34,6 +34,12 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Text Price2;
 	public Text Price2_1;
 
+	public Animator animator;
+
+	public GameObject materialL;
+	public GameObject materialR;
+	public Material material;
+	private Coroutine lerpCoroutine;
 
 	private Vector3 option1OriginalScale;
 	private Vector3 option2OriginalScale;
@@ -61,8 +67,6 @@ public class SetTowerBaseInput : MonoBehaviour
 	private bool posibleType2_1 = false;
 
 	private bool justUpdated = false;
-
-	Vector3 pos;
 
 	public Text texto;
 	public Text towerPrice;
@@ -112,6 +116,8 @@ public class SetTowerBaseInput : MonoBehaviour
 						Tower tower = child.GetComponent<Tower>();
 						float scaleFactor = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
 
+						UpdateMaterialBasedOnTower(tower);
+
 						if (tower.type == 0)
 						{
 							option1.SetActive(true);
@@ -119,24 +125,36 @@ public class SetTowerBaseInput : MonoBehaviour
 
 							option2.SetActive(true);
 							Op2.transform.localScale = option2OriginalScale * scaleFactor;
+
+							//material.SetFloat("_AmountDisplayed", 1f);
+							materialL.SetActive(true);
+							materialR.SetActive(true);
 						}
 						else if (tower.type == 1)
 						{
 							option1.SetActive(true);
 							option2.SetActive(false);
+
 							if (tower.currentLevel == 2)
 							{
 								Op1_1.transform.localScale = option1OriginalScale * scaleFactor;
 							}
+
+							materialL.SetActive(true);
+							materialR.SetActive(false);
 						}
 						else if (tower.type == 2)
 						{
 							option1.SetActive(false);
 							option2.SetActive(true);
-							if(tower.currentLevel == 2)
+
+							if (tower.currentLevel == 2)
 							{
 								Op2_1.transform.localScale = option1OriginalScale * scaleFactor;
 							}
+
+							materialL.SetActive(false);
+							materialR.SetActive(true);
 						}
 						Price1.text = tower.priceLevel_2_Type1.ToString();
 						Price1_1.text = tower.priceLevel_2_Type2.ToString();
@@ -176,20 +194,19 @@ public class SetTowerBaseInput : MonoBehaviour
 				towerButton.SetActive(false);
 			}
 
-			pos = towerSelected.transform.position;
 			if (!spawnTower)
 			{
 				instanciateTowerButtons.SetActive(true);
 				towerOptions.SetActive(false);
 
-				towerSelected.transform.position = new Vector3(pos.x, 0, pos.z);
+				animator.SetBool("Open", false);
 			}
 			else
 			{
 				instanciateTowerButtons.SetActive(false);
 				towerOptions.SetActive(true);
 
-				towerSelected.transform.position = new Vector3(pos.x, 14, pos.z);
+				animator.SetBool("Open", true);
 			}
 		}
 
@@ -212,6 +229,29 @@ public class SetTowerBaseInput : MonoBehaviour
 			justUpdated = false;
 		}
 	}
+	private void UpdateMaterialBasedOnTower(Tower tower)
+	{
+		if (lerpCoroutine != null)
+		{
+			return;
+		}
+		if (tower.type == 0)
+		{
+			material.SetFloat("_AmountDisplayed", 1f);
+		}
+		else if (tower.type == 1 || tower.type == 2)
+		{
+			if (tower.currentLevel == 2)
+			{
+				material.SetFloat("_AmountDisplayed", 0.5f);
+			}
+			else if (tower.currentLevel == 3)
+			{
+				material.SetFloat("_AmountDisplayed", 0f);
+			}
+		}
+	}
+
 
 	private void ShowTowerOptions()
 	{
@@ -472,6 +512,11 @@ public class SetTowerBaseInput : MonoBehaviour
 		}
 
 		justUpdated = true;
+		if (lerpCoroutine != null)
+		{
+			StopCoroutine(lerpCoroutine);
+		}
+		lerpCoroutine = StartCoroutine(LerpMaterialValue(1f, 0.5f, 2f));
 	}
 
 	public void LevelUp3()
@@ -529,6 +574,11 @@ public class SetTowerBaseInput : MonoBehaviour
 		levelUp3 = true;
 
 		justUpdated = true;
+		if (lerpCoroutine != null)
+		{
+			StopCoroutine(lerpCoroutine);
+		}
+		lerpCoroutine = StartCoroutine(LerpMaterialValue(0.5f, 0f, 2f));
 	}
 	public void SpawnCannonerTower()
 	{
@@ -617,5 +667,23 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void SpawnParticles()
 	{
 		levelUpParticlesInstance = Instantiate(levelUpParticles, clickedButton.transform.position, Quaternion.identity);
+	}
+	private IEnumerator LerpMaterialValue(float startValue, float endValue, float duration)
+	{
+		float elapsedTime = 0f;
+
+		while (elapsedTime < duration)
+		{
+			float t = elapsedTime / duration;
+			float value = Mathf.Lerp(startValue, endValue, t);
+
+			material.SetFloat("_AmountDisplayed", value);
+
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+
+		material.SetFloat("_AmountDisplayed", endValue);
+		lerpCoroutine = null;
 	}
 }
