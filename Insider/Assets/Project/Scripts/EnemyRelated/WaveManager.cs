@@ -20,13 +20,12 @@ public class WaveManager : MonoBehaviour
 	public Text F_waveBot;
 
 	public bool created;
-	// Start is called before the first frame update
+
 	void Start()
 	{
 
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		if (spawnManager.isInDelayState)

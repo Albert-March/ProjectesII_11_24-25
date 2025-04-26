@@ -31,13 +31,14 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!startAnimation) 
+        if (!startAnimation)
         {
             HandleZoom();
             HandleDrag();
         }
         LimitCameraPosition();
     }
+
 
     private void HandleZoom()
     {
