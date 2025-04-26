@@ -25,14 +25,12 @@ public class TutorialManager : MonoBehaviour
     public SpawnManager spawnManager;
     public Spawner spRef;
 
-    private bool hasStartedNextWaveDelay = false;
-    private bool hasStartedEnemiesDelay = false;
+    private bool hasClickedNextWave = false;
+    private bool towerPlaced = false;
+    private bool coinCollected = false;
 
     public int currentStep = 0;
     public bool isPaused = false;
-    public bool towerPlaced = false;
-    public bool coinCollected = false;
-    private bool hasClickedNextWave = false;
 
     private Image highlightImage;
     private Color baseHighlightColor;
@@ -77,14 +75,11 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-            case 1:
-             
-                break;
-
             case 2:
                 if (towerPlaced)
                 {
-                    NextStep();
+                    ResumeGame();
+                    currentStep++;
                 }
                 break;
 
@@ -144,13 +139,16 @@ public class TutorialManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void ResumeGame()
+    {
+        HideTutorial();
+    }
+
     public void OnTowerPlaced()
     {
         if (currentStep == 2)
         {
             towerPlaced = true;
-            HideTutorial();
-            currentStep++; 
         }
     }
 
@@ -159,7 +157,6 @@ public class TutorialManager : MonoBehaviour
         if (currentStep == 3 && !coinCollected)
         {
             coinCollected = true;
-
             ShowStep(3);
         }
     }
@@ -174,15 +171,6 @@ public class TutorialManager : MonoBehaviour
         return isPaused;
     }
 
-    public void NextStep()
-    {
-        currentStep++;
-        if (currentStep <= 4)
-            ShowStep(currentStep);
-        else
-            HideTutorial();
-    }
-
     public void OnClickNextWave()
     {
         hasClickedNextWave = true;
@@ -192,18 +180,8 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
 
-        ShowEnemiesStep();
+        ShowStep(1);
         StartCoroutine(DelayShowTowerStep(2f));
-    }
-
-    void ShowEnemiesStep()
-    {
-        tutorialPanel.SetActive(true);
-        highlightBox.SetActive(true);
-        tutorialText.text = "These are the enemies. Stop them!";
-        highlightBox.transform.position = Camera.main.WorldToScreenPoint(enemyExample.position);
-        Time.timeScale = 0f;
-        isPaused = true;
     }
 
     IEnumerator DelayShowTowerStep(float delay)
@@ -211,6 +189,5 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay);
 
         ShowStep(2);
-        currentStep = 2;
     }
 }
