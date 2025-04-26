@@ -78,7 +78,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	PanelVisibilityController panelVisibilityController;
 
 	AudioManager audioManager;
-	void Start()
+	void Start() 
 	{
 		option1OriginalScale = Op1.transform.localScale;
 		//option1OriginalScale = Op1_1.transform.localScale;

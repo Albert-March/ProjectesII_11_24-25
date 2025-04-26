@@ -9,13 +9,15 @@ public class ChainBullet : MonoBehaviour
 	public Tower towerScript;
 
 	private float currentSpeed;
+	AudioManager audioManager;
 
 	private Enemy CurrentTarget =>
 		currentTargetIndex < chainTargets.Count ? chainTargets[currentTargetIndex] : null;
 
 	void Start()
 	{
-		currentSpeed = towerScript.projectileSpeed;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        currentSpeed = towerScript.projectileSpeed;
 	}
 
 	void Update()
@@ -31,6 +33,38 @@ public class ChainBullet : MonoBehaviour
 
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
 		transform.rotation = Quaternion.Euler(0, 0, angle);
+
+		if (transform.position == CurrentTarget.transform.position) 
+		{
+                IDamage enemyReference = CurrentTarget.GetComponent<IDamage>();
+                if (enemyReference != null)
+                {
+                    audioManager.PlaySFX_P(12, 0.5f, 1 - (currentTargetIndex / 5));
+                    enemyReference.Damage(towerScript.damage);
+                }
+
+                if (towerScript.currentLevel == 3)
+                {
+                    CurrentTarget.Stun(0.5f);
+                }
+
+                currentTargetIndex++;
+
+                while (currentTargetIndex < chainTargets.Count &&
+                       (chainTargets[currentTargetIndex] == null || chainTargets[currentTargetIndex].gameObject == null))
+                {
+                    currentTargetIndex++;
+                }
+
+                if (currentTargetIndex >= chainTargets.Count)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+
+                currentSpeed *= 0.8f;
+        
+		}
 	}
 
 	public void SetTargets(List<Enemy> targets)
@@ -39,49 +73,4 @@ public class ChainBullet : MonoBehaviour
 		currentTargetIndex = 0;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (CurrentTarget == null || collision.isTrigger) return;
-
-		if (collision.gameObject == CurrentTarget.gameObject)
-		{
-			IDamage enemyReference = collision.GetComponent<IDamage>();
-			if (enemyReference != null)
-			{
-				enemyReference.Damage(towerScript.damage);
-			}
-
-            if (towerScript.currentLevel == 3)
-            {
-                StartCoroutine(ApplyStun(CurrentTarget, 0.5f));
-            }
-
-            currentTargetIndex++;
-
-			while (currentTargetIndex < chainTargets.Count &&
-				   (chainTargets[currentTargetIndex] == null || chainTargets[currentTargetIndex].gameObject == null))
-			{
-				currentTargetIndex++;
-			}
-
-			if (currentTargetIndex >= chainTargets.Count)
-			{
-				Destroy(gameObject);
-				return;
-			}
-
-			currentSpeed *= 0.8f;
-		}
-	}
-    private IEnumerator ApplyStun(Enemy enemy, float duration)
-    {
-        if (enemy == null) yield break;
-
-        enemy.isStuned = true;
-
-        yield return new WaitForSeconds(duration);
-
-        if (enemy != null)
-            enemy.isStuned = false;
-    }
 }

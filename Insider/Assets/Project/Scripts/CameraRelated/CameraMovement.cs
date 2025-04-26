@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
     public BoxCollider2D parentCollider;
     public Camera cam;
     public CinemachineVirtualCamera vcam;
+    AudioManager audioManager;
 
     private float maxDistance = 30f;
     private float minDistance = 10f;
@@ -20,8 +21,11 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         vcam.m_Lens.OrthographicSize = 10;
         transform.position = new Vector3(0,20,0);
+        audioManager.PlaySFX(6, 0.1f);
+
         StartCoroutine(StartAnimation());
     }
 

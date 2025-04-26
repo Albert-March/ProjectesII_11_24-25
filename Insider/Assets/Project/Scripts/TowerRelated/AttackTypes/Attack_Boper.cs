@@ -21,10 +21,10 @@ public class Attack_Boper : MonoBehaviour, IAttackType
         isAttacking = true;
         hasFiredThisCycle = false;
 
-        StartCoroutine(HandleBopAttack(e, tower, anim));
+        StartCoroutine(HandleBopAttack(e, tower, anim, audio));
     }
 
-    private IEnumerator HandleBopAttack(List<Enemy> enemies, Tower tower, Animator anim)
+    private IEnumerator HandleBopAttack(List<Enemy> enemies, Tower tower, Animator anim, AudioManager audio)
     {
         float fireMoment = 0.666f;
         hasFiredThisCycle = false;
@@ -45,18 +45,17 @@ public class Attack_Boper : MonoBehaviour, IAttackType
                 break; 
             }
 
-                
-
             state = anim.GetCurrentAnimatorStateInfo(0);
             float time = state.normalizedTime % 1f;
 
-            if (time >= fireMoment && !hasFiredThisCycle)
+            if (time >= fireMoment && !hasFiredThisCycle && state.IsName("Attack"))
             {
                 ApplyEffect(enemies, tower);
+                audio.PlaySFX(8, 0.2f);
                 hasFiredThisCycle = true;
             }
 
-            if (time < 0.1f)
+            if (state.IsName("Recoil"))
                 hasFiredThisCycle = false;
 
             if (state.IsName("Idle") || state.normalizedTime >= 1f)
@@ -71,8 +70,9 @@ public class Attack_Boper : MonoBehaviour, IAttackType
 
     private void ApplyEffect(List<Enemy> e, Tower tower)
     {
-        foreach (Enemy enemy in e)
+        for (int i = 0; i < e.Count; i++)
         {
+            Enemy enemy = e[i];
             if (enemy == null) continue;
 
             if (tower.type == 0)
