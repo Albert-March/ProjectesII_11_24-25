@@ -23,10 +23,6 @@ MonoBehaviour:
     m_Key: NextWaveTable
     m_Metadata:
       m_Items: []
-  - m_Id: 368726199418880
-    m_Key: StatsTable
-    m_Metadata:
-      m_Items: []
   - m_Id: 386389478916096
     m_Key: initial_top
     m_Metadata:
@@ -73,6 +69,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 393990711197696
     m_Key: MusicTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777000308195328
+    m_Key: StatsTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777560843370496
+    m_Key: StatsPlusAmount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777597027631104
+    m_Key: UpgradedStatsTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777621329428480
+    m_Key: UpgradedStatsTablePlusAmount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777665763885056
+    m_Key: HP
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -27,8 +27,8 @@ MonoBehaviour:
     m_Localized: "Seg\xFCent Olejada"
     m_Metadata:
       m_Items: []
-  - m_Id: 368726199418880
-    m_Localized: 'Dany: {0}'
+  - m_Id: 1777000308195328
+    m_Localized: "Dany: {0}\r\nVelocitat de dispar: {1}\r\nAbast: {2}\r"
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
@@ -80,10 +80,45 @@ MonoBehaviour:
     m_Localized: Musica
     m_Metadata:
       m_Items: []
+  - m_Id: 1777560843370496
+    m_Localized: 'Dany: {0}
+
+      Velocitat de dispar: {1}
+
+      Abast: {2}
+
+      Quantitat
+      d''objectius: {3}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1777597027631104
+    m_Localized: "Dany: {0} -> {1}\r\nVelocitat de dispar: {2} -> {3}\r\nAbast: {4}
+      -> {5}\r"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1777621329428480
+    m_Localized: 'Dany: {0} -> {1}
+
+      Velocitat de dispar: {2} -> {3}
+
+      Abast:
+      {4} -> {5}
+
+      Quantitat d''objectius: {6} -> {7}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1777665763885056
+    m_Localized: 'Vida: {0}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427154
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f0100
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c06210c7500600

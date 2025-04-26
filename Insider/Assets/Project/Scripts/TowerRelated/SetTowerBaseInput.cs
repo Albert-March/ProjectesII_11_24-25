@@ -7,6 +7,7 @@ using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
 using static UnityEditor.PlayerSettings;
+using UnityEngine.Localization;
 
 
 public class SetTowerBaseInput : MonoBehaviour
@@ -71,6 +72,10 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Text texto;
 	public Text towerPrice;
 	public Text statsText;
+	public LocalizedString statsTable;
+	public LocalizedString statsPlusAmount;
+	public LocalizedString upgradedStatsTable;
+	public LocalizedString upgradedStatsTablePlusAmount;
 
 	public GameObject rangeGO;
 
@@ -82,7 +87,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	PanelVisibilityController panelVisibilityController;
 
 	AudioManager audioManager;
-	void Start() 
+	void Start()
 	{
 		option1OriginalScale = Op1.transform.localScale;
 		//option1OriginalScale = Op1_1.transform.localScale;
@@ -210,7 +215,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 		}
 
-		if(panelVisibilityController.open && !posibleType1 && !posibleType1_1 && !posibleType2 && !posibleType2_1)
+		if (panelVisibilityController.open && !posibleType1 && !posibleType1_1 && !posibleType2 && !posibleType2_1)
 		{
 			foreach (Transform child in clickedButton.transform)
 			{
@@ -268,20 +273,18 @@ public class SetTowerBaseInput : MonoBehaviour
 		{
 			TowerStats stats = towerSetter.towerStats[pendingTowerId];
 
-			if(stats.id == 0)
+			if (stats.id == 2)
 			{
-				statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}\nBulletSpeed: {stats.projectileSpeed}";
-			}
-			else if(stats.id == 2 && stats.type == 1)
-			{
-				statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}\nTargetAmount: {stats.targetAmount}";
+				statsPlusAmount.Arguments = new object[] { stats.damage, stats.fireRate, stats.range, stats.targetAmount };
+				statsText.text = statsPlusAmount.GetLocalizedString();
 			}
 			else
 			{
-				statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}";
+				statsTable.Arguments = new object[] { stats.damage, stats.fireRate, stats.range };
+				statsText.text = statsTable.GetLocalizedString();
 			}
 
-			towerPrice.text = $"{ stats.priceLevel_1_Type0}";
+			towerPrice.text = $"{stats.priceLevel_1_Type0}";
 		}
 
 		image.texture = towerSpot[pendingTowerId].texture;
@@ -300,23 +303,22 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				if (tower.currentLevel == 1)
 				{
-                    towerPrice.text = $"{tower.priceLevel_2_Type1}";
+					towerPrice.text = $"{tower.priceLevel_2_Type1}";
 				}
 				else if (tower.currentLevel == 2)
 				{
 					towerPrice.text = $"{tower.priceLevel_3_Type1}";
 				}
-				if (tower.id == 0)
+
+				if (tower.id == 2 && tower.type == 1)
 				{
-					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}\nBulletSpeed: {tower.projectileSpeed}";
-				}
-				else if (tower.id == 2 && tower.type == 1)
-				{
-					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}\nTargetAmount: {tower.targetAmount}";
+					statsPlusAmount.Arguments = new object[] { tower.damage, tower.fireRate, tower.range, tower.targetAmount };
+					statsText.text = statsPlusAmount.GetLocalizedString();
 				}
 				else
 				{
-					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+					statsTable.Arguments = new object[] { tower.damage, tower.fireRate, tower.range };
+					statsText.text = statsTable.GetLocalizedString();
 				}
 			}
 		}
@@ -352,25 +354,17 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				if (upgradeStats != null)
 				{
-					if (tower.id == 0)
+					if (tower.id == 2 && posibleType1 || posibleType1_1)
 					{
-						statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
-											$"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
-											$"Range: {tower.range} -> {upgradeStats.range}\n" +
-											$"BulletSpeed: {tower.projectileSpeed} -> {upgradeStats.projectileSpeed}";
-					}
-					else if (tower.id == 2 && posibleType1 || posibleType1_1)
-					{
-						statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
-											$"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
-											$"Range: {tower.range} -> {upgradeStats.range}\n" +
-											$"TargetAmount: {tower.targetAmount} -> {upgradeStats.targetAmount}";
+						upgradedStatsTablePlusAmount.Arguments = new object[] { tower.damage, upgradeStats.damage, tower.fireRate, upgradeStats.fireRate,
+							tower.range, upgradeStats.range, tower.targetAmount, upgradeStats.targetAmount };
+						statsText.text = upgradedStatsTablePlusAmount.GetLocalizedString();
 					}
 					else
 					{
-						statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
-											$"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
-											$"Range: {tower.range} -> {upgradeStats.range}";
+						upgradedStatsTable.Arguments = new object[] { tower.damage, upgradeStats.damage, tower.fireRate, upgradeStats.fireRate,
+							tower.range, upgradeStats.range };
+						statsText.text = upgradedStatsTable.GetLocalizedString();
 					}
 				}
 				rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
@@ -457,7 +451,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp2()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if(type == 1 && !levelUp2)
+		if (type == 1 && !levelUp2)
 		{
 			if (economyScript.economy >= stats.priceLevel_2_Type1)
 			{
@@ -483,8 +477,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				economyScript.insufficientEconomy = true;
 			}
 		}
-
-		if (type == 2 && !levelUp2)
+		else if (type == 2 && !levelUp2)
 		{
 			if (economyScript.economy >= stats.priceLevel_2_Type2)
 			{
@@ -510,6 +503,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				economyScript.insufficientEconomy = true;
 			}
 		}
+		else { return; }
 
 		justUpdated = true;
 		if (lerpCoroutine != null)
@@ -522,7 +516,7 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp3()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if(type == 1 && !levelUp3)
+		if (type == 1 && !levelUp3)
 		{
 			if (economyScript.economy >= stats.priceLevel_3_Type1)
 			{
@@ -546,7 +540,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				economyScript.insufficientEconomy = true;
 			}
 		}
-		if (type == 2 && !levelUp3)
+		else if (type == 2 && !levelUp3)
 		{
 			if (economyScript.economy >= stats.priceLevel_3_Type2)
 			{
@@ -570,6 +564,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				economyScript.insufficientEconomy = true;
 			}
 		}
+		else { return; }
 
 		levelUp3 = true;
 

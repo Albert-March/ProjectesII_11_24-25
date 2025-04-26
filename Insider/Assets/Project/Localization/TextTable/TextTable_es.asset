@@ -27,8 +27,9 @@ MonoBehaviour:
     m_Localized: Siguiente Oleada
     m_Metadata:
       m_Items: []
-  - m_Id: 368726199418880
-    m_Localized: "Da\xF1o: {0}"
+  - m_Id: 1777560843370496
+    m_Localized: "Da\xF1o: {0}\r\nVelocidad de disparo: {1}\r\nRango: {2}\r\nCantidad
+      de objetivos: {3}"
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
@@ -80,10 +81,32 @@ MonoBehaviour:
     m_Localized: Musica
     m_Metadata:
       m_Items: []
+  - m_Id: 1777000308195328
+    m_Localized: "Da\xF1o: {0}\nVelocidad de disparo: {1}\nRango: {2}"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 1777597027631104
+    m_Localized: "Da\xF1o: {0} -> {1}\r\nVelocidad de disparo: {2} -> {3}\r\nRango:
+      {4} -> {5}\r"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 1777621329428480
+    m_Localized: "Da\xF1o: {0} -> {1}\r\nVelocidad de disparo: {2} -> {3}\r\nRango:
+      {4} -> {5}\r\nCantidad de objetivos: {6} -> {7}"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 1777665763885056
+    m_Localized: 'Vida: {0}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427155
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f0100
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c06210c7500600

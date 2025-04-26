@@ -22,10 +22,13 @@ public class Spawner : MonoBehaviour
     private float currentSpawnTime = 0.0f;
 	private bool isInitialized = false;
     public bool waitingForNextWave = false;
+    public bool spodsRecived = false;
+    private bool firstTime = true;
 
 	public EnemyManager enemyManager;
     public TargetManager targetManager;
 	private SpawnManager spawnManager;
+	public EconomyManager economyManager;
 
 	public Image buttonImage;
     public List<Sprite> sprites = new List<Sprite>();
@@ -54,6 +57,7 @@ public class Spawner : MonoBehaviour
             childs.Add(childHolder);
         }
 		spawnManager = FindObjectOfType<SpawnManager>();
+		economyManager = FindObjectOfType<EconomyManager>();
 
 		originalScale = buttonImage.transform.localScale;
 		originalPosition = buttonImage.transform.localPosition;
@@ -92,13 +96,27 @@ public class Spawner : MonoBehaviour
 			enemyManager.EnemiesOnScreen <= 0 && pendingEnemies.Count == 0)
         {
             waitingForNextWave = true;
-        }
-        else
-        {
+			if (!spodsRecived)
+			{
+				if (!firstTime)
+				{
+					economyManager.towerSpots++;
+				}
+				else
+				{
+					firstTime = false;
+				}
+
+				spodsRecived = true;
+			}
+		}
+		else
+		{
 			waitingForNextWave = false;
+			spodsRecived = false;
 		}
 
-        if (waitingForNextWave)
+		if (waitingForNextWave)
         {
 			buttonImage.sprite = sprites[0];
 			float scaleFactor = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;

@@ -319,8 +319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -195.04}
-  m_SizeDelta: {x: 200, y: 120}
+  m_AnchoredPosition: {x: 0, y: -210}
+  m_SizeDelta: {x: 300, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &58757873
 CanvasRenderer:
@@ -8827,6 +8827,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parasiteHealth: 100
   parasiteText: {fileID: 4040303764549591540}
+  hpTable:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1777665763885056
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &869899828165087838
 Transform:
   m_ObjectHideFlags: 0
@@ -22795,8 +22807,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 444a099eab6fd8541adb06e5f1fbf0ff, type: 2}
   - {fileID: 11400000, guid: e647543584c728c4a917a6704b20feea, type: 2}
   waitingForNextWave: 0
+  spodsRecived: 0
   enemyManager: {fileID: 1664468903773424673}
   targetManager: {fileID: 2050434379813537446}
+  economyManager: {fileID: 0}
   buttonImage: {fileID: 1210144710}
   sprites:
   - {fileID: 21300000, guid: 955b68df9e696824e94d9ea3c070db32, type: 3}
@@ -23641,7 +23655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372236966487006399, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpots
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3372236966487006399, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: towerSpotsText
@@ -24351,6 +24365,38 @@ PrefabInstance:
       propertyPath: towerSpot.Array.data[5]
       value: 
       objectReference: {fileID: 21300000, guid: 3d5ae07c182a1774db202d48debe322e, type: 3}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: statsTable.m_TableEntryReference.m_KeyId
+      value: 1777000308195328
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: statsPlusAmount.m_TableEntryReference.m_KeyId
+      value: 1777560843370496
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: upgradedStatsTable.m_TableEntryReference.m_KeyId
+      value: 1777597027631104
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: statsTable.m_TableReference.m_TableCollectionName
+      value: GUID:aa4e67bb45646654d994e18da58cbd74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: statsPlusAmount.m_TableReference.m_TableCollectionName
+      value: GUID:aa4e67bb45646654d994e18da58cbd74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: upgradedStatsTable.m_TableReference.m_TableCollectionName
+      value: GUID:aa4e67bb45646654d994e18da58cbd74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: upgradedStatsTablePlusAmount.m_TableEntryReference.m_KeyId
+      value: 1777621329428480
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854460797333316538, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: upgradedStatsTablePlusAmount.m_TableReference.m_TableCollectionName
+      value: GUID:aa4e67bb45646654d994e18da58cbd74
+      objectReference: {fileID: 0}
     - target: {fileID: 8921530736872850743, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.65

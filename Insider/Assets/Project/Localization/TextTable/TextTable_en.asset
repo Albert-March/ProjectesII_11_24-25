@@ -27,8 +27,15 @@ MonoBehaviour:
     m_Localized: Next Wave
     m_Metadata:
       m_Items: []
-  - m_Id: 368726199418880
-    m_Localized: 'Damage: {0}'
+  - m_Id: 1777560843370496
+    m_Localized: 'Damage: {0}
+
+      Fire Rate: {1}
+
+      Range: {2}
+
+      Terget
+      Amount{3}'
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
@@ -80,10 +87,41 @@ MonoBehaviour:
     m_Localized: Music
     m_Metadata:
       m_Items: []
+  - m_Id: 1777000308195328
+    m_Localized: 'Damage: {0}
+
+      Fire Rate: {1}
+
+      Range: {2}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1777597027631104
+    m_Localized: "Damage: {0} -> {1}\r\nFire Rate: {2} -> {3}\r\nRange: {4} -> {5}\r"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1777665763885056
+    m_Localized: 'Life: {0}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1777621329428480
+    m_Localized: 'Damage: {0} -> {1}
+
+      Fire Rate: {2} -> {3}
+
+      Range:
+      {4} -> {5}
+
+      Target Amount: {6} -> {7}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427151
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f0100
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c06210c750060000c0e2b7bc500600
