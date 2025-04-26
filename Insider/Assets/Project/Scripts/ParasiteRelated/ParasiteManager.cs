@@ -9,7 +9,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
 	public int parasiteHealth;
     public Text parasiteText;
     private int lastHealth;
-    private float scale = 0.45f;
+    private float scale = 1f;
     public void Start()
     {
         parasiteText.text = "HP: " + parasiteHealth.ToString();
@@ -18,7 +18,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
     {
         if (parasiteHealth > lastHealth)
         {
-            scale = 0.8f;
+            scale = 1.5f;
         }
         if (parasiteHealth != lastHealth)
         {
@@ -31,7 +31,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
             transition.CallPass("DeathScreen");
         }
 
-        scale = Mathf.Lerp(scale, 0.45f, Time.deltaTime * 10);
+        scale = Mathf.Lerp(scale, 1f, Time.deltaTime * 10);
         parasiteText.transform.localScale = Vector3.one * scale;
     }
     public void Damage(float amount)

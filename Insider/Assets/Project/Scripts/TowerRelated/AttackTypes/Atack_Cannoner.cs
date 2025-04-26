@@ -20,6 +20,7 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
 
     public Transform Arm1Point;
     public Transform Arm2Point;
+    public GameObject BaseCannoner;
 
     void Awake()
     {
@@ -44,8 +45,10 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
 
     public static GameObject FindDeepChildByName(GameObject parent, string targetName)
     {
-        foreach (Transform child in parent.transform)
+        for (int i = 0; i < parent.transform.childCount; i++)
         {
+            Transform child = parent.transform.GetChild(i);
+
             if (child.name == targetName)
                 return child.gameObject;
 
@@ -60,7 +63,7 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
     {
         Arm1Point = FindDeepChildByName(gameObject, "AP1").transform;
         Arm2Point = FindDeepChildByName(gameObject, "AP2").transform;
-
+        BaseCannoner = FindDeepChildByName(gameObject, "Cannoner_1");
         if (isAttacking || !anim) return;
 
         Tower tower = GetComponent<Tower>();
@@ -77,10 +80,10 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
         isAttacking = true;
         hasFiredThisCycle = false;
 
-        StartCoroutine(HandleFire(tower, tower.type, tower.targetManager, anim));
+        StartCoroutine(HandleFire(tower, tower.type, tower.targetManager, anim, audio));
     }
 
-    IEnumerator HandleFire(Tower tower, int type, TargetingManager targetManager, Animator anim)
+    IEnumerator HandleFire(Tower tower, int type, TargetingManager targetManager, Animator anim, AudioManager audio)
     {
         float fireMoment = 0.666f;
         hasFiredThisCycle = false;
@@ -97,6 +100,14 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
             if (tower.enemiesInRange == null || tower.enemiesInRange.Count == 0)
                 break;
 
+            Enemy mainTarget = tower.enemiesInRange[0];
+            if (mainTarget != null)
+            {
+                Vector3 dir = (mainTarget.transform.position - BaseCannoner.transform.position).normalized;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                BaseCannoner.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+            }
+
             state = anim.GetCurrentAnimatorStateInfo(0);
             float time = state.normalizedTime % 1f;
 
@@ -105,7 +116,7 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
                 List<Enemy> updatedTargets = targetManager.GetEnemyTargetFromList(tower.enemiesInRange, tower.targetAmount, tower.targetType);
                 if (updatedTargets.Count > 0 && updatedTargets[0] != null)
                 {
-                    FireBullet(type, updatedTargets, tower);
+                    FireBullet(type, updatedTargets, tower, audio);
                     hasFiredThisCycle = true;
                 }
                 else
@@ -127,8 +138,9 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
         isAttacking = false;
     }
 
-    void FireBullet(int type, List<Enemy> targets, Tower tower)
+    void FireBullet(int type, List<Enemy> targets, Tower tower, AudioManager audio)
     {
+        audio.PlaySFX(11, 0.3f);
         Vector3 spawnPos = movingArm ? Arm1Point.position : Arm2Point.position;
 
         if (type == 0)
@@ -147,9 +159,11 @@ public class Atack_Cannoner : MonoBehaviour, IAttackType
             {
                 Enemy next = null;
                 float minDist = float.MaxValue;
-                foreach (Enemy candidate in targets)
+                for (int e = 0; e < targets.Count; e++)
                 {
+                    Enemy candidate = targets[e];
                     if (hit.Contains(candidate)) continue;
+
                     float dist = Vector3.Distance(current.transform.position, candidate.transform.position);
                     if (dist < minDist)
                     {

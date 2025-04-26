@@ -16,10 +16,12 @@ public class ExplosiveBullet : MonoBehaviour
 	public List<GameObject> enemiesOnContact;
 
     public GameObject puddle;
-
+    AudioManager audioManager;
+    bool audioPlayed = false;
     private void Awake()
     {
         flyRadius = transform.localScale;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     void Update()
 	{
@@ -35,6 +37,13 @@ public class ExplosiveBullet : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / explosionDuration;
             transform.localScale = Vector3.Lerp(flyRadius, explosionRadius, progress);
+
+            if (!audioPlayed)
+            {
+                audioManager.PlaySFX(10, 0.5f);
+                Debug.Log("PLAY BLOP");
+                audioPlayed = true;
+            }
         }
 
 		if (transform.localScale == explosionRadius) 
@@ -44,7 +53,10 @@ public class ExplosiveBullet : MonoBehaviour
                 hasExploded = true;
                 for (int i = enemiesOnContact.Count - 1; i >= 0; i--)
                 {
-                    enemiesOnContact[i].GetComponent<IDamage>().Damage(towerScript.damage);
+                    if (enemiesOnContact[i] != null)
+                    {
+                        enemiesOnContact[i].GetComponent<IDamage>().Damage(towerScript.damage);
+                    }
                 }
             }
             if (towerScript.currentLevel == 3 && puddle != null)

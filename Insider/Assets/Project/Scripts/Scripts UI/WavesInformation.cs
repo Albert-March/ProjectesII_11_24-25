@@ -15,6 +15,8 @@ public class WavesInformation : MonoBehaviour
 
 	public List<Sprite> nextWaveEnemySprites = new List<Sprite>();
 
+	public string[] names = { "Normal", "Splitter", "Runner", "Healer", "Tank"};
+
 	private bool infoShown = false;
 
 	private Animator panelAnimator;
@@ -105,7 +107,7 @@ public class WavesInformation : MonoBehaviour
 				Image img = obj.GetComponentInChildren<Image>();
 				Text txt = obj.GetComponentInChildren<Text>();
 
-				txt.text = $"Tipo {tipo}: {cantidad}";
+				txt.text = $"{names[tipo - 1]}: {cantidad}";
 
 				if (tipo - 1 < nextWaveEnemySprites.Count)
 				{

@@ -13,6 +13,8 @@ public class PanelVisibilityController : MonoBehaviour
     public GameObject bg;
     AudioManager audioManager;
 
+    public bool open;
+
     private void Awake()
     {
         bg.SetActive(false);
@@ -24,13 +26,15 @@ public class PanelVisibilityController : MonoBehaviour
         if (!panel.GetComponent<Animator>().GetBool("Open"))
         {
             OpenPanel(button);
+            open = true;
         }
         else
         {
             if (button == lastButton)
             {
                 ClosePanel();
-            }
+				open = false;
+			}
             else
             {
                 StartCoroutine(SwapPanel(button));

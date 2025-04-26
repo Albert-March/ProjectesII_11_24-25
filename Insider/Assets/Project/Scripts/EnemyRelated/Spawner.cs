@@ -28,6 +28,7 @@ public class Spawner : MonoBehaviour
 	private SpawnManager spawnManager;
 
 	public Image buttonImage;
+    public List<Sprite> sprites = new List<Sprite>();
 
 	private Vector3 originalScale;
 	public float pulseSpeed = 2f;
@@ -99,13 +100,13 @@ public class Spawner : MonoBehaviour
 
         if (waitingForNextWave)
         {
-			buttonImage.color = Color.green;
+			buttonImage.sprite = sprites[0];
 			float scaleFactor = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
 			buttonImage.transform.localScale = originalScale * scaleFactor;
 		}
         else
         {
-            buttonImage.color = Color.red;
+			buttonImage.sprite = sprites[1];
 			buttonImage.transform.localScale = originalScale;
 		}
 	}
