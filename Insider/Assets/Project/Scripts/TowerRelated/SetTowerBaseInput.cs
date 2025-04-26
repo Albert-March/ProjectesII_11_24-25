@@ -55,6 +55,12 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Text leiserPrice;
 
 	private int type = 0;
+	private bool posibleType1 = false;
+	private bool posibleType1_1 = false;
+	private bool posibleType2 = false;
+	private bool posibleType2_1 = false;
+
+	private bool justUpdated = false;
 
 	Vector3 pos;
 
@@ -69,14 +75,20 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	EconomyManager economyScript;
 	StatesManager states;
+	PanelVisibilityController panelVisibilityController;
 
 	AudioManager audioManager;
 	void Start()
 	{
 		option1OriginalScale = Op1.transform.localScale;
-		option1OriginalScale = Op1_1.transform.localScale;
+		//option1OriginalScale = Op1_1.transform.localScale;
 		option2OriginalScale = Op2.transform.localScale;
-		option2OriginalScale = Op2_1.transform.localScale;
+		//option2OriginalScale = Op2_1.transform.localScale;
+	}
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+		panelVisibilityController = GetComponent<PanelVisibilityController>();
 	}
 
 	private void Update()
@@ -130,21 +142,22 @@ public class SetTowerBaseInput : MonoBehaviour
 						Price1_1.text = tower.priceLevel_2_Type2.ToString();
 						Price2.text = tower.priceLevel_3_Type1.ToString();
 						Price2_1.text = tower.priceLevel_3_Type2.ToString();
+
+
+						if (isHoveringUpgradeButton && !hoverBlockedUntilExit && !justUpdated)
+						{
+							if (((posibleType1 || posibleType2) && tower.currentLevel == 1) || ((posibleType1_1 || posibleType2_1) && tower.currentLevel == 2))
+							{
+								ShowUpgradeStats();
+							}
+						}
+						else
+						{
+							ShowCurrentStats();
+						}
+						image.texture = towerCam;
 					}
 				}
-
-				rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
-				rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
-
-				if (isHoveringUpgradeButton && !hoverBlockedUntilExit)
-				{
-					ShowUpgradeStats();
-				}
-				else
-				{
-					ShowCurrentStats();
-				}
-				image.texture = towerCam;
 			}
 			else
 			{
@@ -179,11 +192,25 @@ public class SetTowerBaseInput : MonoBehaviour
 				towerSelected.transform.position = new Vector3(pos.x, 14, pos.z);
 			}
 		}
-	}
 
-	private void Awake()
-	{
-		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+		if(panelVisibilityController.open && !posibleType1 && !posibleType1_1 && !posibleType2 && !posibleType2_1)
+		{
+			foreach (Transform child in clickedButton.transform)
+			{
+				if (child.name == "Tower(Clone)")
+				{
+					rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
+					rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
+				}
+			}
+		}
+		bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
+		rangeGO.SetActive(panelOpen && panelVisibilityController.open && spawnTower);
+
+		if (justUpdated && !posibleType1 && !posibleType1_1 && !posibleType2 && !posibleType2_1)
+		{
+			justUpdated = false;
+		}
 	}
 
 	private void ShowTowerOptions()
@@ -200,7 +227,19 @@ public class SetTowerBaseInput : MonoBehaviour
 		if (pendingTowerId >= 0 && pendingTowerId < towerSetter.towerStats.Count)
 		{
 			TowerStats stats = towerSetter.towerStats[pendingTowerId];
-			statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}";
+
+			if(stats.id == 0)
+			{
+				statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}\nBulletSpeed: {stats.projectileSpeed}";
+			}
+			else if(stats.id == 2 && stats.type == 1)
+			{
+				statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}\nTargetAmount: {stats.targetAmount}";
+			}
+			else
+			{
+				statsText.text = $"Damage: {stats.damage}\nFire Rate: {stats.fireRate}\nRange: {stats.range}";
+			}
 
 			towerPrice.text = $"{ stats.priceLevel_1_Type0}";
 		}
@@ -227,7 +266,18 @@ public class SetTowerBaseInput : MonoBehaviour
 				{
 					towerPrice.text = $"{tower.priceLevel_3_Type1}";
 				}
-			    statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+				if (tower.id == 0)
+				{
+					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}\nBulletSpeed: {tower.projectileSpeed}";
+				}
+				else if (tower.id == 2 && tower.type == 1)
+				{
+					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}\nTargetAmount: {tower.targetAmount}";
+				}
+				else
+				{
+					statsText.text = $"Damage: {tower.damage}\nFire Rate: {tower.fireRate}\nRange: {tower.range}";
+				}
 			}
 		}
 	}
@@ -243,10 +293,12 @@ public class SetTowerBaseInput : MonoBehaviour
 
 				if (tower.currentLevel == 1)
 				{
-					if(tower.type == 1)
+					if (posibleType1)
 						upgradeStats = towerSetter.towerUpgrades1Type1[tower.id];
-					else if (tower.type == 2)
+					else if (posibleType2)
 						upgradeStats = towerSetter.towerUpgrades1Type2[tower.id];
+					else
+						upgradeStats = towerSetter.towerStats[tower.id];
 				}
 				else if (tower.currentLevel == 2)
 				{
@@ -254,13 +306,35 @@ public class SetTowerBaseInput : MonoBehaviour
 						upgradeStats = towerSetter.towerUpgrades2Type1[tower.id];
 					else if (tower.type == 2)
 						upgradeStats = towerSetter.towerUpgrades2Type2[tower.id];
+					else
+						upgradeStats = towerSetter.towerStats[tower.id];
 				}
+
 				if (upgradeStats != null)
 				{
-					statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
-									 $"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
-									 $"Range: {tower.range} -> {upgradeStats.range}";
+					if (tower.id == 0)
+					{
+						statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+											$"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+											$"Range: {tower.range} -> {upgradeStats.range}\n" +
+											$"BulletSpeed: {tower.projectileSpeed} -> {upgradeStats.projectileSpeed}";
+					}
+					else if (tower.id == 2 && posibleType1 || posibleType1_1)
+					{
+						statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+											$"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+											$"Range: {tower.range} -> {upgradeStats.range}\n" +
+											$"TargetAmount: {tower.targetAmount} -> {upgradeStats.targetAmount}";
+					}
+					else
+					{
+						statsText.text = $"Damage: {tower.damage} -> {upgradeStats.damage}\n" +
+											$"Fire Rate: {tower.fireRate} -> {upgradeStats.fireRate}\n" +
+											$"Range: {tower.range} -> {upgradeStats.range}";
+					}
 				}
+				rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
+				rangeGO.transform.localScale = new Vector3(upgradeStats.range, upgradeStats.range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
 			}
 		}
 	}
@@ -273,17 +347,17 @@ public class SetTowerBaseInput : MonoBehaviour
 				hoverBlockedUntilExit = false;
 
 			isHoveringUpgradeButton = false;
-			rangeGO.SetActive(false);
+			//rangeGO.SetActive(false);
 			return;
 		}
 
 		isHoveringUpgradeButton = hover;
 
-		if (spawnTower == true)
-		{
-			bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
-			rangeGO.SetActive(panelOpen && hover);
-		}
+		//if (spawnTower == true)
+		//{
+		//	bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
+		//	rangeGO.SetActive(panelOpen && hover);
+		//}
 	}
 
 	public void TowerButton()
@@ -293,6 +367,7 @@ public class SetTowerBaseInput : MonoBehaviour
 		if (!spawnTower)
 		{
 			BuildSelectedTower();
+			hoverBlockedUntilExit = false;
 			return;
 		}
 
@@ -310,6 +385,7 @@ public class SetTowerBaseInput : MonoBehaviour
 				else if (tower.currentLevel == 2)
 				{
 					LevelUp3();
+					hoverBlockedUntilExit = false;
 				}
 			}
 		}
@@ -395,6 +471,7 @@ public class SetTowerBaseInput : MonoBehaviour
 			}
 		}
 
+		justUpdated = true;
 	}
 
 	public void LevelUp3()
@@ -450,6 +527,8 @@ public class SetTowerBaseInput : MonoBehaviour
 		}
 
 		levelUp3 = true;
+
+		justUpdated = true;
 	}
 	public void SpawnCannonerTower()
 	{
@@ -515,6 +594,24 @@ public class SetTowerBaseInput : MonoBehaviour
 				LevelUp2();
 			}
 		}
+	}
+
+	public void PosibleType1(bool type)
+	{
+		posibleType1 = type;
+	}
+	public void PosibleType1_1(bool type)
+	{
+		posibleType1_1 = type;
+	}
+
+	public void PosibleType2(bool type)
+	{
+		posibleType2 = type;
+	}
+	public void PosibleType2_1(bool type)
+	{
+		posibleType2_1 = type;
 	}
 
 	public void SpawnParticles()
