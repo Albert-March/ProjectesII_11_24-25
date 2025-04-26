@@ -111,17 +111,82 @@ MonoBehaviour:
 
       Fire Rate: {2} -> {3}
 
-      Range:
-      {4} -> {5}
+      Range: {4}
+      -> {5}
 
       Target Amount: {6} -> {7}'
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
+  - m_Id: 1814722607497216
+    m_Localized: Do you wish to follow the path of infestation?
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814767343943680
+    m_Localized: Ah... you finally awaken. Allow me to guide you. You will learn
+      to survive... and to conquer this body.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814784167297024
+    m_Localized: 'Look at you. A small intruder, but with a great purpose: to defend
+      yourself from those pesky antibodies... and take control from within.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814793449291776
+    m_Localized: First, join the body's latent infections. Use them at will... turn
+      them into weapons.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814803226214400
+    m_Localized: Generate this mutation. It will be your first expansion within the
+      host.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814809614139392
+    m_Localized: But be careful... to expand your power you will need mutations.
+      Evolve... adapt...
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814815729434624
+    m_Localized: 'When you are ready, send a signal: weaken the body. Force it to
+      yield. Only then will you begin to mold it in your image.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814821362384896
+    m_Localized: 'Get rid of the antibodies: their remains contain DNA... precious
+      material you can use to perfect your infections... and be reborn stronger.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814826638819328
+    m_Localized: You have now learned the essentials. From now on... you will be
+      alone. May the infestation guide you... you will need it.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1823294728880128
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823321132023808
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823571833962496
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427151
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c06210c750060000c0e2b7bc500600
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c06210c750060000c0e2b7bc50060000c062087b72060000c0a2069272060000c022419372060000c0e2b69072060000c0624a8f72060000c0a2cd8d72060000c0e2868b72060000c0a25d8972060000c0e27285720600

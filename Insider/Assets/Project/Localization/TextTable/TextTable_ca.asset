@@ -115,10 +115,76 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
+  - m_Id: 1814722607497216
+    m_Localized: "Vols seguir el cam\xED de la infestaci\xF3?"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814767343943680
+    m_Localized: "Ah... finalment despertes. Permet-me guiar-te. Aprendr\xE0s a sobreviure...
+      i a conquerir aquest cos."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814784167297024
+    m_Localized: "Mira't. Un petit intr\xFAs, per\xF2 amb un gran prop\xF2sit: defensar-te
+      d'aquests molestos anticossos... i prendre el control des de dins."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814793449291776
+    m_Localized: Primer, uneix-te a les infeccions latents del cos. Fes-les servir
+      com vulguis... converteix-les en armes.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814803226214400
+    m_Localized: "Genera aquesta mutaci\xF3. Ser\xE0 la teva primera expansi\xF3
+      dins de l'hoste."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814809614139392
+    m_Localized: "Per\xF2 compte... per expandir el teu poder necessitar\xE0s mutacions.
+      Evoluciona... adapta't..."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814815729434624
+    m_Localized: "Quan estiguis llest, llan\xE7a un senyal: debilita el cos. Obliga'l
+      a cedir. Nom\xE9s llavors comen\xE7ar\xE0s a modelar-lo a la teva imatge."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814821362384896
+    m_Localized: "Elimina els anticossos: les seves restes contenen ADN... material
+      preci\xF3s que podr\xE0s utilitzar per perfeccionar les teves infeccions...
+      i ren\xE9ixer m\xE9s fort."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814826638819328
+    m_Localized: "Ja has apr\xE8s l'essencial. A partir d'ara... estar\xE0s sol.
+      Que la infestaci\xF3 t'acompanyi... la necessitar\xE0s."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1823294728880128
+    m_Localized: Si
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823321132023808
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823571833962496
+    m_Localized: "Seg\xFCent"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427154
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c06210c7500600
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c06210c750060000c062087b72060000c022419372060000c0a2069272060000c0e2b69072060000c0624a8f72060000c0a2cd8d72060000c0e2868b72060000c0a25d8972060000c0e27285720600

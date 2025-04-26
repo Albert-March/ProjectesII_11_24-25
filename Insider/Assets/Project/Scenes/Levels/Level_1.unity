@@ -1381,6 +1381,7 @@ GameObject:
   - component: {fileID: 398910616}
   - component: {fileID: 398910618}
   - component: {fileID: 398910617}
+  - component: {fileID: 398910619}
   m_Layer: 5
   m_Name: No_Text
   m_TagString: Untagged
@@ -1450,6 +1451,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398910615}
   m_CullTransparentMesh: 1
+--- !u!114 &398910619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398910615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1823321132023808
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 398910617}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &414432380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4763,6 +4804,7 @@ GameObject:
   - component: {fileID: 964755048}
   - component: {fileID: 964755050}
   - component: {fileID: 964755049}
+  - component: {fileID: 964755051}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -4832,6 +4874,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964755047}
   m_CullTransparentMesh: 1
+--- !u!114 &964755051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964755047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1823571833962496
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 964755049}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &968513028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5113,6 +5195,7 @@ GameObject:
   - component: {fileID: 1060760543}
   - component: {fileID: 1060760545}
   - component: {fileID: 1060760544}
+  - component: {fileID: 1060760546}
   m_Layer: 5
   m_Name: Si_Text
   m_TagString: Untagged
@@ -5182,6 +5265,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060760542}
   m_CullTransparentMesh: 1
+--- !u!114 &1060760546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060760542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1823294728880128
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1060760544}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!20 &1099653346 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5588373510563399976, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
@@ -11949,6 +12072,87 @@ MonoBehaviour:
   Si_Button: {fileID: 1016464269}
   No_Button: {fileID: 861216218}
   NextStep_Button: {fileID: 1476370875}
+  tutorialStep0:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814722607497216
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep1:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814767343943680
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep2:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814784167297024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep3:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814793449291776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep4:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814803226214400
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep5:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814809614139392
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep6:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814815729434624
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep7:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814821362384896
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialStep8:
+    m_TableReference:
+      m_TableCollectionName: GUID:aa4e67bb45646654d994e18da58cbd74
+    m_TableEntryReference:
+      m_KeyId: 1814826638819328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   step2: {fileID: 1675558679}
   step3p1: {fileID: 487219743}
   step3p2: {fileID: 898142016}
@@ -11970,6 +12174,9 @@ MonoBehaviour:
   WavePanel: {fileID: 606266695}
   spawner: {fileID: 7410339873246556497}
   currentStep: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &2759970218313517187
 Transform:
   m_ObjectHideFlags: 0

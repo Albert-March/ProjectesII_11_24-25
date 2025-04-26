@@ -91,6 +91,54 @@ MonoBehaviour:
     m_Key: HP
     m_Metadata:
       m_Items: []
+  - m_Id: 1814722607497216
+    m_Key: tutorialStep0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814767343943680
+    m_Key: tutorialStep1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814784167297024
+    m_Key: tutorialStep2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814793449291776
+    m_Key: tutorialStep3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814803226214400
+    m_Key: tutorialStep4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814809614139392
+    m_Key: tutorialStep5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814815729434624
+    m_Key: tutorialStep6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814821362384896
+    m_Key: tutorialStep7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814826638819328
+    m_Key: tutorialStep8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823294728880128
+    m_Key: YesTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823321132023808
+    m_Key: NoTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823571833962496
+    m_Key: Next
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

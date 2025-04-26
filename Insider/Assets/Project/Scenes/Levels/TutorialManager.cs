@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
@@ -21,7 +23,17 @@ public class TutorialManager : MonoBehaviour
     public GameObject No_Button;
     public GameObject NextStep_Button;
 
-    [Header("Tutorial Targets")]
+    public LocalizedString tutorialStep0;
+    public LocalizedString tutorialStep1;
+    public LocalizedString tutorialStep2;
+    public LocalizedString tutorialStep3;
+    public LocalizedString tutorialStep4;
+    public LocalizedString tutorialStep5;
+    public LocalizedString tutorialStep6;
+    public LocalizedString tutorialStep7;
+    public LocalizedString tutorialStep8;
+
+	[Header("Tutorial Targets")]
     public Transform step2;
     public Transform step3p1;
     public Transform step3p2;
@@ -87,7 +99,19 @@ public class TutorialManager : MonoBehaviour
     {
         buttonPressed = true;
         tutorialEnabled = false;
-    }
+
+		SP1.enabled = true;
+		SP2.enabled = true;
+		SP3.enabled = true;
+		SP4.enabled = true;
+		SP5.enabled = true;
+		SP6.enabled = true;
+		SP7.enabled = true;
+		Cannoner.SetActive(true);
+		Bopper.SetActive(true);
+		Leiser.SetActive(true);
+		WavePanel.SetActive(true);
+	}
 
     public void NextStep()
     {
@@ -96,7 +120,8 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (buttonPressed && tutorialEnabled)
+		ShowStep(currentStep);
+		if (buttonPressed && tutorialEnabled)
         {
 
             if (currentTarget != null)
@@ -121,7 +146,7 @@ public class TutorialManager : MonoBehaviour
                         Si_Button.SetActive(false);
                         No_Button.SetActive(false);
                     }
-                    break;
+					break;
 
                 case 1:
                     if (nextStep)
@@ -214,92 +239,92 @@ public class TutorialManager : MonoBehaviour
         currentStep = index;
         tutorialPanel.SetActive(true);
 
-        switch (index)
-        {
-            case 0:
-                tutorialText.text = "¿Deseas seguir el camino de la infestación?";
-                highlightBox.SetActive(false);
-                currentTarget = null;
-                break;
+		switch (index)
+		{
+			case 0:
+				tutorialText.text = tutorialStep0.GetLocalizedString();
+				highlightBox.SetActive(false);
+				currentTarget = null;
+				break;
 
-            case 1:
-                NextStep_Button.SetActive(true);
-                tutorialText.text = "Ah... por fin despiertas. Permíteme guiarte. Aprenderás a sobrevivir... y a conquistar este cuerpo.";
-                highlightBox.SetActive(false);
-                currentTarget = null;
-                break;
+			case 1:
+				NextStep_Button.SetActive(true);
+				tutorialText.text = tutorialStep1.GetLocalizedString();
+				highlightBox.SetActive(false);
+				currentTarget = null;
+				break;
 
-            case 2:
-                tutorialText.text = "Mírate. Un pequeño intruso, pero con un gran propósito: defenderte de esos molestos anticuerpos... y tomar el control desde dentro.";
-                currentTarget = step2;
-                highlightBox.transform.position = currentTarget.position;
-                highlightBox.transform.rotation = Quaternion.identity;
-                highlightBox.SetActive(true);
-                break;
+			case 2:
+				tutorialText.text = tutorialStep2.GetLocalizedString();
+				currentTarget = step2;
+				highlightBox.transform.position = currentTarget.position;
+				highlightBox.transform.rotation = Quaternion.identity;
+				highlightBox.SetActive(true);
+				break;
 
-            case 3:
-                NextStep_Button.SetActive(false);
-                tutorialText.text = "Primero, únete a las infecciones latentes del cuerpo. Úsalas a tu antojo... conviértelas en armas.";
-                SP7.enabled = true;
-                Cannoner.SetActive(true);
-                currentTarget = step3p1;
-                highlightBox.transform.position = currentTarget.position;
-                highlightBox.transform.rotation = Quaternion.identity;
-                highlightBox.SetActive(true);
-                break;
+			case 3:
+				NextStep_Button.SetActive(false);
+				tutorialText.text = tutorialStep3.GetLocalizedString();
+				SP7.enabled = true;
+				Cannoner.SetActive(true);
+				currentTarget = step3p1;
+				highlightBox.transform.position = currentTarget.position;
+				highlightBox.transform.rotation = Quaternion.identity;
+				highlightBox.SetActive(true);
+				break;
 
-            case 4:
-                tutorialText.text = "Genera esta mutación. Será tu primera expansión dentro del huésped.";
-                currentTarget = step3p2;
-                highlightBox.transform.position = currentTarget.position;
-                highlightBox.transform.rotation = Quaternion.identity;
-                highlightBox.SetActive(true);
-                break;
+			case 4:
+				tutorialText.text = tutorialStep4.GetLocalizedString();
+				currentTarget = step3p2;
+				highlightBox.transform.position = currentTarget.position;
+				highlightBox.transform.rotation = Quaternion.identity;
+				highlightBox.SetActive(true);
+				break;
 
-            case 5:
-                NextStep_Button.SetActive(true);
-                tutorialText.text = "Pero cuidado... para expandir tu poder necesitarás mutaciones. Evoluciona... adáptate...";
-                currentTarget = step5;
-                highlightBox.transform.position = currentTarget.position;
-                highlightBox.transform.rotation = Quaternion.identity;
-                highlightBox.SetActive(true);
-                break;
+			case 5:
+				NextStep_Button.SetActive(true);
+				tutorialText.text = tutorialStep5.GetLocalizedString();
+				currentTarget = step5;
+				highlightBox.transform.position = currentTarget.position;
+				highlightBox.transform.rotation = Quaternion.identity;
+				highlightBox.SetActive(true);
+				break;
 
-            case 6:
-                NextStep_Button.SetActive(false);
-                WavePanel.SetActive(true);
-                tutorialText.text = "Cuando estés listo, lanza una señal: debilita al cuerpo. Oblígalo a ceder. Solo entonces comenzarás a moldearlo a tu imagen.";
-                currentTarget = step4;
-                highlightBox.transform.position = currentTarget.position;
-                highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-                highlightBox.SetActive(true);
-                break;
+			case 6:
+				NextStep_Button.SetActive(false);
+				WavePanel.SetActive(true);
+				tutorialText.text = tutorialStep6.GetLocalizedString();
+				currentTarget = step4;
+				highlightBox.transform.position = currentTarget.position;
+				highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+				highlightBox.SetActive(true);
+				break;
 
-            case 7:
-                NextStep_Button.SetActive(true);
-                tutorialText.text = "Deshazte de los anticuerpos: sus restos contienen ADN... material precioso que podrás usar para perfeccionar tus infecciones... y nacer más fuerte.";
-                currentTarget = step6;
-                highlightBox.transform.position = currentTarget.position;
-                highlightBox.transform.rotation = Quaternion.identity;
-                highlightBox.SetActive(true);
-                break;
+			case 7:
+				NextStep_Button.SetActive(true);
+				tutorialText.text = tutorialStep7.GetLocalizedString();
+				currentTarget = step6;
+				highlightBox.transform.position = currentTarget.position;
+				highlightBox.transform.rotation = Quaternion.identity;
+				highlightBox.SetActive(true);
+				break;
 
-            case 8:
-                tutorialText.text = "Ya has aprendido lo esencial. A partir de ahora... estarás solo. Que la infestación te acompañe... la necesitarás.";
-                currentTarget = null;
-                SP1.enabled = true;
-                SP2.enabled = true;
-                SP3.enabled = true;
-                SP4.enabled = true;
-                SP5.enabled = true;
-                SP6.enabled = true;
-                SP7.enabled = true;
-                Cannoner.SetActive(true);
-                Bopper.SetActive(true);
-                Leiser.SetActive(true);
-                break;
-        }
-    }
+			case 8:
+				tutorialText.text = tutorialStep8.GetLocalizedString();
+				currentTarget = null;
+				SP1.enabled = true;
+				SP2.enabled = true;
+				SP3.enabled = true;
+				SP4.enabled = true;
+				SP5.enabled = true;
+				SP6.enabled = true;
+				SP7.enabled = true;
+				Cannoner.SetActive(true);
+				Bopper.SetActive(true);
+				Leiser.SetActive(true);
+				break;
+		}
+	}
 
 
     IEnumerator DelayShowStep(float delay, int stepToShow)
@@ -308,7 +333,7 @@ public class TutorialManager : MonoBehaviour
         ShowStep(stepToShow);
     }
 
-    void HideTutorial()
+	void HideTutorial()
     {
         tutorialPanel.SetActive(false);
         highlightBox.SetActive(false);
