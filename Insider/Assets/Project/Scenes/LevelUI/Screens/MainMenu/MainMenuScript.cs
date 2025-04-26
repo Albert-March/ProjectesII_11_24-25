@@ -12,6 +12,10 @@ public class MainMenuScript : MonoBehaviour
     {
         anim.Play("LevelSelectorOpen");
     }
+    public void OpenOptions(Animator anim)
+    {
+		anim.Play("OptionsOpen");
+	}
     public void PlayTutorial()
     {
         S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
@@ -32,8 +36,12 @@ public class MainMenuScript : MonoBehaviour
     {
         anim.Play("LevelSelectorClose");
     }
+	public void BackToMainFromOptions(Animator anim)
+	{
+		anim.Play("OptionsClose");
+	}
 
-    public void GoMainMenu()
+	public void GoMainMenu()
     {
 		S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
 		transition.CallPass("MainMenu");
