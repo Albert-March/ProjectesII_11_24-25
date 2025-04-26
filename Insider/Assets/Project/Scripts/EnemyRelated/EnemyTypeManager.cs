@@ -16,20 +16,14 @@ public class EnemyTypeManager : MonoBehaviour
                 Splitter splitter = gameObject.AddComponent<Splitter>();
 				break;
 			case 2:
-				//Money money = gameObject.AddComponent<Money>();
-				break;
+                Normal runner = gameObject.AddComponent<Normal>();
+                break;
 			case 3:
                 Explosive explosive = gameObject.AddComponent<Explosive>();
 				break;
 			case 4:
-				//Normal Diflect = gameObject.AddComponent<Normal>();
-				break;
-			case 5:
-				Normal runner = gameObject.AddComponent<Normal>();
-				break;
-			case 6:
 				Normal tank = gameObject.AddComponent<Normal>();
-				break;
+                break;
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,32 +9,49 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager instance;
 
     [Header("Tutorial Control")]
+    public bool buttonPressed = false;
     public bool tutorialEnabled = true;
+    public bool nextStep = false;
 
     [Header("Tutorial UI")]
     public GameObject tutorialPanel;
     public Text tutorialText;
     public GameObject highlightBox;
-    public Button nextButton;
+    public GameObject Si_Button;
+    public GameObject No_Button;
+    public GameObject NextStep_Button;
 
     [Header("Tutorial Targets")]
-    public GameObject buttonWave;
-    public Transform enemyExample;
-    public Transform towerPoint;
-    public Transform moneyText;
-    public Transform lifeText;
-    public SpawnManager spawnManager;
-    public Spawner spRef;
+    public Transform step2;
+    public Transform step3p1;
+    public Transform step3p2;
+    public Transform step4;
+    public Transform step5;
+    public Transform step6;
 
-    private bool hasClickedNextWave = false;
-    private bool towerPlaced = false;
-    private bool coinCollected = false;
+    [Header("Additional Needs Step 3 and 4")]
+    public Button SP1;
+    public Button SP2;
+    public Button SP3;
+    public Button SP4;
+    public Button SP5;
+    public Button SP6;
+    public Button SP7;
+    public DinamicTowerSetting spotFirstTower;
+    public PanelVisibilityController dinamicPanel;
+    public GameObject Cannoner;
+    public GameObject Bopper;
+    public GameObject Leiser;
+
+    [Header("Additional Needs Step 6")]
+    public GameObject WavePanel;
+    public Spawner spawner;
 
     public int currentStep = 0;
-    public bool isPaused = false;
 
     private Image highlightImage;
     private Color baseHighlightColor;
+    private Transform currentTarget = null;
 
     void Awake()
     {
@@ -42,52 +60,152 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-
         highlightImage = highlightBox.GetComponent<Image>();
         baseHighlightColor = highlightImage.color;
 
+        NextStep_Button.SetActive(false);
+        SP1.enabled = false;
+        SP2.enabled = false;
+        SP3.enabled = false;
+        SP4.enabled = false;
+        SP5.enabled = false;
+        SP6.enabled = false;
+        SP7.enabled = false;
+        Cannoner.SetActive(false);
+        Bopper.SetActive(false);
+        Leiser.SetActive(false);
         ShowStep(0);
+    }
+
+    public void Yes()
+    {
+        buttonPressed = true;
+        tutorialEnabled = true;
+    }
+
+    public void No()
+    {
+        buttonPressed = true;
+        tutorialEnabled = false;
+    }
+
+    public void NextStep()
+    {
+        nextStep = true;
     }
 
     void Update()
     {
+        if (buttonPressed && tutorialEnabled)
+        {
 
-        if (!tutorialEnabled)
+            if (currentTarget != null)
+            {
+                highlightBox.transform.position = currentTarget.position;
+            }
+            if (highlightBox.activeSelf)
+            {
+                float alpha = Mathf.PingPong(Time.unscaledTime * 2f, 0.5f) + 0.5f;
+                Color color = baseHighlightColor;
+                color.a = alpha;
+                highlightImage.color = color;
+            }
+
+            switch (currentStep)
+            {
+                case 0:
+                    if (buttonPressed)
+                    {
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 1));
+                        Si_Button.SetActive(false);
+                        No_Button.SetActive(false);
+                    }
+                    break;
+
+                case 1:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 2));
+                    }
+                    break;
+
+                case 2:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 3));
+                    }
+                    break;
+
+                case 3:
+                    if (dinamicPanel.open)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(0.1f, 4));
+                    }
+                    break;
+
+                case 4:
+                    if (!dinamicPanel.open)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(0.1f, 3));
+                    }
+                    if (spotFirstTower.spawnTower)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 5));
+                    }
+                    break;
+
+                case 5:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 6));
+                    }
+                    break;
+
+                case 6:
+                    if (spawner.waitingForNextWave == false)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 7));
+                    }
+                    break;
+
+                case 7:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 8));
+                    }
+                    break;
+
+                case 8:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        tutorialEnabled = false;
+                        HideTutorial();
+                    }
+                    break;
+            }
+        }
+        else if (!tutorialEnabled)
         {
             tutorialPanel.SetActive(false);
             highlightBox.SetActive(false);
-            return;
-        }
-
-        if (highlightBox.activeSelf)
-        {
-            float alpha = Mathf.PingPong(Time.unscaledTime * 2f, 0.5f) + 0.5f;
-            Color color = baseHighlightColor;
-            color.a = alpha;
-            highlightImage.color = color;
-        }
-
-        switch (currentStep)
-        {
-            case 0:
-                if (!spRef.waitingForNextWave && hasClickedNextWave)
-                {
-                    StartCoroutine(DelayEnemiesAppearing(4f));
-                    currentStep++;
-                }
-                break;
-
-            case 2:
-                if (towerPlaced)
-                {
-                    ResumeGame();
-                    currentStep++;
-                }
-                break;
-
-            case 3:
-              
-                break;
         }
     }
 
@@ -95,101 +213,104 @@ public class TutorialManager : MonoBehaviour
     {
         currentStep = index;
         tutorialPanel.SetActive(true);
-        highlightBox.SetActive(true);
-
-        if (index == 0)
-            Time.timeScale = 1f;
-        else
-            Time.timeScale = 0f;
-
-        isPaused = true;
 
         switch (index)
         {
             case 0:
-                tutorialText.text = "Click here to start the first wave.";
-                highlightBox.transform.position = buttonWave.transform.position;
+                tutorialText.text = "¿Deseas seguir el camino de la infestación?";
+                highlightBox.SetActive(false);
+                currentTarget = null;
                 break;
 
             case 1:
-                tutorialText.text = "These are the enemies. Stop them!";
-                highlightBox.transform.position = enemyExample.position;
+                NextStep_Button.SetActive(true);
+                tutorialText.text = "Ah... por fin despiertas. Permíteme guiarte. Aprenderás a sobrevivir... y a conquistar este cuerpo.";
+                highlightBox.SetActive(false);
+                currentTarget = null;
                 break;
 
             case 2:
-                tutorialText.text = "Place a tower here to defend!";
-                highlightBox.transform.position = towerPoint.position;
+                tutorialText.text = "Mírate. Un pequeño intruso, pero con un gran propósito: defenderte de esos molestos anticuerpos... y tomar el control desde dentro.";
+                currentTarget = step2;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
                 break;
 
             case 3:
-                tutorialText.text = "This is your economy. Use it to place and upgrade towers.";
-                highlightBox.transform.position = moneyText.position;
+                NextStep_Button.SetActive(false);
+                tutorialText.text = "Primero, únete a las infecciones latentes del cuerpo. Úsalas a tu antojo... conviértelas en armas.";
+                SP7.enabled = true;
+                Cannoner.SetActive(true);
+                currentTarget = step3p1;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
                 break;
 
             case 4:
-                tutorialText.text = "This is your life. If it reaches 0, you lose!";
-                highlightBox.transform.position = lifeText.position;
+                tutorialText.text = "Genera esta mutación. Será tu primera expansión dentro del huésped.";
+                currentTarget = step3p2;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
+
+            case 5:
+                NextStep_Button.SetActive(true);
+                tutorialText.text = "Pero cuidado... para expandir tu poder necesitarás mutaciones. Evoluciona... adáptate...";
+                currentTarget = step5;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
+
+            case 6:
+                NextStep_Button.SetActive(false);
+                WavePanel.SetActive(true);
+                tutorialText.text = "Cuando estés listo, lanza una señal: debilita al cuerpo. Oblígalo a ceder. Solo entonces comenzarás a moldearlo a tu imagen.";
+                currentTarget = step4;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                highlightBox.SetActive(true);
+                break;
+
+            case 7:
+                NextStep_Button.SetActive(true);
+                tutorialText.text = "Deshazte de los anticuerpos: sus restos contienen ADN... material precioso que podrás usar para perfeccionar tus infecciones... y nacer más fuerte.";
+                currentTarget = step6;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
+
+            case 8:
+                tutorialText.text = "Ya has aprendido lo esencial. A partir de ahora... estarás solo. Que la infestación te acompañe... la necesitarás.";
+                currentTarget = null;
+                SP1.enabled = true;
+                SP2.enabled = true;
+                SP3.enabled = true;
+                SP4.enabled = true;
+                SP5.enabled = true;
+                SP6.enabled = true;
+                SP7.enabled = true;
+                Cannoner.SetActive(true);
+                Bopper.SetActive(true);
+                Leiser.SetActive(true);
                 break;
         }
     }
 
-    public void HideTutorial()
+
+    IEnumerator DelayShowStep(float delay, int stepToShow)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        ShowStep(stepToShow);
+    }
+
+    void HideTutorial()
     {
         tutorialPanel.SetActive(false);
         highlightBox.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-    }
-
-    public void ResumeGame()
-    {
-        HideTutorial();
-    }
-
-    public void OnTowerPlaced()
-    {
-        if (currentStep == 2)
-        {
-            towerPlaced = true;
-        }
-    }
-
-    public void OnCoinCollected()
-    {
-        if (currentStep == 3 && !coinCollected)
-        {
-            coinCollected = true;
-            ShowStep(3);
-        }
-    }
-
-    public bool IsWaitingForCoinStep()
-    {
-        return currentStep == 3;
-    }
-
-    public bool IsPaused()
-    {
-        return isPaused;
-    }
-
-    public void OnClickNextWave()
-    {
-        hasClickedNextWave = true;
-    }
-
-    IEnumerator DelayEnemiesAppearing(float delay)
-    {
-        yield return new WaitForSecondsRealtime(delay);
-
-        ShowStep(1);
-        StartCoroutine(DelayShowTowerStep(2f));
-    }
-
-    IEnumerator DelayShowTowerStep(float delay)
-    {
-        yield return new WaitForSecondsRealtime(delay);
-
-        ShowStep(2);
     }
 }

@@ -10,6 +10,7 @@ public class FollowDeformingMesh : MonoBehaviour
     public Transform movingSkin; // The SpriteRenderer for the background
     public int vertexIndex = 0;           // The vertex index to follow
 
+    public Vector3 offset = Vector3.zero;
     private SpriteSkin spriteSkin;
 
     void Start()
@@ -54,6 +55,6 @@ public class FollowDeformingMesh : MonoBehaviour
         Vector3 worldPosition = movingSkin.TransformPoint(localPosition);
 
         // Update the position of the element
-        transform.position = worldPosition;
+        transform.position = worldPosition + offset;
     }
 }
