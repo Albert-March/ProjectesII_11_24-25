@@ -113,7 +113,7 @@ public class SpawnManager : MonoBehaviour
 				StartDelay(currentState.delay);
 				pendingStateAdvance = true;
 			}
-			else if (currentState.stateName == "wave" && currentWaveIndex > currentState.waves.Count - 1)
+			else if (currentState.stateName == "wave" && currentWaveIndex >= currentState.waves.Count -1)
 			{
 				StartDelay(currentState.delay);
 				pendingStateAdvance = true;

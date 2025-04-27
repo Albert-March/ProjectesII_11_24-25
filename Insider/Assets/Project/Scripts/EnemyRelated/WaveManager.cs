@@ -9,6 +9,9 @@ public class WaveManager : MonoBehaviour
 	public float time;
 	public float timeToAct;
 	public CanvasGroup img;
+	public GameObject Initialize;
+	public GameObject Wave;
+	public GameObject Finish;
 	public Text I_waveTop;
 	public Text W_waveTop;
 	public Text F_waveTop;
@@ -23,7 +26,9 @@ public class WaveManager : MonoBehaviour
 
 	void Start()
 	{
-
+		Initialize.SetActive(false);
+		Wave.SetActive(false);
+		Finish.SetActive(false);
 	}
 
 	void Update()
@@ -37,6 +42,9 @@ public class WaveManager : MonoBehaviour
 			switch (s)
 			{
 				case "initial":
+					Initialize.SetActive(true);
+					Wave.SetActive(false);
+					Finish.SetActive(false);
 					//I_waveTop.text = "They are getting closer...";
 					I_waveTop.fontSize = 25;
 
@@ -47,6 +55,10 @@ public class WaveManager : MonoBehaviour
 					I_waveBot.fontSize = 45;
 					break;
 				case "wave":
+					Initialize.SetActive(false);
+					Wave.SetActive(true);
+					Finish.SetActive(false);
+					W_waveBot.text = spawnManager.currentWaveIndex.ToString();
 					//W_waveTop.text = "The swarm grows stronger!";
 					W_waveTop.fontSize = 25;
 
@@ -58,6 +70,9 @@ public class WaveManager : MonoBehaviour
 
 					break;
 				case "finish":
+					Initialize.SetActive(false);
+					Wave.SetActive(false);
+					Finish.SetActive(true);
 					//F_waveTop.text = "Nothing remains...";
 					F_waveBot.fontSize = 25;
 
