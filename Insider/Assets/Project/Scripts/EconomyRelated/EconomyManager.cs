@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class EconomyManager : MonoBehaviour
 {
-    public int economy = 400;
+    public int economy;
 	public Text economyText;
 	private int lastEconomy;
 	private float scaleE = 1f;

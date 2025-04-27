@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 
 public class SetTowerBaseInput : MonoBehaviour
@@ -181,18 +182,14 @@ public class SetTowerBaseInput : MonoBehaviour
                             materialRBlack.SetActive(true);
 						}
 						Price1.text = tower.priceLevel_2_Type1.ToString();
-						Price1_1.text = tower.priceLevel_2_Type2.ToString();
-						Price2.text = tower.priceLevel_3_Type1.ToString();
+						Price1_1.text = tower.priceLevel_3_Type2.ToString();
+						Price2.text = tower.priceLevel_2_Type1.ToString();
 						Price2_1.text = tower.priceLevel_3_Type2.ToString();
 
 						//Descriptions
-						if(tower.currentLevel == 1)
+						if (tower.currentLevel == 1)
 						{
 							TowerDescriptions.SetActive(false);
-						}
-						else if(tower.currentLevel == 2)
-						{
-							TowerDescriptions.SetActive(true);
 							description1_1_1.SetActive(false);
 							description1_1_2.SetActive(false);
 							description1_2_1.SetActive(false);
@@ -208,33 +205,107 @@ public class SetTowerBaseInput : MonoBehaviour
 							switch (tower.id)
 							{
 								case 0:
-									if(tower.type == 1)
+									if (posibleType1)
 									{
+										TowerDescriptions.SetActive(true);
 										description1_1_1.SetActive(true);
+									}
+									else if (posibleType2)
+									{
+										TowerDescriptions.SetActive(true);
+										description1_1_2.SetActive(true);
+									}
+									break;
+								case 1:
+									if (posibleType1)
+									{
+										TowerDescriptions.SetActive(true);
+										description2_1_1.SetActive(true);
+									}
+									else if (posibleType2)
+									{
+										TowerDescriptions.SetActive(true);
+										description2_1_2.SetActive(true);
+									}
+									break;
+								case 2:
+									if (posibleType1)
+									{
+										TowerDescriptions.SetActive(true);
+										description3_1_1.SetActive(true);
+									}
+									else if (posibleType2)
+									{
+										TowerDescriptions.SetActive(true);
+										description3_1_2.SetActive(true);
+									}
+									break;
+							}
+						}
+						else if (tower.currentLevel == 2)
+						{
+							TowerDescriptions.SetActive(true);
+							description1_1_1.SetActive(false);
+							description1_1_2.SetActive(false);
+							description1_2_1.SetActive(false);
+							description1_2_2.SetActive(false);
+							description2_1_1.SetActive(false);
+							description2_1_2.SetActive(false);
+							description2_2_1.SetActive(false);
+							description2_2_2.SetActive(false);
+							description3_1_1.SetActive(false);
+							description3_1_2.SetActive(false);
+							description3_2_1.SetActive(false);
+							description3_2_2.SetActive(false);
+
+							switch (tower.id)
+							{
+								case 0:
+									if (tower.type == 1)
+									{
+										if(posibleType1_1)
+											description1_2_1.SetActive(true);
+										else
+											description1_1_1.SetActive(true);
 									}
 									else if (tower.type == 2)
 									{
-										description1_1_2.SetActive(true);
+										if(posibleType2_1)
+											description1_2_2.SetActive(true);
+										else
+											description1_1_2.SetActive(true);
 									}
 									break;
 								case 1:
 									if (tower.type == 1)
 									{
-										description2_1_1.SetActive(true);
+										if (posibleType1_1)
+											description2_2_1.SetActive(true);
+										else
+											description2_1_1.SetActive(true);
 									}
 									else if (tower.type == 2)
 									{
-										description2_1_2.SetActive(true);
+										if (posibleType2_1)
+											description2_2_2.SetActive(true);
+										else
+											description2_1_2.SetActive(true);
 									}
-									break; 
+									break;
 								case 2:
 									if (tower.type == 1)
 									{
-										description3_1_1.SetActive(true);
+										if (posibleType1_1)
+											description3_1_1.SetActive(true);
+										else
+											description3_2_1.SetActive(true);
 									}
 									else if (tower.type == 2)
 									{
-										description3_1_2.SetActive(true);
+										if (posibleType2_1)
+											description3_1_2.SetActive(true);
+										else
+											description3_2_2.SetActive(true);
 									}
 									break;
 							}
@@ -580,59 +651,45 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp2()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if (type == 1 && !levelUp2)
+		if (type == 1 && !levelUp2 && economyScript.economy >= stats.priceLevel_2_Type1)
 		{
-			if (economyScript.economy >= stats.priceLevel_2_Type1)
+			foreach (Transform child in clickedButton.transform)
 			{
-				foreach (Transform child in clickedButton.transform)
+				if (child.name == "Tower(Clone)")
 				{
-					if (child.name == "Tower(Clone)")
+					if (child.GetComponent<Tower>().currentLevel == 1)
 					{
-						if (child.GetComponent<Tower>().currentLevel == 1)
-						{
-							towerSetter.LevelUp2(child.GetComponent<Tower>());
-						}
+						towerSetter.LevelUp2(child.GetComponent<Tower>());
 					}
 				}
-				SpawnParticles();
-				economyScript.economy -= stats.priceLevel_2_Type1;
-				audioManager.PlaySFX(4, 0.2f);
-				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+			}
+			SpawnParticles();
+			economyScript.economy -= stats.priceLevel_2_Type1;
+			audioManager.PlaySFX(4, 0.2f);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
-				towerPrice.text = $"{stats.priceLevel_3_Type1}";
-			}
-			else
-			{
-				economyScript.insufficientEconomy = true;
-			}
+			towerPrice.text = $"{stats.priceLevel_3_Type1}";
 		}
-		else if (type == 2 && !levelUp2)
+		else if (type == 2 && !levelUp2 && economyScript.economy >= stats.priceLevel_2_Type2)
 		{
-			if (economyScript.economy >= stats.priceLevel_2_Type2)
+			foreach (Transform child in clickedButton.transform)
 			{
-				foreach (Transform child in clickedButton.transform)
+				if (child.name == "Tower(Clone)")
 				{
-					if (child.name == "Tower(Clone)")
+					if (child.GetComponent<Tower>().currentLevel == 1)
 					{
-						if (child.GetComponent<Tower>().currentLevel == 1)
-						{
-							towerSetter.LevelUp2(child.GetComponent<Tower>());
-						}
+						towerSetter.LevelUp2(child.GetComponent<Tower>());
 					}
 				}
-				SpawnParticles();
-				economyScript.economy -= stats.priceLevel_2_Type2;
-				audioManager.PlaySFX(4, 0.2f);
-				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
+			}
+			SpawnParticles();
+			economyScript.economy -= stats.priceLevel_2_Type2;
+			audioManager.PlaySFX(4, 0.2f);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp2 = true;
 
-				towerPrice.text = $"{stats.priceLevel_3_Type2}";
-			}
-			else
-			{
-				economyScript.insufficientEconomy = true;
-			}
+			towerPrice.text = $"{stats.priceLevel_3_Type2}";
 		}
-		else { return; }
+		else {return; }
 
 		justUpdated = true;
 		if (lerpCoroutine != null)
@@ -645,55 +702,41 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void LevelUp3()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		if (type == 1 && !levelUp3)
+		if (type == 1 && !levelUp3 && economyScript.economy >= stats.priceLevel_3_Type1)
 		{
-			if (economyScript.economy >= stats.priceLevel_3_Type1)
+			foreach (Transform child in clickedButton.transform)
 			{
-				foreach (Transform child in clickedButton.transform)
+				if (child.name == "Tower(Clone)")
 				{
-					if (child.name == "Tower(Clone)")
+					if (child.GetComponent<Tower>().currentLevel == 2)
 					{
-						if (child.GetComponent<Tower>().currentLevel == 2)
-						{
-							towerSetter.LevelUp3(child.GetComponent<Tower>());
-						}
+						towerSetter.LevelUp3(child.GetComponent<Tower>());
 					}
 				}
-				SpawnParticles();
-				economyScript.economy -= stats.priceLevel_3_Type1;
-				audioManager.PlaySFX(4, 0.2f);
-				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 			}
-			else
-			{
-				economyScript.insufficientEconomy = true;
-			}
+			SpawnParticles();
+			economyScript.economy -= stats.priceLevel_3_Type1;
+			audioManager.PlaySFX(4, 0.2f);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 		}
-		else if (type == 2 && !levelUp3)
+		else if (type == 2 && !levelUp3 && economyScript.economy >= stats.priceLevel_3_Type2)
 		{
-			if (economyScript.economy >= stats.priceLevel_3_Type2)
+			foreach (Transform child in clickedButton.transform)
 			{
-				foreach (Transform child in clickedButton.transform)
+				if (child.name == "Tower(Clone)")
 				{
-					if (child.name == "Tower(Clone)")
+					if (child.GetComponent<Tower>().currentLevel == 2)
 					{
-						if (child.GetComponent<Tower>().currentLevel == 2)
-						{
-							towerSetter.LevelUp3(child.GetComponent<Tower>());
-						}
+						towerSetter.LevelUp3(child.GetComponent<Tower>());
 					}
 				}
-				SpawnParticles();
-				economyScript.economy -= stats.priceLevel_3_Type2;
-				audioManager.PlaySFX(4, 0.2f);
-				clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 			}
-			else
-			{
-				economyScript.insufficientEconomy = true;
-			}
+			SpawnParticles();
+			economyScript.economy -= stats.priceLevel_3_Type2;
+			audioManager.PlaySFX(4, 0.2f);
+			clickedButton.transform.GetChild(0).GetComponent<DinamicTowerSetting>().levelUp3 = true;
 		}
-		else { return; }
+		else {economyScript.insufficientEconomy = true; return; }
 
 		levelUp3 = true;
 
@@ -742,30 +785,36 @@ public class SetTowerBaseInput : MonoBehaviour
 
 	public void Type1()
 	{
-		type = 1;
-
 		foreach (Transform child in clickedButton.transform)
 		{
 			if (child.name == "Tower(Clone)")
 			{
 				Tower tower = child.GetComponent<Tower>();
-				tower.type = type;
-				LevelUp2();
+				if (economyScript.economy >= tower.priceLevel_2_Type1)
+				{
+					type = 1;
+					tower.type = type;
+					LevelUp2();
+				}
+				else {economyScript.insufficientEconomy = true; }
 			}
 		}
 	}
 
 	public void Type2()
 	{
-		type = 2;
-
 		foreach (Transform child in clickedButton.transform)
 		{
 			if (child.name == "Tower(Clone)")
 			{
 				Tower tower = child.GetComponent<Tower>();
-				tower.type = type;
-				LevelUp2();
+				if (economyScript.economy >= tower.priceLevel_2_Type2)
+				{
+					type = 2;
+					tower.type = type;
+					LevelUp2();
+				}
+				else { economyScript.insufficientEconomy = true; }
 			}
 		}
 	}
