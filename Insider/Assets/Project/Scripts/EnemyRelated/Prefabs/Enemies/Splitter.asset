@@ -15,9 +15,9 @@ MonoBehaviour:
   id: 1
   movSpeed: 1.25
   attackSpeed: 10
-  health: 200
+  health: 150
   dmg: 10
-  economyGiven: 15
+  economyGiven: 10
   size: {x: 2.2, y: 2.2}
   AnimationsPrefab: {fileID: 1063077874835595207, guid: 5b4597d2dd636814a9dc57e33ac44992, type: 3}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

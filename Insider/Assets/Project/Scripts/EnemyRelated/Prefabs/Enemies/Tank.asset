@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Tank
   m_EditorClassIdentifier: 
   id: 4
-  movSpeed: 0.9
+  movSpeed: 0.75
   attackSpeed: 10
-  health: 1000
+  health: 500
   dmg: 10
-  economyGiven: 50
+  economyGiven: 30
   size: {x: 1.8, y: 1.8}
   AnimationsPrefab: {fileID: 1341315690417127499, guid: 3199d1e20e2f5af4993e99ae33e1f779, type: 3}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

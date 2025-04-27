@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   id: 0
-  movSpeed: 1
+  movSpeed: 1.25
   attackSpeed: 10
   health: 100
   dmg: 10

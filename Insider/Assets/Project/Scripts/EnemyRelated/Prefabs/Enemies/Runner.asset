@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Runner
   m_EditorClassIdentifier: 
   id: 2
-  movSpeed: 3
+  movSpeed: 2
   attackSpeed: 10
-  health: 100
+  health: 70
   dmg: 10
   economyGiven: 15
   size: {x: 0.7, y: 0.7}

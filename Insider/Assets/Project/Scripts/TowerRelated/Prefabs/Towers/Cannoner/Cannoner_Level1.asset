@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   type: 0
-  damage: 30
+  damage: 20
   fireRate: 1
   projectileHp: 0
   projectileSpeed: 20
-  range: 10
+  range: 9
   targetAmount: 1
-  priceLevel_1_Type0: 0
-  priceLevel_2_Type1: 0
-  priceLevel_2_Type2: 0
-  priceLevel_3_Type1: 0
-  priceLevel_3_Type2: 0
+  priceLevel_1_Type0: 1
+  priceLevel_2_Type1: 150
+  priceLevel_2_Type2: 150
+  priceLevel_3_Type1: 300
+  priceLevel_3_Type2: 300
   rangeOffstY: 0
   AnimationPrefab: {fileID: 826557860073593700, guid: c352305603a31b048b6ac2a58e2f2e33, type: 3}
   prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}

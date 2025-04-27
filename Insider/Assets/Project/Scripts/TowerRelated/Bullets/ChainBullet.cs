@@ -45,7 +45,7 @@ public class ChainBullet : MonoBehaviour
 
                 if (towerScript.currentLevel == 3)
                 {
-                    CurrentTarget.Stun(0.5f);
+                    CurrentTarget.Stun(1f);
                 }
 
                 currentTargetIndex++;

@@ -6,7 +6,7 @@ public class PuddleDMG : MonoBehaviour
 {
     public float damagePerSecond = 5f;
     public float tickInterval = 1f;
-    public float duration = 10f;
+    public float duration = 5f;
 
     private float lifeTimer = 0f;
     private float tickTimer = 0f;

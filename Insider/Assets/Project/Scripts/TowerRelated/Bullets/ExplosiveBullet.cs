@@ -41,7 +41,6 @@ public class ExplosiveBullet : MonoBehaviour
             if (!audioPlayed)
             {
                 audioManager.PlaySFX(10, 0.5f);
-                Debug.Log("PLAY BLOP");
                 audioPlayed = true;
             }
         }

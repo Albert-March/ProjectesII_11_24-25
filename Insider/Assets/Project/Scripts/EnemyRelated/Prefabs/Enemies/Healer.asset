@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 3
   movSpeed: 1
   attackSpeed: 10
-  health: 300
+  health: 200
   dmg: 10
   economyGiven: 20
   size: {x: 0.7, y: 0.7}

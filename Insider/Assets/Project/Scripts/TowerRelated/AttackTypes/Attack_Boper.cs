@@ -83,9 +83,9 @@ public class Attack_Boper : MonoBehaviour, IAttackType
             {
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
                 if (tower.currentLevel == 2)
-                    StartCoroutine(ApplySlow(enemy, 0.5f / tower.fireRate));
+                    StartCoroutine(ApplySlow(enemy, 3f));
                 if (tower.currentLevel == 3)
-                    StartCoroutine(ApplyStun(enemy, 0.5f / tower.fireRate));
+                    StartCoroutine(ApplyStun(enemy, 1f));
             }
             else if (tower.type == 2)
             {
@@ -94,9 +94,16 @@ public class Attack_Boper : MonoBehaviour, IAttackType
                     StopCoroutine(bleedCoroutines[enemy]);
                     bleedCoroutines.Remove(enemy);
                 }
-
-                Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 2f, 10));
-                bleedCoroutines[enemy] = bleed;
+                if (tower.currentLevel == 2) 
+                {
+                    Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 10f, 1, 3f));
+                    bleedCoroutines[enemy] = bleed;
+                }
+                if (tower.currentLevel == 3) 
+                {
+                    Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 10f, 1, 5f));
+                    bleedCoroutines[enemy] = bleed;
+                }
 
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
             }
@@ -127,7 +134,7 @@ public class Attack_Boper : MonoBehaviour, IAttackType
             enemy.isStuned = false;
     }
 
-    private IEnumerator ApplyBleed(Tower t, Enemy enemy, float damagePerTick, int ticks)
+    private IEnumerator ApplyBleed(Tower t, Enemy enemy, float damagePerTick, int ticks, float duration)
     {
         if (enemy == null) yield break;
 
@@ -139,7 +146,7 @@ public class Attack_Boper : MonoBehaviour, IAttackType
             if (enemy == null) break;
             enemy.GetComponent<IDamage>().Damage(damagePerTick);
             enemy.isBleeding = true;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(duration);
         }
 
         if (enemy != null)

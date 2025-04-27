@@ -10,9 +10,9 @@
         {
           "waveNumber": "1",
           "enemyTypes": {
-            "Type1": 0,
-            "Type2": 4,
-            "Type3": 5,
+            "Type1": 10,
+            "Type2": 0,
+            "Type3": 0,
             "Type4": 0,
             "Type5": 0
           },
@@ -22,9 +22,9 @@
         {
           "waveNumber": "2",
           "enemyTypes": {
-            "Type1": 40,
+            "Type1": 7,
             "Type2": 0,
-            "Type3": 0,
+            "Type3": 3,
             "Type4": 0,
             "Type5": 0
           },
@@ -34,9 +34,9 @@
         {
           "waveNumber": "3",
           "enemyTypes": {
-            "Type1": 11,
-            "Type2": 2,
-            "Type3": 0,
+            "Type1": 0,
+            "Type2": 0,
+            "Type3": 12,
             "Type4": 0,
             "Type5": 0
           },
@@ -46,8 +46,8 @@
         {
           "waveNumber": "4",
           "enemyTypes": {
-            "Type1": 11,
-            "Type2": 0,
+            "Type1": 6,
+            "Type2": 2,
             "Type3": 0,
             "Type4": 0,
             "Type5": 0
@@ -58,9 +58,9 @@
         {
           "waveNumber": "5",
           "enemyTypes": {
-            "Type1": 34,
-            "Type2": 0,
-            "Type3": 0,
+            "Type1": 0,
+            "Type2": 3,
+            "Type3": 6,
             "Type4": 0,
             "Type5": 0
           },
@@ -70,10 +70,10 @@
         {
           "waveNumber": "6",
           "enemyTypes": {
-            "Type1": 20,
-            "Type2": 2,
+            "Type1": 8,
+            "Type2": 0,
             "Type3": 0,
-            "Type4": 10,
+            "Type4": 2,
             "Type5": 0
           },
           "spawnTime": 1.2,
@@ -82,10 +82,10 @@
         {
           "waveNumber": "7",
           "enemyTypes": {
-            "Type1": 31,
-            "Type2": 4,
-            "Type3": 0,
-            "Type4": 10,
+            "Type1": 0,
+            "Type2": 2,
+            "Type3": 5,
+            "Type4": 2,
             "Type5": 0
           },
           "spawnTime": 1.2,
@@ -94,11 +94,11 @@
         {
           "waveNumber": "8",
           "enemyTypes": {
-            "Type1": 30,
+            "Type1": 6,
             "Type2": 0,
             "Type3": 0,
-            "Type4": 20,
-            "Type5": 0
+            "Type4": 0,
+            "Type5": 2
           },
           "spawnTime": 1.2,
           "delay": 15.0
@@ -106,11 +106,11 @@
         {
           "waveNumber": "9",
           "enemyTypes": {
-            "Type1": 15,
-            "Type2": 10,
-            "Type3": 0,
-            "Type4": 20,
-            "Type5": 0
+            "Type1": 2,
+            "Type2": 0,
+            "Type3": 6,
+            "Type4": 2,
+            "Type5": 2
           },
           "spawnTime": 1.2,
           "delay": 15.0
@@ -118,11 +118,11 @@
         {
           "waveNumber": "10",
           "enemyTypes": {
-            "Type1": 30,
-            "Type2": 20,
-            "Type3": 0,
-            "Type4": 30,
-            "Type5": 0
+            "Type1": 0,
+            "Type2": 3,
+            "Type3": 6,
+            "Type4": 3,
+            "Type5": 3
           },
           "spawnTime": 1.2,
           "delay": 15.0

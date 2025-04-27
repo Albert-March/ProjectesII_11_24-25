@@ -485,13 +485,13 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
                 if (tower.currentLevel == 2)
                 {
-                    if (tower.damage * damageMultiplier <= 20)
-                        damageMultiplier *= 1.1f;
+                    if (tower.damage * damageMultiplier <= 50)
+                        damageMultiplier *= 1.202264f;
                 }
                 else if (tower.currentLevel == 3)
                 {
-                    if (tower.damage * damageMultiplier <= 40)
-                        damageMultiplier *= 1.1f;
+                    if (tower.damage * damageMultiplier <= 66)
+                        damageMultiplier *= 1.22573f;
                 }
 
                 fireCooldown = 1f / tower.fireRate;
