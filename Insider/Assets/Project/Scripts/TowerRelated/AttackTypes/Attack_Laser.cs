@@ -129,6 +129,13 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 40f / 60f)
             yield return null;
 
+        if (target == null)
+        {
+            anim.SetBool("IsAttacking", false);
+            isFiringType0 = false;
+            yield break;
+        }
+
         DrawLaser();
         IDamage enemyDmg = target?.GetComponent<IDamage>();
         if (enemyDmg != null)
@@ -147,7 +154,7 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
         laser = Instantiate(laserPrefab, this.transform.position, Quaternion.identity);
         laser.transform.SetParent(this.transform);
-
+        
         GameObject GOline = laser.transform.Find("Line").gameObject;
         GameObject GOstart = laser.transform.Find("Start").gameObject;
         GameObject GOend = laser.transform.Find("End").gameObject;

@@ -43,11 +43,6 @@ public class ChainBullet : MonoBehaviour
                     enemyReference.Damage(towerScript.damage);
                 }
 
-                if (towerScript.currentLevel == 3)
-                {
-                    CurrentTarget.Stun(1f);
-                }
-
                 currentTargetIndex++;
 
                 while (currentTargetIndex < chainTargets.Count &&

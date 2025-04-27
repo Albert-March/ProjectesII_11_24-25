@@ -16242,7 +16242,7 @@ MonoBehaviour:
   m_Follow: {fileID: 7047671921890907500}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 25.00008
+    OrthographicSize: 30.00008
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -20634,6 +20634,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8a4884488ea9b404286c6703f7717f95, type: 3}
+    - target: {fileID: 1425295109572798131, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1627170177714484002, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -21350,6 +21354,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8a4884488ea9b404286c6703f7717f95, type: 3}
+    - target: {fileID: 6768210446289079734, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7084563203953151131, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_Text
       value: 
@@ -21428,7 +21436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8278856199699484742, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: orthographic size
-      value: 25.00008
+      value: 30.00008
       objectReference: {fileID: 0}
     - target: {fileID: 8288263951683139225, guid: b94a8b751a72bfc4db8d33cd9595fb5e, type: 3}
       propertyPath: m_Layer

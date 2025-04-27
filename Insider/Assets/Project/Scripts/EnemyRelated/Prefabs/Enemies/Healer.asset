@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Healer
   m_EditorClassIdentifier: 
   id: 3
-  movSpeed: 1
+  movSpeed: 1.25
   attackSpeed: 10
   health: 200
   dmg: 10

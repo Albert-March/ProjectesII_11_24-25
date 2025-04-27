@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Runner
   m_EditorClassIdentifier: 
   id: 2
-  movSpeed: 2
+  movSpeed: 2.5
   attackSpeed: 10
   health: 70
   dmg: 10
-  economyGiven: 15
+  economyGiven: 10
   size: {x: 0.7, y: 0.7}
   AnimationsPrefab: {fileID: 7836264864916090110, guid: 489750416f0576147a2e0d756ddadca8, type: 3}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}
