@@ -13,23 +13,17 @@ public class EnemyTypeManager : MonoBehaviour
 				Normal normal = gameObject.AddComponent<Normal>();
 				break;
 			case 1:
-				Splitter splitter = gameObject.AddComponent<Splitter>();
+                Splitter splitter = gameObject.AddComponent<Splitter>();
 				break;
 			case 2:
-				Money money = gameObject.AddComponent<Money>();
-				break;
+                Normal runner = gameObject.AddComponent<Normal>();
+                break;
 			case 3:
-				Explosive explosive = gameObject.AddComponent<Explosive>();
+                Explosive explosive = gameObject.AddComponent<Explosive>();
 				break;
 			case 4:
-				Normal Diflect = gameObject.AddComponent<Normal>();
-				break;
-			case 5:
-				Normal Runner = gameObject.AddComponent<Normal>();
-				break;
-			case 6:
-				Normal Tank = gameObject.AddComponent<Normal>();
-				break;
+				Normal tank = gameObject.AddComponent<Normal>();
+                break;
 		}
 	}
 }

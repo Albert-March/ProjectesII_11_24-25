@@ -15,34 +15,58 @@ public class ExplosiveBullet : MonoBehaviour
     public Tower towerScript;
 	public List<GameObject> enemiesOnContact;
 
+    public GameObject puddle;
+    AudioManager audioManager;
+    bool audioPlayed = false;
     private void Awake()
     {
         flyRadius = transform.localScale;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     void Update()
 	{
-        Vector2 direction = (lastPos - transform.position).normalized;
-		transform.position = Vector2.MoveTowards(transform.position, lastPos, towerScript.projectileSpeed * Time.deltaTime);
-		if (transform.position == lastPos)
+        if (target != null)
+        {
+            lastPos = target.transform.position;
+        }
+        transform.position = Vector2.MoveTowards(transform.position, lastPos, towerScript.projectileSpeed * Time.deltaTime);
+
+
+        if (transform.position == lastPos)
 		{
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / explosionDuration;
             transform.localScale = Vector3.Lerp(flyRadius, explosionRadius, progress);
+
+            if (!audioPlayed)
+            {
+                audioManager.PlaySFX(10, 0.5f);
+                audioPlayed = true;
+            }
         }
+
 		if (transform.localScale == explosionRadius) 
 		{
             if (enemiesOnContact.Count > 0 && !hasExploded)
             {
                 hasExploded = true;
-                foreach (GameObject d in enemiesOnContact)
+                for (int i = enemiesOnContact.Count - 1; i >= 0; i--)
                 {
-                    d.GetComponent<IDamage>().Damage(towerScript.damage);
+                    if (enemiesOnContact[i] != null)
+                    {
+                        enemiesOnContact[i].GetComponent<IDamage>().Damage(towerScript.damage);
+                    }
                 }
-                
+            }
+            if (towerScript.currentLevel == 3 && puddle != null)
+            {
+                GameObject newPuddle = Instantiate(puddle, transform.position, Quaternion.identity);
+                newPuddle.transform.localScale = explosionRadius;
             }
             Destroy(gameObject);
         }
-	}
+
+    }
 
 	public void SetTarget(Enemy newTarget)
     {

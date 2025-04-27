@@ -1,325 +1,297 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class EnemyType
-    {
-        public int Type1;
-        public int Type2;
-        public int Type3;
-        public int Type4;
-        public int Type5;
-        public int Type6;
-        public int Type7;
-    }
+	[System.Serializable]
+	public class EnemyType
+	{
+		public int Type1;
+		public int Type2;
+		public int Type3;
+		public int Type4;
+		public int Type5;
+		public int Type6;
+		public int Type7;
+	}
 
-    [System.Serializable]
-    public class Wave
-    {
-        public string waveNumber;
-        public EnemyType enemyTypes;
-        public float spawnTime;
-        public float delay;
-    }
+	[System.Serializable]
+	public class Wave
+	{
+		public string waveNumber;
+		public EnemyType enemyTypes;
+		public float spawnTime;
+		public float delay;
+	}
 
-    [System.Serializable]
-    public class GameState
-    {
-        public string stateName;
-        public EnemyType enemyTypes;
-        public List<Wave> waves;
-        public float spawnTime;
-        public float delay;
-    }
+	[System.Serializable]
+	public class GameState
+	{
+		public string stateName;
+		public EnemyType enemyTypes;
+		public List<Wave> waves;
+		public float spawnTime;
+		public float delay;
+	}
 
-    [System.Serializable]
-    public class Root
-    {
-        public List<GameState> gameStates;
-    }
+	[System.Serializable]
+	public class Root
+	{
+		public List<GameState> gameStates;
+	}
 
-    public List<char> enemiesList = new List<char>();
-    private Root gameStateRoot;
-    private int currentStateIndex = 0;
-    public int currentWaveIndex = 0;
+	public List<char> enemiesList = new List<char>();
+	public List<int> pathIndicesList = new List<int>();
+	private Root gameStateRoot;
+	private int currentStateIndex = 0;
+	public int currentWaveIndex = 0;
 
-    public GameState currentState;
+	public GameState currentState;
 
-    public bool isInDelayState = false;
-    private float time;
+	public bool isInDelayState = false;
+	private bool pendingStateAdvance = false;
+	private float time;
 
-    string jsonFileName;
-    string sceneName;
-
-	//public string jsonFilePath = "Assets/Project/Resources/Level_1_States.json";
+	string jsonFileName;
+	string sceneName;
 
 	void Start()
-    {
+	{
 		sceneName = SceneManager.GetActiveScene().name;
 		LoadGameStates();
-        InitializeGameState();
-    }
 
-    void Update()
-    {
-        if (isInDelayState)
-        {
-            StayOnDelay();
-        }
-    }
+		if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
+		{
+			currentState = gameStateRoot.gameStates[currentStateIndex];
+		}
+	}
 
-    void LoadGameStates()
-    {
-        switch (sceneName)
-        {
-            case "Level_1":
-                jsonFileName = "Level_1_States";
-                break;
-            case "Level_2":
+	void Update()
+	{
+		if (isInDelayState)
+		{
+			StayOnDelay();
+		}
+	}
+
+	void LoadGameStates()
+	{
+		switch (sceneName)
+		{
+			case "Level_1":
+				jsonFileName = "Level_1_States";
+				break;
+			case "Level_2":
 				jsonFileName = "Level_2_States";
 				break;
-            default:
-                break;
-        }
+			default:
+				break;
+		}
 
-        TextAsset jsonTextAsset = Resources.Load<TextAsset>(jsonFileName);
-        if (jsonTextAsset == null)
-        {
-            //Debug.LogError($"No se encontr� el archivo JSON en Resources con el nombre {jsonFileName}");
-            return;
-        }
+		TextAsset jsonTextAsset = Resources.Load<TextAsset>(jsonFileName);
+		if (jsonTextAsset == null)
+			return;
 
-        string jsonText = jsonTextAsset.text;
-        gameStateRoot = JsonUtility.FromJson<Root>(jsonText);
+		string jsonText = jsonTextAsset.text;
+		gameStateRoot = JsonUtility.FromJson<Root>(jsonText);
+	}
 
-        if (gameStateRoot != null)
-        {
-            foreach (var gameState in gameStateRoot.gameStates)
-            {
-                //Debug.Log($"Loaded GameState: {gameState.stateName}, SpawnTime: {gameState.spawnTime}, Delay: {gameState.delay}");
-                if (gameState.waves != null)
-                {
-                    foreach (var wave in gameState.waves)
-                    {
-                        //Debug.Log($" - Wave: {wave.waveNumber}, SpawnTime: {wave.spawnTime}, Delay: {wave.delay}");
-                    }
-                }
-            }
-        }
-        else
-        {
-            //Debug.LogError("Failed to parse the JSON into gameStateRoot.");
-        }
-    }
+	public void AdvanceGameState()
+	{
+		if (isInDelayState) return;
 
-    void InitializeGameState()
-    {
-        if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
-        {
-            currentState = gameStateRoot.gameStates[currentStateIndex];
-            //Debug.Log($"Estado actual: {currentState.stateName}");
+		enemiesList.Clear();
 
-            if (currentState.stateName == "initial" || currentState.stateName == "finish")
-            {
-                PopulateEnemiesList(currentState.enemyTypes);
-                StartDelay(currentState.delay);
-            }
-            else if (currentState.stateName == "wave")
-            {
-                currentWaveIndex = 0;
-                InitializeWave();
-            }
-        }
-        else
-        {
-            //Debug.Log("No hay m�s estados del juego.");
-        }
-    }
+		if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
+		{
+			if (currentState.stateName == "initial")
+			{
+				StartDelay(currentState.delay);
+				pendingStateAdvance = true;
+			}
+			else if (currentState.stateName == "wave" && currentWaveIndex >= currentState.waves.Count -1)
+			{
+				StartDelay(currentState.delay);
+				pendingStateAdvance = true;
+			}
+		}
+	}
 
-    public void AdvanceGameState()
-    {
-        if (isInDelayState) return;
+	public void InitializeWave()
+	{
+		if (currentState.waves != null && currentWaveIndex < currentState.waves.Count)
+		{
+			Wave currentWave = currentState.waves[currentWaveIndex];
+			currentState.delay = currentWave.delay;
+			currentState.spawnTime = currentWave.spawnTime;
+			PopulateEnemiesList(currentWave.enemyTypes);
+			StartDelay(currentWave.delay);
+		}
+	}
 
-        enemiesList.Clear();
+	void PopulateEnemiesList(EnemyType enemyType)
+	{
+		if (enemyType != null)
+		{
+			AddEnemiesInDeterministicOrder(enemyType);
+		}
+	}
 
-        if (gameStateRoot != null && currentStateIndex < gameStateRoot.gameStates.Count)
-        {
-            GameState currentState = gameStateRoot.gameStates[currentStateIndex];
+	void AddEnemiesInDeterministicOrder(EnemyType enemyType)
+	{
+		Dictionary<int, int> enemigosPorTipo = new Dictionary<int, int>
+	{
+		{ 1, enemyType.Type1 },
+		{ 2, enemyType.Type2 },
+		{ 3, enemyType.Type3 },
+		{ 4, enemyType.Type4 },
+		{ 5, enemyType.Type5 }
+	};
 
-            if (currentState.stateName == "wave" && currentWaveIndex < currentState.waves.Count - 1)
-            {
-                currentWaveIndex++;
-                InitializeWave();
-            }
-            else
-            {
-                currentStateIndex++;
-                currentWaveIndex = 0;
-                InitializeGameState();
-            }
-        }
-        else
-        {
-            //Debug.Log("No hay m�s estados del juego.");
-        }
-    }
+		List<int> secuencia = GenerarSecuenciaEnemigos(enemigosPorTipo);
 
-    void InitializeWave()
-    {
-        if (currentState.waves != null && currentWaveIndex < currentState.waves.Count)
-        {
-            Wave currentWave = currentState.waves[currentWaveIndex];
-            currentState.delay = currentWave.delay;
-            currentState.spawnTime = currentWave.spawnTime;
-            //Debug.Log($"Iniciando ola {currentWave.waveNumber}");
-            PopulateEnemiesList(currentWave.enemyTypes);
-            StartDelay(currentWave.delay);
-        }
-    }
+		enemiesList.Clear();
+		foreach (int tipo in secuencia)
+		{
+			enemiesList.Add(tipo.ToString()[0]);
+		}
 
-    void PopulateEnemiesList(EnemyType enemyType)
-    {
-        if (enemyType != null)
-        {
-            AddEnemiesToListWithProbabilities(enemyType);
-        }
+		// Generar caminos deterministas basados en la secuencia
+		pathIndicesList.Clear();
+		string seedString = string.Join("", enemiesList);
+		int seed = seedString.GetHashCode();
 
-        //Debug.Log($"Lista de enemigos generada: {string.Join(", ", enemiesList)}");
-    }
+		System.Random rng = new System.Random(seed);
+		int pathCount = FindObjectOfType<TargetManager>().targetLists.Count;
 
-    void AddEnemiesToListWithProbabilities(EnemyType enemyType)
-    {
-        int totalEnemiesType1 = enemyType.Type1;
-        int totalEnemiesType2 = enemyType.Type2;
-        int totalEnemiesType3 = enemyType.Type3;
-        int totalEnemiesType4 = enemyType.Type4;
-        int totalEnemiesType5 = enemyType.Type5;
-        int totalEnemiesType6 = enemyType.Type6;
-        int totalEnemiesType7 = enemyType.Type7;
+		for (int i = 0; i < enemiesList.Count; i++)
+		{
+			int pathIndex = rng.Next(pathCount);
+			pathIndicesList.Add(pathIndex);
+		}
+	}
 
-        while (totalEnemiesType1 > 0)
-        {
-            float randValue = Random.value;
-            if (randValue < 0.8f && totalEnemiesType1 > 0)
-            {
-                enemiesList.Add('1');
-                --totalEnemiesType1;
-            }
-            else if (totalEnemiesType2 > 0)
-            {
-                enemiesList.Add('2');
-                --totalEnemiesType2;
-            }
-        }
+	public List<char> GetSimulatedEnemiesList(EnemyType enemyType)
+	{
+		Dictionary<int, int> enemigosPorTipo = new Dictionary<int, int>
+	{
+		{ 1, enemyType.Type1 },
+		{ 2, enemyType.Type2 },
+		{ 3, enemyType.Type3 },
+		{ 4, enemyType.Type4 },
+		{ 5, enemyType.Type5 }
+	};
 
-        while (totalEnemiesType2 > 0)
-        {
-            float randValue = Random.value;
-            if (randValue < 0.7f && totalEnemiesType2 > 0)
-            {
-                enemiesList.Add('2');
-                --totalEnemiesType2;
-            }
-            else if (totalEnemiesType3 > 0)
-            {
-                enemiesList.Add('3');
-                --totalEnemiesType3;
-            }
-        }
+		List<int> secuencia = GenerarSecuenciaEnemigos(enemigosPorTipo);
 
-        while (totalEnemiesType3 > 0)
-        {
-            float randValue = Random.value;
-            if (randValue < 0.6f && totalEnemiesType3 > 0)
-            {
-                enemiesList.Add('3');
-                --totalEnemiesType3;
-            }
-            else if (totalEnemiesType4 > 0)
-            {
-                enemiesList.Add('4');
-                --totalEnemiesType4;
-            }
-        }
+		List<char> simulatedList = new List<char>();
+		foreach (int tipo in secuencia)
+		{
+			simulatedList.Add(tipo.ToString()[0]);
+		}
 
-        while (totalEnemiesType4 > 0)
-        {
-            float randValue = Random.value;
-            if (randValue < 0.5f && totalEnemiesType4 > 0)
-            {
-                enemiesList.Add('4');
-                --totalEnemiesType4;
-            }
-            else if (totalEnemiesType5 > 0)
-            {
-                enemiesList.Add('5');
-                --totalEnemiesType5;
-            }
-        }
+		return simulatedList;
+	}
 
-        while (totalEnemiesType5 > 0)
-        {
-            float randValue = Random.value;
-            if (randValue < 0.4f && totalEnemiesType5 > 0)
-            {
-                enemiesList.Add('5');
-                --totalEnemiesType5;
-            }
-            else if (totalEnemiesType6 > 0)
-            {
-                enemiesList.Add('6');
-                --totalEnemiesType6;
-            }
-        }
+	List<int> GenerarSecuenciaEnemigos(Dictionary<int, int> enemigosPorTipo)
+	{
+		// Crear una lista con todos los enemigos según cantidad
+		List<int> allEnemies = new List<int>();
+		foreach (var kvp in enemigosPorTipo.OrderBy(k => k.Key)) // orden por tipo (ID)
+		{
+			for (int i = 0; i < kvp.Value; i++)
+			{
+				allEnemies.Add(kvp.Key);
+			}
+		}
 
-        while (totalEnemiesType6 > 0)
-        {
-            float randValue = Random.value;
-            if (randValue < 0.3f && totalEnemiesType6 > 0)
-            {
-                enemiesList.Add('6');
-                --totalEnemiesType6;
-            }
-            else if (totalEnemiesType7 > 0)
-            {
-                enemiesList.Add('7');
-                --totalEnemiesType7;
-            }
-        }
+		// Distribuirlos uniformemente según su tipo (los altos más al final)
+		List<int> resultado = new List<int>(new int[allEnemies.Count]);
+		List<int> disponibles = new List<int>(allEnemies);
+		Dictionary<int, float> posiciones = new Dictionary<int, float>();
+		Dictionary<int, int> colocados = new Dictionary<int, int>();
 
-        while (totalEnemiesType7 > 0)
-        {
-            enemiesList.Add('7');
-            --totalEnemiesType7;
-        }
-    }
+		int total = disponibles.Count;
 
-    void StartDelay(float delayDuration)
-    {
-        isInDelayState = true;
-        time = 0;
-        currentState.delay = delayDuration;
-    }
+		// Inicializamos la posición objetivo para cada tipo
+		var tiposOrdenados = enemigosPorTipo.Keys.OrderBy(k => k).ToList();
+		foreach (var tipo in tiposOrdenados)
+		{
+			if (enemigosPorTipo[tipo] > 0)
+			{
+				posiciones[tipo] = (float)tiposOrdenados.IndexOf(tipo) / tiposOrdenados.Count;
+				colocados[tipo] = 0;
+			}
+		}
 
-    public void StayOnDelay()
-    {
-        if (time < currentState.delay)
-        {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            isInDelayState = false;
-            time = 0;
-            //Debug.Log("Delay terminado.");
-        }
-    }
-    
+		for (int i = 0; i < total; i++)
+		{
+			float mejorPuntaje = float.MinValue;
+			int mejorTipo = -1;
+
+			foreach (var tipo in tiposOrdenados)
+			{
+				if (!colocados.ContainsKey(tipo) || colocados[tipo] >= enemigosPorTipo[tipo])
+					continue;
+
+				float idealPos = posiciones[tipo] * total;
+				float progreso = (float)colocados[tipo] / enemigosPorTipo[tipo];
+				float actualPos = progreso * total;
+
+				float puntaje = -Mathf.Abs(idealPos - i); // preferimos ponerlo donde más cerca esté de su "target"
+
+				if (puntaje > mejorPuntaje)
+				{
+					mejorPuntaje = puntaje;
+					mejorTipo = tipo;
+				}
+			}
+
+			resultado[i] = mejorTipo;
+			colocados[mejorTipo]++;
+		}
+
+		return resultado;
+	}
+
+	void StartDelay(float delayDuration)
+	{
+		isInDelayState = true;
+		time = 0;
+		currentState.delay = delayDuration;
+	}
+
+	public void StayOnDelay()
+	{
+		if (time < currentState.delay)
+		{
+			time += Time.deltaTime;
+		}
+		else
+		{
+			isInDelayState = false;
+			time = 0;
+
+			if (pendingStateAdvance)
+			{
+				currentStateIndex++;
+				if (currentStateIndex < gameStateRoot.gameStates.Count)
+				{
+					currentState = gameStateRoot.gameStates[currentStateIndex];
+
+					if (currentState.stateName == "wave")
+					{
+						currentWaveIndex = -1; // si quieres esperar botón para avanzar
+					}
+				}
+				pendingStateAdvance = false;
+			}
+		}
+	}
 }
 
 

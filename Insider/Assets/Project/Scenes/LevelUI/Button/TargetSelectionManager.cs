@@ -7,11 +7,16 @@ public class TargetSelectionManager : MonoBehaviour
 {
     public GameObject dinamicPanel;
     public GameObject targetOptionsPanel;
+    public AudioManager audioManager;
     public Text selectedTargetText;
     private string currentTarget = "First";
     int targetType = 0;
 
-    void Start()
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+	void Start()
     {
         targetOptionsPanel.SetActive(false);
     }
@@ -33,9 +38,12 @@ public class TargetSelectionManager : MonoBehaviour
 					currentTarget = "Strong";
 					break;
 				case 3:
-					currentTarget = "Far";
+					currentTarget = "Weak";
 					break;
-				default:
+                case 4:
+                    currentTarget = "Far";
+                    break;
+                default:
 					currentTarget = "First";
 					break;
 			}
@@ -45,12 +53,15 @@ public class TargetSelectionManager : MonoBehaviour
 
 	public void ToggleTargetOptions()
     {
+        audioManager.PlaySFX(2, 0.1f);
         targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
     }
 
     
     public void SelectTarget(string target)
     {
+        audioManager.PlaySFX(3, 0.1f);
+
         int t;
         switch (target) 
         {
@@ -63,8 +74,11 @@ public class TargetSelectionManager : MonoBehaviour
             case "Strong":
                 t = 2;
                 break;
-            case "Far":
+            case "Weak":
                 t = 3;
+                break;
+            case "Far":
+                t = 4;
                 break;
             default:
                 t = 0;

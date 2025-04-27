@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: TextTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: TextTable
+  m_TableCollectionNameGuidString: aa4e67bb45646654d994e18da58cbd74
+  m_Entries:
+  - m_Id: 465628741632
+    m_Key: WaveTitleTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 367367890845696
+    m_Key: NextWaveTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386389478916096
+    m_Key: initial_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386403605331968
+    m_Key: initial_middle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386488225415168
+    m_Key: initial_bottom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386924865044480
+    m_Key: wave_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386975540625408
+    m_Key: wave_middle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387345213997056
+    m_Key: finish_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387372502138880
+    m_Key: finish_middle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387399517650944
+    m_Key: finish_bottom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393364350615552
+    m_Key: PauseTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393523235045376
+    m_Key: ResumeTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393789099393024
+    m_Key: MainMenuTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393990711197696
+    m_Key: MusicTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777000308195328
+    m_Key: StatsTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777560843370496
+    m_Key: StatsPlusAmount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777597027631104
+    m_Key: UpgradedStatsTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777621329428480
+    m_Key: UpgradedStatsTablePlusAmount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777665763885056
+    m_Key: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814722607497216
+    m_Key: tutorialStep0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814767343943680
+    m_Key: tutorialStep1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814784167297024
+    m_Key: tutorialStep2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814793449291776
+    m_Key: tutorialStep3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814803226214400
+    m_Key: tutorialStep4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814809614139392
+    m_Key: tutorialStep5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814815729434624
+    m_Key: tutorialStep6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814821362384896
+    m_Key: tutorialStep7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814826638819328
+    m_Key: tutorialStep8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823294728880128
+    m_Key: YesTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823321132023808
+    m_Key: NoTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823571833962496
+    m_Key: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103234489663488
+    m_Key: Description1.1.1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103336784543744
+    m_Key: Description1.1.2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103376676569088
+    m_Key: Description1.2.1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103401334882304
+    m_Key: Description1.2.2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103481987153920
+    m_Key: Description2.1.1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103534516617216
+    m_Key: Description2.1.2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103579085291520
+    m_Key: Description2.2.1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103602942492672
+    m_Key: Description2.2.2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103627034574848
+    m_Key: Description3.1.1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103666419089408
+    m_Key: Description3.1.2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103685364760576
+    m_Key: Description3.2.1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103708685090816
+    m_Key: Description3.2.2
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1408601331465453592
+  references:
+    version: 2
+    RefIds:
+    - rid: 1408601331465453592
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1745257929366

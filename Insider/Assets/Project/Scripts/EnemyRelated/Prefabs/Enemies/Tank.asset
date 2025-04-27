@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79976ce6fd3909c4bb85fbed2a9cf3fc, type: 3}
   m_Name: Tank
   m_EditorClassIdentifier: 
-  id: 6
-  movSpeed: 0.9
+  id: 4
+  movSpeed: 1.25
   attackSpeed: 10
   health: 1000
   dmg: 10
-  economyGiven: 50
-  color: {r: 0, g: 1, b: 0.9690397, a: 1}
+  economyGiven: 30
+  size: {x: 1.8, y: 1.8}
+  AnimationsPrefab: {fileID: 1341315690417127499, guid: 3199d1e20e2f5af4993e99ae33e1f779, type: 3}
   prefab: {fileID: 4895671134027512076, guid: 75fe3831bf62add48b53fa4358014aef, type: 3}

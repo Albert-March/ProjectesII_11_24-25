@@ -11,22 +11,13 @@ public class AttackManager : MonoBehaviour
         switch (id)
         {
             case 0:
-                attackType = gameObject.AddComponent<A_Virus1>();
+                attackType = gameObject.AddComponent<Atack_Cannoner>();
                 break;
             case 1:
-                attackType = gameObject.AddComponent<A_Virus2>();
+                attackType = gameObject.AddComponent<Attack_Boper>();
                 break;
             case 2:
-                attackType = gameObject.AddComponent<A_Bacteri1>();
-                break;
-            case 3:
-                attackType = gameObject.AddComponent<A_Bacteri2>();
-                break;
-            case 4:
-                attackType = gameObject.AddComponent<A_Fong1>();
-                break;
-            case 5:
-                attackType = gameObject.AddComponent<A_Fong2>();
+                attackType = gameObject.AddComponent<Attack_Laser>();
                 break;
             default:
                 attackType = null;

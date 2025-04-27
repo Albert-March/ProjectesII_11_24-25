@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TextTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: aa4e67bb45646654d994e18da58cbd74, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 1408601354238427151
+  m_TableData:
+  - m_Id: 465628741632
+    m_Localized: Wave Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 367367890845696
+    m_Localized: Next Wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777560843370496
+    m_Localized: 'Damage: {0}
+
+      Fire Rate: {1}
+
+      Range: {2}
+
+      Terget
+      Amount{3}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 386389478916096
+    m_Localized: They are getting closer...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386403605331968
+    m_Localized: Brace yourself...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386488225415168
+    m_Localized: Spread and consume everything in your path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386924865044480
+    m_Localized: The swarm grows stronger!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386975540625408
+    m_Localized: Wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387345213997056
+    m_Localized: Nothing remains...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387372502138880
+    m_Localized: You have consumed all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387399517650944
+    m_Localized: in your path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393364350615552
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393523235045376
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393789099393024
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393990711197696
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777000308195328
+    m_Localized: 'Damage: {0}
+
+      Fire Rate: {1}
+
+      Range: {2}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1777597027631104
+    m_Localized: "Damage: {0} -> {1}\r\nFire Rate: {2} -> {3}\r\nRange: {4} -> {5}\r"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1777665763885056
+    m_Localized: 'Life:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777621329428480
+    m_Localized: 'Damage: {0} -> {1}
+
+      Fire Rate: {2} -> {3}
+
+      Range: {4}
+      -> {5}
+
+      Target Amount: {6} -> {7}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814722607497216
+    m_Localized: Do you wish to follow the path of infestation?
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814767343943680
+    m_Localized: Ah... you finally awaken. Allow me to guide you. You will learn
+      to survive... and to conquer this body.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814784167297024
+    m_Localized: 'Look at you. A small intruder, but with a great purpose: to defend
+      yourself from those pesky antibodies... and take control from within.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814793449291776
+    m_Localized: First, join the body's latent infections. Use them at will... turn
+      them into weapons.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814803226214400
+    m_Localized: Generate this mutation. It will be your first expansion within the
+      host.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814809614139392
+    m_Localized: But be careful... to expand your power you will need mutations.
+      Evolve... adapt...
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814815729434624
+    m_Localized: 'When you are ready, send a signal: weaken the body. Force it to
+      yield. Only then will you begin to mold it in your image.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814821362384896
+    m_Localized: 'Get rid of the antibodies: their remains contain DNA... precious
+      material you can use to perfect your infections... and be reborn stronger.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1814826638819328
+    m_Localized: You have now learned the essentials. From now on... you will be
+      alone. May the infestation guide you... you will need it.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 1823294728880128
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823321132023808
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823571833962496
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103234489663488
+    m_Localized: Bounces to 2 enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103376676569088
+    m_Localized: Bounces to 4 enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103336784543744
+    m_Localized: Impact explodes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103401334882304
+    m_Localized: "Explosion leaves radiation (5 damage/sec for 5s)\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103481987153920
+    m_Localized: Slows by 50% for 10s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103579085291520
+    m_Localized: Stuns 1s per hit and Slows by 50% for 10s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103534516617216
+    m_Localized: 'Bleeding: 10 damage/sec for 10s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103602942492672
+    m_Localized: 'Bleeding: 10 damage/sec for 10s + weakness X2'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103627034574848
+    m_Localized: Shoots at 3 enemies at once
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103666419089408
+    m_Localized: "\rDamage increases for 5 seconds, with a cap of 50"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103685364760576
+    m_Localized: Shoots at 5 enemies at once
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103708685090816
+    m_Localized: "\rDamage increases for 5 seconds, with a cap of 66"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1408601354238427151
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0a2069272060000c022419372060000c0e2b69072060000c0624a8f72060000c0a2cd8d72060000c0e2868b72060000c0a25d8972060000c0e27285720600

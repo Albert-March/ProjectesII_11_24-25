@@ -27,13 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b15b354875c9ef945a0b55adee67916c
-    m_Address: Prefabs/Bullet3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ca06f6f502523b94482a98355382c3c7
-    m_Address: Prefabs/BulletLaser
+  - m_GUID: 16feb6341075bb44ba8ddbba3bfc3d4a
+    m_Address: Prefabs/NewLaser
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -52,13 +47,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b0727a1bc79a13446aebcafabd3d49a6
-    m_Address: Prefabs/ExolosionIfClick
+  - m_GUID: 007722a08f424584abdde1e45567f5b0
+    m_Address: Prefabs/HealingEnemy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1f1cff5694c6d13498a1e64761fdf11b
-    m_Address: Prefabs/EconomyIfClick
+  - m_GUID: dce9ed17776a7164da969018291a8c2c
+    m_Address: Prefabs/ChainBullet
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

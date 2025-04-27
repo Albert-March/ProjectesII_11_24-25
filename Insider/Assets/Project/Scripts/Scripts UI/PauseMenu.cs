@@ -8,11 +8,14 @@ public class PauseMenu : MonoBehaviour
 	public static PauseMenu pause;
 
 	public GameObject pauseMenu;
+	public AudioManager audioManager;
 	public bool active;
 
 
 	void Awake()
 	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
 		if (pause == null)
 		{
 			pause = this;
@@ -41,7 +44,9 @@ public class PauseMenu : MonoBehaviour
 
 	public void TogglePauseMenu()
 	{
-		if (active)
+		audioManager.PlaySFX(2, 0.2f);
+
+        if (active)
 		{
 			pauseMenu.SetActive(true);
 			//Time.timeScale = 0f;
@@ -55,12 +60,14 @@ public class PauseMenu : MonoBehaviour
 
 	public void Resume()
 	{
-		pause.active = false;
+        audioManager.PlaySFX(3, 0.2f);
+        pause.active = false;
 		pause.TogglePauseMenu();
 	}
 
 	public void BackToMain()
 	{
+        audioManager.PlaySFX(3, 0.2f);
         S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
         transition.CallPass("MainMenu");
 	}

@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour, IDamage
+public class Enemy : MonoBehaviour, IDamage, IHealable
 {
     public int id;
+    public float baseMovspeed;
     public float movSpeed;
     public float attackSpeed;
     public float health;
     public float dmg;
     public int economyGiven;
+    public Vector2 visualSize;
+    public CircleCollider2D EnemyCollider;
+    public GameObject animationGO;
 
     public EnemyTypeManager enemyTypeManager;
 
-    SpriteRenderer sprite;
     public List<Target> path;
 
     public EnemyManager enemyManager;
@@ -27,7 +30,6 @@ public class Enemy : MonoBehaviour, IDamage
 
     private IDamage _damageReciver;
 
-    private float timeSinceLastAtack = 0;
 
 	[SerializeField] private ParticleSystem destroyParticles;
 	private ParticleSystem destroyParticlesInstance;
@@ -38,17 +40,44 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] private GameObject reward;
     private GameObject rewardInstance;
 
+    public bool hasAtacked = false;
+
     AudioManager audioManager;
 
-	public void SetEnemyData(EnemyStats enemy)
+    public Rigidbody2D rb;
+
+    public bool isBleeding = false;
+    public bool isWeek = false;
+    public bool isSlowed = false;
+    public bool isStuned = false;
+
+    public bool isDead = false;
+
+    public GameObject StunEffect;
+    public GameObject WeekEffect;
+    public GameObject SlowEffect;
+    public GameObject BleedEffect;
+
+    private Coroutine slowCoroutine;
+
+    public void SetEnemyData(EnemyStats enemy)
     {
         this.id = enemy.id;
         this.movSpeed = enemy.movSpeed;
+        baseMovspeed = this.movSpeed;
         this.attackSpeed = enemy.attackSpeed;
         this.health = enemy.health;
         this.dmg = enemy.dmg;
         this.economyGiven = enemy.economyGiven;
-        this.sprite.color = enemy.color;
+
+        //InstantiateAnimation:
+
+        visualSize = enemy.size;
+        animationGO = Instantiate(enemy.AnimationsPrefab, transform);
+        animationGO.transform.localScale = visualSize;
+        EnemyCollider.radius *= (visualSize.x + visualSize.y);
+
+        //this.sprite.color = enemy.color;
         behaviours.Add(gameObject.AddComponent<BaseMovement>());
         behaviours.Add(gameObject.AddComponent<ObjectAvoidance>());
         behaviours.Add(gameObject.AddComponent<BoidMovement>());
@@ -58,16 +87,18 @@ public class Enemy : MonoBehaviour, IDamage
 
     private void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+
         healthBar = GetComponentInChildren<HealthBar>();
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
 
     public float maxHealth;
-    public void Start()
+
+	public void Start()
     {
         maxHealth = health;
-    }
+	}
 
     public void Update()
     {
@@ -79,6 +110,47 @@ public class Enemy : MonoBehaviour, IDamage
         {
             hpb.SetActive(true);
         }
+
+        if (isStuned)
+        {
+            movSpeed = 0f;
+            StunEffect.SetActive(true);
+        }
+        else
+        {
+            StunEffect.SetActive(false);
+        }
+
+        if (isSlowed && !isStuned)
+        {
+            movSpeed = baseMovspeed * 0.5f;
+            SlowEffect.SetActive(true);
+        }
+        else
+        {
+            SlowEffect.SetActive(false);
+        }
+
+        if (isWeek)
+        {
+            WeekEffect.SetActive(true);
+        }
+        else 
+        {
+            WeekEffect.SetActive(false);
+        }
+
+        if (isBleeding)
+        {
+            BleedEffect.SetActive(true);
+        }
+        else
+        {
+            BleedEffect.SetActive(false);
+        }
+
+        if (!isStuned && !isSlowed) { movSpeed = baseMovspeed; }
+
         if (_damageReciver == null) 
         {
             PlayAllBehaviours();
@@ -86,13 +158,36 @@ public class Enemy : MonoBehaviour, IDamage
         }
 
 
-        if (Time.time >= timeSinceLastAtack + attackSpeed)
+
+        if (_damageReciver != null && !hasAtacked)
         {
-            _damageReciver.Damage(dmg);
-            timeSinceLastAtack = Time.time;
+            hasAtacked = true;
+            Animator anim = animationGO.GetComponent<Animator>();
+            anim.SetBool("Atack", true);
+            StartCoroutine(WaitForAtackEnd());
         }
 	}
 
+    private IEnumerator WaitForAtackEnd()
+    {
+        while (!animationGO.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Atack"))
+        {
+            yield return null;
+        }
+
+        while (animationGO.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            yield return null;
+        }
+        _damageReciver.Damage(dmg);
+        StartCoroutine(DieAfterDelay());
+
+    }
+    private IEnumerator DieAfterDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Damage(health);
+    }
     private void PlayAllBehaviours() 
     {
         foreach (var behaviour in behaviours)
@@ -120,42 +215,84 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void Damage(float amount)
     {
-        if(id==4 && health == 100)
-        {
+        if (isWeek)
+            amount *= 2f;
 
-            health -= 1;
-
-		}
-        else
+        health -= amount;
+        if (health <= 0 && !isDead)
         {
-			health -= amount;
-		}
-
-        if (health <= 0) 
-        {
+            isDead = true;
             economyScript = FindObjectOfType<EconomyManager>();
-			economyScript.economy += economyGiven;
-            SpawnParticles();
-			IRewardDropper rewardDropper = GetComponent<IRewardDropper>();
-			if (rewardDropper != null)
-			{
-				rewardDropper.SpawnReward(path);
-			}
-			else
-			{
-				Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
-			}
-			audioManager.PlaySFX(0, 0.1f);
+            economyScript.economy += economyGiven;
 
-			enemyManager.RemoveEnemy(this);
+            SpawnParticles();
+            IRewardDropper rewardDropper = GetComponent<IRewardDropper>();
+            if (rewardDropper != null)
+            {
+                rewardDropper.SpawnReward(path);
+            }
+            else
+            {
+                Debug.LogWarning("No se encontr� un componente que pueda generar recompensas.");
+            }
+            audioManager.PlaySFX(0, 0.05f);
+
+            animationGO.transform.parent = null;
+
+            Animator anim = animationGO.GetComponent<Animator>();
+            anim.SetBool("Dead", true);
+
+            animationGO.AddComponent<DelayedSelfDestruct>();
+            enemyManager.RemoveEnemy(this);
             Destroy(gameObject);
-            
         }
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}
 
-	public void SpawnParticles()
+    public void Stun(float duration) 
+    {
+        StartCoroutine(ApplyStun(duration));
+    }
+
+    public IEnumerator ApplyStun(float duration)
+    {
+        isStuned = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isStuned = false;
+    }
+
+    public void SpawnParticles()
 	{
 		destroyParticlesInstance = Instantiate(destroyParticles, transform.position, Quaternion.identity);
 	}
+	public void Heal(float amount)
+	{
+		health += amount;
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+		healthBar.UpdateHealthBar(health, maxHealth);
+	}
+
+    public void ApplySlow(float duration)
+    {
+        if (slowCoroutine != null)
+            StopCoroutine(slowCoroutine);
+
+        slowCoroutine = StartCoroutine(SlowCoroutine(duration));
+    }
+
+    private IEnumerator SlowCoroutine(float duration)
+    {
+        isSlowed = true;
+        // opcional: ajustar velocitat aquí si vols
+
+        yield return new WaitForSeconds(duration);
+
+        isSlowed = false;
+        slowCoroutine = null;
+    }
 }

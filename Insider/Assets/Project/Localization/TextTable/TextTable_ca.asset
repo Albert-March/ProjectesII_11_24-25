@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TextTable_ca
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ca
+  m_SharedData: {fileID: 11400000, guid: aa4e67bb45646654d994e18da58cbd74, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 1408601354238427154
+  m_TableData:
+  - m_Id: 465628741632
+    m_Localized: Info de l'olejada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 367367890845696
+    m_Localized: "Seg\xFCent Olejada"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777000308195328
+    m_Localized: "Dany: {0}\r\nVelocitat de dispar: {1}\r\nAbast: {2}\r"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 386389478916096
+    m_Localized: S'estan apropant...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386403605331968
+    m_Localized: Prepara't...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386488225415168
+    m_Localized: "Est\xE9n i consumeix tot al teu pas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386924865044480
+    m_Localized: "L'eixam es fa m\xE9s fort!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 386975540625408
+    m_Localized: Olejada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387345213997056
+    m_Localized: No queda res...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387372502138880
+    m_Localized: Ho has consumit tot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387399517650944
+    m_Localized: al teu pas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393364350615552
+    m_Localized: Pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393523235045376
+    m_Localized: "\rReprendre"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393789099393024
+    m_Localized: Menu Principal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393990711197696
+    m_Localized: Musica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1777560843370496
+    m_Localized: 'Dany: {0}
+
+      Velocitat de dispar: {1}
+
+      Abast: {2}
+
+      Quantitat
+      d''objectius: {3}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1777597027631104
+    m_Localized: "Dany: {0} -> {1}\r\nVelocitat de dispar: {2} -> {3}\r\nAbast: {4}
+      -> {5}\r"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1777621329428480
+    m_Localized: 'Dany: {0} -> {1}
+
+      Velocitat de dispar: {2} -> {3}
+
+      Abast:
+      {4} -> {5}
+
+      Quantitat d''objectius: {6} -> {7}'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1777665763885056
+    m_Localized: 'Vida:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1814722607497216
+    m_Localized: "Vols seguir el cam\xED de la infestaci\xF3?"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814767343943680
+    m_Localized: "Ah... finalment despertes. Permet-me guiar-te. Aprendr\xE0s a sobreviure...
+      i a conquerir aquest cos."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814784167297024
+    m_Localized: "Mira't. Un petit intr\xFAs, per\xF2 amb un gran prop\xF2sit: defensar-te
+      d'aquests molestos anticossos... i prendre el control des de dins."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814793449291776
+    m_Localized: Primer, uneix-te a les infeccions latents del cos. Fes-les servir
+      com vulguis... converteix-les en armes.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814803226214400
+    m_Localized: "Genera aquesta mutaci\xF3. Ser\xE0 la teva primera expansi\xF3
+      dins de l'hoste."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814809614139392
+    m_Localized: "Per\xF2 compte... per expandir el teu poder necessitar\xE0s mutacions.
+      Evoluciona... adapta't..."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814815729434624
+    m_Localized: "Quan estiguis llest, llan\xE7a un senyal: debilita el cos. Obliga'l
+      a cedir. Nom\xE9s llavors comen\xE7ar\xE0s a modelar-lo a la teva imatge."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814821362384896
+    m_Localized: "Elimina els anticossos: les seves restes contenen ADN... material
+      preci\xF3s que podr\xE0s utilitzar per perfeccionar les teves infeccions...
+      i ren\xE9ixer m\xE9s fort."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1814826638819328
+    m_Localized: "Ja has apr\xE8s l'essencial. A partir d'ara... estar\xE0s sol.
+      Que la infestaci\xF3 t'acompanyi... la necessitar\xE0s."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427154
+  - m_Id: 1823294728880128
+    m_Localized: Si
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823321132023808
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823571833962496
+    m_Localized: "Seg\xFCent"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103234489663488
+    m_Localized: Rebota a 2 enemics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103376676569088
+    m_Localized: Rebota a 4 enemics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103336784543744
+    m_Localized: L'impacte explota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103401334882304
+    m_Localized: "L'explosi\xF3 deixa radiaci\xF3 (5 de dany/s durant 5s)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103481987153920
+    m_Localized: Ralentitza un 50% durant 10s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103579085291520
+    m_Localized: Atordeix 1s per impacte i Ralentitza un 50% durant 10s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103534516617216
+    m_Localized: 'Sagnat: 10 de dany/s durant 10s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103602942492672
+    m_Localized: 'Sagnat: 10 de dany/s durant 10s + debilitat X2
+
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103627034574848
+    m_Localized: Dispara a 3 enemics alhora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103685364760576
+    m_Localized: Dispara a 5 enemics alhora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103666419089408
+    m_Localized: "El da\xF1o incremente durant 5 segons, es l\xEDmite a 50"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103708685090816
+    m_Localized: "El da\xF1o incremente durant 5 segons, es l\xEDmite a 66"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1408601354238427154
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c022419372060000c0a2069272060000c0e2b69072060000c0624a8f72060000c0a2cd8d72060000c0e2868b72060000c0a25d8972060000c0e27285720600

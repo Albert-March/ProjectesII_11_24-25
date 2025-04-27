@@ -5,8 +5,6 @@ using UnityEngine;
 public class TowerSelectionManager : MonoBehaviour
 {
     //public GameObject[] towerButtons;
-    public GameObject[] upgradeButtons1;
-    public GameObject[] upgradeButtons2;
     public GameObject[] targetUI;
     public GameObject dynamicPanel;
 
@@ -15,8 +13,6 @@ public class TowerSelectionManager : MonoBehaviour
     void Start()
     {
         //SetActiveButtons(towerButtons, true);
-        SetActiveButtons(upgradeButtons1, false);
-        SetActiveButtons(upgradeButtons2, false);
         SetActiveButtons(targetUI, false);
     }
 
@@ -25,29 +21,11 @@ public class TowerSelectionManager : MonoBehaviour
         if (towerState == 0)
         {
             //SetActiveButtons(towerButtons, true);
-            SetActiveButtons(upgradeButtons1, false);
-            SetActiveButtons(upgradeButtons2, false);
             SetActiveButtons(targetUI, false);
 
         }
-        else if (towerState == 1)
+        else
         {
-            //SetActiveButtons(towerButtons, false);
-            SetActiveButtons(upgradeButtons1, true);
-            SetActiveButtons(upgradeButtons2, false);
-            SetActiveButtons(targetUI, true);
-        }
-        else if (towerState == 2)
-        {
-            //SetActiveButtons(towerButtons, false);
-            SetActiveButtons(upgradeButtons2, true);
-            SetActiveButtons(targetUI, true);
-        }
-        else if (towerState == 3)
-        {
-            //SetActiveButtons(towerButtons, false);
-            SetActiveButtons(upgradeButtons1, false);
-            SetActiveButtons(upgradeButtons2, false);
             SetActiveButtons(targetUI, true);
         }
 

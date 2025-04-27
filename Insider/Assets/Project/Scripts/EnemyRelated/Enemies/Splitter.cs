@@ -36,11 +36,11 @@ public class Splitter : MonoBehaviour, IRewardDropper
 	private EnemyStats FindNormalEnemyStats()
 	{
 		EnemyStats[] allStats = Resources.FindObjectsOfTypeAll<EnemyStats>();
-		foreach (EnemyStats stats in allStats)
+		for (int i = 0; i < allStats.Length; i++)
 		{
-			if (stats.id == 0)
+			if (allStats[i].id == 0)
 			{
-				return stats;
+				return allStats[i];
 			}
 		}
 		return null;
@@ -73,6 +73,8 @@ public class Splitter : MonoBehaviour, IRewardDropper
 			enemyScript.enabled = true;
 
 			enemyManager.AddSpawnedEnemy(enemyScript);
-		}
+			enemyManager.wavesInfo.simulatedEnemies.Add('1');
+
+        }
 	}
 }

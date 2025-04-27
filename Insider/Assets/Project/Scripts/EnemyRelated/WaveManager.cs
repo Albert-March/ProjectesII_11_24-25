@@ -5,92 +5,112 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    public SpawnManager spawnManager;
-    public float time;
-    public float timeToAct;
-    public CanvasGroup img;
-    public Text waveTop;
-    public Text waveMidle;
-    public Text waveBot;
+	public SpawnManager spawnManager;
+	public float time;
+	public float timeToAct;
+	public CanvasGroup img;
+	public GameObject Initialize;
+	public GameObject Wave;
+	public GameObject Finish;
+	public Text I_waveTop;
+	public Text W_waveTop;
+	public Text F_waveTop;
+	public Text I_waveMidle;
+	public Text W_waveMidle;
+	public Text F_waveMidle;
+	public Text I_waveBot;
+	public Text W_waveBot;
+	public Text F_waveBot;
 
-    public bool created;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public bool created;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (spawnManager.isInDelayState)
-        {
-            string s = spawnManager.currentState.stateName;
-            time += Time.deltaTime;
-            timeToAct = spawnManager.currentState.delay / 4;
+	void Start()
+	{
+		Initialize.SetActive(false);
+		Wave.SetActive(false);
+		Finish.SetActive(false);
+	}
 
-            switch (s) 
-            {
-                case "initial":
-                    waveTop.text = "They are getting closer...";
-                    waveTop.fontSize = 25;
+	void Update()
+	{
+		if (spawnManager.isInDelayState)
+		{
+			string s = spawnManager.currentState.stateName;
+			time += Time.deltaTime;
+			timeToAct = spawnManager.currentState.delay / 4;
 
-                    waveMidle.text = "Brace yourself...";
-                    waveMidle.fontSize = 70;
+			switch (s)
+			{
+				case "initial":
+					Initialize.SetActive(true);
+					Wave.SetActive(false);
+					Finish.SetActive(false);
+					//I_waveTop.text = "They are getting closer...";
+					I_waveTop.fontSize = 25;
 
-                    waveBot.text = "Spread and consume everything in your path";
-                    waveBot.fontSize = 45;
-                    break;
-                case "wave":
-                    waveTop.text = "The swarm grows stronger!";
-                    waveTop.fontSize = 25;
+					//I_waveMidle.text = "Brace yourself...";
+					I_waveMidle.fontSize = 70;
 
-                    waveMidle.text = "Wave";
-                    waveMidle.fontSize = 150;
+					//I_waveBot.text = "Spread and consume everything in your path";
+					I_waveBot.fontSize = 45;
+					break;
+				case "wave":
+					Initialize.SetActive(false);
+					Wave.SetActive(true);
+					Finish.SetActive(false);
+					W_waveBot.text = spawnManager.currentWaveIndex.ToString();
+					//W_waveTop.text = "The swarm grows stronger!";
+					W_waveTop.fontSize = 25;
 
-                    waveBot.text = (spawnManager.currentWaveIndex + 1).ToString();
-                    waveBot.fontSize = 150;
+					//W_waveMidle.text = "Wave";
+					W_waveMidle.fontSize = 150;
 
-                    break;
-                case "finish":
-                    waveTop.text = "Nothing remains...";
-                    waveBot.fontSize = 25;
+					W_waveBot.text = (spawnManager.currentWaveIndex + 1).ToString();
+					W_waveBot.fontSize = 150;
 
-                    waveMidle.text = "You have consumed all";
-                    waveBot.fontSize = 70;
+					break;
+				case "finish":
+					Initialize.SetActive(false);
+					Wave.SetActive(false);
+					Finish.SetActive(true);
+					//F_waveTop.text = "Nothing remains...";
+					F_waveBot.fontSize = 25;
 
-                    waveBot.text = "in your path";
-                    waveBot.fontSize = 60;
-                    break;
+					//F_waveMidle.text = "You have consumed all";
+					F_waveBot.fontSize = 70;
 
-            }
+					//F_waveBot.text = "in your path";
+					F_waveBot.fontSize = 60;
+					break;
 
-
-
-
-            if (time < timeToAct)
-            {
-                created = true;
-            }
-
-            if (time > spawnManager.currentState.delay - timeToAct)
-            {
-                created = false;
-            }
+			}
 
 
-            if (created)
-            {
-                img.alpha += Time.deltaTime / timeToAct;
-            }
-            else
-            {
-                img.alpha -= Time.deltaTime / timeToAct;
-            }
-        }
-        else 
-        {
-            time = 0;
-        }
-    }
+
+
+			if (time < timeToAct)
+			{
+				created = true;
+			}
+
+			if (time > spawnManager.currentState.delay - timeToAct)
+			{
+				created = false;
+			}
+
+
+			if (created)
+			{
+				img.alpha += Time.deltaTime / timeToAct;
+			}
+			else
+			{
+				img.alpha -= Time.deltaTime / timeToAct;
+			}
+		}
+		else
+		{
+			time = 0;
+		}
+	}
 }

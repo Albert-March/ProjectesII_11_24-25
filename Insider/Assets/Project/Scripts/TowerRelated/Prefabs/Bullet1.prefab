@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 26
   m_Sprite: {fileID: 21300000, guid: e5fe40b3622724c46882edfee0134232, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerScript: {fileID: 0}
   enemiesOnContact: []
+  puddle: {fileID: 7444127954498783798, guid: 27f5967c48c41844992400486d4b5020, type: 3}

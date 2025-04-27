@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
+  m_Name: Leiser_Level3_Type1
+  m_EditorClassIdentifier: 
+  id: 2
+  type: 1
+  damage: 3
+  fireRate: 4
+  projectileHp: 0
+  projectileSpeed: 0
+  range: 33
+  targetAmount: 5
+  priceLevel_1_Type0: 1
+  priceLevel_2_Type1: 150
+  priceLevel_2_Type2: 150
+  priceLevel_3_Type1: 300
+  priceLevel_3_Type2: 300
+  rangeOffstY: 0
+  AnimationPrefab: {fileID: 3344904414203484110, guid: 10c516cb59b1ae94fbc7ea6f043cd32b, type: 3}
+  prefab: {fileID: 8410786250928630340, guid: 8e264f60410e5714da1edffabb72ec16, type: 3}
+  attackManager: {fileID: 0}

@@ -3,71 +3,161 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("------Audio Source------")]
     [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource SFXSourcePrefab;
 
-	[Header("------Music Clip------")]
-	public AudioClip music;
+    [Header("------Music Clip------")]
+    public AudioClip music;
 
-	[Header("------SFX Clips------")]
-	public List<AudioClip> SFXClips = new List<AudioClip>();
+    [Header("------SFX Clips------")]
+    public List<AudioClip> SFXClips = new List<AudioClip>();
 
-	[Header("------UI Elements------")]
-	[SerializeField] private Slider musicSlider;
-	[SerializeField] private Slider sfxSlider;
+    public static AudioManager instance;
 
-	private void Start()
-	{
-		// Iniciar la música
-		musicSource.clip = music;
-		musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
-		musicSource.Play();
+    private List<AudioSource> sfxPool = new List<AudioSource>();
+    private int poolSize = 30;
 
-		// Cargar volúmenes previos
-		SFXSource.volume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+    private Dictionary<int, AudioSource> loopingSFX = new Dictionary<int, AudioSource>();
 
-		// Asignar sliders
-		if (musicSlider != null)
-		{
-			musicSlider.value = musicSource.volume;
-			musicSlider.onValueChanged.AddListener(delegate { SetVolume(musicSlider.value, SFXSource.volume); });
-		}
 
-		if (sfxSlider != null)
-		{
-			sfxSlider.value = SFXSource.volume;
-			sfxSlider.onValueChanged.AddListener(delegate { SetVolume(musicSource.volume, sfxSlider.value); });
-		}
-	}
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            CreateSFXPool();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-	public void PlaySFX(int index, float volume)
-	{
-		if (index >= 0 && index < SFXClips.Count)
-		{
-			SFXSource.volume = volume;
-			SFXSource.PlayOneShot(SFXClips[index]);
-		}
-	}
-	//0 = EnemyDeath
-	//1 = TowerShot
-	//2 = SelectTower
-	//3 = SelectButton
-	//4 = UpgradeTower
+    private void Start()
+    {
+        musicSource.clip = music;
+        musicSource.Play();
+    }
 
-	public void SetVolume(float musicVolume, float sfxVolume)
-	{
-		musicSource.volume = musicVolume;
-		SFXSource.volume = sfxVolume;
+    private void CreateSFXPool()
+    {
+        for (int i = 0; i < poolSize; i++)
+        {
+            AudioSource sfx = Instantiate(SFXSourcePrefab, transform);
+            sfx.playOnAwake = false;
+            sfxPool.Add(sfx);
+        }
+    }
 
-		// Guardar valores para la próxima vez que inicie el juego
-		PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-		PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
-		PlayerPrefs.Save();
-	}
+    public void PlaySFX(int index, float volume)
+    {
+        if (index >= 0 && index < SFXClips.Count)
+        {
+            AudioSource availableSource = GetAvailableSFXSource();
+            if (availableSource != null)
+            {
+                availableSource.clip = SFXClips[index];
+                availableSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+                availableSource.volume = volume * UnityEngine.Random.Range(0.9f, 1.0f);
+                availableSource.Play();
+            }
+        }
+    }
+    public void PlaySFX_P(int index, float volume, float pitch)
+    {
+        if (index >= 0 && index < SFXClips.Count)
+        {
+            AudioSource availableSource = GetAvailableSFXSource();
+            if (availableSource != null)
+            {
+                availableSource.clip = SFXClips[index];
+                availableSource.pitch = pitch * UnityEngine.Random.Range(0.95f, 1.05f);
+                availableSource.volume = volume * UnityEngine.Random.Range(0.9f, 1.0f);
+                availableSource.Play();
+            }
+        }
+    }
+
+    public AudioSource PlaySFXLoopUnique(int index, float volume)
+    {
+        if (index >= 0 && index < SFXClips.Count)
+        {
+            AudioSource source = GetAvailableSFXSource();
+            if (source != null)
+            {
+                source.Stop();
+                source.clip = SFXClips[index];
+                source.volume = volume;
+                source.loop = true;
+                source.pitch = 1f;
+                source.Play();
+                return source; // <<< Important: retorna'l!
+            }
+        }
+        return null;
+    }
+
+    public void SetLoopPitch(int index, float pitch)
+    {
+        if (loopingSFX.ContainsKey(index))
+        {
+            AudioSource source = loopingSFX[index];
+            source.pitch = pitch;
+        }
+    }
+
+    public void StopSFXLoop(AudioSource source)
+    {
+        if (source != null)
+        {
+            source.Stop();
+            source.loop = false;
+        }
+    }
+
+    public bool IsLoopPlaying(int index)
+    {
+        if (loopingSFX.ContainsKey(index))
+        {
+            return loopingSFX[index].isPlaying;
+        }
+        return false;
+    }
+
+    private AudioSource GetAvailableSFXSource()
+    {
+        for (int i = 0; i < sfxPool.Count; i++)
+        {
+            if (!sfxPool[i].isPlaying)
+            {
+                return sfxPool[i];
+            }
+        }
+
+        // Si totes estan ocupades, recicla la primera
+        return sfxPool[0];
+    }
+
+    // 0 = EnemyDeath
+    // 1 = TowerShot
+    // 2 = SelectTower
+    // 3 = SelectButton
+    // 4 = UpgradeTower
+    // 5 = TowerSpawn
+    // 6 = LvlStart
+    // 7 = LaserType0Shoot
+    // 8 = AttackBopper
+    // 9 = PuddleDMG
+    // 10 = Bomb
+    // 11 = AttackCanoner
+    // 12 = Chain
+    // 13 = LaserLoop
 }
 

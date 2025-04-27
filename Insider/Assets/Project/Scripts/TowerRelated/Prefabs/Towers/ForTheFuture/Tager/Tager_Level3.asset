@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159bc89858931a1458e5567306abffa9, type: 3}
+  m_Name: Tager_Level3
+  m_EditorClassIdentifier: 
+  id: 4
+  damage: 50
+  fireRate: 3
+  DPS: 0
+  projectileHp: 5
+  projectileSpeed: 6
+  range: 10
+  priceLevel_1: 200
+  priceLevel_2: 400
+  priceLevel_3: 0
+  hability: 0
+  rangeOffstY: 0
+  AnimationPrefab: {fileID: 901765758457287831, guid: 641c85ab194f6a74ca0b304060395caa, type: 3}
+  prefab: {fileID: 0}
+  attackManager: {fileID: 0}
