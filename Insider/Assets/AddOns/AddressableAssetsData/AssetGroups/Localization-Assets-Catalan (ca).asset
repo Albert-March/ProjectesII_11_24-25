@@ -16,7 +16,49 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: e6957365626560b4e8e04b1740eb0658
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: ee38fac7b0e17bf4cb7acb3dc3b61b35
+    m_Address: Play
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 334ad8b66d3588741b73e739ed31d8d2
+    m_Address: Back
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 714c34d84f9b4e84b81fe8cec11c970f
+    m_Address: Options
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84c04b1aa9003dd4eaf8c809817e6d81
+    m_Address: Play 2
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66ce6c2fe214b884eb62e771b5828b57
+    m_Address: Play 1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca07045cf09878c4ea619840ac1b0339
+    m_Address: Play 3
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dadceb4a2074497428b04b626c2213ee
+    m_Address: Exit
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 64978bce94bd5424f982e31cb461f1d2, type: 2}
   m_SchemaSet:

@@ -25,7 +25,7 @@ public class AmplyfyButtonOnHover : MonoBehaviour
         if (big)
         {
             transform.localScale = bigSize;
-            audioManager.PlaySFX(0, 0.2f);
+            audioManager.PlaySFX(3, 0.2f);
         }
         else 
         {
