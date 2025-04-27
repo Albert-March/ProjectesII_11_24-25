@@ -101,7 +101,18 @@ public class SetTowerBaseInput : MonoBehaviour
 	PanelVisibilityController panelVisibilityController;
 
 	AudioManager audioManager;
-	void Start()
+
+    public Sprite SingleShot;
+    public Sprite Support;
+    public Sprite RapidFire;
+
+    public Image L0T0;
+    public Image L1T1;
+    public Image L2T1;
+    public Image L1T2;
+    public Image L2T2;
+
+    void Start()
 	{
 		option1OriginalScale = Op1.transform.localScale;
 		//option1OriginalScale = Op1_1.transform.localScale;
@@ -137,7 +148,36 @@ public class SetTowerBaseInput : MonoBehaviour
 
 						UpdateMaterialBasedOnTower(tower);
 
-						if (tower.type == 0)
+						if (tower.id == 0) 
+						{
+							//Cannoner
+							L0T0.sprite = SingleShot;
+                            L1T1.sprite = RapidFire;
+                            L2T1.sprite = RapidFire;
+                            L1T2.sprite = SingleShot;
+                            L2T2.sprite = SingleShot;
+                        }
+                        if (tower.id == 1)
+                        {
+                            //Boper
+                            L0T0.sprite = Support;
+                            L1T1.sprite = Support;
+                            L2T1.sprite = Support;
+                            L1T2.sprite = Support;
+                            L2T2.sprite = Support;
+                        }
+                        if (tower.id == 2)
+                        {
+                            //Leiser
+                            L0T0.sprite = SingleShot;
+                            L1T1.sprite = RapidFire;
+                            L2T1.sprite = RapidFire;
+                            L1T2.sprite = SingleShot;
+                            L2T2.sprite = SingleShot;
+                        }
+
+
+                        if (tower.type == 0)
 						{
 							option1.SetActive(true);
 							Op1.transform.localScale = option1OriginalScale * scaleFactor;
