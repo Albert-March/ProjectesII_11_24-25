@@ -36,7 +36,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
 		scale = Mathf.Lerp(scale, 1f, Time.deltaTime * 10);
         parasiteTextMoney.transform.localScale = originalScale * scale;
 
-		if (parasiteHealth < 0)
+		if (parasiteHealth <= 0)
 		{
 			S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
 			transition.CallPass("DeathScreen");
