@@ -4160,6 +4160,10 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 7618734208131323377}
+    - target: {fileID: 2466818780509342828, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
+      propertyPath: economyManager
+      value: 
+      objectReference: {fileID: 6898333641297833036}
     - target: {fileID: 2525382024375839531, guid: 8cc3e256e16346444beeacb553a1dc0e, type: 3}
       propertyPath: movingSkin
       value: 
