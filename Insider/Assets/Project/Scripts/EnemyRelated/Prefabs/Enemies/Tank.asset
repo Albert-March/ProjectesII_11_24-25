@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Tank
   m_EditorClassIdentifier: 
   id: 4
-  movSpeed: 0.75
+  movSpeed: 1.25
   attackSpeed: 10
-  health: 500
+  health: 1000
   dmg: 10
   economyGiven: 30
   size: {x: 1.8, y: 1.8}

@@ -18,8 +18,8 @@ MonoBehaviour:
   fireRate: 4
   projectileHp: 0
   projectileSpeed: 0
-  range: 15
-  targetAmount: 2
+  range: 30
+  targetAmount: 3
   priceLevel_1_Type0: 1
   priceLevel_2_Type1: 150
   priceLevel_2_Type2: 150

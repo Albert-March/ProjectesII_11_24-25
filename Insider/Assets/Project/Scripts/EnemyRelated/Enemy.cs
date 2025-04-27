@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
     public GameObject SlowEffect;
     public GameObject BleedEffect;
 
+    private Coroutine slowCoroutine;
+
     public void SetEnemyData(EnemyStats enemy)
     {
         this.id = enemy.id;
@@ -274,4 +276,23 @@ public class Enemy : MonoBehaviour, IDamage, IHealable
 		}
 		healthBar.UpdateHealthBar(health, maxHealth);
 	}
+
+    public void ApplySlow(float duration)
+    {
+        if (slowCoroutine != null)
+            StopCoroutine(slowCoroutine);
+
+        slowCoroutine = StartCoroutine(SlowCoroutine(duration));
+    }
+
+    private IEnumerator SlowCoroutine(float duration)
+    {
+        isSlowed = true;
+        // opcional: ajustar velocitat aquí si vols
+
+        yield return new WaitForSeconds(duration);
+
+        isSlowed = false;
+        slowCoroutine = null;
+    }
 }

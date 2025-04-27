@@ -83,9 +83,13 @@ public class Attack_Boper : MonoBehaviour, IAttackType
             {
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
                 if (tower.currentLevel == 2)
-                    StartCoroutine(ApplySlow(enemy, 3f));
-                if (tower.currentLevel == 3)
-                    StartCoroutine(ApplyStun(enemy, 1f));
+                    enemy.ApplySlow(10f);
+                if (tower.currentLevel == 3) 
+                {
+                    enemy.ApplySlow(10f);
+                    enemy.Stun(1f);
+                }
+
             }
             else if (tower.type == 2)
             {
@@ -96,42 +100,18 @@ public class Attack_Boper : MonoBehaviour, IAttackType
                 }
                 if (tower.currentLevel == 2) 
                 {
-                    Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 10f, 1, 3f));
+                    Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 10f, 1, 5f));
                     bleedCoroutines[enemy] = bleed;
                 }
                 if (tower.currentLevel == 3) 
                 {
-                    Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 10f, 1, 5f));
+                    Coroutine bleed = StartCoroutine(ApplyBleed(tower, enemy, 10f, 1, 10f));
                     bleedCoroutines[enemy] = bleed;
                 }
 
                 enemy.GetComponent<IDamage>().Damage(tower.damage);
             }
         }
-    }
-
-    private IEnumerator ApplySlow(Enemy enemy, float duration)
-    {
-        if (enemy == null) yield break;
-
-        enemy.isSlowed = true;
-
-        yield return new WaitForSeconds(duration);
-
-        if (enemy != null)
-            enemy.isSlowed = false;
-    }
-
-    private IEnumerator ApplyStun(Enemy enemy, float duration)
-    {
-        if (enemy == null) yield break;
-
-        enemy.isStuned = true;
-
-        yield return new WaitForSeconds(duration);
-
-        if (enemy != null)
-            enemy.isStuned = false;
     }
 
     private IEnumerator ApplyBleed(Tower t, Enemy enemy, float damagePerTick, int ticks, float duration)
