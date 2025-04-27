@@ -391,7 +391,7 @@ MonoBehaviour:
       m_KeyId: 80640773111808
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
   m_UpdateAsset:
     m_PersistentCalls:
       m_Calls:
@@ -753,7 +753,7 @@ MonoBehaviour:
       m_KeyId: 81208417632256
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
   m_UpdateAsset:
     m_PersistentCalls:
       m_Calls:
@@ -2028,7 +2028,7 @@ MonoBehaviour:
   EN_Flag: {fileID: 248596952}
   CA_Flag: {fileID: 238743632}
   ES_Flag: {fileID: 167518741}
-  lenguageId: 0
+  lenguageId: 2
 --- !u!114 &776416637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2056,6 +2056,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3171113197220303854, guid: ba6c64d3a2d99724994c9435eeaca223, type: 3}
+      propertyPath: SFXSlider
+      value: 
+      objectReference: {fileID: 1637646873278606904}
+    - target: {fileID: 3171113197220303854, guid: ba6c64d3a2d99724994c9435eeaca223, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 6701726529074655680}
     - target: {fileID: 6003156161656094958, guid: ba6c64d3a2d99724994c9435eeaca223, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2100,7 +2108,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3171113197220303854, guid: ba6c64d3a2d99724994c9435eeaca223, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2485,7 +2494,7 @@ MonoBehaviour:
       m_KeyId: 80568626888704
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
   m_UpdateAsset:
     m_PersistentCalls:
       m_Calls:
@@ -3018,7 +3027,7 @@ MonoBehaviour:
       m_KeyId: 77510207520768
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
   m_UpdateAsset:
     m_PersistentCalls:
       m_Calls:
@@ -3502,7 +3511,7 @@ MonoBehaviour:
       m_KeyId: 70552448581632
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
   m_UpdateAsset:
     m_PersistentCalls:
       m_Calls:
@@ -4723,7 +4732,7 @@ MonoBehaviour:
       m_KeyId: 82695755579392
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
   m_UpdateAsset:
     m_PersistentCalls:
       m_Calls:

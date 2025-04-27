@@ -18,12 +18,12 @@ public class ChangeLenguage : MonoBehaviour
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
-	IEnumerator Start()
-	{
-		yield return LocalizationSettings.InitializationOperation;
-		LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales
-			.Find(locale => locale.Identifier.Code == "en");
-	}
+	//IEnumerator Start()
+	//{
+	//	yield return LocalizationSettings.InitializationOperation;
+	//	LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales
+	//		.Find(locale => locale.Identifier.Code == "en");
+	//}
 
 	void Update()
 	{
