@@ -64,13 +64,13 @@ public class TutorialManager : MonoBehaviour
     private Image highlightImage;
     private Color baseHighlightColor;
     private Transform currentTarget = null;
-    private bool isInDelay = false;
     public AudioManager audioManager;
 
     void Awake()
     {
         instance = this;
-    }
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
 
     void Start()
     {
@@ -338,10 +338,8 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator DelayShowStep(float delay, int stepToShow)
     {
-        isInDelay = true;
         yield return new WaitForSecondsRealtime(delay);
         ShowStep(stepToShow);
-        isInDelay = false;
     }
 
 	void HideTutorial()

@@ -25,6 +25,10 @@ public class WavesInformation : MonoBehaviour
 	private bool lastPanelState = false;
 	private bool autocloser = false;
 
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
 	private void Start()
 	{
 		ClearUI();

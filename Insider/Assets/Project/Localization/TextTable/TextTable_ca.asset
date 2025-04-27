@@ -180,6 +180,57 @@ MonoBehaviour:
     m_Localized: "Seg\xFCent"
     m_Metadata:
       m_Items: []
+  - m_Id: 2103234489663488
+    m_Localized: Rebota a 3 enemics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103376676569088
+    m_Localized: Rebota a 5 enemics + Atordeix durant 1s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103336784543744
+    m_Localized: "L'impacte explota (30% de dany d'\xE0rea)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103401334882304
+    m_Localized: "L'explosi\xF3 deixa radiaci\xF3 (5 de dany/s durant 3s)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103481987153920
+    m_Localized: Ralentitza un 50% durant 3s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103579085291520
+    m_Localized: Atordeix 1s per impacte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103534516617216
+    m_Localized: 'Sagnat: 10 de dany/s durant 3s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103602942492672
+    m_Localized: 'Sagnat: 10 de dany/s durant 5s + debilitat X2
+
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103627034574848
+    m_Localized: Dispara a 2 enemics alhora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103685364760576
+    m_Localized: Dispara a 3 enemics alhora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103666419089408
+    m_Localized: "Acumula +5 de dany/s / l\xEDmit de 50 de dany/s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103708685090816
+    m_Localized: "Acumula +10 de dany/s / l\xEDmit de 66 de dany/s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

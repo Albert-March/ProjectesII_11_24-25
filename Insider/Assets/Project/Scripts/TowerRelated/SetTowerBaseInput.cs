@@ -31,6 +31,21 @@ public class SetTowerBaseInput : MonoBehaviour
 	public Text Price2;
 	public Text Price2_1;
 
+	//Descriptions
+	public GameObject TowerDescriptions;
+	public GameObject description1_1_1;
+	public GameObject description1_1_2;
+	public GameObject description1_2_1;
+	public GameObject description1_2_2;
+	public GameObject description2_1_1;
+	public GameObject description2_1_2;
+	public GameObject description2_2_1;
+	public GameObject description2_2_2;
+	public GameObject description3_1_1;
+	public GameObject description3_1_2;
+	public GameObject description3_2_1;
+	public GameObject description3_2_2;
+
 	public Animator animator;
 
 	public GameObject materialL;
@@ -170,6 +185,109 @@ public class SetTowerBaseInput : MonoBehaviour
 						Price2.text = tower.priceLevel_3_Type1.ToString();
 						Price2_1.text = tower.priceLevel_3_Type2.ToString();
 
+						//Descriptions
+						if(tower.currentLevel == 1)
+						{
+							TowerDescriptions.SetActive(false);
+						}
+						else if(tower.currentLevel == 2)
+						{
+							TowerDescriptions.SetActive(true);
+							description1_1_1.SetActive(false);
+							description1_1_2.SetActive(false);
+							description1_2_1.SetActive(false);
+							description1_2_2.SetActive(false);
+							description2_1_1.SetActive(false);
+							description2_1_2.SetActive(false);
+							description2_2_1.SetActive(false);
+							description2_2_2.SetActive(false);
+							description3_1_1.SetActive(false);
+							description3_1_2.SetActive(false);
+							description3_2_1.SetActive(false);
+							description3_2_2.SetActive(false);
+							switch (tower.id)
+							{
+								case 0:
+									if(tower.type == 1)
+									{
+										description1_1_1.SetActive(true);
+									}
+									else if (tower.type == 2)
+									{
+										description1_1_2.SetActive(true);
+									}
+									break;
+								case 1:
+									if (tower.type == 1)
+									{
+										description2_1_1.SetActive(true);
+									}
+									else if (tower.type == 2)
+									{
+										description2_1_2.SetActive(true);
+									}
+									break; 
+								case 2:
+									if (tower.type == 1)
+									{
+										description3_1_1.SetActive(true);
+									}
+									else if (tower.type == 2)
+									{
+										description3_1_2.SetActive(true);
+									}
+									break;
+							}
+						}
+						else if (tower.currentLevel == 3)
+						{
+							TowerDescriptions.SetActive(true);
+							description1_1_1.SetActive(false);
+							description1_1_2.SetActive(false);
+							description1_2_1.SetActive(false);
+							description1_2_2.SetActive(false);
+							description2_1_1.SetActive(false);
+							description2_1_2.SetActive(false);
+							description2_2_1.SetActive(false);
+							description2_2_2.SetActive(false);
+							description3_1_1.SetActive(false);
+							description3_1_2.SetActive(false);
+							description3_2_1.SetActive(false);
+							description3_2_2.SetActive(false);
+							switch (tower.id)
+							{
+								case 0:
+									if (tower.type == 1)
+									{
+										description1_2_1.SetActive(true);
+									}
+									else if (tower.type == 2)
+									{
+										description1_2_2.SetActive(true);
+									}
+									break;
+								case 1:
+									if (tower.type == 1)
+									{
+										description2_2_1.SetActive(true);
+									}
+									else if (tower.type == 2)
+									{
+										description2_2_2.SetActive(true);
+									}
+									break;
+								case 2:
+									if (tower.type == 1)
+									{
+										description3_2_1.SetActive(true);
+									}
+									else if (tower.type == 2)
+									{
+										description3_2_2.SetActive(true);
+									}
+									break;
+							}
+						}
 
 						if (isHoveringUpgradeButton && !hoverBlockedUntilExit && !justUpdated)
 						{

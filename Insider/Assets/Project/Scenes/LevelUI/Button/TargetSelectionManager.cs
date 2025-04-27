@@ -12,7 +12,11 @@ public class TargetSelectionManager : MonoBehaviour
     private string currentTarget = "First";
     int targetType = 0;
 
-    void Start()
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+	void Start()
     {
         targetOptionsPanel.SetActive(false);
     }

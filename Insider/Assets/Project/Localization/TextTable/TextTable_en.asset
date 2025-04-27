@@ -182,6 +182,54 @@ MonoBehaviour:
     m_Localized: Next
     m_Metadata:
       m_Items: []
+  - m_Id: 2103234489663488
+    m_Localized: Bounces to 3 enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103376676569088
+    m_Localized: Bounces to 5 enemies + Stuns for 1s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103336784543744
+    m_Localized: Impact explodes (30% area damage)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103401334882304
+    m_Localized: "Explosion leaves radiation (5 damage/sec for 3s)\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103481987153920
+    m_Localized: Slows by 50% for 3s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103579085291520
+    m_Localized: Stuns 1s per hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103534516617216
+    m_Localized: 'Bleeding: 10 damage/sec for 3s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103602942492672
+    m_Localized: 'Bleeding: 10 damage/sec for 5s + weakness X2'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103627034574848
+    m_Localized: Shoots at 2 enemies at once
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103666419089408
+    m_Localized: Accumulates +5 damage/sec / limit of 50 damage/sec
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103685364760576
+    m_Localized: Shoots at 3 enemies at once
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103708685090816
+    m_Localized: Accumulates +10 damage/sec / limit of 66 damage/sec
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

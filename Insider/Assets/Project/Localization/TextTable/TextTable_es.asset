@@ -168,6 +168,54 @@ MonoBehaviour:
     m_Localized: Siguiente
     m_Metadata:
       m_Items: []
+  - m_Id: 2103234489663488
+    m_Localized: Rebote en 3 enemigos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103336784543744
+    m_Localized: "Impacto explota (30% da\xF1o en \xE1rea)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103376676569088
+    m_Localized: Rebote en 5 enemigos + Stun 1s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103401334882304
+    m_Localized: "Explosi\xF3n deja radiaci\xF3n (5 da\xF1o/seg durante 3s)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103481987153920
+    m_Localized: Ralentiza 50% durante 3s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103534516617216
+    m_Localized: "Sangrado: 10 da\xF1o/seg durante 3s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103579085291520
+    m_Localized: Stunea 1s cada golpe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103602942492672
+    m_Localized: "Sangrado: 10 da\xF1o/seg durante 5s + debilidad X2"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103627034574848
+    m_Localized: Dispara a 2 enemigos a la vez
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103666419089408
+    m_Localized: "Acumula +5 da\xF1o/s / limite de 50 da\xF1o/s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103685364760576
+    m_Localized: Dispara a 3 enemigos a la vez
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2103708685090816
+    m_Localized: "Acumula +10 da\xF1o/s / limite de 66 da\xF1o/s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

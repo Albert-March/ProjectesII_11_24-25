@@ -48,7 +48,12 @@ public class Spawner : MonoBehaviour
 	public Transform SP;
     List<SpawnPoint> childs = new List<SpawnPoint>();
 
-    public void Start()
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+
+	public void Start()
     {
         foreach (Transform child in SP)
         {
