@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using Unity.VisualScripting;
-using static UnityEditor.PlayerSettings;
 using UnityEngine.Localization;
 
 
@@ -84,8 +80,8 @@ public class SetTowerBaseInput : MonoBehaviour
 	public bool isHoveringUpgradeButton = false;
 	private bool hoverBlockedUntilExit = false;
 
-	EconomyManager economyScript;
-	StatesManager states;
+	public EconomyManager economyScript;
+
 	PanelVisibilityController panelVisibilityController;
 
 	AudioManager audioManager;
@@ -229,13 +225,18 @@ public class SetTowerBaseInput : MonoBehaviour
 			{
 				if (child.name == "Tower(Clone)")
 				{
-					rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
 					rangeGO.transform.localScale = new Vector3(clickedButton.transform.GetChild(2).GetComponent<Tower>().range, clickedButton.transform.GetChild(2).GetComponent<Tower>().range, 1) * 2; // Multipliquem per 2 per agafar diametre en comptes de radi
 				}
 			}
 		}
 		bool panelOpen = transform.GetComponent<DinamicPanelAutocloser>().panel.GetComponent<Animator>().GetBool("Open");
-		rangeGO.SetActive(panelOpen && panelVisibilityController.open && spawnTower);
+		
+		if (clickedButton != null && spawnTower) 
+		{
+            rangeGO.transform.position = clickedButton.transform.GetChild(2).GetComponent<CircleCollider2D>().bounds.center;
+        }
+
+        rangeGO.SetActive(panelOpen && panelVisibilityController.open && spawnTower);
 
 		if (justUpdated && !posibleType1 && !posibleType1_1 && !posibleType2 && !posibleType2_1)
 		{
@@ -436,8 +437,6 @@ public class SetTowerBaseInput : MonoBehaviour
 	public void BuildSelectedTower()
 	{
 		TowerStats stats = towerSetter.towerStats[pendingTowerId];
-		economyScript = FindObjectOfType<EconomyManager>();
-		states = FindObjectOfType<StatesManager>();
 
 		if (economyScript.towerSpots >= 1)
 		{

@@ -85,13 +85,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFXLoop(int index, float volume)
+    public AudioSource PlaySFXLoopUnique(int index, float volume)
     {
         if (index >= 0 && index < SFXClips.Count)
         {
-            if (loopingSFX.ContainsKey(index))
-                return; // Ja està sonant aquest en loop
-
             AudioSource source = GetAvailableSFXSource();
             if (source != null)
             {
@@ -99,12 +96,12 @@ public class AudioManager : MonoBehaviour
                 source.clip = SFXClips[index];
                 source.volume = volume;
                 source.loop = true;
-                source.pitch = 1f; // No random per loops, normalment
+                source.pitch = 1f;
                 source.Play();
-
-                loopingSFX[index] = source;
+                return source; // <<< Important: retorna'l!
             }
         }
+        return null;
     }
 
     public void SetLoopPitch(int index, float pitch)
@@ -116,14 +113,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void StopSFXLoop(int index)
+    public void StopSFXLoop(AudioSource source)
     {
-        if (loopingSFX.ContainsKey(index))
+        if (source != null)
         {
-            AudioSource source = loopingSFX[index];
             source.Stop();
             source.loop = false;
-            loopingSFX.Remove(index);
         }
     }
 

@@ -42,6 +42,8 @@ public class Spawner : MonoBehaviour
 	private Vector3 originalPosition;
 	private bool isShaking = false;
 
+    public AudioManager audioManager;
+
 	//SELECTING THE SPAWN POINT
 	public Transform SP;
     List<SpawnPoint> childs = new List<SpawnPoint>();
@@ -131,7 +133,9 @@ public class Spawner : MonoBehaviour
 
 	public void NextWave()
 	{
-		if (waitingForNextWave)
+        audioManager.PlaySFX(14, 1f);
+
+        if (waitingForNextWave)
 		{
 			spawnManager.currentWaveIndex++;
 			spawnManager.InitializeWave();

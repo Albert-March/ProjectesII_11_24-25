@@ -10,6 +10,7 @@ public class FastCam : MonoBehaviour
     public ParasiteManager Health;
     int currentSpeed = 3;
     public Text speedText;
+    public AudioManager audioManager;
     private bool GodMode = false; 
     private void Start()
     {
@@ -47,7 +48,9 @@ public class FastCam : MonoBehaviour
     }
 	public void SpeedUp()
 	{
-		if (currentSpeed < 4) {
+        audioManager.PlaySFX(3, 0.2f);
+
+        if (currentSpeed < 4) {
             currentSpeed++;
         }
         else

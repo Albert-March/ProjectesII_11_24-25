@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
 
 	void Start()
 	{
-		wavesInfo = FindObjectOfType<WavesInformation>();
+
 	}
 
 	public void Update()

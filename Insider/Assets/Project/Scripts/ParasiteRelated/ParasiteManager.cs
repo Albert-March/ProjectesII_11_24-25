@@ -10,6 +10,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
 {
 	public int parasiteHealth;
 	public Text parasiteText;
+	public Text parasiteTextMoney;
 	private int lastHealth;
 	private float scale = 1f;
 	private Vector3 originalScale;
@@ -20,7 +21,7 @@ public class ParasiteManager : MonoBehaviour, IDamage
 	{
 		lastHealth = parasiteHealth;
 		UpdateHPText();
-		originalScale = parasiteText.transform.localScale;
+		originalScale = parasiteTextMoney.transform.localScale;
 	}
 
 	private void Update()
@@ -33,14 +34,16 @@ public class ParasiteManager : MonoBehaviour, IDamage
 		UpdateHPText();
 
 		scale = Mathf.Lerp(scale, 1f, Time.deltaTime * 10);
-		parasiteText.transform.localScale = originalScale * scale;
+        parasiteTextMoney.transform.localScale = originalScale * scale;
 
 		if (parasiteHealth < 0)
 		{
 			S_LevelLoader transition = GameObject.Find("LevelLoader").GetComponent<S_LevelLoader>();
 			transition.CallPass("DeathScreen");
 		}
-	}
+		parasiteTextMoney.text = parasiteHealth.ToString();
+
+    }
 
 	public void Damage(float amount)
 	{

@@ -10,12 +10,12 @@ public class EconomyManager : MonoBehaviour
     public int economy = 400;
 	public Text economyText;
 	private int lastEconomy;
-	private float scaleE = 0.8f;
+	private float scaleE = 1f;
 
 	public int towerSpots = 2;
 	public Text towerSpotsText;
 	private int lasttowerSpots;
-	private float scaleT = 0.8f;
+	private float scaleT = 1f;
 
 	public bool insufficientEconomy = false;
 	public bool insufficientTowerSpots = false;
@@ -61,8 +61,8 @@ public class EconomyManager : MonoBehaviour
 			lasttowerSpots = towerSpots;
 		}
 
-		scaleE = Mathf.Lerp(scaleE, 0.8f, Time.deltaTime * 10);
-		scaleT = Mathf.Lerp(scaleT, 0.8f, Time.deltaTime * 10);
+		scaleE = Mathf.Lerp(scaleE, 1f, Time.deltaTime * 10);
+		scaleT = Mathf.Lerp(scaleT, 1f, Time.deltaTime * 10);
 		economyText.transform.localScale = Vector3.one * scaleE;
 		towerSpotsText.transform.localScale = Vector3.one * scaleT;
 

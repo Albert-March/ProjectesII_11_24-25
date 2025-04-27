@@ -20,6 +20,7 @@ public class WavesInformation : MonoBehaviour
 	private bool infoShown = false;
 
 	private Animator panelAnimator;
+	public AudioManager audioManager;
 	public bool isPanelOpen = false;
 	private bool lastPanelState = false;
 	private bool autocloser = false;
@@ -138,6 +139,7 @@ public class WavesInformation : MonoBehaviour
 
 	public void TogglePanel()
 	{
-		isPanelOpen = !isPanelOpen;
+		audioManager.PlaySFX(2, 0.2f);
+        isPanelOpen = !isPanelOpen;
 	}
 }

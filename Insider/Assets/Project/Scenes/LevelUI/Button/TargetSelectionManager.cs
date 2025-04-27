@@ -7,6 +7,7 @@ public class TargetSelectionManager : MonoBehaviour
 {
     public GameObject dinamicPanel;
     public GameObject targetOptionsPanel;
+    public AudioManager audioManager;
     public Text selectedTargetText;
     private string currentTarget = "First";
     int targetType = 0;
@@ -48,12 +49,15 @@ public class TargetSelectionManager : MonoBehaviour
 
 	public void ToggleTargetOptions()
     {
+        audioManager.PlaySFX(2, 0.1f);
         targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
     }
 
     
     public void SelectTarget(string target)
     {
+        audioManager.PlaySFX(3, 0.1f);
+
         int t;
         switch (target) 
         {

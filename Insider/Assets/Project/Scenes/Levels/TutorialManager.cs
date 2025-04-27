@@ -65,6 +65,7 @@ public class TutorialManager : MonoBehaviour
     private Color baseHighlightColor;
     private Transform currentTarget = null;
     private bool isInDelay = false;
+    public AudioManager audioManager;
 
     void Awake()
     {
@@ -92,12 +93,14 @@ public class TutorialManager : MonoBehaviour
 
     public void Yes()
     {
+        audioManager.PlaySFX(3, 0.2f);
         buttonPressed = true;
         tutorialEnabled = true;
     }
 
     public void No()
     {
+        audioManager.PlaySFX(3, 0.2f);
         buttonPressed = true;
         tutorialEnabled = false;
 
@@ -116,28 +119,31 @@ public class TutorialManager : MonoBehaviour
 
     public void NextStep()
     {
+        audioManager.PlaySFX(3, 0.2f);
         nextStep = true;
     }
 
     void Update()
     {
-        if (!isInDelay) { ShowStep(currentStep); }
-		
-		if (buttonPressed && tutorialEnabled)
+        if (buttonPressed && tutorialEnabled)
         {
-
             if (currentTarget != null)
             {
+                // Solo actualizar la posición
                 highlightBox.transform.position = currentTarget.position;
             }
+
             if (highlightBox.activeSelf)
             {
+                // Solo actualizar el parpadeo
                 float alpha = Mathf.PingPong(Time.unscaledTime * 2f, 0.5f) + 0.5f;
                 Color color = baseHighlightColor;
                 color.a = alpha;
                 highlightImage.color = color;
             }
 
+            // NO LLAMAR ShowStep() aquí
+            // Solo gestionar cuándo cambiar de paso
             switch (currentStep)
             {
                 case 0:
@@ -148,7 +154,7 @@ public class TutorialManager : MonoBehaviour
                         Si_Button.SetActive(false);
                         No_Button.SetActive(false);
                     }
-					break;
+                    break;
 
                 case 1:
                     if (nextStep)
@@ -235,6 +241,7 @@ public class TutorialManager : MonoBehaviour
             highlightBox.SetActive(false);
         }
     }
+
 
     public void ShowStep(int index)
     {

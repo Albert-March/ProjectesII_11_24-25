@@ -63,17 +63,20 @@ public class Tower : MonoBehaviour
 		GetComponent<CircleCollider2D>().radius = range;
         GetComponent<CircleCollider2D>().offset = new Vector2(0,stats.rangeOffstY);
 
-        if (currentLevel == 1 && animatorTower == null)
+        if (currentLevel == 1)
         {
-            GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
-            animatorTower = towerObject.GetComponent<Animator>();
-            towerObject.transform.SetParent(transform, true);
-            towerObject.transform.rotation = transform.rotation;
+
+            attackManager.SetAttackType(id);
+            if (animatorTower == null) 
+			{
+                GameObject towerObject = Instantiate(stats.AnimationPrefab, transform.position, Quaternion.identity);
+                animatorTower = towerObject.GetComponent<Animator>();
+                towerObject.transform.SetParent(transform, true);
+                towerObject.transform.rotation = transform.rotation;
+            }
         }
 
 		CreateOrUpdateLevelIndicator();
-
-		attackManager.SetAttackType(id);
     }
 
 	private void CreateOrUpdateLevelIndicator()

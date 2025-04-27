@@ -24,10 +24,11 @@ public class Attack_Laser : MonoBehaviour, IAttackType
     private int animatingLasers = 0;
     private bool canFireType2 = true;
 
-    private bool isLaserLoopPlaying = false;
     private int laserLoopAudioIndex = 13;
 
     private int previousTowerLevel = -1;
+
+    private AudioSource myLoopSource = null;
 
 
     void Start()
@@ -49,17 +50,21 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
         if (previousTowerLevel != tower.currentLevel)
         {
-            if (isLaserLoopPlaying)
+            if (myLoopSource != null)
             {
-                AudioManager.instance.StopSFXLoop(laserLoopAudioIndex);
-                isLaserLoopPlaying = false;
+                AudioManager.instance.StopSFXLoop(myLoopSource);
+                myLoopSource = null;
             }
             previousTowerLevel = tower.currentLevel;
         }
 
         if (tower.type == 0)
         {
-            if (laserPrefab == null || e == null || e.Count == 0) return;
+            if (laserPrefab == null || e == null || e.Count == 0) 
+            {
+                StopAllCoroutines();
+                return;
+            };
             if (Time.time < lastShotTime + 1f / tower.fireRate) return;
             if (isFiringType0) return;
 
@@ -100,8 +105,11 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         {
             if (!canFireType2) return;
 
-            if (laserPrefab == null || e == null) return;
-
+            if (laserPrefab == null || e == null)
+            {
+                StopAllCoroutines();
+                return;
+            };
             Enemy candidate = targetManager.GetEnemyTargetFromList(e, 1, targetType)[0];
             if (candidate == null || activeTargets.Contains(candidate)) return;
 
@@ -219,36 +227,32 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
         anim.SetBool("IsAttacking", true);
 
-        if (!isLaserLoopPlaying)
+
+        if (myLoopSource == null)
         {
-            AudioManager.instance.PlaySFXLoop(laserLoopAudioIndex, 0.5f);
-            isLaserLoopPlaying = true;
+            myLoopSource = AudioManager.instance.PlaySFXLoopUnique(laserLoopAudioIndex, 0.5f);
         }
         else
         {
-            if (!AudioManager.instance.IsLoopPlaying(laserLoopAudioIndex))
-            {
-                AudioManager.instance.PlaySFXLoop(laserLoopAudioIndex, 0.5f);
-            }
             float newPitch = Mathf.Clamp(1f - (activeLaserCount * 0.05f), 0.5f, 1f);
-            AudioManager.instance.SetLoopPitch(laserLoopAudioIndex, newPitch);
+            if (myLoopSource != null)
+            {
+                myLoopSource.pitch = newPitch;
+            }
         }
 
         animatingLasers++;
 
-        // Esperem que entri a l'animació d'atac
         while (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             yield return null;
 
-        // Avancem fins al frame 40
         anim.speed = tower.fireRate;
+
         while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < (40f / 60f))
             yield return null;
 
-        // Congel·lem al frame 40
         anim.speed = 0f;
 
-        // A partir d’aquí: làser actiu mentre el target estigui viu
         Vector3 startWorld = tower.transform.position;
         GameObject laserObj = Instantiate(laserPrefab, startWorld, Quaternion.identity);
         laserObj.transform.SetParent(tower.transform);
@@ -281,8 +285,14 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         Vector3 velocity = Vector3.zero;
         Vector3 endLocal = Vector3.zero;
 
-        while (t < 1f && target != null)
+        while (t < 1f)
         {
+            if (target == null)
+            {
+                CleanupLaser(anim, laserObj);
+                yield break;
+            }
+
             t += Time.deltaTime * 5f;
             Vector3 targetWorld = target.transform.position;
             endLocal = laserObj.transform.InverseTransformPoint(targetWorld);
@@ -298,37 +308,17 @@ public class Attack_Laser : MonoBehaviour, IAttackType
             yield return null;
         }
 
-        if (target == null)
-        {
-            activeTargets.Remove(target);
-            activeLaserCount--;
-            animatingLasers--;
-            Destroy(laserObj);
-
-            if (animatingLasers <= 0)
-            {
-                anim.speed = 1f;
-                anim.SetBool("IsAttacking", false);
-
-                if (isLaserLoopPlaying)
-                {
-                    AudioManager.instance.StopSFXLoop(laserLoopAudioIndex);
-                    isLaserLoopPlaying = false;
-                }
-            }
-            else if (isLaserLoopPlaying)
-            {
-                float newPitch = Mathf.Clamp(1f - (activeLaserCount * 0.01f), 0.5f, 1f);
-                AudioManager.instance.SetLoopPitch(laserLoopAudioIndex, newPitch);
-            }
-            yield break;
-        }
-
         float fireCooldown = 0f;
         Vector3 currentEnd = lr.GetPosition(1);
 
-        while (target != null)
+        while (true)
         {
+            if (target == null)
+            {
+                CleanupLaser(anim, laserObj);
+                yield break;
+            }
+
             fireCooldown -= Time.deltaTime;
 
             Vector3 targetWorld = target.transform.position;
@@ -351,8 +341,11 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
             yield return null;
         }
+    }
 
-        activeTargets.Remove(target);
+    void CleanupLaser(Animator anim, GameObject laserObj)
+    {
+        activeTargets.RemoveWhere(enemy => enemy == null);
         activeLaserCount--;
         animatingLasers--;
 
@@ -361,30 +354,30 @@ public class Attack_Laser : MonoBehaviour, IAttackType
             anim.speed = 1f;
             anim.SetBool("IsAttacking", false);
 
-            if (isLaserLoopPlaying)
+            if (myLoopSource != null)
             {
-                AudioManager.instance.StopSFXLoop(laserLoopAudioIndex);
-                isLaserLoopPlaying = false;
+                AudioManager.instance.StopSFXLoop(myLoopSource);
+                myLoopSource = null;
             }
         }
-        else if (isLaserLoopPlaying)
+        else if (myLoopSource != null)
         {
             float newPitch = Mathf.Clamp(1f - (activeLaserCount * 0.01f), 0.5f, 1f);
-            AudioManager.instance.SetLoopPitch(laserLoopAudioIndex, newPitch);
+            myLoopSource.pitch = newPitch;
         }
 
-        Destroy(laserObj);
+        if (laserObj != null) Destroy(laserObj);
     }
+
     IEnumerator HandleLaserRampDamage(Enemy target, Animator anim)
     {
         Tower tower = GetComponent<Tower>();
 
         anim.SetBool("IsAttacking", true);
 
-        if (!isLaserLoopPlaying)
+        if (myLoopSource == null)
         {
-            AudioManager.instance.PlaySFXLoop(laserLoopAudioIndex, 0.5f);
-            isLaserLoopPlaying = true;
+            myLoopSource = AudioManager.instance.PlaySFXLoopUnique(laserLoopAudioIndex, 0.5f);
         }
 
         while (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
@@ -396,24 +389,21 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 40f / 60f)
             yield return null;
 
-        anim.speed = 0;
+        anim.speed = 0f;
 
         Vector3 startWorld = tower.transform.position;
 
         GameObject laserObj = Instantiate(laserPrefab, startWorld, Quaternion.identity);
         laserObj.transform.SetParent(tower.transform);
 
-        GameObject GOstartVFX = laserObj.transform.Find("Start").gameObject;
-        GameObject GOlineObj = laserObj.transform.Find("Line").gameObject;
-        GameObject GOendVFX = laserObj.transform.Find("End").gameObject;
-
-        Transform startVFX = GOstartVFX.transform;
-        Transform lineObj = GOlineObj.transform;
-        Transform endVFX = GOendVFX.transform;
+        Transform startVFX = laserObj.transform.Find("Start");
+        Transform lineObj = laserObj.transform.Find("Line");
+        Transform endVFX = laserObj.transform.Find("End");
 
         LineRenderer lr = lineObj.GetComponent<LineRenderer>();
         lr.useWorldSpace = false;
-
+        lr.startColor = LerpLaserColor(0, tower.currentLevel); ;
+        lr.endColor = LerpLaserColor(0, tower.currentLevel); ;
         Vector3 startLocal = startVFX.localPosition;
         lr.SetPosition(0, startLocal);
         lr.SetPosition(1, startLocal);
@@ -422,8 +412,14 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         Vector3 velocity = Vector3.zero;
         Vector3 endLocal = Vector3.zero;
 
-        while (t < 1f && target != null)
+        while (t < 1f)
         {
+            if (target == null)
+            {
+                CleanupLaserRamp(anim, laserObj);
+                yield break;
+            }
+
             t += Time.deltaTime * 5f;
             Vector3 targetWorld = target.transform.position;
             endLocal = laserObj.transform.InverseTransformPoint(targetWorld);
@@ -440,22 +436,18 @@ public class Attack_Laser : MonoBehaviour, IAttackType
             yield return null;
         }
 
-        if (target == null)
-        {
-            activeTargets.Remove(target);
-            activeLaserCount--;
-            anim.speed = 1f;
-            anim.SetBool("IsAttacking", false);
-            Destroy(laserObj);
-            yield break;
-        }
-
         float fireCooldown = 0f;
         float damageMultiplier = 1f;
         Vector3 currentEnd = lr.GetPosition(1);
 
-        while (target != null)
+        while (true)
         {
+            if (target == null)
+            {
+                CleanupLaserRamp(anim, laserObj);
+                yield break;
+            }
+
             fireCooldown -= Time.deltaTime;
 
             Vector3 targetWorld = target.transform.position;
@@ -485,24 +477,6 @@ public class Attack_Laser : MonoBehaviour, IAttackType
             lr.startColor = currentColor;
             lr.endColor = currentColor;
 
-            var startPS = startVFX.GetComponent<ParticleSystem>();
-            var endPS = endVFX.GetComponent<ParticleSystem>();
-
-            if (startPS != null && endPS != null)
-            {
-                var mainStart = startPS.main;
-                var mainEnd = endPS.main;
-                mainStart.startColor = currentColor;
-                mainEnd.startColor = currentColor;
-            }
-            else
-            {
-                var startMR = startVFX.GetComponent<MeshRenderer>();
-                var endMR = endVFX.GetComponent<MeshRenderer>();
-                if (startMR != null) startMR.material.color = currentColor;
-                if (endMR != null) endMR.material.color = currentColor;
-            }
-
             if (fireCooldown <= 0f)
             {
                 IDamage enemyDmg = target.GetComponent<IDamage>();
@@ -512,16 +486,12 @@ public class Attack_Laser : MonoBehaviour, IAttackType
                 if (tower.currentLevel == 2)
                 {
                     if (tower.damage * damageMultiplier <= 20)
-                    {
                         damageMultiplier *= 1.1f;
-                    }
                 }
-                if (tower.currentLevel == 3)
+                else if (tower.currentLevel == 3)
                 {
                     if (tower.damage * damageMultiplier <= 40)
-                    {
                         damageMultiplier *= 1.1f;
-                    }
                 }
 
                 fireCooldown = 1f / tower.fireRate;
@@ -529,22 +499,27 @@ public class Attack_Laser : MonoBehaviour, IAttackType
 
             yield return null;
         }
+    }
 
-        activeTargets.Remove(target);
+    void CleanupLaserRamp(Animator anim, GameObject laserObj)
+    {
+        activeTargets.RemoveWhere(enemy => enemy == null);
         activeLaserCount--;
 
         anim.speed = 1f;
         anim.SetBool("IsAttacking", false);
 
         canFireType2 = true;
-        Destroy(laserObj);
 
-        if (isLaserLoopPlaying)
+        if (laserObj != null) Destroy(laserObj);
+
+        if (myLoopSource != null)
         {
-            AudioManager.instance.StopSFXLoop(laserLoopAudioIndex);
-            isLaserLoopPlaying = false;
+            AudioManager.instance.StopSFXLoop(myLoopSource);
+            myLoopSource = null;
         }
     }
+
     Color LerpLaserColor(float progress, int level)
     {
         if (level == 2)
