@@ -2158,6 +2158,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7141004333625785128, guid: d7a4ad34a484a1a44a0155bbfd0933b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1315557051}
+    - target: {fileID: 7141004333625785128, guid: d7a4ad34a484a1a44a0155bbfd0933b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseBGPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7412415535602334497, guid: d7a4ad34a484a1a44a0155bbfd0933b9, type: 3}
       propertyPath: m_Camera
       value: 
