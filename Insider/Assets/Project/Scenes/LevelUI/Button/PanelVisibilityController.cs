@@ -12,18 +12,20 @@ public class PanelVisibilityController : MonoBehaviour
     private Button lastButton = null;
     public GameObject bg;
     AudioManager audioManager;
+	TutorialManager tutorialManager;
 
-    public bool open;
+	public bool open;
 
     private void Awake()
     {
         bg.SetActive(false);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+		tutorialManager = FindObjectOfType<TutorialManager>();
+	}
 
     public void TogglePanel(Button button)
     {
-        if (!panel.GetComponent<Animator>().GetBool("Open"))
+		if (!panel.GetComponent<Animator>().GetBool("Open"))
         {
             OpenPanel(button);
             open = true;
@@ -32,7 +34,8 @@ public class PanelVisibilityController : MonoBehaviour
         {
             if (button == lastButton)
             {
-                ClosePanel();
+				if (tutorialManager != null && tutorialManager.tutorialEnabled) { return; }
+				ClosePanel();
 				open = false;
 			}
             else
@@ -44,7 +47,7 @@ public class PanelVisibilityController : MonoBehaviour
 
     private void OpenPanel(Button button)
     {
-        panel.GetComponent<Animator>().SetBool("Open", true);
+		panel.GetComponent<Animator>().SetBool("Open", true);
         lastButton = button;
         bg.SetActive(true);
 
@@ -52,7 +55,7 @@ public class PanelVisibilityController : MonoBehaviour
 
     private void ClosePanel()
     {
-        panel.GetComponent<Animator>().SetBool("Open", false);
+		panel.GetComponent<Animator>().SetBool("Open", false);
         lastButton = null;
         bg.SetActive(false);
     }
@@ -66,7 +69,8 @@ public class PanelVisibilityController : MonoBehaviour
 
     public void CloseBGPanel()
     {
-        panel.GetComponent<Animator>().SetBool("Open", false);
+		if (tutorialManager != null && tutorialManager.tutorialEnabled) { return; }
+		panel.GetComponent<Animator>().SetBool("Open", false);
         lastButton = null;
         bg.SetActive(false);
         audioManager.PlaySFX(2, 0.2f);

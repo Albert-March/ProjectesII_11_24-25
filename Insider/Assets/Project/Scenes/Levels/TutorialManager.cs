@@ -61,7 +61,11 @@ public class TutorialManager : MonoBehaviour
 
     public int currentStep = 0;
 
-    private Image highlightImage;
+	private Vector3 originalScale;
+	public float pulseSpeed = 2f;
+	public float pulseAmount = 0.1f;
+
+	private Image highlightImage;
     private Color baseHighlightColor;
     private Transform currentTarget = null;
     public AudioManager audioManager;
@@ -76,8 +80,9 @@ public class TutorialManager : MonoBehaviour
     {
         highlightImage = highlightBox.GetComponent<Image>();
         baseHighlightColor = highlightImage.color;
+		originalScale = NextStep_Button.transform.localScale;
 
-        NextStep_Button.SetActive(false);
+		NextStep_Button.SetActive(false);
         SP1.enabled = false;
         SP2.enabled = false;
         SP3.enabled = false;
@@ -240,10 +245,13 @@ public class TutorialManager : MonoBehaviour
             tutorialPanel.SetActive(false);
             highlightBox.SetActive(false);
         }
+
+        float scaleFactor = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
+        NextStep_Button.transform.localScale = originalScale * scaleFactor;
     }
 
 
-    public void ShowStep(int index)
+	public void ShowStep(int index)
     {
         currentStep = index;
         tutorialPanel.SetActive(true);
