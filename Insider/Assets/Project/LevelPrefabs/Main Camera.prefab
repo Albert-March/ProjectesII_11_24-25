@@ -633,6 +633,9 @@ MonoBehaviour:
   time: 0
   timeToAct: 0
   img: {fileID: 2037356292237995044}
+  Initialize: {fileID: 0}
+  Wave: {fileID: 0}
+  Finish: {fileID: 0}
   I_waveTop: {fileID: 4256330133130468860}
   W_waveTop: {fileID: 2775232433852262524}
   F_waveTop: {fileID: 8465896623015424983}
@@ -7320,6 +7323,7 @@ RectTransform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6841600337914779778}
   - {fileID: 1230774890000151331}
   - {fileID: 2703367569043825906}
   - {fileID: 2305610491272842398}
@@ -9147,7 +9151,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1759901923169576432}
-  - {fileID: 6841600337914779778}
   m_Father: {fileID: 7714838337723593500}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -13848,7 +13851,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8503481538689717027}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13858,13 +13861,13 @@ RectTransform:
   - {fileID: 3608774703268233947}
   - {fileID: 897637037971700841}
   - {fileID: 1017090627954046948}
-  m_Father: {fileID: 2305610491272842398}
+  m_Father: {fileID: 7714838337723593500}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
-  m_SizeDelta: {x: -8.767, y: 240.22}
+  m_AnchoredPosition: {x: 387.90063, y: -76.90004}
+  m_SizeDelta: {x: -948.7671, y: 100.21997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7452027236028952123
 CanvasRenderer:
@@ -14601,7 +14604,7 @@ Transform:
   - {fileID: 143321036001319478}
   - {fileID: 2731779097846483026}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.86}
 --- !u!20 &7165649510146315688
 Camera:
@@ -14638,7 +14641,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 30.00008
+  orthographic size: 29.00008
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
