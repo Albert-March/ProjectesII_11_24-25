@@ -11,6 +11,12 @@ public class TargetSelectionManager : MonoBehaviour
     public GameObject target4;
     public GameObject target5;
 
+	public GameObject textLlargTarget1;
+	public GameObject textLlargTarget2;
+	public GameObject textLlargTarget3;
+	public GameObject textLlargTarget4;
+	public GameObject textLlargTarget5;
+
 	public GameObject textDesactivatTarget1;
 	public GameObject textDesactivatTarget2;
 	public GameObject textDesactivatTarget3;
@@ -43,6 +49,11 @@ public class TargetSelectionManager : MonoBehaviour
 		{
 			target1.transform.position += new Vector3(3f, 0f, 0f);
 			textDesactivatTarget1.SetActive(false);
+			textLlargTarget1.SetActive(true);
+			textLlargTarget2.SetActive(false);
+			textLlargTarget3.SetActive(false);
+			textLlargTarget4.SetActive(false);
+			textLlargTarget5.SetActive(false);
 		}
 	}
 
@@ -153,28 +164,34 @@ public class TargetSelectionManager : MonoBehaviour
 	{
 		GameObject targetObject = null;
 		GameObject textDesactivat = null;
+		GameObject textDesactivat2 = null;
 
 		switch (targetName)
 		{
 			case "First":
 				targetObject = target1;
 				textDesactivat = textDesactivatTarget1;
+				textDesactivat2 = textLlargTarget1;
 				break;
 			case "Last":
 				targetObject = target2;
 				textDesactivat = textDesactivatTarget2;
+				textDesactivat2 = textLlargTarget2;
 				break;
 			case "Strong":
 				targetObject = target3;
 				textDesactivat = textDesactivatTarget3;
+				textDesactivat2 = textLlargTarget3;
 				break;
 			case "Weak":
 				targetObject = target4;
 				textDesactivat = textDesactivatTarget4;
+				textDesactivat2 = textLlargTarget4;
 				break;
 			case "Far":
 				targetObject = target5;
 				textDesactivat = textDesactivatTarget5;
+				textDesactivat2 = textLlargTarget5;
 				break;
 		}
 
@@ -186,10 +203,12 @@ public class TargetSelectionManager : MonoBehaviour
 		if (desactiva)
 		{
 			textDesactivat.SetActive(false);
+			textDesactivat2.SetActive(true);
 		}
 		else
 		{
 			textDesactivat.SetActive(true);
+			textDesactivat2.SetActive(false);
 		}
 	}
 }
