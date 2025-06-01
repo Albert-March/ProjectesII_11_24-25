@@ -120,51 +120,55 @@ MonoBehaviour:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814767343943680
-    m_Localized: "Ah... finalment despertes. Permet-me guiar-te. Aprendr\xE0s a sobreviure...
-      i a conquerir aquest cos."
+    m_Localized: "Acabes de ser introdu\xEFt en un cos hum\xE0. La teva missi\xF3
+      \xE9s infectar-lo \xF2rgan per \xF2rgan, comen\xE7ant per aquest. Per\xF2 ves
+      amb compte: el sistema immunol\xF2gic far\xE0 tot el possible per eliminar-te.\nAdapta\u2019t.
+      Evoluciona. Sobreviu."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814784167297024
-    m_Localized: "Mira't. Un petit intr\xFAs, per\xF2 amb un gran prop\xF2sit: defensar-te
-      d'aquests molestos anticossos... i prendre el control des de dins."
+    m_Localized: "Comencem col\xB7locant la teva primera defensa biol\xF2gica.\nFes
+      clic a la base per obrir el men\xFA de col\xB7locaci\xF3."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814793449291776
-    m_Localized: Primer, uneix-te a les infeccions latents del cos. Fes-les servir
-      com vulguis... converteix-les en armes.
+    m_Localized: "Ara selecciona una BACTERI, una unitat r\xE0pida i barata, ideal
+      per a les primeres onades.\nAquesta torre dispara petites r\xE0fegues d\u2019energia
+      per destruir els anticossos entrants."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814803226214400
-    m_Localized: "Genera aquesta mutaci\xF3. Ser\xE0 la teva primera expansi\xF3
-      dins de l'hoste."
+    m_Localized: "Ben fet. Ara prepara\u2019t per a la teva primera prova: el sistema
+      immunol\xF2gic ha detectat la teva pres\xE8ncia.\nEstan enviant anticossos
+      b\xE0sics. Prem 'Seg\xFCent Onada' per enfrontar-t\u2019hi."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814809614139392
-    m_Localized: "Per\xF2 compte... per expandir el teu poder necessitar\xE0s mutacions.
-      Evoluciona... adapta't..."
+    m_Localized: "Para atenci\xF3: cada antic\xF2s que destrueixis et donar\xE0 ADN,
+      el teu recurs principal.\nEl veur\xE0s augmentar a la cantonada superior esquerra
+      de la pantalla."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814815729434624
-    m_Localized: "Quan estiguis llest, llan\xE7a un senyal: debilita el cos. Obliga'l
-      a cedir. Nom\xE9s llavors comen\xE7ar\xE0s a modelar-lo a la teva imatge."
+    m_Localized: "Has sobreviscut a la primera onada i has aconseguit un nou token
+      d\u2019infecci\xF3!\nAquests tokens especials et permeten col\xB7locar noves
+      torres. N\u2019aconsegueixes un al final de cada ronda."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814821362384896
-    m_Localized: "Elimina els anticossos: les seves restes contenen ADN... material
-      preci\xF3s que podr\xE0s utilitzar per perfeccionar les teves infeccions...
-      i ren\xE9ixer m\xE9s fort."
+    m_Localized: "Intenta utilitzar el token que acabes d\u2019aconseguir per col\xB7locar
+      una nova torre al camp de batalla."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 1814826638819328
-    m_Localized: "Ja has apr\xE8s l'essencial. A partir d'ara... estar\xE0s sol.
-      Que la infestaci\xF3 t'acompanyi... la necessitar\xE0s."
+    m_Localized: "Aquest \xE9s un Virus, prova\u2019l!"
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
@@ -232,47 +236,58 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14695186390446080
-    m_Localized: 
+    m_Localized: "Enfrontem-nos a la seg\xFCent onada!"
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14726377575411712
-    m_Localized: 
+    m_Localized: "Sembla que alguns anticossos han aconseguit fer-te mal. Aquesta
+      vegada t\u2019ajudarem, per\xF2 la pr\xF2xima dependr\xE0 de tu evitar que
+      torni a passar."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14726879222558720
-    m_Localized: 
+    m_Localized: "Has aconseguit prou ADN per evolucionar la teva torre. Intenta
+      millorar el VIRUS que vas col\xB7locar recentment."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14727005169119232
-    m_Localized: 
+    m_Localized: "Abans de millorar, deixa\u2019m mostrar-te com funciona el sistema
+      de rols."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14727009367617536
-    m_Localized: 
+    m_Localized: "Una icona de creu significa que \xE9s una torre de suport: potencia
+      els teus aliats o debilita els enemics."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14727128880115712
-    m_Localized: 
+    m_Localized: "Una mira de franctirador indica que la torre \xE9s potent contra
+      objectius individuals, perfecta per a enemics durs i a\xEFllats."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14727689306238976
-    m_Localized: 
+    m_Localized: "Tres bales indiquen que \xE9s una torre de m\xFAltiples objectius,
+      ideal per fer front a grups nombrosos d\u2019enemics."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14731051703595008
-    m_Localized: 
+    m_Localized: "Intenta millorar a la variant de tret m\xFAltiple. Si hi passes
+      el cursor per sobre, podr\xE0s veure quines estad\xEDstiques canvien i la nova
+      habilitat que adquireix."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154
   - m_Id: 14735288307150848
-    m_Localized: 
+    m_Localized: "Excel\xB7lent feina. Ara est\xE0s preparat per infectar lliurement.\nCol\xB7loca
+      m\xE9s torres, millora amb intel\xB7lig\xE8ncia i conquista aquest \xF2rgan.
+      El teu objectiu final: arribar al cervell."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427154

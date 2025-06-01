@@ -124,8 +124,8 @@ MonoBehaviour:
       - rid: 1408601354238427151
   - m_Id: 1814767343943680
     m_Localized: " You\u2019ve just been inserted into a human body. Your mission
-      is to infect it organ by organ, starting here. But beware \u2014 the immune
-      system will do everything to eliminate you.\r\n Adapt. Evolve. Survive."
+      is to infect it organ by organ, starting here. But beware the immune system
+      will do everything to eliminate you.\r\n Adapt. Evolve. Survive."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
@@ -136,15 +136,15 @@ MonoBehaviour:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814793449291776
-    m_Localized: " Now select a BACTERY  \u2014 a fast and cheap unit ideal for early
-      waves.\"\n This tower will shoot small energy bursts to destroy incoming antibodies."
+    m_Localized: " Now select a BACTERY a fast and cheap unit ideal for early waves.\n
+      This tower will shoot small energy bursts to destroy incoming antibodies."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814803226214400
-    m_Localized: " Well done. Now prepare for your first test \u2014 the immune system
-      has detected your presence.\"\n They\u2019re sending basic antibodies. Press
-      'Next Wave' to face them."
+    m_Localized: " Well done. Now prepare for your first test the immune system has
+      detected your presence.\n They\u2019re sending basic antibodies. Press 'Next
+      Wave' to face them."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
@@ -155,7 +155,7 @@ MonoBehaviour:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814815729434624
-    m_Localized: " You\u2019ve survived the first wave \u2014 and earned a new infection
+    m_Localized: " You\u2019ve survived the first wave and earned a new infection
       token!\n These special tokens let you place new towers. You gain one after
       each round."
     m_Metadata:
@@ -255,14 +255,16 @@ MonoBehaviour:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 14727009367617536
-    m_Localized: "\"A cross icon means it's a support tower \u2014 boost allies,
-      or weaken enemies.\""
+    m_Localized: A cross icon means it's a support tower boost allies, or weaken
+      enemies.
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 14727128880115712
-    m_Localized: " \"A sniper scope means the tower is strong against single targets
-      \u2014 perfect for tough, isolated enemies.\"\r\n"
+    m_Localized: ' A sniper scope means the tower is strong against single targets
+      perfect for tough, isolated enemies.
+
+'
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
