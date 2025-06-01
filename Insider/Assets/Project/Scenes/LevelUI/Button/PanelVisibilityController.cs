@@ -71,6 +71,7 @@ public class PanelVisibilityController : MonoBehaviour
 
     public void CloseBGPanel()
     {
+        Debug.Log("Panel");
 		if (tutorialManager != null && tutorialManager.tutorialEnabled) { return; }
 		panel.GetComponent<Animator>().SetBool("Open", false);
         lastButton = null;

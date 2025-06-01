@@ -67,7 +67,6 @@ public class TargetSelectionManager : MonoBehaviour
         {
 			targetType = dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType;
 
-			Debug.Log(targetType);
 			if (targetType != t)
 			{
 				MoveTarget(currentTarget, -3f, false);

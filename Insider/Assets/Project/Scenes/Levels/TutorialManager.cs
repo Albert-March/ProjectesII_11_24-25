@@ -351,7 +351,8 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialPanel.SetActive(false);
             highlightBox.SetActive(false);
-        }
+			SPBG.enabled = true;
+		}
     }
 
 
@@ -547,7 +548,7 @@ public class TutorialManager : MonoBehaviour
 				SP6.enabled = true;
 				SP7.enabled = true;
 
-                Cannoner.GetComponent<Button>().enabled = false;
+                Cannoner.GetComponent<Button>().enabled = true;
                 Cannoner.SetActive(true);
 				Bopper.SetActive(true);
 				Leiser.SetActive(true);
