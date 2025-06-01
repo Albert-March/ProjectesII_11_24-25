@@ -123,50 +123,52 @@ MonoBehaviour:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814767343943680
-    m_Localized: Ah... you finally awaken. Allow me to guide you. You will learn
-      to survive... and to conquer this body.
+    m_Localized: " You\u2019ve just been inserted into a human body. Your mission
+      is to infect it organ by organ, starting here. But beware \u2014 the immune
+      system will do everything to eliminate you.\r\n Adapt. Evolve. Survive."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814784167297024
-    m_Localized: 'Look at you. A small intruder, but with a great purpose: to defend
-      yourself from those pesky antibodies... and take control from within.'
+    m_Localized: " Let\u2019s begin by setting up your first biological defense.\n
+      Click on the base spot to open the placement menu."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814793449291776
-    m_Localized: First, join the body's latent infections. Use them at will... turn
-      them into weapons.
+    m_Localized: " Now select a BACTERY  \u2014 a fast and cheap unit ideal for early
+      waves.\"\n This tower will shoot small energy bursts to destroy incoming antibodies."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814803226214400
-    m_Localized: Generate this mutation. It will be your first expansion within the
-      host.
+    m_Localized: " Well done. Now prepare for your first test \u2014 the immune system
+      has detected your presence.\"\n They\u2019re sending basic antibodies. Press
+      'Next Wave' to face them."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814809614139392
-    m_Localized: But be careful... to expand your power you will need mutations.
-      Evolve... adapt...
+    m_Localized: " Watch closely: every antibody you destroy gives you DNA, your
+      main resource.\n You'll see it increase in the top-left corner of the screen."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814815729434624
-    m_Localized: 'When you are ready, send a signal: weaken the body. Force it to
-      yield. Only then will you begin to mold it in your image.'
+    m_Localized: " You\u2019ve survived the first wave \u2014 and earned a new infection
+      token!\n These special tokens let you place new towers. You gain one after
+      each round."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814821362384896
-    m_Localized: 'Get rid of the antibodies: their remains contain DNA... precious
-      material you can use to perfect your infections... and be reborn stronger.'
+    m_Localized: ' Try using the token you just earned to place a new tower on the
+      battlefield.'
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
   - m_Id: 1814826638819328
-    m_Localized: You have now learned the essentials. From now on... you will be
-      alone. May the infestation guide you... you will need it.
+    m_Localized: This is a Virus, try it out!
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
@@ -230,10 +232,63 @@ MonoBehaviour:
     m_Localized: "\rDamage increases for 5 seconds, with a cap of 66"
     m_Metadata:
       m_Items: []
+  - m_Id: 14695186390446080
+    m_Localized: Lets deal with the next Wave!
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14726377575411712
+    m_Localized: It seems that some antybodies managed to damage you, we will get
+      you some help this time but the next time is up to you to not let this happend.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14726879222558720
+    m_Localized: " You\u2019ve earned enough DNA to evolve your tower, try upgrading
+      the VIRUS you recently added."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14727005169119232
+    m_Localized: Before upgrading let me show you how the role sistem works.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14727009367617536
+    m_Localized: "\"A cross icon means it's a support tower \u2014 boost allies,
+      or weaken enemies.\""
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14727128880115712
+    m_Localized: " \"A sniper scope means the tower is strong against single targets
+      \u2014 perfect for tough, isolated enemies.\"\r\n"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14727689306238976
+    m_Localized: ' Three bullets indicate it''s a multi-target tower  great for dealing
+      with enemy swarms.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14731051703595008
+    m_Localized: Try upgrading to the multyshot variation, if you hover it you can
+      see what stats change and the new hability that they get.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
+  - m_Id: 14735288307150848
+    m_Localized: " Excellent work. Now you\u2019re ready to infect freely.\n Place
+      more towers, upgrade wisely, and conquer this organ. Your final goal: reach
+      the brain.\n"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427151
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427151
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0a2069272060000c022419372060000c0e2b69072060000c0624a8f72060000c0a2cd8d72060000c0e2868b72060000c0a25d8972060000c0e27285720600
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0a2069272060000c022419372060000c0e2b69072060000c0a2cd8d72060000c0e2868b72060000c0a25d8972060000c0e2728572060000c0624a8f72060000f0b5b43135340000f035f88f51340000f0b5c40452340000f0b5172252340000f0f5112352340000f075e53e52340000f07561c152340000f0f53fd055340000f035a9aa593400

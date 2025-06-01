@@ -153,9 +153,9 @@ public class Tower : MonoBehaviour
 
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.transform.tag == "Enemy")
         {
 
             if (enemiesInRange.Contains(other.GetComponent<Enemy>()))

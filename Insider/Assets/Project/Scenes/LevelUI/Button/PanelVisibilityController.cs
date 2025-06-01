@@ -42,16 +42,18 @@ public class PanelVisibilityController : MonoBehaviour
         }
     }
 
-    private void OpenPanel(Button button)
+    public void OpenPanel(Button button)
     {
+        open = true;
         panel.GetComponent<Animator>().SetBool("Open", true);
         lastButton = button;
         bg.SetActive(true);
 
     }
 
-    private void ClosePanel()
+    public void ClosePanel()
     {
+        open = false;
         panel.GetComponent<Animator>().SetBool("Open", false);
         lastButton = null;
         bg.SetActive(false);

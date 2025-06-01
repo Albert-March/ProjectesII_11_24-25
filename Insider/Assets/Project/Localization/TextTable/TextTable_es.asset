@@ -216,10 +216,55 @@ MonoBehaviour:
     m_Localized: "El da\xF1o aumenta durante 5 segundos, con l\xEDmite en 66"
     m_Metadata:
       m_Items: []
+  - m_Id: 14695186390446080
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14726377575411712
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14726879222558720
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727005169119232
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727009367617536
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727128880115712
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727689306238976
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14731051703595008
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14735288307150848
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427155
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0e2728572060000c0a25d8972060000c0e2868b72060000c0a2cd8d72060000c0624a8f72060000c0e2b69072060000c0a2069272060000c0224193720600
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0e2728572060000c0a25d8972060000c0e2868b72060000c0a2cd8d72060000c0624a8f72060000c0e2b69072060000c0a2069272060000c022419372060000f0b5b43135340000f035f88f51340000f0b5c40452340000f0b5172252340000f0f5112352340000f075e53e52340000f07561c152340000f0f53fd055340000f035a9aa593400
