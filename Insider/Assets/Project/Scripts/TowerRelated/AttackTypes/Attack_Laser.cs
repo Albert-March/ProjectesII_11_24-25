@@ -79,7 +79,10 @@ public class Attack_Laser : MonoBehaviour, IAttackType
         }
         else if (tower.type == 1)
         {
-            if (laserPrefab == null || e == null || anim == null) return;
+            if (laserPrefab == null || e == null || anim == null) {
+                StopAllCoroutines();
+                return; 
+            }
 
             int allowed = TargetAmount - activeLaserCount;
             if (allowed <= 0) return;

@@ -14,14 +14,19 @@ public class TutorialManager : MonoBehaviour
     public bool buttonPressed = false;
     public bool tutorialEnabled = true;
     public bool nextStep = false;
+    public bool alredyinCorrutine = false;
 
     [Header("Tutorial UI")]
     public GameObject tutorialPanel;
     public Text tutorialText;
     public GameObject highlightBox;
+    public Sprite Select;
+    public Sprite Highlight;
     public GameObject Si_Button;
     public GameObject No_Button;
     public GameObject NextStep_Button;
+
+    [Header("Localization")]
 
     public LocalizedString tutorialStep0;
     public LocalizedString tutorialStep1;
@@ -32,16 +37,31 @@ public class TutorialManager : MonoBehaviour
     public LocalizedString tutorialStep6;
     public LocalizedString tutorialStep7;
     public LocalizedString tutorialStep8;
+    public LocalizedString tutorialStep9;
+    public LocalizedString tutorialStep10;
+    public LocalizedString tutorialStep11;
+    public LocalizedString tutorialStep12;
+    public LocalizedString tutorialStep13;
+    public LocalizedString tutorialStep14;
+    public LocalizedString tutorialStep15;
+    public LocalizedString tutorialStep16;
+    public LocalizedString tutorialStep17;
 
 	[Header("Tutorial Targets")]
-    public Transform step2;
-    public Transform step3p1;
-    public Transform step3p2;
-    public Transform step4;
-    public Transform step5;
-    public Transform step6;
+    public Transform TutorialTowerSpot1;
+    public Transform TutorialTowerSpot2;
 
-    [Header("Additional Needs Step 3 and 4")]
+    public Transform TutorialCannoner;
+    public Transform TutorialLeiser;
+    public Transform TutorialUpgrade;
+
+    public Transform TutorialNextWave;
+
+    public Transform TutorialSpotEconomy;
+    public Transform TutorialADNEconomy;
+    public Transform TutorialHealth;
+
+    [Header("Additional Needs")]
     public Button SP1;
     public Button SP2;
     public Button SP3;
@@ -49,15 +69,34 @@ public class TutorialManager : MonoBehaviour
     public Button SP5;
     public Button SP6;
     public Button SP7;
+    public Button SPBG;
     public DinamicTowerSetting spotFirstTower;
+    public DinamicTowerSetting spotSecondTower;
     public PanelVisibilityController dinamicPanel;
     public GameObject Cannoner;
     public GameObject Bopper;
     public GameObject Leiser;
 
-    [Header("Additional Needs Step 6")]
+    public GameObject Player;
+
+    public Button Upgrade1_1;
+    public Button Upgrade1_2;
+    public Button Upgrade2_1;
+    public Button Upgrade2_2;
+
     public GameObject WavePanel;
+    public Button DropdownButton;
     public Spawner spawner;
+
+    [Header("Tutorial Needs")]
+
+
+    public Image Show;
+
+    public Sprite imageSupport;
+    public Sprite imageSinglefire;
+    public Sprite imageMultitarget;
+
 
     public int currentStep = 0;
 
@@ -85,6 +124,10 @@ public class TutorialManager : MonoBehaviour
         SP5.enabled = false;
         SP6.enabled = false;
         SP7.enabled = false;
+        SPBG.enabled = false;
+
+        Show.enabled = false;
+
         Cannoner.SetActive(false);
         Bopper.SetActive(false);
         Leiser.SetActive(false);
@@ -166,49 +209,43 @@ public class TutorialManager : MonoBehaviour
                     break;
 
                 case 2:
-                    if (nextStep)
+                    if (dinamicPanel.open)
                     {
-                        nextStep = false;
                         HideTutorial();
                         StartCoroutine(DelayShowStep(1f, 3));
+                        SP7.enabled = false;
                     }
                     break;
 
                 case 3:
-                    if (dinamicPanel.open)
+                    if (spotFirstTower.spawnTower)
                     {
-                        nextStep = false;
                         HideTutorial();
-                        StartCoroutine(DelayShowStep(0.1f, 4));
+                        StartCoroutine(DelayShowStep(1f, 4));
+                        dinamicPanel.ClosePanel();
+                        DropdownButton.enabled = false;
                     }
                     break;
 
                 case 4:
-                    if (!dinamicPanel.open)
+                    if (spawner.waitingForNextWave == false)
                     {
-                        nextStep = false;
                         HideTutorial();
-                        StartCoroutine(DelayShowStep(0.1f, 3));
-                    }
-                    if (spotFirstTower.spawnTower)
-                    {
-                        nextStep = false;
-                        HideTutorial();
-                        StartCoroutine(DelayShowStep(1f, 5));
+                        StartCoroutine(DelayShowStep(6f, 5));
+                        WavePanel.SetActive(false);
                     }
                     break;
 
                 case 5:
-                    if (nextStep)
+                    if (spawner.waitingForNextWave == true)
                     {
-                        nextStep = false;
                         HideTutorial();
                         StartCoroutine(DelayShowStep(1f, 6));
                     }
                     break;
 
                 case 6:
-                    if (spawner.waitingForNextWave == false)
+                    if (nextStep)
                     {
                         nextStep = false;
                         HideTutorial();
@@ -217,20 +254,95 @@ public class TutorialManager : MonoBehaviour
                     break;
 
                 case 7:
-                    if (nextStep)
+                    if (dinamicPanel.open)
                     {
-                        nextStep = false;
                         HideTutorial();
                         StartCoroutine(DelayShowStep(1f, 8));
+                        SP3.enabled = false;
                     }
                     break;
 
                 case 8:
+                    if (spotSecondTower.spawnTower)
+                    {
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 9));
+                        dinamicPanel.ClosePanel();
+                    }
+                    break;
+
+                case 9:
+                    if (spawner.waitingForNextWave == false)
+                    {
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(19f, 10));
+                        WavePanel.SetActive(false);
+                    }
+                    break;
+                case 10:
                     if (nextStep)
                     {
                         nextStep = false;
-                        tutorialEnabled = false;
+                        
                         HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 11));
+                        Player.GetComponent<ParasiteManager>().parasiteHealth = 100;
+                    }
+                    break;
+
+                case 11:
+                    if(dinamicPanel.open)
+                    {
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 12));
+                        SP3.enabled = false;
+                    }
+                    break;
+                case 12:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 13));
+                    }
+                    break;
+                case 13:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(0.5f, 14));
+                    }
+                    break;
+                case 14:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(0.5f, 15));
+                    }
+                    break;
+                case 15:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(0.5f, 16));
+                    }
+                    break;
+                case 16:
+                    if (spotSecondTower.levelUp2 == true)
+                    {
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 17));
+                    }
+                    break;
+                case 17:
+                    if (nextStep)
+                    {
+                        nextStep = false;
+                        HideTutorial();
+                        StartCoroutine(DelayShowStep(1f, 18));
                     }
                     break;
             }
@@ -239,7 +351,8 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialPanel.SetActive(false);
             highlightBox.SetActive(false);
-        }
+			SPBG.enabled = true;
+		}
     }
 
 
@@ -264,63 +377,169 @@ public class TutorialManager : MonoBehaviour
 				break;
 
 			case 2:
-				tutorialText.text = tutorialStep2.GetLocalizedString();
-				currentTarget = step2;
-				highlightBox.transform.position = currentTarget.position;
-				highlightBox.transform.rotation = Quaternion.identity;
-				highlightBox.SetActive(true);
-				break;
+                NextStep_Button.SetActive(false);
+                tutorialText.text = tutorialStep2.GetLocalizedString();
+                SP7.enabled = true;
+                Cannoner.SetActive(true);
+                currentTarget = TutorialTowerSpot1;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
 
 			case 3:
-				NextStep_Button.SetActive(false);
-				tutorialText.text = tutorialStep3.GetLocalizedString();
-				SP7.enabled = true;
-				Cannoner.SetActive(true);
-				currentTarget = step3p1;
-				highlightBox.transform.position = currentTarget.position;
-				highlightBox.transform.rotation = Quaternion.identity;
-				highlightBox.SetActive(true);
-				break;
+                tutorialText.text = tutorialStep3.GetLocalizedString();
+                currentTarget = TutorialCannoner;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
 
 			case 4:
-				tutorialText.text = tutorialStep4.GetLocalizedString();
-				currentTarget = step3p2;
-				highlightBox.transform.position = currentTarget.position;
-				highlightBox.transform.rotation = Quaternion.identity;
-				highlightBox.SetActive(true);
-				break;
+                NextStep_Button.SetActive(false);
+                WavePanel.SetActive(true);
+                tutorialText.text = tutorialStep4.GetLocalizedString();
+                currentTarget = TutorialNextWave;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                highlightBox.SetActive(true);
+                break;
 
 			case 5:
-				NextStep_Button.SetActive(true);
-				tutorialText.text = tutorialStep5.GetLocalizedString();
-				currentTarget = step5;
-				highlightBox.transform.position = currentTarget.position;
-				highlightBox.transform.rotation = Quaternion.identity;
-				highlightBox.SetActive(true);
-				break;
+                NextStep_Button.SetActive(false);
+                tutorialText.text = tutorialStep5.GetLocalizedString();
+                currentTarget = TutorialADNEconomy;
+                highlightBox.GetComponent<Image>().sprite = Highlight;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+
+                break;
 
 			case 6:
-				NextStep_Button.SetActive(false);
-				WavePanel.SetActive(true);
-				tutorialText.text = tutorialStep6.GetLocalizedString();
-				currentTarget = step4;
-				highlightBox.transform.position = currentTarget.position;
-				highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-				highlightBox.SetActive(true);
-				break;
+                NextStep_Button.SetActive(true);
+                WavePanel.SetActive(false);
+                tutorialText.text = tutorialStep6.GetLocalizedString();
+                currentTarget = TutorialSpotEconomy;
+                highlightBox.GetComponent<Image>().sprite = Highlight;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+
+                break;
 
 			case 7:
-				NextStep_Button.SetActive(true);
-				tutorialText.text = tutorialStep7.GetLocalizedString();
-				currentTarget = step6;
-				highlightBox.transform.position = currentTarget.position;
-				highlightBox.transform.rotation = Quaternion.identity;
-				highlightBox.SetActive(true);
-				break;
+                SP3.enabled = true;
+                NextStep_Button.SetActive(false);
+                tutorialText.text = tutorialStep7.GetLocalizedString();
+                currentTarget = TutorialTowerSpot2;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
+            
+            case 8:
+                Cannoner.GetComponent<Button>().enabled = false;
+                Leiser.SetActive(true);
+                tutorialText.text = tutorialStep8.GetLocalizedString();
+                currentTarget = TutorialLeiser;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
 
-			case 8:
-				tutorialText.text = tutorialStep8.GetLocalizedString();
-				currentTarget = null;
+            case 9:
+                WavePanel.SetActive(true);
+                WavePanel.GetComponent<WavesInformation>().OpenPanel();
+                tutorialText.text = tutorialStep9.GetLocalizedString();
+                currentTarget = TutorialNextWave;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                highlightBox.SetActive(true);
+                break;
+
+            case 10:
+                NextStep_Button.SetActive(true);
+                tutorialText.text = tutorialStep10.GetLocalizedString();
+                currentTarget = TutorialHealth;
+                highlightBox.GetComponent<Image>().sprite = Highlight;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                highlightBox.SetActive(true);
+                break;
+
+            case 11:
+
+                SP3.enabled = true;
+                NextStep_Button.SetActive(false);
+                tutorialText.text = tutorialStep11.GetLocalizedString();
+                currentTarget = TutorialTowerSpot2;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
+
+            case 12:
+                Upgrade1_1.enabled = false;
+                Upgrade1_2.enabled = false;
+                Upgrade2_1.enabled = false;
+                Upgrade2_2.enabled = false;
+                NextStep_Button.SetActive(true);
+                tutorialText.text = tutorialStep12.GetLocalizedString();
+                currentTarget = TutorialTowerSpot2;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(false);
+                break;
+
+            case 13:
+                Show.enabled = true;
+                Show.sprite = imageSupport;
+                tutorialText.text = tutorialStep13.GetLocalizedString();
+                break;
+
+            case 14:
+                Show.sprite = imageSinglefire;
+                tutorialText.text = tutorialStep14.GetLocalizedString();
+                break;
+
+            case 15:
+                Show.sprite = imageMultitarget;
+                tutorialText.text = tutorialStep15.GetLocalizedString();
+                break;
+
+            case 16:
+                NextStep_Button.SetActive(false);
+                Show.enabled = false;
+                Upgrade1_1.enabled = true;
+                tutorialText.text = tutorialStep16.GetLocalizedString();
+                currentTarget = TutorialUpgrade;
+                highlightBox.GetComponent<Image>().sprite = Select;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(true);
+                break;
+
+            case 17:
+                NextStep_Button.SetActive(true);
+                tutorialText.text = tutorialStep17.GetLocalizedString();
+                currentTarget = TutorialUpgrade;
+                highlightBox.transform.position = currentTarget.position;
+                highlightBox.transform.rotation = Quaternion.identity;
+                highlightBox.SetActive(false);
+                break;
+            case 18:
+                tutorialEnabled = false;
+
+                currentTarget = null;
 				SP1.enabled = true;
 				SP2.enabled = true;
 				SP3.enabled = true;
@@ -328,17 +547,33 @@ public class TutorialManager : MonoBehaviour
 				SP5.enabled = true;
 				SP6.enabled = true;
 				SP7.enabled = true;
-				Cannoner.SetActive(true);
+
+                Cannoner.GetComponent<Button>().enabled = true;
+                Cannoner.SetActive(true);
 				Bopper.SetActive(true);
 				Leiser.SetActive(true);
-				break;
+
+                WavePanel.SetActive(true);
+                WavePanel.GetComponent<WavesInformation>().OpenPanel();
+                DropdownButton.enabled = true;
+
+                Upgrade1_1.enabled = true;
+                Upgrade1_2.enabled = true;
+                Upgrade2_1.enabled = true;
+                Upgrade2_2.enabled = true;
+
+
+                break;
 		}
 	}
 
 
     IEnumerator DelayShowStep(float delay, int stepToShow)
     {
+        if (alredyinCorrutine) { yield break; }
+        else { alredyinCorrutine = true; }
         yield return new WaitForSecondsRealtime(delay);
+        alredyinCorrutine = false;
         ShowStep(stepToShow);
     }
 

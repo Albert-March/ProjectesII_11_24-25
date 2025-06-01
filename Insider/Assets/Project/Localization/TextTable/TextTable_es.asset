@@ -108,51 +108,54 @@ MonoBehaviour:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814767343943680
-    m_Localized: "Ah... por fin despiertas. Perm\xEDteme guiarte. Aprender\xE1s a
-      sobrevivir... y a conquistar este cuerpo."
+    m_Localized: "Acabas de ser insertado en un cuerpo humano. Tu misi\xF3n es infectarlo
+      \xF3rgano por \xF3rgano, empezando por este. Pero cuidado, el sistema inmunol\xF3gico
+      har\xE1 todo lo posible por eliminarte.\nAd\xE1ptate. Evoluciona. Sobrevive."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814784167297024
-    m_Localized: "M\xEDrate. Un peque\xF1o intruso, pero con un gran prop\xF3sito:
-      defenderte de esos molestos anticuerpos... y tomar el control desde dentro."
+    m_Localized: "Empecemos colocando tu primera defensa biol\xF3gica.\nHaz clic
+      en la base para abrir el men\xFA de colocaci\xF3n."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814793449291776
-    m_Localized: "Primero, \xFAnete a las infecciones latentes del cuerpo. \xDAsalas
-      a tu antojo... convi\xE9rtelas en armas."
+    m_Localized: "Ahora selecciona una BACTERIA, una unidad r\xE1pida y barata, ideal
+      para las primeras oleadas.\nEsta torre dispara peque\xF1as r\xE1fagas de energ\xEDa
+      para destruir los anticuerpos que se acercan."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814803226214400
-    m_Localized: "Genera esta mutaci\xF3n. Ser\xE1 tu primera expansi\xF3n dentro
-      del hu\xE9sped."
+    m_Localized: "Bien hecho. Ahora prep\xE1rate para tu primera prueba: el sistema
+      inmunol\xF3gico ha detectado tu presencia.\nEst\xE1n enviando anticuerpos b\xE1sicos.
+      Pulsa 'Siguiente Oleada' para enfrentarte a ellos."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814809614139392
-    m_Localized: "Pero cuidado... para expandir tu poder necesitar\xE1s mutaciones.
-      Evoluciona... ad\xE1ptate..."
+    m_Localized: "Presta atenci\xF3n: cada anticuerpo que destruyas te dar\xE1 ADN,
+      tu recurso principal.\nLo ver\xE1s aumentar en la esquina superior izquierda
+      de la pantalla."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814815729434624
-    m_Localized: "Cuando est\xE9s listo, lanza una se\xF1al: debilita al cuerpo.
-      Obl\xEDgalo a ceder. Solo entonces comenzar\xE1s a moldearlo a tu imagen."
+    m_Localized: "Has sobrevivido a la primera oleada y has conseguido un nuevo token
+      de infecci\xF3n.\nEstos tokens especiales te permiten colocar nuevas torres.
+      Obtienes uno al final de cada ronda."
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814821362384896
-    m_Localized: "Deshazte de los anticuerpos: sus restos contienen ADN... material
-      precioso que podr\xE1s usar para perfeccionar tus infecciones... y nacer m\xE1s
-      fuerte."
+    m_Localized: Intenta usar el token que acabas de conseguir para colocar una nueva
+      torre en el campo de batalla.
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
   - m_Id: 1814826638819328
-    m_Localized: "Ya has aprendido lo esencial. A partir de ahora... estar\xE1s solo.
-      Que la infestaci\xF3n te acompa\xF1e... la necesitar\xE1s."
+    m_Localized: "Este es un Virus, \xA1pru\xE9balo!"
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
@@ -216,10 +219,105 @@ MonoBehaviour:
     m_Localized: "El da\xF1o aumenta durante 5 segundos, con l\xEDmite en 66"
     m_Metadata:
       m_Items: []
+  - m_Id: 14695186390446080
+    m_Localized: "\xA1Vamos a enfrentarnos a la siguiente oleada!"
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14726377575411712
+    m_Localized: "Parece que algunos anticuerpos lograron hacerte da\xF1o. Esta vez
+      te ayudaremos, pero la pr\xF3xima depender\xE1 de ti evitar que vuelva a suceder."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14726879222558720
+    m_Localized: Has conseguido suficiente ADN para evolucionar tu torre. Intenta
+      mejorar el VIRUS que colocaste recientemente.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727005169119232
+    m_Localized: "Antes de mejorar, d\xE9jame mostrarte c\xF3mo funciona el sistema
+      de roles."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727009367617536
+    m_Localized: 'Un icono de cruz significa que es una torre de apoyo: potencia
+      a tus aliados o debilita a los enemigos.'
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727128880115712
+    m_Localized: Una mirilla de francotirador significa que la torre es fuerte contra
+      objetivos individuales, perfecta para enemigos duros y aislados.
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14727689306238976
+    m_Localized: "Tres balas indican que es una torre de da\xF1o m\xFAltiple, ideal
+      para enfrentarse a enjambres de enemigos."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14731051703595008
+    m_Localized: "Intenta mejorar a la variante de disparo m\xFAltiple. Si pasas
+      el cursor por encima, podr\xE1s ver qu\xE9 estad\xEDsticas cambian y la nueva
+      habilidad que obtiene."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14735288307150848
+    m_Localized: "Excelente trabajo. Ahora est\xE1s listo para infectar libremente.\nColoca
+      m\xE1s torres, mejora con inteligencia y conquista este \xF3rgano. Tu objetivo
+      final: llegar al cerebro."
+    m_Metadata:
+      m_Items:
+      - rid: 1408601354238427155
+  - m_Id: 14814547657539584
+    m_Localized: Primero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815082716512256
+    m_Localized: "\xDAltimo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815330683764736
+    m_Localized: Fuerte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815381451620352
+    m_Localized: "D\xE9bil"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815422992007168
+    m_Localized: Lejano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815808280772608
+    m_Localized: P
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815868020244480
+    m_Localized: U
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815918666465280
+    m_Localized: F
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815950337654784
+    m_Localized: D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14816023259824128
+    m_Localized: L
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 1408601354238427155
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0e2728572060000c0a25d8972060000c0e2868b72060000c0a2cd8d72060000c0624a8f72060000c0e2b69072060000c0a2069272060000c0224193720600
+        m_Entries: 00c022c25a4f010000c022202c50060000c0a2a2ae50060000c0620fb750060000c0e2b7bc50060000c062087b72060000c0e2728572060000c0a25d8972060000c0e2868b72060000c0a2cd8d72060000c0624a8f72060000c0e2b69072060000c0a2069272060000c022419372060000f0b5b43135340000f035f88f51340000f0b5c40452340000f0b5172252340000f0f5112352340000f075e53e52340000f07561c152340000f0f53fd055340000f035a9aa593400

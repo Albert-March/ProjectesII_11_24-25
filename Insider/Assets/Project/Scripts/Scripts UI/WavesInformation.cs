@@ -146,4 +146,10 @@ public class WavesInformation : MonoBehaviour
 		audioManager.PlaySFX(2, 0.2f);
         isPanelOpen = !isPanelOpen;
 	}
+
+    public void OpenPanel()
+    {
+        panelAnimator.SetBool("Open", true);
+        lastPanelState = true;
+    }
 }

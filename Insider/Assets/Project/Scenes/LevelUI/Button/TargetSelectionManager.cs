@@ -5,12 +5,33 @@ using UnityEngine.UI;
 
 public class TargetSelectionManager : MonoBehaviour
 {
-    public GameObject dinamicPanel;
+    public GameObject target1;
+    public GameObject target2;
+    public GameObject target3;
+    public GameObject target4;
+    public GameObject target5;
+
+	public GameObject textLlargTarget1;
+	public GameObject textLlargTarget2;
+	public GameObject textLlargTarget3;
+	public GameObject textLlargTarget4;
+	public GameObject textLlargTarget5;
+
+	public GameObject textDesactivatTarget1;
+	public GameObject textDesactivatTarget2;
+	public GameObject textDesactivatTarget3;
+	public GameObject textDesactivatTarget4;
+	public GameObject textDesactivatTarget5;
+
+	private Animator dinamicPanelAnimator;
+
+	public GameObject dinamicPanel;
     public GameObject targetOptionsPanel;
     public AudioManager audioManager;
-    public Text selectedTargetText;
     private string currentTarget = "First";
-    int targetType = 0;
+    private string LastTarget = "First";
+    public int targetType = 0;
+	int t;
 
 	private void Awake()
 	{
@@ -18,74 +39,177 @@ public class TargetSelectionManager : MonoBehaviour
 	}
 	void Start()
     {
-        targetOptionsPanel.SetActive(false);
-    }
+		if (dinamicPanel != null)
+		{
+			dinamicPanelAnimator = dinamicPanel.GetComponent<Animator>();
+		}
+		targetOptionsPanel.SetActive(false);
+
+		if (target1 != null)
+		{
+			target1.transform.position += new Vector3(3f, 0f, 0f);
+			textDesactivatTarget1.SetActive(false);
+			textLlargTarget1.SetActive(true);
+			textLlargTarget2.SetActive(false);
+			textLlargTarget3.SetActive(false);
+			textLlargTarget4.SetActive(false);
+			textLlargTarget5.SetActive(false);
+		}
+	}
 
 	private void Update()
 	{
+		if (dinamicPanelAnimator != null && !dinamicPanelAnimator.GetBool("Open"))
+		{
+			if (targetOptionsPanel.activeSelf)
+			{
+				targetOptionsPanel.SetActive(false);
+			}
+		}
+		else if(dinamicPanelAnimator != null && dinamicPanelAnimator.GetBool("Open") && this.gameObject.activeSelf)
+		{
+			if (!targetOptionsPanel.activeSelf)
+			{
+				targetOptionsPanel.SetActive(true);
+			}
+		}
+
 		if (dinamicPanel.GetComponent<SetTowerBaseInput>().spawnTower == true)
         {
 			targetType = dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType;
-			switch (targetType)
+
+			if (targetType != t)
 			{
-				case 0:
-					currentTarget = "First";
-					break;
-				case 1:
-					currentTarget = "Last";
-					break;
-				case 2:
-					currentTarget = "Strong";
-					break;
-				case 3:
-					currentTarget = "Weak";
-					break;
-                case 4:
-                    currentTarget = "Far";
-                    break;
-                default:
-					currentTarget = "First";
-					break;
+				MoveTarget(currentTarget, -3f, false);
+				t = targetType;
+				switch (t)
+				{
+					case 0:
+						currentTarget = "First";
+						break;
+					case 1:
+						currentTarget = "Last";
+						break;
+					case 2:
+						currentTarget = "Strong";
+						break;
+					case 3:
+						currentTarget = "Weak";
+						break;
+					case 4:
+						currentTarget = "Far";
+						break;
+					default:
+						currentTarget = "First";
+						break;
+				}
+				MoveTarget(currentTarget, 3f, true);
 			}
-			selectedTargetText.text = $" ↓ Target: {currentTarget}";
-		}  
+		}
 	}
 
-	public void ToggleTargetOptions()
-    {
-        audioManager.PlaySFX(2, 0.1f);
-        targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
-    }
+	//public void ToggleTargetOptions()
+ //   {
+ //       audioManager.PlaySFX(2, 0.1f);
+ //       //targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
+ //   }
 
     
     public void SelectTarget(string target)
     {
         audioManager.PlaySFX(3, 0.1f);
-
-        int t;
+		LastTarget = currentTarget;
+		
         switch (target) 
         {
             case "First":
                 t = 0;
-                break;
+				//currentTarget = "First";
+				//textDesactivatTarget1.SetActive(false);
+				break;
             case "Last":
                 t = 1;
-                break;
+				//currentTarget = "Last";
+				break;
             case "Strong":
                 t = 2;
-                break;
+				//currentTarget = "Strong";
+				break;
             case "Weak":
                 t = 3;
-                break;
+				//currentTarget = "Weak";
+				break;
             case "Far":
                 t = 4;
-                break;
+				//currentTarget = "Far";
+				break;
             default:
                 t = 0;
-                break;
+				//currentTarget = "First";
+				break;
         }
+		currentTarget = target;
+		if(LastTarget != target) 
+		{ 
+			MoveTarget(LastTarget, -3f, false);
+			LastTarget = target;
+			MoveTarget(currentTarget, 3f, true);
+		}
+		
+
 		dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType = t;
-        targetOptionsPanel.SetActive(false);
+        //targetOptionsPanel.SetActive(false);
     }
+	private void MoveTarget(string targetName, float offsetX, bool desactiva)
+	{
+		GameObject targetObject = null;
+		GameObject textDesactivat = null;
+		GameObject textDesactivat2 = null;
+
+		switch (targetName)
+		{
+			case "First":
+				targetObject = target1;
+				textDesactivat = textDesactivatTarget1;
+				textDesactivat2 = textLlargTarget1;
+				break;
+			case "Last":
+				targetObject = target2;
+				textDesactivat = textDesactivatTarget2;
+				textDesactivat2 = textLlargTarget2;
+				break;
+			case "Strong":
+				targetObject = target3;
+				textDesactivat = textDesactivatTarget3;
+				textDesactivat2 = textLlargTarget3;
+				break;
+			case "Weak":
+				targetObject = target4;
+				textDesactivat = textDesactivatTarget4;
+				textDesactivat2 = textLlargTarget4;
+				break;
+			case "Far":
+				targetObject = target5;
+				textDesactivat = textDesactivatTarget5;
+				textDesactivat2 = textLlargTarget5;
+				break;
+		}
+
+		if (targetObject != null)
+		{
+			targetObject.transform.position += new Vector3(offsetX, 0f, 0f);
+		}
+
+		if (desactiva)
+		{
+			textDesactivat.SetActive(false);
+			textDesactivat2.SetActive(true);
+		}
+		else
+		{
+			textDesactivat.SetActive(true);
+			textDesactivat2.SetActive(false);
+		}
+	}
 }
 

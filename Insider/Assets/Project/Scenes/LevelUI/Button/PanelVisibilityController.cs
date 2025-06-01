@@ -12,18 +12,20 @@ public class PanelVisibilityController : MonoBehaviour
     private Button lastButton = null;
     public GameObject bg;
     AudioManager audioManager;
+	TutorialManager tutorialManager;
 
-    public bool open;
+	public bool open;
 
     private void Awake()
     {
         bg.SetActive(false);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+		tutorialManager = FindObjectOfType<TutorialManager>();
+	}
 
     public void TogglePanel(Button button)
     {
-        if (!panel.GetComponent<Animator>().GetBool("Open"))
+		if (!panel.GetComponent<Animator>().GetBool("Open"))
         {
             OpenPanel(button);
             open = true;
@@ -32,7 +34,8 @@ public class PanelVisibilityController : MonoBehaviour
         {
             if (button == lastButton)
             {
-                ClosePanel();
+				if (tutorialManager != null && tutorialManager.tutorialEnabled) { return; }
+				ClosePanel();
 				open = false;
 			}
             else
@@ -42,16 +45,18 @@ public class PanelVisibilityController : MonoBehaviour
         }
     }
 
-    private void OpenPanel(Button button)
+    public void OpenPanel(Button button)
     {
+        open = true;
         panel.GetComponent<Animator>().SetBool("Open", true);
         lastButton = button;
         bg.SetActive(true);
 
     }
 
-    private void ClosePanel()
+    public void ClosePanel()
     {
+        open = false;
         panel.GetComponent<Animator>().SetBool("Open", false);
         lastButton = null;
         bg.SetActive(false);
@@ -60,13 +65,15 @@ public class PanelVisibilityController : MonoBehaviour
     private IEnumerator SwapPanel(Button button)
     {
         ClosePanel();
-        yield return new WaitForSeconds(0.3f); // Simula animación de cierre
+        yield return new WaitForSeconds(0.3f); // Simula animaciï¿½n de cierre
         OpenPanel(button);
     }
 
     public void CloseBGPanel()
     {
-        panel.GetComponent<Animator>().SetBool("Open", false);
+        Debug.Log("Panel");
+		if (tutorialManager != null && tutorialManager.tutorialEnabled) { return; }
+		panel.GetComponent<Animator>().SetBool("Open", false);
         lastButton = null;
         bg.SetActive(false);
         audioManager.PlaySFX(2, 0.2f);
