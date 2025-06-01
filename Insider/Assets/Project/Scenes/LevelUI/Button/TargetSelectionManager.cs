@@ -24,7 +24,8 @@ public class TargetSelectionManager : MonoBehaviour
     public AudioManager audioManager;
     private string currentTarget = "First";
     private string LastTarget = "First";
-    int targetType = 0;
+    public int targetType = 0;
+	int t;
 
 	private void Awake()
 	{
@@ -66,79 +67,78 @@ public class TargetSelectionManager : MonoBehaviour
         {
 			targetType = dinamicPanel.GetComponent<SetTowerBaseInput>().clickedButton.gameObject.transform.GetChild(2).GetComponent<Tower>().targetType;
 
-			//switch (targetType)
-			//{
-			//	case 0:
-			//		currentTarget = "First";
-			//		break;
-			//	case 1:
-			//		currentTarget = "Last";
-			//		break;
-			//	case 2:
-			//		currentTarget = "Strong";
-			//		break;
-			//	case 3:
-			//		currentTarget = "Weak";
-			//		break;
-   //             case 4:
-   //                 currentTarget = "Far";
-			//		break;
-   //             default:
-			//		currentTarget = "First";
-			//		break;
-			//}
-			//if (newTarget != currentTarget)
-			//{
-			//	MoveTarget(LastTarget, -0.5f);
-
-			//	LastTarget = currentTarget;
-			//	currentTarget = newTarget;
-
-			//	MoveTarget(currentTarget, 0.5f);
-			//}
-		}  
+			Debug.Log(targetType);
+			if (targetType != t)
+			{
+				MoveTarget(currentTarget, -3f, false);
+				t = targetType;
+				switch (t)
+				{
+					case 0:
+						currentTarget = "First";
+						break;
+					case 1:
+						currentTarget = "Last";
+						break;
+					case 2:
+						currentTarget = "Strong";
+						break;
+					case 3:
+						currentTarget = "Weak";
+						break;
+					case 4:
+						currentTarget = "Far";
+						break;
+					default:
+						currentTarget = "First";
+						break;
+				}
+				MoveTarget(currentTarget, 3f, true);
+			}
+		}
 	}
 
-	public void ToggleTargetOptions()
-    {
-        audioManager.PlaySFX(2, 0.1f);
-        //targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
-    }
+	//public void ToggleTargetOptions()
+ //   {
+ //       audioManager.PlaySFX(2, 0.1f);
+ //       //targetOptionsPanel.SetActive(!targetOptionsPanel.activeSelf);
+ //   }
 
     
     public void SelectTarget(string target)
     {
         audioManager.PlaySFX(3, 0.1f);
-
-		int t;
+		LastTarget = currentTarget;
+		
         switch (target) 
         {
             case "First":
                 t = 0;
-				currentTarget = "First";
-				textDesactivatTarget1.SetActive(false);
+				//currentTarget = "First";
+				//textDesactivatTarget1.SetActive(false);
 				break;
             case "Last":
                 t = 1;
-				currentTarget = "Last";
+				//currentTarget = "Last";
 				break;
             case "Strong":
                 t = 2;
-				currentTarget = "Strong";
+				//currentTarget = "Strong";
 				break;
             case "Weak":
                 t = 3;
-				currentTarget = "Weak";
+				//currentTarget = "Weak";
 				break;
             case "Far":
                 t = 4;
-				currentTarget = "Far";
+				//currentTarget = "Far";
 				break;
             default:
                 t = 0;
-				currentTarget = "First";
+				//currentTarget = "First";
 				break;
         }
+		currentTarget = target;
 		if(LastTarget != target) 
 		{ 
 			MoveTarget(LastTarget, -3f, false);

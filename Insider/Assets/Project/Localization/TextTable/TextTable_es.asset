@@ -274,6 +274,46 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1408601354238427155
+  - m_Id: 14814547657539584
+    m_Localized: Primero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815082716512256
+    m_Localized: "\xDAltimo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815330683764736
+    m_Localized: Fuerte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815381451620352
+    m_Localized: "D\xE9bil"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815422992007168
+    m_Localized: Lejano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815808280772608
+    m_Localized: P
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815868020244480
+    m_Localized: U
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815918666465280
+    m_Localized: F
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815950337654784
+    m_Localized: D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14816023259824128
+    m_Localized: L
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

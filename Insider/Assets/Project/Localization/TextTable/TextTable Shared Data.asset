@@ -225,6 +225,46 @@ MonoBehaviour:
     m_Key: tutorialStep17
     m_Metadata:
       m_Items: []
+  - m_Id: 14814547657539584
+    m_Key: TargetFirst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815082716512256
+    m_Key: TargetLast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815330683764736
+    m_Key: TargetStrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815381451620352
+    m_Key: TargetWeak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815422992007168
+    m_Key: TargetFar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815808280772608
+    m_Key: TargetS_First
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815868020244480
+    m_Key: TargetS_Last
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815918666465280
+    m_Key: TargetS_Strong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815950337654784
+    m_Key: TargetS_Weak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14816023259824128
+    m_Key: TargetS_Far
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

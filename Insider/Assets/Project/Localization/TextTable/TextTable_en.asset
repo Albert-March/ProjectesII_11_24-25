@@ -287,6 +287,46 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1408601354238427151
+  - m_Id: 14814547657539584
+    m_Localized: First
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815082716512256
+    m_Localized: Last
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815330683764736
+    m_Localized: Strong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815381451620352
+    m_Localized: Weak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815422992007168
+    m_Localized: Far
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815808280772608
+    m_Localized: F
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815868020244480
+    m_Localized: L
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815918666465280
+    m_Localized: S
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14815950337654784
+    m_Localized: W
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14816023259824128
+    m_Localized: F
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
