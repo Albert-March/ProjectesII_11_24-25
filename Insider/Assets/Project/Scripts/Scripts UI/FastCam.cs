@@ -8,16 +8,20 @@ public class FastCam : MonoBehaviour
 {
     public EconomyManager Money;
     public ParasiteManager Health;
-    int currentSpeed = 3;
+    public int currentSpeed;
     public Text speedText;
-    public AudioManager audioManager;
-    private bool GodMode = false; 
-    private void Start()
-    {
-
-    }
-
-    void Update()
+    AudioManager audioManager;
+    private bool GodMode = false;
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+	private void Start()
+	{
+        currentSpeed = 3;
+		Time.timeScale = currentSpeed;
+	}
+	void Update()
     {
         if (Input.GetKeyDown(KeyCode.G)) 
         {
@@ -43,13 +47,12 @@ public class FastCam : MonoBehaviour
                 currentSpeed--;
         }
 
-        Time.timeScale = currentSpeed;
+		Time.timeScale = currentSpeed;
         speedText.text = "x"+(currentSpeed - 2).ToString();
     }
 	public void SpeedUp()
 	{
         audioManager.PlaySFX(3, 0.2f);
-
         if (currentSpeed < 4) {
             currentSpeed++;
         }

@@ -148,6 +148,11 @@ public class SetTowerBaseInput : MonoBehaviour
 
 						UpdateMaterialBasedOnTower(tower);
 
+						if (tower.id >= 0 && tower.id < names.Length)
+							texto.text = names[tower.id];
+						else
+							texto.text = $"TOWER {tower.id}";
+
 						if (tower.id == 0) 
 						{
 							//Cannoner
